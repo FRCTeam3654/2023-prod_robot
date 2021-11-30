@@ -10,15 +10,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Turn90DegreesCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
-import frc.robot.commands.BallFlushCommand;
-import frc.robot.commands.BallPickUpCommand;
-import frc.robot.commands.ColorWheelCommand;
-import frc.robot.commands.ColorSensorCommand;
-import frc.robot.commands.BallShooterCommand;
 import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
-import frc.robot.commands.ClimbLockCommand;
-import frc.robot.commands.TurretTurningCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -75,17 +68,6 @@ public class OI {
   turnRight90Button.whenPressed(new Turn90DegreesCommand());
   turnLeft180Button.whenPressed(new Turn90DegreesCommand());
   turnRight180Button.whenPressed(new Turn90DegreesCommand());
-  colorWheelSpinButton.whenPressed(new ColorWheelCommand());
-  colorSensorButton.whenPressed(new ColorSensorCommand());
-  ballPickUpButton.whenPressed(new BallPickUpCommand());
-  ballShooterButton.whenPressed(new BallShooterCommand());
-  ballFlushButton.whenPressed(new BallFlushCommand());
-  limeLightButton.whenPressed(new DriveTargetCommand());
-  climbLockLeftButton.whenPressed(new ClimbLockCommand());
-  climbLockRightButton.whenPressed(new ClimbLockCommand());
-  climbUnlockLeftButton.whenPressed(new ClimbLockCommand());
-  climbUnlockRightButton.whenPressed(new ClimbLockCommand());
-  turretButton.whenPressed(new TurretTurningCommand());
   }
   
 }

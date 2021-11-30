@@ -71,8 +71,7 @@ public class RunGalacticSearchARed extends SequentialCommandGroup {
              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(30),  Units.inchesToMeters(90), new Rotation2d()))), 
                 mp1, mp2, mp3, mp4
                 )
-                ,               
-      new BallPickUpCommand(1))
+                )
       );
   }
 

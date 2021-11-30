@@ -69,8 +69,8 @@ public class RunGalacticSearchBBlue extends SequentialCommandGroup {
              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(30),  Units.inchesToMeters(120), new Rotation2d()))), 
                 mp1, mp2, mp3, mp4
                 )
-                ,               
-      new BallPickUpCommand(1))
+                               
+      )
       
       );
   }

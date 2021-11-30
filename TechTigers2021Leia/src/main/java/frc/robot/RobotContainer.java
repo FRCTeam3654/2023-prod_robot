@@ -28,12 +28,6 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
   // The robot's subsystems
   public static Drive drive;
-  public static Climb climb;
-  public static ColorWheel colorWheel;
-  public static BallPickUp ballPickUp;
-  public static BallShooter ballShooter;
-  public static BallStorage ballStorage;
-  public static Turret turret;
   public static OI oi;
 
   private RobotOdometry odometry;
@@ -48,12 +42,6 @@ public class RobotContainer {
 
     // VERY IMPORTANT:   drive need be created before oi since oi creates Turn90DegreesCommand object in which need drive object
     drive = new Drive();
-    climb = new Climb();
-    colorWheel = new ColorWheel();
-    ballPickUp = new BallPickUp();
-    ballShooter = new BallShooter();
-    ballStorage = new BallStorage();
-    turret = new Turret();
     oi = new OI();  // need be after drive object
 
     // Configure the button bindings
@@ -65,11 +53,7 @@ public class RobotContainer {
     odometry.resetOdometry();
 
     drive.setDefaultCommand(new ManualDriveCommand());
-    climb.setDefaultCommand(new ClimbCommand());
-    ballStorage.setDefaultCommand( new BallStorageCommand());
-    ballPickUp.setDefaultCommand(new BallPickUpCommand());
 
-    autoChooser.setDefaultOption("Auto (Shot and Move)", new NewCommandGroup(odometry, drive));
     
     //autoChooser.setDefaultOption("AutoNav (Barrel Racing)", new RunAutoNavBarrelRacing(odometry, drive));
     
