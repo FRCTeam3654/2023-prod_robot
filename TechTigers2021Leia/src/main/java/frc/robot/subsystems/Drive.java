@@ -531,7 +531,7 @@ public void mercyArcadeDrive(double joystickX, double joystickY) {
       leftSpeed = 1;
     }
     if (rightSpeed < -1) {
-      rightSpeed = 1;
+      rightSpeed = -1;
     }
     if (leftSpeed < -1) {
       leftSpeed = -1;
