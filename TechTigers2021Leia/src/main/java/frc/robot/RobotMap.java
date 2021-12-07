@@ -29,11 +29,11 @@ public static double turnDegreeProportion = 0.0038;
 public static double LimelightJoeyX = -0.007;
 public static double turn90DegreeTimeout = 1.5;
 public static double limeLightTimeout = 2;
-public static double ballStorageTimerAndysVision = 2;
+//public static double ballStorageTimerAndysVision = 2;
 public static double autonomousVelocity = 0.5; 
 public static double leftOverRightCompensation = .98;
 public static double talonDriveAccelerationRate = 0.1654;//0.3654
-public static double ballStorageSpeed = -0.6;
+//public static double ballStorageSpeed = -0.6;
 public static double effectiveTurnWheelWidth = 0.64; // meter, measured by turning the robot
 
 // ^^^ Must be experimentally derived
@@ -65,16 +65,16 @@ public static int turnRight180ButtonNumber = 6;
 public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 //OPERATOR STICK
-public static int colorWheelSpinButtonNumber = 9;
-public static int climbLockLeftButtonNumber = 7;
-public static int climbLockRightButtonNumber = 5;
-public static int climbUnlockLeftButtonNumber = 8;
-public static int climbUnlockRightButtonNumber = 6;
-public static int ballFlushButtonNumber = 2;  
-public static int colorSensorButtonNumber = 10; 
-public static int pickUpButtonNumber = 1;
-public static int ballShooterButtonNumber = 4; 
-public static int turretButtonNumber = 3;
+//public static int colorWheelSpinButtonNumber = 9;
+//public static int climbLockLeftButtonNumber = 7;
+//public static int climbLockRightButtonNumber = 5;
+//public static int climbUnlockLeftButtonNumber = 8;
+//public static int climbUnlockRightButtonNumber = 6;
+//public static int ballFlushButtonNumber = 2;  
+//public static int colorSensorButtonNumber = 10; 
+//public static int pickUpButtonNumber = 1;
+//public static int ballShooterButtonNumber = 4; 
+//public static int turretButtonNumber = 3;
 
 //TALONS/TALON ID NUMBERS!
 public static int leftTalonMaster = 1;
@@ -83,27 +83,27 @@ public static int leftTalonSlave = 3;
 public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
 
-public static int climbExtendTalonID = 10;
-public static int climbLeftTalonID = 11;
-public static int climbRightTalonID = 12;
+//public static int climbExtendTalonID = 10;
+//public static int climbLeftTalonID = 11;
+//public static int climbRightTalonID = 12;
 public static int BallPickUpID = 6;
-public static int BallShooterID = 8;
-public static int BallShooterSlaveID = 5;
-public static int pickUpArmTalonID = 13;
-public static int turretTurningID = 17;
+//public static int BallShooterID = 8;
+//public static int BallShooterSlaveID = 5;
+//public static int pickUpArmTalonID = 13;
+//public static int turretTurningID = 17;
 
 // Digital IO for the ballpickup sensor
 public static int ArmStatusID = 0;
 
 //public static int BallStorageID = 7;//7 on competition robot
 
-public static int BallStorageID1 = 7;
-public static int BallStorageID2 = 15;
+//public static int BallStorageID1 = 7;
+//public static int BallStorageID2 = 15;
 //public static int BallStorageID3 = 16;
 //public static int BallStorageID4 = 7;
 
 
-public static int colorWheelTalonID = 9;
+//public static int colorWheelTalonID = 9;
 
 public static int analogDistanceSensorPort1 = 0; 
 public static int digitalDistanceSensorPort2 = 0; 
@@ -115,62 +115,62 @@ public static double joystickDeadBand = 0.08;
 
 public static double autonomousTimeOut = 40; // used to be 7 second in normal auto mode but 2021 is different
 
-public static double autonomousBallShooterTimeOut = 8;
-public static double autonomousBallPickUpTimeOut = 25; // MICHELE WAS HERE
+//public static double autonomousBallShooterTimeOut = 8;
+//public static double autonomousBallPickUpTimeOut = 25; // MICHELE WAS HERE
 
-public static double motionMagicTimeOut = 40;// in regular, it should time out in 4 seconds
+public static double motionMagicTimeOut = 4;// in regular, it should time out in 4 seconds
 
 //falcon maximum velocity in native unit 
-public static int maximumVelocityFalcon = 21000;
+public static int maximumVelocityFalcon = 21000; // need to change for new robot
 public static double radianConversionToDegree = 57.2958;
 
 //BALL INTAKE/SHOOTER
-public static double ballPickUpSpeed = 0.8; //1; //0.9;//0.69// 0.5; //used to 0.4
-public static int solenoidIn = 3; 
-public static int solenoidOut = 2;
-public static double shooterSpeed_nativeUnit = 12360; //4500 rpm 15360
+//public static double ballPickUpSpeed = 0.8; //1; //0.9;//0.69// 0.5; //used to 0.4
+//public static int solenoidIn = 3; 
+//public static int solenoidOut = 2;
+//public static double shooterSpeed_nativeUnit = 12360; //4500 rpm 15360
 //^^ calculated by (desired rpm * 2048 / 60sec / 10)
-public static double shooterSpeedTolerance = 450;
+//public static double shooterSpeedTolerance = 450;
 
 //COLOR WHEEL!
 /**4096 * 25
 *25 is minimum times small wheel should turn for big wheel turning 3 times
 **/
-public static int turretTickAmount = 20000; //82,944 ticks 1:81 gear ratio for half turn
-public static double turretTickchangemultiplier = 458.4; //tick count per degree =82944/181
-public static int colorWheelSpinTickAmount = 102400;
-public static int colorWheelCruiseVelocity = 4000;
-public static int colorWheelAcceleration = 4000;
-public static int colorSensorTickAmount = 4096; //for spinning the wheel 1/8 to change to an adjacent color
-public static double colorSensorTimeout = 7;
+//public static int turretTickAmount = 20000; //82,944 ticks 1:81 gear ratio for half turn
+//public static double turretTickchangemultiplier = 458.4; //tick count per degree =82944/181
+//public static int colorWheelSpinTickAmount = 102400;
+//public static int colorWheelCruiseVelocity = 4000;
+//public static int colorWheelAcceleration = 4000;
+//public static int colorSensorTickAmount = 4096; //for spinning the wheel 1/8 to change to an adjacent color
+//public static double colorSensorTimeout = 7;
 
 /*public final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
   public final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
   public final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
   public final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
   blue, green, red, yellow*/
-  public static double[][] colorTargets = {{0.144, 0.438, 0.417},{0.179, 0.572, 0.252},{0.468, 0.375, 0.157},{0.318, 0.547, 0.132}};
+  //public static double[][] colorTargets = {{0.144, 0.438, 0.417},{0.179, 0.572, 0.252},{0.468, 0.375, 0.157},{0.318, 0.547, 0.132}};
 
 // --CLIMB--
-public static int climbCruiseVelocity = 50000;
-public static int climbAcceleration = 5000;
-public static int climbMaxHeight = 40000;
+//public static int climbCruiseVelocity = 50000;
+//public static int climbAcceleration = 5000;
+//public static int climbMaxHeight = 40000;
 public static int angleDeadBand = 10;
-public static double climbSpeed = 0.2; //percent output
+//public static double climbSpeed = 0.2; //percent output
 
-public static boolean climbClosedLoopMode = false;
+//public static boolean climbClosedLoopMode = false;
 
-public static int climbLockLeftSolenoidIn = 4;
-public static int climbLockLeftSolenoidOut = 5;
-public static int climbLockRightSolenoidIn = 0;
-public static int climbLockRightSolenoidOut = 1;
+//public static int climbLockLeftSolenoidIn = 4;
+//public static int climbLockLeftSolenoidOut = 5;
+//public static int climbLockRightSolenoidIn = 0;
+//public static int climbLockRightSolenoidOut = 1;
 
 //CLOSED LOOP!
 //Constants used for color wheel PID Loop
 //Closed loop for pick up arm
-public static int pickUpArmSpinTickAmount = 16000;
-public static int pickUpArmCruiseVelocity = 40000;
-public static int pickUpArmAcceleration = 4000;
+//public static int pickUpArmSpinTickAmount = 16000;
+//public static int pickUpArmCruiseVelocity = 40000;
+//public static int pickUpArmAcceleration = 4000;
 
 public static void getPreference(){
 prefs = Preferences.getInstance();
@@ -182,10 +182,10 @@ driveClosedLoopMode = prefs.getBoolean("DriveClosedLoopMode", true);
  * configuration
  */
 public static final int kSlotIDx = 0; //default for drive
-public static final int kColorWheelSlotIDx = 1;
-public static final int kPickUpArmSlotIDx = 1;
-public static final int kClimbSlotIDx = 2;
-public static final int kShooterSlotIDx = 3;
+//public static final int kColorWheelSlotIDx = 1;
+//public static final int kPickUpArmSlotIDx = 1;
+//public static final int kClimbSlotIDx = 2;
+//public static final int kShooterSlotIDx = 3;
 public static final int kTurnAutonomousSlotIDx = 1;
 public static final boolean kUseMotionProfileArc = false;
 
@@ -208,9 +208,9 @@ public final static Gains turnGainsVelocity = new Gains( 1.5, 0.0, 0.0, 0.000, 1
 //public final static Gains driveGainsVelocity = new Gains( 0.0095, 0.0, 0.0, 0.0451, 100, 1); //0.3 used by motion profile as position loop
 public final static Gains driveGainsVelocity = new Gains( 0.1, 0.0, 0.0, 0.0451, 100, 1); //0.3 used by motion profile as position loop
 
-public final static Gains climbGainsVelocity = new Gains( 0.3, 0.0, 0.0, 0.0451, 400, 1);
-public final static Gains shooterGainsVelocity = new Gains(0.095, 0.0, 0, 0.0451, 0, 1); //0.03
-public final static Gains turretGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
+//public final static Gains climbGainsVelocity = new Gains( 0.3, 0.0, 0.0, 0.0451, 400, 1);
+//public final static Gains shooterGainsVelocity = new Gains(0.095, 0.0, 0, 0.0451, 0, 1); //0.03
+//public final static Gains turretGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
 public final static Gains kGains_MotProf = new Gains( 0.001, 0.0,  0.0, 0.0451,  100,  1.0 );// p=0.00095
 //static final Gains kGains = new Gains(0.03, 0.0, 0, 0.0451, 0, 0.5);
 public static int pidLoopTimeout = 30;
@@ -220,19 +220,19 @@ public static int pidLoopTimeout = 30;
  * now we just want the primary one.
  */
 public static final int kPIDLoopIDx = 0;
-public static final int pickUpArmPIDLoopIDx = 0;
+//public static final int pickUpArmPIDLoopIDx = 0;
 /**
  * set to zero to skip waiting for confirmation, set to nonzero to wait
  *  wait and report to DS if action fails
  */
 public static final int kTimeoutMs = 30;
-public static final int pickUpArmTimeoutMs = 30;
+//public static final int pickUpArmTimeoutMs = 30;
 /** --GAINs--
  * gains used to Motion Magic, to be adjusted acccordingly
  * Gains(kp, ki, kd, kf, izone, peak output);
  */
 public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
-public static final Gains pickUpArmGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
+//public static final Gains pickUpArmGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 //public static final Gains kGains = new Gains(0.095, 0.0, 0, 0.0451, 0, 0.25); // colorWheelTalon  use this
 
 }

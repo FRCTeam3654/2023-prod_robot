@@ -31,18 +31,18 @@ public class OI {
   public JoystickButton turnRight90Button; 
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
-  public JoystickButton lightsButton;
-  public JoystickButton colorWheelSpinButton;
-  public JoystickButton colorSensorButton;
-  public JoystickButton ballPickUpButton;
-  public JoystickButton ballShooterButton;
-  public JoystickButton ballFlushButton;
+  //public JoystickButton lightsButton;
+  //public JoystickButton colorWheelSpinButton;
+  //public JoystickButton colorSensorButton;
+  //public JoystickButton ballPickUpButton;
+  //public JoystickButton ballShooterButton;
+  //public JoystickButton ballFlushButton;
   public JoystickButton limeLightButton;
-  public JoystickButton climbLockLeftButton;
-  public JoystickButton climbLockRightButton;
-  public JoystickButton climbUnlockLeftButton;
-  public JoystickButton climbUnlockRightButton;
-  public JoystickButton turretButton;
+  //public JoystickButton climbLockLeftButton;
+  //public JoystickButton climbLockRightButton;
+  //public JoystickButton climbUnlockLeftButton;
+  //public JoystickButton climbUnlockRightButton;
+  //public JoystickButton turretButton;
 
   public OI(){
 
@@ -52,17 +52,17 @@ public class OI {
   turnRight90Button = new JoystickButton(driverStick, RobotMap.turnRight90ButtonNumber);
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
-  colorWheelSpinButton = new JoystickButton(operatorStick, RobotMap.colorWheelSpinButtonNumber);
-  colorSensorButton = new JoystickButton(operatorStick, RobotMap.colorSensorButtonNumber);
-  ballPickUpButton = new JoystickButton(operatorStick, RobotMap.pickUpButtonNumber); //change to operatorStick when we have both joystick
-  ballShooterButton = new JoystickButton(operatorStick, RobotMap.ballShooterButtonNumber); //change to operatorStick when we have both joystick
-  ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
+  //colorWheelSpinButton = new JoystickButton(operatorStick, RobotMap.colorWheelSpinButtonNumber);
+  //colorSensorButton = new JoystickButton(operatorStick, RobotMap.colorSensorButtonNumber);
+  //ballPickUpButton = new JoystickButton(operatorStick, RobotMap.pickUpButtonNumber); //change to operatorStick when we have both joystick
+  //ballShooterButton = new JoystickButton(operatorStick, RobotMap.ballShooterButtonNumber); //change to operatorStick when we have both joystick
+  //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
-  climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockLeftButtonNumber);
-  climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
-  climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
-  climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
-  turretButton = new JoystickButton(operatorStick, RobotMap.turretButtonNumber);
+  //climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockLeftButtonNumber);
+  //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
+  //climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
+  //climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
+  //turretButton = new JoystickButton(operatorStick, RobotMap.turretButtonNumber);
 
   turnLeft90Button.whenPressed(new Turn90DegreesCommand());
   turnRight90Button.whenPressed(new Turn90DegreesCommand());

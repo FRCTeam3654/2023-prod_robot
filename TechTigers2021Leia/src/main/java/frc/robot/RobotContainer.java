@@ -57,16 +57,10 @@ public class RobotContainer {
     
     //autoChooser.setDefaultOption("AutoNav (Barrel Racing)", new RunAutoNavBarrelRacing(odometry, drive));
     
-    autoChooser.addOption("Galactic Search (A)", new RunGalacticSearchA(odometry, drive));
-    autoChooser.addOption("Galactic Search (B)", new RunGalacticSearchB(odometry, drive));
 
-    autoChooser.addOption("AutoNav (Slalom)", new RunAutoNavSlalom(odometry, drive));
-    autoChooser.addOption("AutoNav (Bounce)", new RunAutoNavBounce(odometry, drive));
     
     autoChooser.addOption("Galactic Search (A/Blue)", new RunGalacticSearchABlue(odometry, drive));
-    autoChooser.addOption("Galactic Search (A/Red)", new RunGalacticSearchARed(odometry, drive));
-    autoChooser.addOption("Galactic Search (B/Blue)", new RunGalacticSearchBBlue(odometry, drive));
-    autoChooser.addOption("Galactic Search (B/Red)", new RunGalacticSearchBRed(odometry, drive));
+    
     
     SmartDashboard.putData("Auto Mode", autoChooser);
 
