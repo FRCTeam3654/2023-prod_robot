@@ -172,10 +172,10 @@ public static int angleDeadBand = 10;
 //public static int pickUpArmCruiseVelocity = 40000;
 //public static int pickUpArmAcceleration = 4000;
 
-public static void getPreference(){
-prefs = Preferences.getInstance();
-driveClosedLoopMode = prefs.getBoolean("DriveClosedLoopMode", true);
-}
+//public static void getPreference1(){
+//prefs = Preferences.getInstance();
+//driveClosedLoopMode = prefs.getBoolean("DriveClosedLoopMode", true);
+//}
 /**
  * which PID slot to pull gains from. starting 2018, you can choose from 0,1,2 or 3.
  * only the first two (0,1) are visible in web-based
