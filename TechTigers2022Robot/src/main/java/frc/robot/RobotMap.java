@@ -65,7 +65,7 @@ public static int turnRight180ButtonNumber = 6;
 public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 //OPERATOR STICK
-//public static int colorWheelSpinButtonNumber = 9;
+public static int intakeStopButtonNumber = 9;
 //public static int climbLockLeftButtonNumber = 7;
 //public static int climbLockRightButtonNumber = 5;
 //public static int climbUnlockLeftButtonNumber = 8;
@@ -86,7 +86,8 @@ public static int vinnieTalonNumber = 6;
 //public static int climbExtendTalonID = 10;
 //public static int climbLeftTalonID = 11;
 //public static int climbRightTalonID = 12;
-public static int BallPickUpID = 6;
+public static int IntakeTalonLeftID = 6;
+public static int IntakeTalonRightID = 5;
 //public static int BallShooterID = 8;
 //public static int BallShooterSlaveID = 5;
 //public static int pickUpArmTalonID = 13;

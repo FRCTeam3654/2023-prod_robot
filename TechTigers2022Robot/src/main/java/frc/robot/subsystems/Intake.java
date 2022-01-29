@@ -12,6 +12,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode; 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 //import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorMatchResult;
+import com.revrobotics.ColorMatch;
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
 
 
 public class Intake extends SubsystemBase {
@@ -33,7 +38,13 @@ public class Intake extends SubsystemBase {
     //need to invert one of the sides but are undecided on which side
     intakeTalonLeft.setNeutralMode(NeutralMode.Coast);
     intakeTalonRight.setNeutralMode(NeutralMode.Coast);
+    //possible to set ramp rate
   }
+  public void intakeWheels(double percentOutput){
+    intakeTalonLeft.set(ControlMode.PercentOutput, percentOutput);
+    SmartDashboard.putNumber("IntakePercentVoltage", percentOutput);
+  }
+
 
   @Override
   public void periodic() {

@@ -56,6 +56,7 @@ public class RobotContainer {
     odometry.resetOdometry();
 
     drive.setDefaultCommand(new ManualDriveCommand());
+    intake.setDefaultCommand(new IntakeCommand());
 
     
     //autoChooser.setDefaultOption("AutoNav (Barrel Racing)", new RunAutoNavBarrelRacing(odometry, drive));

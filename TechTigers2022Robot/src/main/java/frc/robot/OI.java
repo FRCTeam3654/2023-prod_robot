@@ -9,6 +9,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Turn90DegreesCommand;
+import frc.robot.commands.IntakeStopCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -31,7 +32,7 @@ public class OI {
   public JoystickButton turnRight90Button; 
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
-  //public JoystickButton lightsButton;
+  public JoystickButton intakeStopButton;
   //public JoystickButton colorWheelSpinButton;
   //public JoystickButton colorSensorButton;
   //public JoystickButton ballPickUpButton;
@@ -52,7 +53,7 @@ public class OI {
   turnRight90Button = new JoystickButton(driverStick, RobotMap.turnRight90ButtonNumber);
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
-  //colorWheelSpinButton = new JoystickButton(operatorStick, RobotMap.colorWheelSpinButtonNumber);
+  intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
   //colorSensorButton = new JoystickButton(operatorStick, RobotMap.colorSensorButtonNumber);
   //ballPickUpButton = new JoystickButton(operatorStick, RobotMap.pickUpButtonNumber); //change to operatorStick when we have both joystick
   //ballShooterButton = new JoystickButton(operatorStick, RobotMap.ballShooterButtonNumber); //change to operatorStick when we have both joystick
@@ -68,6 +69,7 @@ public class OI {
   turnRight90Button.whenPressed(new Turn90DegreesCommand());
   turnLeft180Button.whenPressed(new Turn90DegreesCommand());
   turnRight180Button.whenPressed(new Turn90DegreesCommand());
+  intakeStopButton.whenPressed(new IntakeStopCommand());
   }
   
 }
