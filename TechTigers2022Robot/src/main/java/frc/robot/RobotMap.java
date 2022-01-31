@@ -236,5 +236,8 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 //public static final Gains pickUpArmGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 //public static final Gains kGains = new Gains(0.095, 0.0, 0, 0.0451, 0, 0.25); // colorWheelTalon  use this
 
+//for the color sensor
+public static double[][] colorTargets = {{0.144, 0.438, 0.417},{0.468, 0.375, 0.157}};
+
 }
 
