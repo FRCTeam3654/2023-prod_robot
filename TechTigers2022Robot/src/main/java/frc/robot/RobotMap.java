@@ -238,6 +238,8 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 
 //for the color sensor
 public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.114}};
+public static double intakeSpeedIn = 0.4;
+public static double intakeSpeedOut = -0.6;
 
 }
 
