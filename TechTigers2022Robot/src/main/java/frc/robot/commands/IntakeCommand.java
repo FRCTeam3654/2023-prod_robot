@@ -27,8 +27,13 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void execute() {
     int colorNumber;
-    RobotContainer.intake.intakeWheels(0.5);
     colorNumber = RobotContainer.intake.getRainbow();
+    if (colorNumber == 1) {
+      RobotContainer.intake.intakeWheels(-0.5);
+    }
+    else {
+      RobotContainer.intake.intakeWheels(0.5);
+    }
   }
 
   // Called once the command ends or is interrupted.
