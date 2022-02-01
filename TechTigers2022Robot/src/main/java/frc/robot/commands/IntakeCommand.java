@@ -17,6 +17,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class IntakeCommand extends CommandBase {
   /** Creates a new IntakeCommand. */
+  NetworkTableEntry isRedAlliance;
   public IntakeCommand() {
     addRequirements(RobotContainer.intake);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -31,21 +32,32 @@ public class IntakeCommand extends CommandBase {
       NetworkTable fmsInfo = inst.getTable("FMSInfo");
 
       //get a reference to key in "datatable" called "Y"
-      NetworkTableEntry isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
+      isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     int colorNumber;
+    boolean allianceColor; //if allianceColor is true, we are RED team
+    allianceColor = isRedAlliance.getBoolean(false);
     colorNumber = RobotContainer.intake.getRainbow();
-    if (colorNumber == 1) {
-      RobotContainer.intake.intakeWheels(-0.5);
+    if (allianceColor){
+      if (colorNumber == 1) {
+        RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut); //if it sees a blue ball and we're on the red team, it reverses intake wheels
+      }
+      else { // TO DO if we see a red ball on red team, we need to turn on beltcro
+        RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn); //is not a blue ball and we're on the red team, it keeps intake going the same way
+      }
     }
-    else {
-      RobotContainer.intake.intakeWheels(0.5);
+    else
+      {if (colorNumber == 2) {
+        RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut); //if it sees a red ball and we're on the blue team, it spits it away
+      }
+      else { // TO DO if we see a blue ball on blue team, we need to turn on beltcro
+        RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);} // if it isn't a red ball and we're on the blue team, it runs intake
+      } 
     }
-  }
 
   // Called once the command ends or is interrupted.
   @Override
