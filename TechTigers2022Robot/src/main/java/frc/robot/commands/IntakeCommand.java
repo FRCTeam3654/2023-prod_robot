@@ -11,6 +11,9 @@ import frc.robot.Robot;
 //import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotMap;
 import frc.robot.RobotContainer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class IntakeCommand extends CommandBase {
   /** Creates a new IntakeCommand. */
@@ -21,7 +24,15 @@ public class IntakeCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+
+      //get a reference to the subtable called "datatable"
+      NetworkTable fmsInfo = inst.getTable("FMSInfo");
+
+      //get a reference to key in "datatable" called "Y"
+      NetworkTableEntry isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
