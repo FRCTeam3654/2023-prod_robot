@@ -23,16 +23,21 @@ public class IntakeStopCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    IsButtonPressed=true;
+    WasButtonNotPressed=false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     RobotContainer.intake.intakeWheels(0);
-    IsButtonPressed=RobotContainer.oi.intakeStopButton.getAsBoolean();
+    IsButtonPressed=RobotContainer.oi.intakeStopButton.get();
       if (!IsButtonPressed) {
         WasButtonNotPressed=true;
       }
+      SmartDashboard.putBoolean("IsButtonPressed", IsButtonPressed);
+      SmartDashboard.putBoolean("WasButtonNotPressed", WasButtonNotPressed);
   }
 
   // Called once the command ends or is interrupted.
