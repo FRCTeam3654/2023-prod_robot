@@ -73,7 +73,7 @@ public static int intakeStopButtonNumber = 9;
 //public static int ballFlushButtonNumber = 2;  
 //public static int colorSensorButtonNumber = 10; 
 //public static int pickUpButtonNumber = 1;
-//public static int ballShooterButtonNumber = 4; 
+public static int beltcroShooterButtonNumber = 10; 
 //public static int turretButtonNumber = 3;
 
 //TALONS/TALON ID NUMBERS!
@@ -88,7 +88,7 @@ public static int vinnieTalonNumber = 6;
 //public static int climbRightTalonID = 12;
 public static int IntakeTalonLeftID = 6;
 public static int IntakeTalonRightID = 5;
-//public static int BallShooterID = 8;
+public static int BeltcroTalonID = 7;
 //public static int BallShooterSlaveID = 5;
 //public static int pickUpArmTalonID = 13;
 //public static int turretTurningID = 17;
@@ -240,6 +240,8 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.114}};
 public static double intakeSpeedIn = 0.4;
 public static double intakeSpeedOut = -0.6;
+//for the beltcro
+public static double beltcroTimerTimeout = 3;
 
 }
 
