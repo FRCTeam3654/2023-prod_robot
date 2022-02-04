@@ -242,6 +242,8 @@ public static double intakeSpeedIn = 0.4;
 public static double intakeSpeedOut = -0.6;
 //for the beltcro
 public static double beltcroTimerTimeout = 3;
+public static double beltcroIntakeTimerTimeout = 2;
+public static double intakeEjectTimerTimeout = 1;
 
 }
 
