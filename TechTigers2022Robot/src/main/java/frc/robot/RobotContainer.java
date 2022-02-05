@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
+import edu.wpi.first.cameraserver.CameraServer;
 
 
 
@@ -60,7 +61,8 @@ public class RobotContainer {
     drive.setDefaultCommand(new ManualDriveCommand());
     intake.setDefaultCommand(new IntakeCommand());
 
-    
+    CameraServer.startAutomaticCapture(0);
+
     //autoChooser.setDefaultOption("AutoNav (Barrel Racing)", new RunAutoNavBarrelRacing(odometry, drive));
     
 
