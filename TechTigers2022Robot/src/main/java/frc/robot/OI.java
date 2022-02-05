@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Turn90DegreesCommand;
 import frc.robot.commands.IntakeStopCommand;
 import frc.robot.commands.BeltcroShooterCommand;
+import frc.robot.commands.SlidingClimbHooksCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -34,6 +35,7 @@ public class OI {
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
   public JoystickButton intakeStopButton;
+  public JoystickButton slidingClimbButton;
   //public JoystickButton colorWheelSpinButton;
   //public JoystickButton colorSensorButton;
   //public JoystickButton ballPickUpButton;
@@ -60,7 +62,7 @@ public class OI {
   beltcroShooterButton = new JoystickButton(driverStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
-  //climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockLeftButtonNumber);
+  slidingClimbButton = new JoystickButton(operatorStick, RobotMap.slidingClimbButtonNumber);
   //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
   //climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
   //climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
@@ -72,6 +74,7 @@ public class OI {
   turnRight180Button.whenPressed(new Turn90DegreesCommand());
   intakeStopButton.whenPressed(new IntakeStopCommand());
   beltcroShooterButton.whenPressed(new BeltcroShooterCommand());
+  slidingClimbButton.whenPressed(new SlidingClimbHooksCommand());
   }
   
 }

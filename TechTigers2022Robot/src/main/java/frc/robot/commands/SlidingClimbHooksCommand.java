@@ -1,0 +1,70 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.commands;
+
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotMap;
+import frc.robot.RobotContainer;
+import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
+
+
+public class SlidingClimbHooksCommand extends CommandBase {
+  private boolean isButtonPressed = false;
+  public double slidingClimbTimer = 0;
+  /** Creates a new SlidingClimbHooksCommand. */
+  public SlidingClimbHooksCommand() {
+    addRequirements(RobotContainer.slidingClimbHooks);
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    RobotContainer.slidingClimbHooks.zeroSensors();
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+    if ((RobotContainer.oi.slidingClimbButton.get() && !isButtonPressed)){
+      isButtonPressed = true;
+      RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbDistance, 8000, 8000);
+      slidingClimbTimer = Timer.getFPGATimestamp();
+    }
+
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    RobotContainer.slidingClimbHooks.resetMotors();
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    if(slidingClimbTimer + RobotMap.slidingClimbTimerTimeout < Timer.getFPGATimestamp()) {
+      return true;
+    } 
+    else{
+      if (isButtonPressed){
+        double sensorLeftDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonLeftPosition();
+        double sensorRightDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonRightPosition();
+
+        double percentLeftError = 100 * (RobotMap.slidingClimbDistance - sensorLeftDistance)/RobotMap.slidingClimbDistance;
+        double percentRightError = 100 * (RobotMap.slidingClimbDistance - sensorRightDistance)/RobotMap.slidingClimbDistance;
+
+
+      // even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
+        //if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 )){
+          if (percentLeftError < 0.3 || percentLeftError < 0 )
+          return true;
+        }
+        }
+      
+        return false;
+  }
+}

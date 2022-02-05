@@ -31,6 +31,8 @@ public class RobotContainer {
   public static Drive drive;
   public static Intake intake;
   public static Beltcro beltcro;
+  public static VerticalClimbArms verticalClimbArms;
+  public static SlidingClimbHooks slidingClimbHooks;
   public static OI oi;
 
   private RobotOdometry odometry;
@@ -47,6 +49,8 @@ public class RobotContainer {
     drive = new Drive();
     intake = new Intake();
     beltcro = new Beltcro();
+    verticalClimbArms = new VerticalClimbArms();
+    slidingClimbHooks = new SlidingClimbHooks();
     oi = new OI();  // need be after drive object
     //always keep OI last
 

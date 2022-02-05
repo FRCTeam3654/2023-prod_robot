@@ -66,7 +66,7 @@ public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 //OPERATOR STICK
 public static int intakeStopButtonNumber = 9;
-//public static int climbLockLeftButtonNumber = 7;
+public static int slidingClimbButtonNumber = 7;
 //public static int climbLockRightButtonNumber = 5;
 //public static int climbUnlockLeftButtonNumber = 8;
 //public static int climbUnlockRightButtonNumber = 6;
@@ -84,8 +84,8 @@ public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
 
 //public static int climbExtendTalonID = 10;
-//public static int climbLeftTalonID = 11;
-//public static int climbRightTalonID = 12;
+public static int climbHookTalonLeftID = 8;
+public static int climbHookTalonRightID = 9;
 public static int IntakeTalonLeftID = 6;
 public static int IntakeTalonRightID = 5;
 public static int BeltcroTalonID = 7;
@@ -244,6 +244,9 @@ public static double intakeSpeedOut = -0.6;
 public static double beltcroTimerTimeout = 3;
 public static double beltcroIntakeTimerTimeout = 2;
 public static double intakeEjectTimerTimeout = 1;
+//for the climb
+public static double slidingClimbTimerTimeout = 5;
+public static double slidingClimbDistance = 10000; //is the raw sensor distance
 
 }
 
