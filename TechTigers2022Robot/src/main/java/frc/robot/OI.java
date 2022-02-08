@@ -42,10 +42,10 @@ public class OI {
   public JoystickButton beltcroShooterButton;
   //public JoystickButton ballFlushButton;
   public JoystickButton limeLightButton;
-  //public JoystickButton climbLockLeftButton;
-  //public JoystickButton climbLockRightButton;
-  //public JoystickButton climbUnlockLeftButton;
-  //public JoystickButton climbUnlockRightButton;
+  public JoystickButton climbLockLeftButton;
+  public JoystickButton climbLockRightButton;
+  public JoystickButton climbUnlockLeftButton;
+  public JoystickButton climbUnlockRightButton;
   //public JoystickButton turretButton;
 
   public OI(){
@@ -63,9 +63,10 @@ public class OI {
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
   slidingClimbButton = new JoystickButton(operatorStick, RobotMap.slidingClimbButtonNumber);
-  //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
-  //climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
-  //climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
+  climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
+  climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
+  climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
+  climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
   //turretButton = new JoystickButton(operatorStick, RobotMap.turretButtonNumber);
 
   turnLeft90Button.whenPressed(new Turn90DegreesCommand());

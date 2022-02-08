@@ -9,6 +9,8 @@ import frc.robot.RobotMap;
 import frc.robot.RobotContainer;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 
 public class SlidingClimbHooksCommand extends CommandBase {
@@ -32,6 +34,8 @@ public class SlidingClimbHooksCommand extends CommandBase {
     if ((RobotContainer.oi.slidingClimbButton.get() && !isButtonPressed)){
       isButtonPressed = true;
       RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbDistance, 8000, 8000);
+      //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
+      SmartDashboard.putString("SlidingButtonClicked", "yes");
       slidingClimbTimer = Timer.getFPGATimestamp();
     }
 
@@ -40,6 +44,8 @@ public class SlidingClimbHooksCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    isButtonPressed = false;
+    slidingClimbTimer = 0;
     RobotContainer.slidingClimbHooks.resetMotors();
   }
 
@@ -47,8 +53,11 @@ public class SlidingClimbHooksCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     if(slidingClimbTimer + RobotMap.slidingClimbTimerTimeout < Timer.getFPGATimestamp()) {
+      isButtonPressed = false;
+      slidingClimbTimer = 0;
       return true;
     } 
+    
     else{
       if (isButtonPressed){
         double sensorLeftDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonLeftPosition();
@@ -57,10 +66,10 @@ public class SlidingClimbHooksCommand extends CommandBase {
         double percentLeftError = 100 * (RobotMap.slidingClimbDistance - sensorLeftDistance)/RobotMap.slidingClimbDistance;
         double percentRightError = 100 * (RobotMap.slidingClimbDistance - sensorRightDistance)/RobotMap.slidingClimbDistance;
 
-
+        SmartDashboard.putNumber("percentErrorClimbLeft", percentLeftError);
       // even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
         //if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 )){
-          if (percentLeftError < 0.3 || percentLeftError < 0 )
+          if (percentLeftError < 0.9 || percentLeftError < 0 )
           return true;
         }
         }

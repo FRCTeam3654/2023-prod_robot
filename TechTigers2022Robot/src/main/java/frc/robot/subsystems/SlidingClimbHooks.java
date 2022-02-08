@@ -42,8 +42,8 @@ public class SlidingClimbHooks extends SubsystemBase {
     climbHookTalonLeft.set(ControlMode.PercentOutput, 0);
     climbHookTalonRight.set(ControlMode.PercentOutput, 0);
 
-    climbHookTalonLeft.configNeutralDeadband(0.05,30);
-    climbHookTalonRight.configNeutralDeadband(0.05,30);
+    climbHookTalonLeft.configNeutralDeadband(0.0,30);
+    climbHookTalonRight.configNeutralDeadband(0.0,30);
 
     climbHookTalonLeft.configClosedloopRamp(1);
     climbHookTalonRight.configOpenloopRamp(1);
@@ -120,6 +120,10 @@ public double getClimbHookTalonLeftPosition(){
 public double getClimbHookTalonRightPosition(){
   return climbHookTalonRight.getSelectedSensorPosition(0);
 } 
+public void driveClimbMotors(double percentOutput){
+  climbHookTalonLeft.set(ControlMode.PercentOutput, percentOutput);
+  climbHookTalonRight.set(ControlMode.PercentOutput, percentOutput);
+}
 
 public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity) {
   setMotionMagic (distance, 0.0, cruiseVelocity,  accelerationVelocity, false);

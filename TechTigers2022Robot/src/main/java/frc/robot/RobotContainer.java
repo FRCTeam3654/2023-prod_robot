@@ -64,6 +64,7 @@ public class RobotContainer {
 
     drive.setDefaultCommand(new ManualDriveCommand());
     intake.setDefaultCommand(new IntakeCommand());
+    verticalClimbArms.setDefaultCommand(new VerticalClimbCommand());
 
     CameraServer.startAutomaticCapture(0);
 

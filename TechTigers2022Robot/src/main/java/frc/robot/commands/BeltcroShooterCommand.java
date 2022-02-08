@@ -48,6 +48,7 @@ public class BeltcroShooterCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     if(beltcroTimer + RobotMap.beltcroTimerTimeout < Timer.getFPGATimestamp()) {
+      RobotContainer.beltcro.beltcroMove(0);
        return true;
   }
     return false;

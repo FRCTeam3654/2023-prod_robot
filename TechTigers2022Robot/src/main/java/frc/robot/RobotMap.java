@@ -66,10 +66,11 @@ public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 //OPERATOR STICK
 public static int intakeStopButtonNumber = 9;
-public static int slidingClimbButtonNumber = 7;
-//public static int climbLockRightButtonNumber = 5;
-//public static int climbUnlockLeftButtonNumber = 8;
-//public static int climbUnlockRightButtonNumber = 6;
+public static int slidingClimbButtonNumber = 8;
+public static int climbLockRightButtonNumber = 5;
+public static int climbLockLeftButtonNumber = 4;
+public static int climbUnlockLeftButtonNumber = 7;
+public static int climbUnlockRightButtonNumber = 6;
 //public static int ballFlushButtonNumber = 2;  
 //public static int colorSensorButtonNumber = 10; 
 //public static int pickUpButtonNumber = 1;
@@ -89,8 +90,8 @@ public static int climbHookTalonRightID = 9;
 public static int IntakeTalonLeftID = 6;
 public static int IntakeTalonRightID = 5;
 public static int BeltcroTalonID = 7;
-//public static int BallShooterSlaveID = 5;
-//public static int pickUpArmTalonID = 13;
+public static int verticalClimbRightTalonID = 11;
+public static int verticalClimbLeftTalonID = 10;
 //public static int turretTurningID = 17;
 
 // Digital IO for the ballpickup sensor
@@ -153,18 +154,18 @@ public static double radianConversionToDegree = 57.2958;
   //public static double[][] colorTargets = {{0.144, 0.438, 0.417},{0.179, 0.572, 0.252},{0.468, 0.375, 0.157},{0.318, 0.547, 0.132}};
 
 // --CLIMB--
-//public static int climbCruiseVelocity = 50000;
-//public static int climbAcceleration = 5000;
+public static int climbCruiseVelocity = 50000;
+public static int climbAcceleration = 5000;
 //public static int climbMaxHeight = 40000;
 public static int angleDeadBand = 10;
-//public static double climbSpeed = 0.2; //percent output
+public static double climbSpeed = 0.2; //percent output
 
-//public static boolean climbClosedLoopMode = false;
+public static boolean climbClosedLoopMode = false;
 
-//public static int climbLockLeftSolenoidIn = 4;
-//public static int climbLockLeftSolenoidOut = 5;
-//public static int climbLockRightSolenoidIn = 0;
-//public static int climbLockRightSolenoidOut = 1;
+public static int climbLockLeftSolenoidIn = 4;
+public static int climbLockLeftSolenoidOut = 5;
+public static int climbLockRightSolenoidIn = 0;
+public static int climbLockRightSolenoidOut = 1;
 
 //CLOSED LOOP!
 //Constants used for color wheel PID Loop
@@ -185,7 +186,7 @@ public static int angleDeadBand = 10;
 public static final int kSlotIDx = 0; //default for drive
 //public static final int kColorWheelSlotIDx = 1;
 //public static final int kPickUpArmSlotIDx = 1;
-//public static final int kClimbSlotIDx = 2;
+public static final int kClimbSlotIDx = 2;
 //public static final int kShooterSlotIDx = 3;
 public static final int kTurnAutonomousSlotIDx = 1;
 public static final boolean kUseMotionProfileArc = false;
@@ -201,7 +202,7 @@ public final static int REMOTE_1 = 1;
 //public final static Gains driveGainsVelocity = new Gains( 0.25, 0.0, 0.0, 1.015, 400, 1);
 //public final static Gains driveGainsVelocity = new Gains( 0.095, 0.0, 0.0, 0.0451, 100, 1);
 public final static Gains turnGainsVelocity = new Gains( 1.5, 0.0, 0.0, 0.000, 100, 1);
-//public final static Gains climbGainsVelocity = new Gains( 0.25, 0.0, 0.0, 1.015, 400, 1);
+public final static Gains climbGainsVelocity = new Gains( 0.25, 0.0, 0.0, 1.015, 400, 1);
 //public final static Gains shooterGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 0.5);
 //public final static Gains kGains_MotProf = new Gains( 0.1, 0.0,  0.0, 0.0455,  400,  0.5 );
 //public static int pidLoopTimeout = 30;
