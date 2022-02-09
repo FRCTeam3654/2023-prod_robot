@@ -18,10 +18,13 @@ import frc.robot.commands.NewRunMotionProfile.CirclePath;
 import frc.robot.subsystems.RobotOdometry;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+
 
 public class AutonomousRedACommand extends SequentialCommandGroup {
 
   NewRunMotionProfile mp;
+  NewRunMotionProfile mp1;
 
   /** Creates a new AutonomousRedACommand. */
   public AutonomousRedACommand(RobotOdometry odometry, Drive driveTrain) {
@@ -29,10 +32,13 @@ public class AutonomousRedACommand extends SequentialCommandGroup {
         List.of(),
         new Pose2d(Units.inchesToMeters(84), Units.inchesToMeters(20), Rotation2d.fromDegrees(0)), 0, false, false);
 
-    addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp);
+    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(84), Units.inchesToMeters(20), new Rotation2d()), 0,
+        List.of(),
+        new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
-    
+    addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp, new WaitCommand(2),mp1);
 
+   
        /*addCommands(
         new ParallelDeadlineGroup(
             new SequentialCommandGroup(
