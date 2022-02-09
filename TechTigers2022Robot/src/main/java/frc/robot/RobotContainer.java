@@ -68,11 +68,14 @@ public class RobotContainer {
 
     CameraServer.startAutomaticCapture(0);
 
-    //autoChooser.setDefaultOption("AutoNav (Barrel Racing)", new RunAutoNavBarrelRacing(odometry, drive));
+    autoChooser.addOption("Auto (Shot and Move)", new NewCommandGroup(odometry, drive));
+        
+    //autoChooser.addOption("Galactic Search (A)", new RunGalacticSearchA(odometry, drive));
+    //autoChooser.addOption("Galactic Search (B)", new RunGalacticSearchB(odometry, drive));
     
 
-    
-    autoChooser.addOption("Galactic Search (A/Blue)", new RunGalacticSearchABlue(odometry, drive));
+  
+    autoChooser.setDefaultOption("Autonomous Route (Red A)", new AutonomousRedACommand(odometry, drive));
     
     
     SmartDashboard.putData("Auto Mode", autoChooser);
