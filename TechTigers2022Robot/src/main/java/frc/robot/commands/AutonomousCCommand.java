@@ -28,6 +28,7 @@ public class AutonomousCCommand extends SequentialCommandGroup {
   NewRunMotionProfile mp1;
   /** Creates a new AutonomousRedCCommand. */
   public AutonomousCCommand(RobotOdometry odometry, Drive driveTrain) {
+    /*
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
     List.of(),
     new Pose2d(Units.inchesToMeters(116), Units.inchesToMeters(30), Rotation2d.fromDegrees(0)), 0, false, false);
@@ -40,5 +41,18 @@ addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inche
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
+    */
+    mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d(0)), 0,
+    List.of(),
+    new Pose2d(Units.inchesToMeters(116), Units.inchesToMeters(30), Rotation2d.fromDegrees(0)), 0, false, false);
+
+mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(116), Units.inchesToMeters(30), new Rotation2d()), 0,
+    List.of(),
+    new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+
+addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), mp, new WaitCommand(2), mp1);
   }
 }
+
+  
+
