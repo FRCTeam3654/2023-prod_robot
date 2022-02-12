@@ -76,6 +76,9 @@ public class RobotContainer {
 
   
     autoChooser.setDefaultOption("Autonomous Route (Red A)", new AutonomousRedACommand(odometry, drive));
+    autoChooser.addOption("Autonomous Route (Red B)", new AutonomousRedBCommand(odometry, drive));
+    autoChooser.addOption("Autonomous Route (Red C)", new AutonomousRedCCommand(odometry, drive));
+
     
     
     SmartDashboard.putData("Auto Mode", autoChooser);
