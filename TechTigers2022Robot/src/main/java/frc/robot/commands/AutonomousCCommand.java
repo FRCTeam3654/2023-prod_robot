@@ -23,11 +23,11 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousRedCCommand extends SequentialCommandGroup {
+public class AutonomousCCommand extends SequentialCommandGroup {
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
   /** Creates a new AutonomousRedCCommand. */
-  public AutonomousRedCCommand(RobotOdometry odometry, Drive driveTrain) {
+  public AutonomousCCommand(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
     List.of(),
     new Pose2d(Units.inchesToMeters(116), Units.inchesToMeters(30), Rotation2d.fromDegrees(0)), 0, false, false);

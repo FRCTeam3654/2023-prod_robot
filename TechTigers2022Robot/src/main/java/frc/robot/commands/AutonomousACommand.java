@@ -21,13 +21,13 @@ import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
-public class AutonomousRedACommand extends SequentialCommandGroup {
+public class AutonomousACommand extends SequentialCommandGroup {
 
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
 
   /** Creates a new AutonomousRedACommand. */
-  public AutonomousRedACommand(RobotOdometry odometry, Drive driveTrain) {
+  public AutonomousACommand(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
         new Pose2d(Units.inchesToMeters(116), Units.inchesToMeters(-30), Rotation2d.fromDegrees(0)), 0, false, false);
