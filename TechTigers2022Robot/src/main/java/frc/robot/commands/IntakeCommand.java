@@ -27,6 +27,11 @@ public class IntakeCommand extends CommandBase {
     addRequirements(RobotContainer.beltcro);
     // Use addRequirements() here to declare subsystem dependencies.
   }
+  public IntakeCommand(double timeout) {
+    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.beltcro);
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
 
   // Called when the command is initially scheduled.
   @Override

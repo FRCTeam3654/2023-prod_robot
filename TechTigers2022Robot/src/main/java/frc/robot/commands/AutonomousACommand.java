@@ -36,18 +36,18 @@ public class AutonomousACommand extends SequentialCommandGroup {
         List.of(),
         new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
-    addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), new BeltcroShooterCommand(), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
+    //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp, new WaitCommand(2), mp1);
 
    
-       /*addCommands(
+       addCommands(
         new ParallelDeadlineGroup(
             new SequentialCommandGroup(
-              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(30),  Units.inchesToMeters(120), new Rotation2d()))), 
-                 mp1, mp2, mp3, mp4
+              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), 
+                 mp
                  )
                  ,               
-       new BallPickUpCommand(1))
-       );*/
+       new BeltcroShooterCommand())
+       );
   }
 
   

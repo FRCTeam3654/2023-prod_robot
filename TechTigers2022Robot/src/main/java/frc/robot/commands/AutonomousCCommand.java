@@ -50,15 +50,15 @@ addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inche
     List.of(),
     new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
-//addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
-addCommands(
+addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
+/*addCommands(
   new ParallelDeadlineGroup(
       new SequentialCommandGroup(
         new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(35),  Units.inchesToMeters(30), new Rotation2d()))), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand()
         )
         ,               
   new IntakeCommand())
-);
+);*/
 }
 }
 
