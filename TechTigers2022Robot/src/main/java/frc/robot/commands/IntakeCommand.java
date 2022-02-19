@@ -88,7 +88,7 @@ public class IntakeCommand extends CommandBase {
       isBeltcroMoving = false;
       }
       if (isBeltcroMoving){
-        RobotContainer.beltcro.beltcroMove(0.5);
+        RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
       }
       else {
         RobotContainer.beltcro.beltcroMove(0);
@@ -97,10 +97,10 @@ public class IntakeCommand extends CommandBase {
       isEjectingBall = false;
       }
       if (isEjectingBall){
-        RobotContainer.intake.intakeWheels(-0.5);
+        RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
       }
       else {
-        RobotContainer.intake.intakeWheels(0.5);
+        RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
       }
     }
 

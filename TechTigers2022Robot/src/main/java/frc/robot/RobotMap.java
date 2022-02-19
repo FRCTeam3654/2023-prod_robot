@@ -87,9 +87,9 @@ public static int vinnieTalonNumber = 6;
 //public static int climbExtendTalonID = 10;
 public static int climbHookTalonLeftID = 8;
 public static int climbHookTalonRightID = 9;
-public static int IntakeTalonLeftID = 6;
+public static int IntakeTalonLeftID = 7;
 public static int IntakeTalonRightID = 5;
-public static int BeltcroTalonID = 7;
+public static int BeltcroTalonID = 6;
 public static int verticalClimbRightTalonID = 11;
 public static int verticalClimbLeftTalonID = 10;
 //public static int turretTurningID = 17;
@@ -239,12 +239,13 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 
 //for the color sensor
 public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.114}};
-public static double intakeSpeedIn = 0.4;
-public static double intakeSpeedOut = -0.6;
+public static double intakeSpeedIn = -0.3;
+public static double intakeSpeedOut = 0.7;
 //for the beltcro
 public static double beltcroTimerTimeout = 3;
 public static double beltcroIntakeTimerTimeout = 2;
 public static double intakeEjectTimerTimeout = 1;
+public static double beltcroSpeed = 0.3;
 //for the climb
 public static double slidingClimbTimerTimeout = 5;
 public static double slidingClimbDistance = 10000; //is the raw sensor distance

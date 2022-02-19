@@ -18,6 +18,7 @@ public class BeltcroShooterCommand extends CommandBase {
   private boolean isButtonPressed = false;
   public BeltcroShooterCommand() {
     addRequirements(RobotContainer.beltcro); // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.intake);
   }
 
   // Called when the command is initially scheduled.
@@ -29,12 +30,13 @@ public class BeltcroShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ((RobotContainer.oi.beltcroShooterButton.get() && !isButtonPressed)){
-      isButtonPressed = true;
-    }
-    if (isButtonPressed==true){
-      RobotContainer.beltcro.beltcroMove(0.5);
-    }
+    //if ((RobotContainer.oi.beltcroShooterButton.get() && !isButtonPressed)){
+      //isButtonPressed = true;
+    //}
+    //if (isButtonPressed==true){
+      RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
+      RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
+   // }
 
   }
 
