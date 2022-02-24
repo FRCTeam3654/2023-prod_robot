@@ -41,6 +41,7 @@ public class OI {
   //public JoystickButton ballPickUpButton;
   public JoystickButton beltcroShooterButton;
   //public JoystickButton ballFlushButton;
+  public JoystickButton slidingClimbReverseButton;
   public JoystickButton limeLightButton;
   public JoystickButton climbLockLeftButton;
   public JoystickButton climbLockRightButton;
@@ -62,11 +63,12 @@ public class OI {
   beltcroShooterButton = new JoystickButton(driverStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
-  slidingClimbButton = new JoystickButton(operatorStick, RobotMap.slidingClimbButtonNumber);
-  climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
-  climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
-  climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
-  climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
+  slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);
+  slidingClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingClimbReverseButtonNumber);
+  //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
+  //climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
+  //climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
+  //climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
   //turretButton = new JoystickButton(operatorStick, RobotMap.turretButtonNumber);
 
   turnLeft90Button.whenPressed(new Turn90DegreesCommand());
@@ -76,6 +78,7 @@ public class OI {
   intakeStopButton.whenPressed(new IntakeStopCommand());
   beltcroShooterButton.whenPressed(new BeltcroShooterCommand());
   slidingClimbButton.whenPressed(new SlidingClimbHooksCommand());
+  slidingClimbReverseButton.whenPressed(new SlidingClimbHooksCommand());
   }
   
 }

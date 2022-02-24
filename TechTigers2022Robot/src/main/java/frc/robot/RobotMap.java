@@ -67,11 +67,11 @@ public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 //OPERATOR STICK
 public static int intakeStopButtonNumber = 9;
 public static int slidingClimbButtonNumber = 8;
-public static int climbLockRightButtonNumber = 5;
-public static int climbLockLeftButtonNumber = 4;
-public static int climbUnlockLeftButtonNumber = 7;
-public static int climbUnlockRightButtonNumber = 6;
-//public static int ballFlushButtonNumber = 2;  
+//public static int climbLockRightButtonNumber = 5;
+//public static int climbLockLeftButtonNumber = 4;
+//public static int climbUnlockLeftButtonNumber = 7;
+//public static int climbUnlockRightButtonNumber = 6;
+public static int slidingClimbReverseButtonNumber = 11;  
 //public static int colorSensorButtonNumber = 10; 
 //public static int pickUpButtonNumber = 1;
 public static int beltcroShooterButtonNumber = 10; 
@@ -85,12 +85,12 @@ public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
 
 //public static int climbExtendTalonID = 10;
-public static int climbHookTalonLeftID = 8;
-public static int climbHookTalonRightID = 9;
+public static int climbHookTalonLeftID = 11;
+public static int climbHookTalonRightID = 12;
 public static int IntakeTalonLeftID = 7;
 public static int IntakeTalonRightID = 5;
 public static int BeltcroTalonID = 6;
-public static int verticalClimbRightTalonID = 11;
+public static int verticalClimbRightTalonID = 9;
 public static int verticalClimbLeftTalonID = 10;
 //public static int turretTurningID = 17;
 
@@ -248,7 +248,7 @@ public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = 0.3;
 //for the climb
 public static double slidingClimbTimerTimeout = 5;
-public static double slidingClimbDistance = 10000; //is the raw sensor distance
+public static double slidingClimbDistance = 225000; //is the raw sensor distance
 
 }
 

@@ -38,6 +38,13 @@ public class SlidingClimbHooksCommand extends CommandBase {
       SmartDashboard.putString("SlidingButtonClicked", "yes");
       slidingClimbTimer = Timer.getFPGATimestamp();
     }
+    else if ((RobotContainer.oi.slidingClimbReverseButton.get() && !isButtonPressed)){
+      isButtonPressed = true;
+      RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance, 8000, 8000);
+      //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
+      SmartDashboard.putString("SlidingReverseButtonClicked", "yes");
+      slidingClimbTimer = Timer.getFPGATimestamp();
+    }
 
   }
 
@@ -46,7 +53,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public void end(boolean interrupted) {
     isButtonPressed = false;
     slidingClimbTimer = 0;
-    RobotContainer.slidingClimbHooks.resetMotors();
+    //RobotContainer.slidingClimbHooks.resetMotors();
   }
 
   // Returns true when the command should end.
@@ -67,9 +74,9 @@ public class SlidingClimbHooksCommand extends CommandBase {
         double percentRightError = 100 * (RobotMap.slidingClimbDistance - sensorRightDistance)/RobotMap.slidingClimbDistance;
 
         SmartDashboard.putNumber("percentErrorClimbLeft", percentLeftError);
-      // even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
-        //if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 )){
-          if (percentLeftError < 0.9 || percentLeftError < 0 )
+      //even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
+          if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 ))
+          //if (percentLeftError < 0.9 || percentLeftError < 0 )
           return true;
         }
         }
