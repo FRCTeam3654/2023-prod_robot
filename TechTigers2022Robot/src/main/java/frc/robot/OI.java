@@ -12,6 +12,7 @@ import frc.robot.commands.Turn90DegreesCommand;
 import frc.robot.commands.IntakeStopCommand;
 import frc.robot.commands.BeltcroShooterCommand;
 import frc.robot.commands.SlidingClimbHooksCommand;
+import frc.robot.commands.SlidingClimbManualControlCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -36,11 +37,11 @@ public class OI {
   public JoystickButton turnRight180Button;
   public JoystickButton intakeStopButton;
   public JoystickButton slidingClimbButton;
-  //public JoystickButton colorWheelSpinButton;
+  public JoystickButton slidingClimbManualButton;
   //public JoystickButton colorSensorButton;
   //public JoystickButton ballPickUpButton;
   public JoystickButton beltcroShooterButton;
-  //public JoystickButton ballFlushButton;
+  public JoystickButton manualSlidingClimbButton;
   public JoystickButton slidingClimbReverseButton;
   public JoystickButton limeLightButton;
   public JoystickButton climbLockLeftButton;
@@ -58,7 +59,7 @@ public class OI {
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
   intakeStopButton = new JoystickButton(driverStick, RobotMap.intakeStopButtonNumber);
-  //colorSensorButton = new JoystickButton(operatorStick, RobotMap.colorSensorButtonNumber);
+  slidingClimbManualButton = new JoystickButton(operatorStick, RobotMap.slidingClimbManualButtonNumber);
   //ballPickUpButton = new JoystickButton(operatorStick, RobotMap.pickUpButtonNumber); //change to operatorStick when we have both joystick
   beltcroShooterButton = new JoystickButton(driverStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
@@ -79,6 +80,7 @@ public class OI {
   beltcroShooterButton.whenPressed(new BeltcroShooterCommand());
   slidingClimbButton.whenPressed(new SlidingClimbHooksCommand());
   slidingClimbReverseButton.whenPressed(new SlidingClimbHooksCommand());
+  slidingClimbManualButton.whenPressed(new SlidingClimbManualControlCommand());
   }
   
 }
