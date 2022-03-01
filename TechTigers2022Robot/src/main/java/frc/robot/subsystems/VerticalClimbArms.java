@@ -78,7 +78,7 @@ public class VerticalClimbArms extends SubsystemBase {
     
     zeroSensors();
   }
-  void zeroSensors() {
+  public void zeroSensors() {
     verticalClimbLeftTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
     verticalClimbRightTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
     System.out.println("[Quadrature Encoders] All drive sensors are zeroed.\n");
@@ -243,6 +243,27 @@ public class VerticalClimbArms extends SubsystemBase {
             }
             return ret;
          }
+         public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity) {
+          verticalClimbLeftTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
+          verticalClimbLeftTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+        
+          verticalClimbRightTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
+          verticalClimbLeftTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+        
+          verticalClimbLeftTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+          verticalClimbRightTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+
+          verticalClimbLeftTalon.set(ControlMode.MotionMagic, distance);
+          verticalClimbRightTalon.set(ControlMode.MotionMagic, distance);
+          }
+
+          public double getVerticalClimbLeftTalonPosition(){
+            return verticalClimbLeftTalon.getSelectedSensorPosition(0);
+          }
+          public double getVerticalClimbRightTalonPosition(){
+            return verticalClimbRightTalon.getSelectedSensorPosition(0);
+          }
+        
 
   @Override
   public void periodic() {

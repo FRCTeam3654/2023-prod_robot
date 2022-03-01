@@ -35,7 +35,7 @@ public class SlidingClimbManualControlCommand extends CommandBase {
           IsButtonPressed = true;
         }
       }
-      SmartDashboard.putBoolean("SlidingManualButtonClicked", IsButtonPressed);
+      SmartDashboard.putBoolean("ManualSlidingButtonClicked", IsButtonPressed);
       if (IsButtonPressed == true){
         //double joystickX = (RobotContainer.oi.driverStick.getX() * -1);
         //joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);

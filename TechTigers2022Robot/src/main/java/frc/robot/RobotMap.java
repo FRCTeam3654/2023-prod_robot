@@ -64,10 +64,13 @@ public static int turnLeft180ButtonNumber = 5;
 public static int turnRight180ButtonNumber = 6;
 public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
+
 //OPERATOR STICK
 public static int intakeStopButtonNumber = 9;
 public static int slidingClimbButtonNumber = 8;
-public static int slidingClimbManualButtonNumber = 7;
+public static int manualSlidingClimbButtonNumber = 7;
+public static int verticalClimbUpButtonNumber = 4;
+public static int verticalClimbDownButtonNumber = 6;
 //public static int climbLockLeftButtonNumber = 4;
 //public static int climbUnlockLeftButtonNumber = 7;
 //public static int climbUnlockRightButtonNumber = 6;
@@ -249,6 +252,8 @@ public static double beltcroSpeed = 0.3;
 //for the climb
 public static double slidingClimbTimerTimeout = 5;
 public static double slidingClimbDistance = 135000; //is the raw sensor distance
+public static double verticalClimbDistance = 90000;
+public static double verticalClimbTimerTimeout = 5;
 
 }
 

@@ -13,6 +13,7 @@ import frc.robot.commands.IntakeStopCommand;
 import frc.robot.commands.BeltcroShooterCommand;
 import frc.robot.commands.SlidingClimbHooksCommand;
 import frc.robot.commands.SlidingClimbManualControlCommand;
+import frc.robot.commands.VerticalClimbMotionMagicUpCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -37,9 +38,8 @@ public class OI {
   public JoystickButton turnRight180Button;
   public JoystickButton intakeStopButton;
   public JoystickButton slidingClimbButton;
-  public JoystickButton slidingClimbManualButton;
-  //public JoystickButton colorSensorButton;
-  //public JoystickButton ballPickUpButton;
+  public JoystickButton verticalClimbDownButton;
+  public JoystickButton verticalClimbUpButton;
   public JoystickButton beltcroShooterButton;
   public JoystickButton manualSlidingClimbButton;
   public JoystickButton slidingClimbReverseButton;
@@ -59,8 +59,9 @@ public class OI {
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
   intakeStopButton = new JoystickButton(driverStick, RobotMap.intakeStopButtonNumber);
-  slidingClimbManualButton = new JoystickButton(operatorStick, RobotMap.slidingClimbManualButtonNumber);
-  //ballPickUpButton = new JoystickButton(operatorStick, RobotMap.pickUpButtonNumber); //change to operatorStick when we have both joystick
+  manualSlidingClimbButton = new JoystickButton(operatorStick, RobotMap.manualSlidingClimbButtonNumber);
+  verticalClimbUpButton = new JoystickButton(operatorStick, RobotMap.verticalClimbUpButtonNumber);
+  verticalClimbDownButton = new JoystickButton(operatorStick, RobotMap.verticalClimbDownButtonNumber); //change to operatorStick when we have both joystick
   beltcroShooterButton = new JoystickButton(driverStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
@@ -80,7 +81,9 @@ public class OI {
   beltcroShooterButton.whenPressed(new BeltcroShooterCommand());
   slidingClimbButton.whenPressed(new SlidingClimbHooksCommand());
   slidingClimbReverseButton.whenPressed(new SlidingClimbHooksCommand());
-  slidingClimbManualButton.whenPressed(new SlidingClimbManualControlCommand());
+  manualSlidingClimbButton.whenPressed(new SlidingClimbManualControlCommand());
+  verticalClimbUpButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
+  //verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicDownCommand());
   }
   
 }
