@@ -252,7 +252,7 @@ public static double beltcroSpeed = 0.3;
 //for the climb
 public static double slidingClimbTimerTimeout = 5;
 public static double slidingClimbDistance = 135000; //is the raw sensor distance
-public static double verticalClimbDistance = 90000;
+public static double verticalClimbDistance = 162000;
 public static double verticalClimbTimerTimeout = 5;
 
 }

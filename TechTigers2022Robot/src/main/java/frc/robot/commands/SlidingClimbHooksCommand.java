@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SlidingClimbHooksCommand extends CommandBase {
   private boolean isButtonPressed = false;
   public double slidingClimbTimer = 0;
+  private static int climbNumber = 0;
   /** Creates a new SlidingClimbHooksCommand. */
   public SlidingClimbHooksCommand() {
     addRequirements(RobotContainer.slidingClimbHooks);
@@ -26,6 +27,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.slidingClimbHooks.zeroSensors();
+    climbNumber = climbNumber + 1;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,18 +35,31 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public void execute() {
     if ((RobotContainer.oi.slidingClimbButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbDistance, 8000, 8000);
+      if (climbNumber <= 2){
+        RobotContainer.slidingClimbHooks.setMotionMagic((1.7)*RobotMap.slidingClimbDistance, 8000, 8000);
+      }
+      else{
+        RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbDistance, 8000, 8000);
+      }
       //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
       SmartDashboard.putString("SlidingButtonClicked", "yes");
       slidingClimbTimer = Timer.getFPGATimestamp();
+      
     }
     else if ((RobotContainer.oi.slidingClimbReverseButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance, 8000, 8000);
-      //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
-      SmartDashboard.putString("SlidingReverseButtonClicked", "yes");
-      slidingClimbTimer = Timer.getFPGATimestamp();
-    }
+      if (climbNumber <= 2){
+        RobotContainer.slidingClimbHooks.setMotionMagic((-1.7)*RobotMap.slidingClimbDistance, 8000, 8000);
+      }
+      else {
+       RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance, 8000, 8000);
+      }
+      
+       //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
+       SmartDashboard.putString("SlidingReverseButtonClicked", "yes");
+       slidingClimbTimer = Timer.getFPGATimestamp();
+    
+  }
 
   }
 

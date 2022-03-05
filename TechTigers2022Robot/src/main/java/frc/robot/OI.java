@@ -83,7 +83,7 @@ public class OI {
   slidingClimbReverseButton.whenPressed(new SlidingClimbHooksCommand());
   manualSlidingClimbButton.whenPressed(new SlidingClimbManualControlCommand());
   verticalClimbUpButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
-  //verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicDownCommand());
+  verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
   }
   
 }

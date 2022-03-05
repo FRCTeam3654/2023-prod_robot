@@ -31,15 +31,15 @@ public class VerticalClimbArms extends SubsystemBase {
     verticalClimbRightTalon.setNeutralMode(NeutralMode.Brake);
 
     verticalClimbLeftTalon.setInverted(false);
-    verticalClimbRightTalon.setInverted(false);
+    verticalClimbRightTalon.setInverted(true);
 
-    verticalClimbLeftTalon.configNeutralDeadband(0.001, RobotMap.kTimeoutMs);
-    verticalClimbRightTalon.configNeutralDeadband(0.001, RobotMap.kTimeoutMs);
+    verticalClimbLeftTalon.configNeutralDeadband(0.00, RobotMap.kTimeoutMs);
+    verticalClimbRightTalon.configNeutralDeadband(0.00, RobotMap.kTimeoutMs);
 
     verticalClimbLeftTalon.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, RobotMap.pidLoopTimeout);
     verticalClimbRightTalon.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, RobotMap.pidLoopTimeout);
 
-    verticalClimbLeftTalon.config_kF(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kF);
+    /*verticalClimbLeftTalon.config_kF(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kF);
     verticalClimbLeftTalon.config_kP(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kP);
     verticalClimbLeftTalon.config_kI(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kI);
     verticalClimbLeftTalon.config_kD(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kD);
@@ -47,7 +47,17 @@ public class VerticalClimbArms extends SubsystemBase {
     verticalClimbRightTalon.config_kF(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kF);
     verticalClimbRightTalon.config_kP(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kP);
     verticalClimbRightTalon.config_kI(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kI);
-    verticalClimbRightTalon.config_kD(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kD);
+    verticalClimbRightTalon.config_kD(RobotMap.kClimbSlotIDx,RobotMap.climbGainsVelocity.kD);*/
+
+    verticalClimbLeftTalon.config_kF(0,0.045,30);// 0.045
+    verticalClimbLeftTalon.config_kP(0,0.049,30); //0.095 //0.049
+    verticalClimbLeftTalon.config_kI(0,0,30);
+    verticalClimbLeftTalon.config_kD(0,0,30);
+
+    verticalClimbRightTalon.config_kF(0,0.045,30); // 0.045
+    verticalClimbRightTalon.config_kP(0,0.049,30); //0.095 //0.049
+    verticalClimbRightTalon.config_kI(0,0,30);
+    verticalClimbRightTalon.config_kD(0,0,30);
 
     verticalClimbLeftTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, RobotMap.kTimeoutMs);
     verticalClimbLeftTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
@@ -65,16 +75,24 @@ public class VerticalClimbArms extends SubsystemBase {
     verticalClimbRightTalon.configPeakOutputForward(1, RobotMap.kTimeoutMs);
     verticalClimbRightTalon.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
 
-    verticalClimbLeftTalon.configMotionCruiseVelocity(RobotMap.climbCruiseVelocity, RobotMap.kTimeoutMs);
+    /*verticalClimbLeftTalon.configMotionCruiseVelocity(RobotMap.climbCruiseVelocity, RobotMap.kTimeoutMs);
     verticalClimbLeftTalon.configMotionAcceleration(RobotMap.climbAcceleration, RobotMap.kTimeoutMs);
     verticalClimbRightTalon.configMotionCruiseVelocity(RobotMap.climbCruiseVelocity, RobotMap.kTimeoutMs);
     verticalClimbRightTalon.configMotionAcceleration(RobotMap.climbAcceleration, RobotMap.kTimeoutMs);
 
     verticalClimbLeftTalon.selectProfileSlot(RobotMap.kClimbSlotIDx, RobotMap.kPIDLoopIDx);
     verticalClimbRightTalon.selectProfileSlot(RobotMap.kClimbSlotIDx, RobotMap.kPIDLoopIDx);
-    /* zero the sensor once on robot boot up*/
     verticalClimbLeftTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
-    verticalClimbRightTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
+    verticalClimbRightTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);*/
+
+    verticalClimbLeftTalon.configMotionCruiseVelocity(8000, 30);
+    verticalClimbLeftTalon.configMotionAcceleration(8000, 30);
+
+    verticalClimbRightTalon.configMotionCruiseVelocity(8000, 30);
+    verticalClimbRightTalon.configMotionAcceleration(8000, 30);
+
+    verticalClimbLeftTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+    verticalClimbRightTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
     
     zeroSensors();
   }
