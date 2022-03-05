@@ -36,7 +36,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
     if ((RobotContainer.oi.slidingClimbButton.get() && !isButtonPressed)){
       isButtonPressed = true;
       if (climbNumber <= 2){
-        RobotContainer.slidingClimbHooks.setMotionMagic((1.7)*RobotMap.slidingClimbDistance, 8000, 8000);
+        RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbFullDistance, 8000, 8000);
       }
       else{
         RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbDistance, 8000, 8000);
@@ -49,7 +49,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
     else if ((RobotContainer.oi.slidingClimbReverseButton.get() && !isButtonPressed)){
       isButtonPressed = true;
       if (climbNumber <= 2){
-        RobotContainer.slidingClimbHooks.setMotionMagic((-1.7)*RobotMap.slidingClimbDistance, 8000, 8000);
+        RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbFullDistance, 8000, 8000);
       }
       else {
        RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance, 8000, 8000);
@@ -87,6 +87,10 @@ public class SlidingClimbHooksCommand extends CommandBase {
 
         double percentLeftError = 100 * (RobotMap.slidingClimbDistance - sensorLeftDistance)/RobotMap.slidingClimbDistance;
         double percentRightError = 100 * (RobotMap.slidingClimbDistance - sensorRightDistance)/RobotMap.slidingClimbDistance;
+        //if (percentLeftError < 0.7 && percentRightError < 0.7 && slidingClimbTimer > 2 && (RobotContainer.oi.slidingClimbButton.get() && isButtonPressed)){
+          //RobotContainer.verticalClimbArms.resetMotors();
+        //}
+
 
         SmartDashboard.putNumber("percentErrorClimbLeft", percentLeftError);
       //even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable

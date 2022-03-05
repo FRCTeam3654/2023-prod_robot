@@ -41,6 +41,7 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
       isButtonPressed = true;
       RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 8000, 8000);
       //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
+    
       SmartDashboard.putString("verticalDownButtonClicked", "yes");
       verticalClimbTimer = Timer.getFPGATimestamp();
     }
@@ -71,7 +72,7 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
 
         double percentLeftError = 100 * (RobotMap.verticalClimbDistance - sensorLeftDistance)/RobotMap.verticalClimbDistance;
         double percentRightError = 100 * (RobotMap.verticalClimbDistance - sensorRightDistance)/RobotMap.verticalClimbDistance;
-
+        
         SmartDashboard.putNumber("percentErrorVerticalClimbLeft", percentLeftError);
       //even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
           if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 ))

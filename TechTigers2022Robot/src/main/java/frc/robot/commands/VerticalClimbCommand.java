@@ -32,8 +32,12 @@ public class VerticalClimbCommand extends CommandBase {
   public void execute() {
     double joystickX;
     double joystickZ;
+    //joystickX = (RobotContainer.oi.operatorStick.getY());
+    //joystickZ = (RobotContainer.oi.operatorStick.getZ());
+    
     joystickX = (RobotContainer.oi.operatorStick.getY());
-    joystickZ = (RobotContainer.oi.operatorStick.getZ()); 
+    joystickZ = (RobotContainer.oi.operatorStick.getX());
+  
 
     //joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
     //joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
@@ -56,7 +60,7 @@ public class VerticalClimbCommand extends CommandBase {
       joystickZ *= 0.5;
     }
 
-    joystickZ = 0; //reomove this for actual operator controller controls
+    //joystickZ = 0; //reomove this for actual operator controller controls
 
     SmartDashboard.putNumber("JoystickX", joystickX);
     SmartDashboard.putNumber("JoystickZ", joystickZ);

@@ -160,7 +160,7 @@ public static double radianConversionToDegree = 57.2958;
 public static int climbCruiseVelocity = 50000;
 public static int climbAcceleration = 5000;
 //public static int climbMaxHeight = 40000;
-public static int angleDeadBand = 10;
+public static int angleDeadBand = 30;
 public static double climbSpeed = 0.2; //percent output
 
 public static boolean climbClosedLoopMode = false;
@@ -250,10 +250,11 @@ public static double beltcroIntakeTimerTimeout = 2;
 public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = 0.3;
 //for the climb
-public static double slidingClimbTimerTimeout = 5;
-public static double slidingClimbDistance = 135000; //is the raw sensor distance
-public static double verticalClimbDistance = 162000;
-public static double verticalClimbTimerTimeout = 5;
+public static double slidingClimbTimerTimeout = 15;
+public static double slidingClimbDistance = 150000; //is the raw sensor distance
+public static double slidingClimbFullDistance = 229500;
+public static double verticalClimbDistance = 150000; //150000
+public static double verticalClimbTimerTimeout = 15;
 
 }
 

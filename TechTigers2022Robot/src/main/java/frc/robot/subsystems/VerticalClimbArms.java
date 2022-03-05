@@ -30,8 +30,10 @@ public class VerticalClimbArms extends SubsystemBase {
     verticalClimbLeftTalon.setNeutralMode(NeutralMode.Brake);
     verticalClimbRightTalon.setNeutralMode(NeutralMode.Brake);
 
-    verticalClimbLeftTalon.setInverted(false);
-    verticalClimbRightTalon.setInverted(true);
+    verticalClimbLeftTalon.setInverted(true);
+    verticalClimbRightTalon.setInverted(false);
+    
+    //verticalClimbRightTalon.follow(verticalClimbLeftTalon);
 
     verticalClimbLeftTalon.configNeutralDeadband(0.00, RobotMap.kTimeoutMs);
     verticalClimbRightTalon.configNeutralDeadband(0.00, RobotMap.kTimeoutMs);
@@ -95,6 +97,11 @@ public class VerticalClimbArms extends SubsystemBase {
     verticalClimbRightTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
     
     zeroSensors();
+  }
+  public void resetMotors(){
+    zeroSensors();
+    verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+    verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
   }
   public void zeroSensors() {
     verticalClimbLeftTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);

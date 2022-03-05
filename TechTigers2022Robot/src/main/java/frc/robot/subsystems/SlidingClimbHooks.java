@@ -109,11 +109,11 @@ public class SlidingClimbHooks extends SubsystemBase {
   
     System.out.println("[Quadrature Encoders] All drive sensors are zeroed.\n");
 }
-public void resetMotors(){
-  zeroSensors();
-  climbHookTalonLeft.set(ControlMode.PercentOutput, 0);
-  climbHookTalonRight.set(ControlMode.PercentOutput, 0);
-}
+//public void resetMotors(){
+  //zeroSensors();
+  //climbHookTalonLeft.set(ControlMode.PercentOutput, 0);
+  //climbHookTalonRight.set(ControlMode.PercentOutput, 0);
+//}
 public double getClimbHookTalonLeftPosition(){
   return climbHookTalonLeft.getSelectedSensorPosition(0);
 }
