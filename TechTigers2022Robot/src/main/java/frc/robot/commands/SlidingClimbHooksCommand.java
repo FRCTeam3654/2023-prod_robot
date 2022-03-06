@@ -19,6 +19,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   private static int climbNumber = 0;
   private static double sliderCurrentPosition  = 0;
   private double distanceToBeTraveled = 0;
+  private double targetedDistance = 0;
   /** Creates a new SlidingClimbHooksCommand. */
   public SlidingClimbHooksCommand() {
     addRequirements(RobotContainer.slidingClimbHooks);
@@ -28,7 +29,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public SlidingClimbHooksCommand(double distance_to_travel) {
     addRequirements(RobotContainer.slidingClimbHooks);
     // Use addRequirements() here to declare subsystem dependencies.
-	  distanceToBeTraveled = distance_to_travel;
+	  targetedDistance = distance_to_travel;
   }
 
   // Called when the command is initially scheduled.
@@ -63,16 +64,37 @@ public class SlidingClimbHooksCommand extends CommandBase {
         RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbFullDistance, 8000, 8000);
       }
       else {
-        distanceToBeTraveled = (-1)*RobotMap.slidingClimbDistance;
+        distanceToBeTraveled = (-1)*RobotMap.slidingClimbDistance; 
+        // TODO:  adjust above distance by sliderCurrentPosition (instead of above, should be (-1)*sliderCurrentPosition
+        // distanceToBeTraveled = (-1) * sliderCurrentPosition ;// double check ??
+        
         RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance, 4000, 8000);
       }
       
        //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
        SmartDashboard.putString("SlidingReverseButtonClicked", "yes");
-       slidingClimbTimer = Timer.getFPGATimestamp();
-    
-  }
-
+       slidingClimbTimer = Timer.getFPGATimestamp();  
+    }
+    /*
+    else if ((RobotContainer.oi.slidingShortClimbButton.get() && !isButtonPressed)){
+      isButtonPressed = true;
+      
+      distanceToBeTraveled = targetedDistance;
+      RobotContainer.slidingClimbHooks.setMotionMagic(distanceToBeTraveled, 4000, 8000);
+ 
+      SmartDashboard.putString("SlidingShortClimbButtonClicked", "yes");
+      slidingClimbTimer = Timer.getFPGATimestamp();
+    }
+    else if ((RobotContainer.oi.slidingShortClimbReverseButton.get() && !isButtonPressed)){
+      isButtonPressed = true;
+      
+      distanceToBeTraveled = (-1) * targetedDistance;
+      RobotContainer.slidingClimbHooks.setMotionMagic(distanceToBeTraveled, 4000, 8000);
+ 
+      SmartDashboard.putString("SlidingShortClimbReverseButtonClicked", "yes");
+      slidingClimbTimer = Timer.getFPGATimestamp();
+    }
+    */
   }
 
   // Called once the command ends or is interrupted.
@@ -99,6 +121,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
         double sensorLeftDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonLeftPosition();
         double sensorRightDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonRightPosition();
 
+        // TODO:   uncomment the following, comment out line 126, 127
         //double percentLeftError = 100 * (Math.abs(distanceToBeTraveled) - Math.abs(sensorLeftDistance))/Math.abs(distanceToBeTraveled);
         //double percentRightError = 100 * (Math.abs(distanceToBeTraveled) - Math.abs(sensorRightDistance))/Math.abs(distanceToBeTraveled);
 
