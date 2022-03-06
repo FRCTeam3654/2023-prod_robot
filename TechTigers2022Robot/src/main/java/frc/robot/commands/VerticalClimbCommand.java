@@ -41,7 +41,7 @@ public class VerticalClimbCommand extends CommandBase {
 
     //joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
     //joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
-    
+    /*
     if (Math.abs(joystickX) < RobotMap.joystickDeadBand)
     {
       joystickX = 0;
@@ -59,6 +59,7 @@ public class VerticalClimbCommand extends CommandBase {
     {
       joystickZ *= 0.5;
     }
+    */
 
     //joystickZ = 0; //reomove this for actual operator controller controls
 

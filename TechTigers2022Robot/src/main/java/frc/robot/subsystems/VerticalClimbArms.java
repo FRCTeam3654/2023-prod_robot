@@ -217,23 +217,23 @@ public class VerticalClimbArms extends SubsystemBase {
   
 			if(  isAboutAngle (initAngleDegree,0) ) {
 				//  joystick is shifted to the right within angle deadband, move right arm up
-				climbLeftTalon.set(ControlMode.PercentOutput, 0);
-				climbRightTalon.set(ControlMode.PercentOutput,(-1 * RobotMap.climbSpeed));
+				verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+				verticalClimbRightTalon.set(ControlMode.PercentOutput,(-1 * RobotMap.climbSpeed));
 			 }
 			 else if(  isAboutAngle (initAngleDegree,90) ) {
 			  //  joystick upwards within deadband, move both arms up
-			  climbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
-			  climbRightTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+			  verticalClimbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+			  verticalClimbRightTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
 			 }
 			 else if(  isAboutAngle (initAngleDegree,180) ) {
 			  //  joystick is shifted to the left within angle deadband, move left arm up
-			  climbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
-			  climbRightTalon.set(ControlMode.PercentOutput, 0);
+			  verticalClimbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+			  verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
 			 }
 			 else if(  isAboutAngle (initAngleDegree,270) ) {
 			  //  joystick downwards within angle deadband, move both arms down
-			  climbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
-			  climbRightTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+			  verticalClimbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+			  verticalClimbRightTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
 			 }
 	  
   
