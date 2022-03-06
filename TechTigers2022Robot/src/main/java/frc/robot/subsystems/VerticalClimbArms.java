@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.ctre.phoenix.motorcontrol.DemandType;
 //import edu.wpi.first.wpilibj.Servo;
 
 public class VerticalClimbArms extends SubsystemBase {
@@ -308,7 +309,15 @@ public class VerticalClimbArms extends SubsystemBase {
 			return ret;
 		 }
 		 
-         public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity) {
+
+
+     // https://www.chiefdelphi.com/t/how-to-make-a-motor-hold-its-position/347877
+     // https://github.com/Lambda-Corps/2019_Deep_Space/blob/master/src/main/java/frc/robot/subsystems/Arm.java
+     public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity ) {
+      setMotionMagic( distance, cruiseVelocity,  accelerationVelocity, 0) ;
+     }
+
+    public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity, double arbitraryFeedForwardValue) {
           verticalClimbLeftTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
           verticalClimbLeftTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
         
@@ -318,16 +327,24 @@ public class VerticalClimbArms extends SubsystemBase {
           verticalClimbLeftTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
           verticalClimbRightTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
 
-          verticalClimbLeftTalon.set(ControlMode.MotionMagic, distance);
-          verticalClimbRightTalon.set(ControlMode.MotionMagic, distance);
+          if( Math.abs(arbitraryFeedForwardValue) > 0.001) {
+            // add  DemandType.ArbitraryFeedForward to hold the vertical arm in position
+            verticalClimbLeftTalon.set(ControlMode.MotionMagic, distance,  DemandType.ArbitraryFeedForward, arbitraryFeedForwardValue);
+            verticalClimbRightTalon.set(ControlMode.MotionMagic, distance, DemandType.ArbitraryFeedForward, arbitraryFeedForwardValue);
           }
+          else {
+            verticalClimbLeftTalon.set(ControlMode.MotionMagic, distance);
+            verticalClimbRightTalon.set(ControlMode.MotionMagic, distance);
+          }
+  }
 
-          public double getVerticalClimbLeftTalonPosition(){
-            return verticalClimbLeftTalon.getSelectedSensorPosition(0);
-          }
-          public double getVerticalClimbRightTalonPosition(){
-            return verticalClimbRightTalon.getSelectedSensorPosition(0);
-          }
+
+  public double getVerticalClimbLeftTalonPosition(){
+        return verticalClimbLeftTalon.getSelectedSensorPosition(0);
+  }
+  public double getVerticalClimbRightTalonPosition(){
+        return verticalClimbRightTalon.getSelectedSensorPosition(0);
+  }
         
 
   @Override
