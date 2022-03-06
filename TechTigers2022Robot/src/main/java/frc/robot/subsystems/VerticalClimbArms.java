@@ -179,7 +179,7 @@ public class VerticalClimbArms extends SubsystemBase {
           //The java.lang.Math.asin() returns the arc sine of an angle in between -pi/2 and pi/2.
           //double radiusPower = Math.sqrt(joystickX*joystickX + joystickY*joystickY);
           double radiusPower = Math.hypot(joystickX, joystickY);
-          if (radiusPower > 0.3){
+          if (radiusPower > 0.2){
             //sin value range is from -0.5 pi to 0.5 pi
             //double initAngle = Math.atan2(joystickX, joystickY);
             double initAngle = Math.asin(Math.abs(joystickY)/radiusPower);
@@ -196,6 +196,8 @@ public class VerticalClimbArms extends SubsystemBase {
             else if(joystickX > 0 && joystickY < 0  ) {
               initAngleDegree = 360 - initAngleDegree;
             } 
+			
+			/*
             else if (isAboutEqual(joystickY, 0.0) && joystickX > 0 ) {
               initAngleDegree = 0;
             }
@@ -208,10 +210,34 @@ public class VerticalClimbArms extends SubsystemBase {
             else if (isAboutEqual(joystickX, 0.0) && joystickY < 0 ) {            
               initAngleDegree = 270;
             }
+			*/
   
             System.out.println("Angle = " + initAngleDegree);
             SmartDashboard.putNumber("VerticalClimbAngleDegree", initAngleDegree);
   
+			if(  isAboutAngle (initAngleDegree,0) ) {
+				//  joystick is shifted to the right within angle deadband, move right arm up
+				climbLeftTalon.set(ControlMode.PercentOutput, 0);
+				climbRightTalon.set(ControlMode.PercentOutput,(-1 * RobotMap.climbSpeed));
+			 }
+			 else if(  isAboutAngle (initAngleDegree,90) ) {
+			  //  joystick upwards within deadband, move both arms up
+			  climbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+			  climbRightTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+			 }
+			 else if(  isAboutAngle (initAngleDegree,180) ) {
+			  //  joystick is shifted to the left within angle deadband, move left arm up
+			  climbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+			  climbRightTalon.set(ControlMode.PercentOutput, 0);
+			 }
+			 else if(  isAboutAngle (initAngleDegree,270) ) {
+			  //  joystick downwards within angle deadband, move both arms down
+			  climbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+			  climbRightTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+			 }
+	  
+  
+            /*
             if (initAngleDegree > (-1 * RobotMap.angleDeadBand) && initAngleDegree < RobotMap.angleDeadBand){
               //joystick is shifted to the right within angle deadband, does nothing
               verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
@@ -252,7 +278,7 @@ public class VerticalClimbArms extends SubsystemBase {
               verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
               verticalClimbRightTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
             }
-  
+            */
           }
           else {
             verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
@@ -268,6 +294,20 @@ public class VerticalClimbArms extends SubsystemBase {
             }
             return ret;
          }
+		 
+		 
+		 boolean isAboutAngle(double inputAngle, double targetAngle) {
+			boolean ret = false;
+			double diff =  Math.abs(inputAngle) - Math.abs(targetAngle);
+			if (Math.abs(diff) < RobotMap.angleDeadBand) {
+			   ret = true;
+			}
+			else if ( inputAngle > (360 - RobotMap.angleDeadBand) && inputAngle <= 360) {
+			   ret = true;
+			}
+			return ret;
+		 }
+		 
          public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity) {
           verticalClimbLeftTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
           verticalClimbLeftTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
