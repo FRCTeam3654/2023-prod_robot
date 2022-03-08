@@ -24,6 +24,8 @@ public class SlidingClimbManualControlCommand extends CommandBase {
   public void initialize() {
     //RobotContainer.slidingClimbHooks.resetMotors();
     IsButtonPressed=false;
+    //RobotContainer.drive.setDefaultCommand(null); //???
+    //RobotContainer.slidingClimbHooks.setDefaultCommand(new SlidingClimbManualControlCommand());
     //WasButtonNotPressed=false;
   }
 

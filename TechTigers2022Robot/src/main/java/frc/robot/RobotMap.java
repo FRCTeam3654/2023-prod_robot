@@ -71,13 +71,13 @@ public static int slidingClimbButtonNumber = 8;
 public static int manualSlidingClimbButtonNumber = 7;
 public static int verticalClimbUpButtonNumber = 4;
 public static int verticalClimbDownButtonNumber = 6;
-//public static int climbLockLeftButtonNumber = 4;
+public static int climbLockButtonNumber = 12;
 //public static int climbUnlockLeftButtonNumber = 7;
 //public static int climbUnlockRightButtonNumber = 6;
 public static int slidingClimbReverseButtonNumber = 11;  
 
-public static int slidingShortClimbButtonNumber = 12;  //??
-public static int slidingShortClimbReverseButtonNumber = 13;  //??
+public static int slidingShortClimbButtonNumber = 5;  //??
+public static int slidingShortClimbReverseButtonNumber = 3;  //??
 
 //public static int colorSensorButtonNumber = 10; 
 //public static int pickUpButtonNumber = 1;
@@ -255,12 +255,12 @@ public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = 0.3;
 //for the climb
 public static double slidingClimbTimerTimeout = 15;
-public static double slidingClimbDistance = 150000; //is the raw sensor distance
+public static double slidingClimbDistance = 170000; //is the raw sensor distance     24000 is about 4 inches
 public static double slidingClimbFullDistance = 229500;
-public static double verticalClimbDistance = 150000; //150000
+public static double verticalClimbDistance = 150000; //150000       
 public static double verticalClimbTimerTimeout = 15;
 
-public static double slidingShortClimbDistance = 20000; // ?? slide  a short distance
+public static double slidingShortClimbDistance = 25000; // ?? slide  a short distance
 
 }
 

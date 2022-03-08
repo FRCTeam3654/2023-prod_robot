@@ -13,6 +13,7 @@ import frc.robot.commands.IntakeStopCommand;
 import frc.robot.commands.BeltcroShooterCommand;
 import frc.robot.commands.SlidingClimbHooksCommand;
 import frc.robot.commands.SlidingClimbManualControlCommand;
+import frc.robot.commands.VerticalClimbCommand;
 import frc.robot.commands.VerticalClimbMotionMagicUpCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
@@ -43,6 +44,7 @@ public class OI {
   public JoystickButton beltcroShooterButton;
   public JoystickButton manualSlidingClimbButton;
   public JoystickButton slidingClimbReverseButton;
+  public JoystickButton climbLockButton;
 
   public JoystickButton slidingShortClimbButton;
   public JoystickButton slidingShortClimbReverseButton;
@@ -71,9 +73,10 @@ public class OI {
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
   slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);
   slidingClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingClimbReverseButtonNumber);
+  climbLockButton = new JoystickButton(operatorStick, RobotMap.climbLockButtonNumber);
 
-  slidingShortClimbButton = new JoystickButton(driverStick, RobotMap.slidingShortClimbButtonNumber);//??
-  slidingShortClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingShortClimbReverseButtonNumber);//??
+  slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);//??
+  slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);//??
 
   //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
   //climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
@@ -92,6 +95,7 @@ public class OI {
   manualSlidingClimbButton.whenPressed(new SlidingClimbManualControlCommand());
   verticalClimbUpButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
   verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
+  climbLockButton.whenPressed(new VerticalClimbCommand());
 
   slidingShortClimbButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));
   slidingShortClimbReverseButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));

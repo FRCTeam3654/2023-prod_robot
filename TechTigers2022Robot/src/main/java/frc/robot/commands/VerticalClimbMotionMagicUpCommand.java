@@ -65,6 +65,7 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
     if(verticalClimbTimer + RobotMap.verticalClimbTimerTimeout < Timer.getFPGATimestamp()) {
       isButtonPressed = false;
       verticalClimbTimer = 0;
+      RobotContainer.verticalClimbArms.setMotionMagic(RobotContainer.verticalClimbArms.getVerticalClimbLeftTalonPosition(), 8000, 8000, 0.1);
       return true;
     } 
     

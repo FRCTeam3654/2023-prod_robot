@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class VerticalClimbCommand extends CommandBase {
+  private boolean IsLockButtonPressed=false;
+  private boolean WasLockButtonNotPressed=true;
   /** Creates a new VerticalClimbCommand. */
   public VerticalClimbCommand() {
     addRequirements(RobotContainer.verticalClimbArms);
@@ -23,6 +25,8 @@ public class VerticalClimbCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    IsLockButtonPressed=false;
+    WasLockButtonNotPressed=true;
     //sets the z channel for climb on xbox joystick so it works
     RobotContainer.oi.operatorStick.setZChannel(3);
   }
@@ -30,6 +34,20 @@ public class VerticalClimbCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    IsLockButtonPressed=RobotContainer.oi.climbLockButton.get();
+      if (!IsLockButtonPressed) {
+        WasLockButtonNotPressed=true;
+      }
+      else {
+        WasLockButtonNotPressed = false;
+      }
+
+      if (IsLockButtonPressed == true){
+        RobotContainer.verticalClimbArms.sizzleClimbHold();
+        //verticalClimbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+			  //verticalClimbRightTalon.set(ControlMode.PercentOutput, (-1) * RobotMap.climbSpeed);
+      }
+      else{
     double joystickX;
     double joystickZ;
     //joystickX = (RobotContainer.oi.operatorStick.getY());
@@ -70,15 +88,22 @@ public class VerticalClimbCommand extends CommandBase {
     //RobotContainer.verticalClimbArms.karenaNotArcadeDrive(joystickZ, joystickX);
      
     System.out.println("ElevatorX = " + joystickX + "ElevatorZ = " + joystickZ);
-  }
+      }
+    
+}
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (IsLockButtonPressed && WasLockButtonNotPressed){
+      return true;
+    }
     return false;
   }
 }
