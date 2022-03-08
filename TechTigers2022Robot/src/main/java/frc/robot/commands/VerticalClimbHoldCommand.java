@@ -15,11 +15,18 @@ public class VerticalClimbHoldCommand extends CommandBase {
   private boolean IsLockButtonPressed=false;
   private boolean isLocked = false;  // need be static or not ??
   public static boolean cancelLock = false;  // let SlidingClimber to tell it is moving down
+  private int mode = 0 ;// 0: triggered from lock button, 1: trigger from command group (no button pressed)
 
   /** Creates a new VerticalClimbHoldCommand. */
   public VerticalClimbHoldCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.verticalClimbArms);
+  }
+
+  public VerticalClimbHoldCommand(int new_mode) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.verticalClimbArms);
+    this.mode = new_mode;
   }
 
   // Called when the command is initially scheduled.
@@ -58,6 +65,13 @@ public class VerticalClimbHoldCommand extends CommandBase {
 
         IsLockButtonPressed = false;
       
+      }
+
+      if( mode == 1) {
+        // mimic button pressed
+        isLocked = true;
+        IsLockButtonPressed = false;// reset
+        mode = 0; // reset so next lock button press will unlock it
       }
 
 
