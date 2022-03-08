@@ -49,26 +49,25 @@ public class VerticalClimbCommand extends CommandBase {
       if(isLockButtonCurrentlyPressed == true) {
         if( isLocked == false && IsLockButtonPressed == false) {
           // not locking --> press lock button to lock it
-          isLocked = true;
-          IsLockButtonPressed = true;
+          isLocked = true;  
         }
         else if ( isLocked == true && IsLockButtonPressed == false) {
           // if it is currently locked,  unlocked when pressed again (toggle)
           isLocked = false;
-          IsLockButtonPressed = true;
         }
+        IsLockButtonPressed = true;
       }
       else  {
         if( isLocked == true && IsLockButtonPressed == true) {
           // when just pressed lock button and lock is in action, release lock button will still keep the lock
           isLocked = true;
-          IsLockButtonPressed = false;
         }
         else if ( isLocked == false && IsLockButtonPressed == true) {
           // when it is not locked after lock button is pressed (toggled from lock to unlock), release lock button will still keep the unlock
           isLocked = false;
-          IsLockButtonPressed = false;
         }
+
+        IsLockButtonPressed = false;
       
       }
       
