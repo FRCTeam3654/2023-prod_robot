@@ -113,11 +113,13 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public boolean isFinished() {
 
     // tell VerticalCombCommand that it is moving down after 1 second  and less than 3 seconds
-    if( (slidingClimbTimer + 1.0) > Timer.getFPGATimestamp()) {
-        VerticalClimbCommand.isSlidingClimberMovingDown = true; // 
+    if( (slidingClimbTimer + 1.0) < Timer.getFPGATimestamp() &&  (slidingClimbTimer + 3.0) > Timer.getFPGATimestamp() ) {
+        if (climbNumber > 2 && distanceToBeTraveled > 0 ){
+           VerticalClimbCommand.isSlidingClimberMovingDown = true; // tell VerticalClimb to unlock if it is locked
+        }
     }
     else if( (slidingClimbTimer + 3.0) < Timer.getFPGATimestamp()) {
-      VerticalClimbCommand.isSlidingClimberMovingDown = false; // after 3 second, stop notifying
+      VerticalClimbCommand.isSlidingClimberMovingDown = false; // after 3 second, stop notifying, optional
     }
 
     if(slidingClimbTimer + RobotMap.slidingClimbTimerTimeout < Timer.getFPGATimestamp()) {
