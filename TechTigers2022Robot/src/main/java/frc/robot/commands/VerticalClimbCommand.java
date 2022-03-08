@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class VerticalClimbCommand extends CommandBase {
   private boolean IsLockButtonPressed=false;
-  private boolean WasLockButtonNotPressed=true;
+  private boolean isLocked = false;  // need be static or not ??
   /** Creates a new VerticalClimbCommand. */
   public VerticalClimbCommand() {
     addRequirements(RobotContainer.verticalClimbArms);
@@ -26,68 +26,73 @@ public class VerticalClimbCommand extends CommandBase {
   @Override
   public void initialize() {
     IsLockButtonPressed=false;
-    WasLockButtonNotPressed=true;
+    isLocked = false;
     //sets the z channel for climb on xbox joystick so it works
-    RobotContainer.oi.operatorStick.setZChannel(3);
+    //RobotContainer.oi.operatorStick.setZChannel(3);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IsLockButtonPressed=RobotContainer.oi.climbLockButton.get();
+    /*
+      boolean IsLockButtonPressed=RobotContainer.oi.climbLockButton.get();
+      
       if (!IsLockButtonPressed) {
         WasLockButtonNotPressed=true;
       }
       else {
         WasLockButtonNotPressed = false;
       }
-
-      if (IsLockButtonPressed == true){
-        RobotContainer.verticalClimbArms.sizzleClimbHold();
-        //verticalClimbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
-			  //verticalClimbRightTalon.set(ControlMode.PercentOutput, (-1) * RobotMap.climbSpeed);
+      */
+      
+      boolean isLockButtonCurrentlyPressed =RobotContainer.oi.climbLockButton.get();
+      if(isLockButtonCurrentlyPressed == true) {
+        if( isLocked == false && IsLockButtonPressed == false) {
+          // not locking --> press lock button to lock it
+          isLocked = true;
+          IsLockButtonPressed = true;
+        }
+        else if ( isLocked == true && IsLockButtonPressed == false) {
+          // if it is currently locked,  unlocked when pressed again (toggle)
+          isLocked = false;
+          IsLockButtonPressed = true;
+        }
       }
-      else{
-    double joystickX;
-    double joystickZ;
-    //joystickX = (RobotContainer.oi.operatorStick.getY());
-    //joystickZ = (RobotContainer.oi.operatorStick.getZ());
-    
-    joystickX = (RobotContainer.oi.operatorStick.getY());
-    joystickZ = (RobotContainer.oi.operatorStick.getX());
-  
+      else  {
+        if( isLocked == true && IsLockButtonPressed == true) {
+          // when just pressed lock button and lock is in action, release lock button will still keep the lock
+          isLocked = true;
+          IsLockButtonPressed = false;
+        }
+        else if ( isLocked == false && IsLockButtonPressed == true) {
+          // when it is not locked after lock button is pressed (toggled from lock to unlock), release lock button will still keep the unlock
+          isLocked = false;
+          IsLockButtonPressed = false;
+        }
+      
+      }
+      
+      SmartDashboard.putBoolean("isLocked_VerticalClimb", isLocked);
+      SmartDashboard.putBoolean("IsLockButtonPressed_VerticalClimb", IsLockButtonPressed);
 
-    //joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
-    //joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
-    /*
-    if (Math.abs(joystickX) < RobotMap.joystickDeadBand)
-    {
-      joystickX = 0;
-    }
-    if (Math.abs(joystickZ) < RobotMap.joystickDeadBand)
-    {
-      joystickZ = 0;
-    }
 
-    if (joystickX < 0)
-    {
-      joystickX *= 0.5;
-    }
-    if (joystickZ < 0)
-    {
-      joystickZ *= 0.5;
-    }
-    */
+      if ( isLocked == true ) {
+        RobotContainer.verticalClimbArms.sizzleClimbHold();
+      }
+      else {
+        double joystickX;
+        double joystickY;
+       
+        joystickY = (RobotContainer.oi.operatorStick.getY());
+        joystickX = (RobotContainer.oi.operatorStick.getX());
+      
+        SmartDashboard.putNumber("JoystickX", joystickX);
+        SmartDashboard.putNumber("JoystickY", joystickY);
 
-    //joystickZ = 0; //reomove this for actual operator controller controls
+        RobotContainer.verticalClimbArms.karenaArcadeDrive(joystickX, joystickY);
+          
+        System.out.println("ElevatorX = " + joystickX + "ElevatorY = " + joystickY);
 
-    SmartDashboard.putNumber("JoystickX", joystickX);
-    SmartDashboard.putNumber("JoystickZ", joystickZ);
-
-    RobotContainer.verticalClimbArms.karenaArcadeDrive(joystickZ, joystickX);
-    //RobotContainer.verticalClimbArms.karenaNotArcadeDrive(joystickZ, joystickX);
-     
-    System.out.println("ElevatorX = " + joystickX + "ElevatorZ = " + joystickZ);
       }
     
 }
@@ -101,9 +106,9 @@ public class VerticalClimbCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (IsLockButtonPressed && WasLockButtonNotPressed){
-      return true;
-    }
+    //if (IsLockButtonPressed && WasLockButtonNotPressed){
+    //  return true;
+    //}
     return false;
   }
 }
