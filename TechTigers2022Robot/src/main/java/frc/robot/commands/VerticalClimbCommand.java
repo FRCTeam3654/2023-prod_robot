@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class VerticalClimbCommand extends CommandBase {
   private boolean IsLockButtonPressed=false;
   private boolean isLocked = false;  // need be static or not ??
+  public static boolean isSlidingClimberMovingDown = false;  // let SlidingClimber to tell it is moving down
+
   /** Creates a new VerticalClimbCommand. */
   public VerticalClimbCommand() {
     addRequirements(RobotContainer.verticalClimbArms);
@@ -74,19 +76,28 @@ public class VerticalClimbCommand extends CommandBase {
       SmartDashboard.putBoolean("isLocked_VerticalClimb", isLocked);
       SmartDashboard.putBoolean("IsLockButtonPressed_VerticalClimb", IsLockButtonPressed);
 
+      double joystickX;
+      double joystickY;
+     
+      joystickY = (RobotContainer.oi.operatorStick.getY());
+      joystickX = (RobotContainer.oi.operatorStick.getX());
+    
+      SmartDashboard.putNumber("JoystickX", joystickX);
+      SmartDashboard.putNumber("JoystickY", joystickY);
+
+      // add additional logic to unlock:  1) by button 2) by joystick move up ) sliding climber
+      if(Math.abs(joystickY) > 0.25  || isSlidingClimberMovingDown == true) {
+        // reset the lock condition
+        isLocked = false;
+        IsLockButtonPressed = false;// reset
+      }
+
 
       if ( isLocked == true ) {
         RobotContainer.verticalClimbArms.sizzleClimbHold();
       }
       else {
-        double joystickX;
-        double joystickY;
        
-        joystickY = (RobotContainer.oi.operatorStick.getY());
-        joystickX = (RobotContainer.oi.operatorStick.getX());
-      
-        SmartDashboard.putNumber("JoystickX", joystickX);
-        SmartDashboard.putNumber("JoystickY", joystickY);
 
         RobotContainer.verticalClimbArms.karenaArcadeDrive(joystickX, joystickY);
           
@@ -95,6 +106,7 @@ public class VerticalClimbCommand extends CommandBase {
       }
     
 }
+
 
   // Called once the command ends or is interrupted.
   @Override

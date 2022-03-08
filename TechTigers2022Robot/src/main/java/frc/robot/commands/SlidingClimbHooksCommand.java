@@ -102,6 +102,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public void end(boolean interrupted) {
     isButtonPressed = false;
     slidingClimbTimer = 0;
+    VerticalClimbCommand.isSlidingClimberMovingDown = false;
     sliderCurrentPosition = sliderCurrentPosition + distanceToBeTraveled; // where the slider is currently, 
     SmartDashboard.getNumber("sliderCurrentPosition", sliderCurrentPosition);
     //RobotContainer.slidingClimbHooks.resetMotors();
@@ -110,13 +111,21 @@ public class SlidingClimbHooksCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
+    // tell VerticalCombCommand that it is moving down after 1 second  and less than 3 seconds
+    if( (slidingClimbTimer + 1.0) > Timer.getFPGATimestamp()) {
+        VerticalClimbCommand.isSlidingClimberMovingDown = true; // 
+    }
+    else if( (slidingClimbTimer + 3.0) < Timer.getFPGATimestamp()) {
+      VerticalClimbCommand.isSlidingClimberMovingDown = false; // after 3 second, stop notifying
+    }
+
     if(slidingClimbTimer + RobotMap.slidingClimbTimerTimeout < Timer.getFPGATimestamp()) {
       isButtonPressed = false;
       slidingClimbTimer = 0;
       return true;
     } 
-    
-    else{
+    else {
       if (isButtonPressed){
         double sensorLeftDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonLeftPosition();
         double sensorRightDistance = RobotContainer.slidingClimbHooks.getClimbHookTalonRightPosition();
