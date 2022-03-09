@@ -255,8 +255,8 @@ public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = 0.3;
 //for the climb
 public static double slidingClimbTimerTimeout = 15;
-public static double slidingClimbDistance = 170000; //is the raw sensor distance     24000 is about 4 inches
-public static double slidingClimbFullDistance = 229500;
+public static double slidingClimbDistance = 176000; //is the raw sensor distance     24000 is about 4 inches
+public static double slidingClimbFullDistance = 229900;
 public static double verticalClimbDistance = 150000; //150000       
 public static double verticalClimbTimerTimeout = 15;
 
