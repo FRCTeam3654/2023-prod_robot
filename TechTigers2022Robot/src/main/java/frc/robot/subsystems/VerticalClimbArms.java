@@ -163,8 +163,8 @@ public class VerticalClimbArms extends SubsystemBase {
 
         SmartDashboard.putNumber("LeftMotorValue", leftMotorPercent);
 
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0.15);
-        verticalClimbRightTalon.set(ControlMode.PercentOutput, 0.15);
+        verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0.18);
+        verticalClimbRightTalon.set(ControlMode.PercentOutput, 0.18);
       }
       public void karenaNotArcadeDrive(double joystickX, double joystickY){
         //forward becomes postive

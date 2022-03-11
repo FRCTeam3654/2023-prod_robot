@@ -41,6 +41,8 @@ public class AutonomousBCommand extends SequentialCommandGroup {
         List.of(),
         new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
+  //SlidingClimbHooksCommand.climbNumber = 1;
+
     addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), new BeltcroShooterCommand(), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
   }
 }

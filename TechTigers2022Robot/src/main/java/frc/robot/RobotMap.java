@@ -257,10 +257,10 @@ public static double beltcroSpeed = 0.3;
 public static double slidingClimbTimerTimeout = 15;
 public static double slidingClimbDistance = 176000; //is the raw sensor distance     24000 is about 4 inches
 public static double slidingClimbFullDistance = 229900;
-public static double verticalClimbDistance = 150000; //150000       
-public static double verticalClimbTimerTimeout = 15;
+public static double verticalClimbDistance = 135000; //150000       
+public static double verticalClimbTimerTimeout = 30;
 
-public static double slidingShortClimbDistance = 25000; // ?? slide  a short distance
+public static double slidingShortClimbDistance = 24000; // ?? slide  a short distance
 
 }
 

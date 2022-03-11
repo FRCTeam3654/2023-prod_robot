@@ -38,7 +38,7 @@ public class AutonomousACommand extends SequentialCommandGroup {
 
     //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp, new WaitCommand(2), mp1);
 
-   
+   //SlidingClimbHooksCommand.climbNumber = 1;
        addCommands(
         new ParallelDeadlineGroup(
             new SequentialCommandGroup(

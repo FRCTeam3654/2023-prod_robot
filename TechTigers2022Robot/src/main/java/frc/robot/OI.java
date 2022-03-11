@@ -64,11 +64,11 @@ public class OI {
   turnRight90Button = new JoystickButton(driverStick, RobotMap.turnRight90ButtonNumber);
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
-  intakeStopButton = new JoystickButton(driverStick, RobotMap.intakeStopButtonNumber);
-  manualSlidingClimbButton = new JoystickButton(operatorStick, RobotMap.manualSlidingClimbButtonNumber);
+  intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
+  manualSlidingClimbButton = new JoystickButton(driverStick, RobotMap.manualSlidingClimbButtonNumber);
   verticalClimbUpButton = new JoystickButton(operatorStick, RobotMap.verticalClimbUpButtonNumber);
   verticalClimbDownButton = new JoystickButton(operatorStick, RobotMap.verticalClimbDownButtonNumber); //change to operatorStick when we have both joystick
-  beltcroShooterButton = new JoystickButton(driverStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
+  beltcroShooterButton = new JoystickButton(operatorStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
   limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
   slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);

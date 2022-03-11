@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SlidingClimbManualControlCommand extends CommandBase {
   /** Creates a new SlidingClimbManualControlCommand. */
   private boolean IsButtonPressed = false;
+  private boolean WasButtonNotPressed = true;
   //private boolean WasButtonNotPressed = false;
   public SlidingClimbManualControlCommand() {
     addRequirements(RobotContainer.slidingClimbHooks);
@@ -24,38 +25,54 @@ public class SlidingClimbManualControlCommand extends CommandBase {
   public void initialize() {
     //RobotContainer.slidingClimbHooks.resetMotors();
     IsButtonPressed=false;
+    WasButtonNotPressed = true;
     //RobotContainer.drive.setDefaultCommand(null); //???
-    //RobotContainer.slidingClimbHooks.setDefaultCommand(new SlidingClimbManualControlCommand());
+    RobotContainer.slidingClimbHooks.setDefaultCommand(new SlidingClimbManualControlCommand());
     //WasButtonNotPressed=false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if (RobotContainer.oi.manualSlidingClimbButton.get()) {
-        if (IsButtonPressed == false){
+      if (RobotContainer.oi.manualSlidingClimbButton.get() == false) {
+        WasButtonNotPressed = false;
+      }
+      if (RobotContainer.oi.manualSlidingClimbButton.get() == true){
+        if (WasButtonNotPressed){
           IsButtonPressed = true;
+        }
+        else {
+          IsButtonPressed = false;
         }
       }
       SmartDashboard.putBoolean("ManualSlidingButtonClicked", IsButtonPressed);
-      if (IsButtonPressed == true){
-        //double joystickX = (RobotContainer.oi.driverStick.getX() * -1);
-        //joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
-        RobotContainer.slidingClimbHooks.driveClimbMotors(0);
+        if (IsButtonPressed == true){
+          double joystickX = (RobotContainer.oi.driverStick.getX() * -1);
+          joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
+          RobotContainer.slidingClimbHooks.driveClimbMotors(joystickX);
       }
-
-  }
+    }
 
   //public double handleDeadband(double val, double deadband){
     //return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
   //}
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.slidingClimbHooks.setDefaultCommand(null); //???
+    RobotContainer.drive.setDefaultCommand(new ManualDriveCommand());
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (WasButtonNotPressed = false){
+      return true;
+    }
     return false;
+  }
+  //Deadband makes the center of the joystick have leeway on absolute 0
+  public double handleDeadband(double val, double deadband){
+    return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
   }
 }
