@@ -21,9 +21,15 @@ public class SlidingClimbHooksCommand extends CommandBase {
   private static double sliderCurrentPosition  = 0;
   private double distanceToBeTraveled = 0;
   private double targetedDistance = 0;
+  private int mode = 0;
   /** Creates a new SlidingClimbHooksCommand. */
   public SlidingClimbHooksCommand() {
     addRequirements(RobotContainer.slidingClimbHooks);
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
+  public SlidingClimbHooksCommand(int new_mode) {
+    addRequirements(RobotContainer.slidingClimbHooks);
+    mode = new_mode;
     // Use addRequirements() here to declare subsystem dependencies.
   }
   
@@ -43,7 +49,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ((RobotContainer.oi.slidingClimbButton.get() && !isButtonPressed)){
+    if (((RobotContainer.oi.slidingClimbButton.get() || mode == 1) && !isButtonPressed)){
       isButtonPressed = true;
       if (climbNumber <= 2){
         distanceToBeTraveled = RobotMap.slidingClimbFullDistance;
