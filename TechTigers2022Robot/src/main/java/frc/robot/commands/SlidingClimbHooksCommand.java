@@ -21,7 +21,9 @@ public class SlidingClimbHooksCommand extends CommandBase {
   private static double sliderCurrentPosition  = 0;
   private double distanceToBeTraveled = 0;
   private double targetedDistance = 0;
-  private int mode = 0;
+  private int mode = 0; // mode 0 is normal, mode 1 is auto, and mode 2 is short climb distance
+
+
   /** Creates a new SlidingClimbHooksCommand. */
   public SlidingClimbHooksCommand() {
     addRequirements(RobotContainer.slidingClimbHooks);
@@ -30,6 +32,12 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public SlidingClimbHooksCommand(int new_mode) {
     addRequirements(RobotContainer.slidingClimbHooks);
     mode = new_mode;
+    if (mode == 1){
+      RobotMap.slidingClimbTimerTimeout = 6;
+    }
+    else{
+      RobotMap.slidingClimbTimerTimeout = 15;
+    }
     // Use addRequirements() here to declare subsystem dependencies.
   }
   
@@ -85,6 +93,8 @@ public class SlidingClimbHooksCommand extends CommandBase {
     
     else if ((RobotContainer.oi.slidingShortClimbButton.get() && !isButtonPressed)){
       isButtonPressed = true;
+
+      mode = 2;
       
       distanceToBeTraveled = targetedDistance;
       RobotContainer.slidingClimbHooks.setMotionMagic(distanceToBeTraveled, 4000, 8000);
@@ -95,6 +105,8 @@ public class SlidingClimbHooksCommand extends CommandBase {
     else if ((RobotContainer.oi.slidingShortClimbReverseButton.get() && !isButtonPressed)){
       isButtonPressed = true;
       
+      mode = 2;
+
       distanceToBeTraveled = (-1) * targetedDistance;
       RobotContainer.slidingClimbHooks.setMotionMagic(distanceToBeTraveled, 4000, 8000);
  
@@ -109,6 +121,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public void end(boolean interrupted) {
     isButtonPressed = false;
     slidingClimbTimer = 0;
+    mode = 0;
     VerticalClimbHoldCommand.cancelLock = false;
     sliderCurrentPosition = sliderCurrentPosition + distanceToBeTraveled; // where the slider is currently, 
     SmartDashboard.getNumber("sliderCurrentPosition", sliderCurrentPosition);
@@ -129,7 +142,12 @@ public class SlidingClimbHooksCommand extends CommandBase {
       VerticalClimbHoldCommand.cancelLock = false; // after 3 second, stop notifying, optional
     }
 
-    if(slidingClimbTimer + RobotMap.slidingClimbTimerTimeout < Timer.getFPGATimestamp()) {
+    double newTimeout = RobotMap.slidingClimbTimerTimeout;
+    if (mode == 2){
+      newTimeout = 2.5;
+    }
+
+    if(slidingClimbTimer + newTimeout < Timer.getFPGATimestamp()) {
       isButtonPressed = false;
       slidingClimbTimer = 0;
       return true;

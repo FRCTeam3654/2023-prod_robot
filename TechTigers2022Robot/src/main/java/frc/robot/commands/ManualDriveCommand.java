@@ -16,6 +16,7 @@ import frc.robot.RobotContainer;
 public class ManualDriveCommand extends CommandBase {
   private boolean driveStraightFlag = false;
   private double driveStraightAngle = 0;
+  private double initialPitch = 0;
   public ManualDriveCommand() {
     // Use requires() here to declare subsystem dependencies
     addRequirements(RobotContainer.drive);
@@ -24,6 +25,9 @@ public class ManualDriveCommand extends CommandBase {
   // Called just before this Command runs the first time
   @Override
   public void initialize() {
+    double [] yawPitchRollArray = new double [3];
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    initialPitch = yawPitchRollArray[1];
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -46,6 +50,9 @@ public class ManualDriveCommand extends CommandBase {
       joystickY = joystickY * RobotMap.nonTurboMultiplierForward;
     }
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    
+    SmartDashboard.putNumber("Pitch", yawPitchRollArray[1]);
+
     if (RobotContainer.oi.driveStraightButton.get()){  
       //joystickX = 0;
       if (!driveStraightFlag){
@@ -59,7 +66,9 @@ public class ManualDriveCommand extends CommandBase {
     else {
       driveStraightFlag = false;
     }
-
+    if ((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree){
+      joystickY = -0.7; //positive joystickY means forward
+    }
     //System.out.println("X=" + joystickX + "Y=" + joystickY);
     RobotContainer.drive.setArcade(joystickX, joystickY);
 

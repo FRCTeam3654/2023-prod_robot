@@ -47,9 +47,9 @@ public final static double kNeutralDeadband = 0.001; // testing MP
 public static double leftPercentOutput = 0.9;
 public static double rightPercentOutput = 0.9;
 public static double nonTurboMultiplierTurn = 0.15;
-public static double nonTurboMultiplierForward = 0.38; //.32, .40 
+public static double nonTurboMultiplierForward = 0.5; //.32, .40 
 
-public static boolean driveClosedLoopMode = false;
+public static boolean driveClosedLoopMode = true;
 
 //BUTTON/PORT NUMBERS!
 public static int driverJoystickPort = 0;
@@ -76,8 +76,8 @@ public static int climbLockButtonNumber = 12;
 //public static int climbUnlockRightButtonNumber = 6;
 public static int slidingClimbReverseButtonNumber = 11;  
 
-public static int slidingShortClimbButtonNumber = 5;  //??
-public static int slidingShortClimbReverseButtonNumber = 3;  //??
+public static int slidingShortClimbButtonNumber = 3;  //??
+public static int slidingShortClimbReverseButtonNumber = 5;  //??
 
 //public static int colorSensorButtonNumber = 10; 
 //public static int pickUpButtonNumber = 1;
@@ -252,15 +252,17 @@ public static double intakeSpeedOut = 0.7;
 public static double beltcroTimerTimeout = 3;
 public static double beltcroIntakeTimerTimeout = 2;
 public static double intakeEjectTimerTimeout = 1;
-public static double beltcroSpeed = 0.6;
+public static double beltcroSpeed = -0.6;
 //for the climb
 public static double slidingClimbTimerTimeout = 15;
 public static double slidingClimbDistance = 176000; //is the raw sensor distance     24000 is about 4 inches
-public static double slidingClimbFullDistance = 229900;
+public static double slidingClimbFullDistance = 238900; //229900
 public static double verticalClimbDistance = 135000; //150000       
 public static double verticalClimbTimerTimeout = 30;
+public static double slidingShortClimbDistance = 17000; // ?? slide  a short distance
 
-public static double slidingShortClimbDistance = 24000; // ?? slide  a short distance
+//for the drive
+public static double pitchReverseDegree = 6.3;
 
 }
 

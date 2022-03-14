@@ -72,9 +72,9 @@ public class RobotContainer {
     
 
   
-    autoChooser.setDefaultOption("Autonomous Route (A)", new AutonomousACommand(odometry, drive));
+    autoChooser.setDefaultOption("Autonomous Route (C)", new AutonomousCCommand(odometry, drive));
     autoChooser.addOption("Autonomous Route (B)", new AutonomousBCommand(odometry, drive));
-    autoChooser.addOption("Autonomous Route (C)", new AutonomousCCommand(odometry, drive));
+    autoChooser.addOption("Autonomous Route (A)", new AutonomousACommand(odometry, drive));
 
     
     
