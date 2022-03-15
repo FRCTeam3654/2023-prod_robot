@@ -551,6 +551,10 @@ public void mercyArcadeDrive(double joystickX, double joystickY) {
     }
   }
 
+  public void setPercentOutput(double percent){
+    leftFrontTalon.set(ControlMode.PercentOutput, percent);
+    rightFrontTalon.set(ControlMode.PercentOutput, (-1)*percent);
+  }
 
   private void readMPFile(){
     readMPFile(false);

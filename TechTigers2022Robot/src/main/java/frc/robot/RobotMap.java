@@ -249,8 +249,8 @@ public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.
 public static double intakeSpeedIn = -0.3;
 public static double intakeSpeedOut = 0.7;
 //for the beltcro
-public static double beltcroTimerTimeout = 3;
-public static double beltcroIntakeTimerTimeout = 2;
+public static double beltcroTimerTimeout = 10;
+public static double beltcroIntakeTimerTimeout = 4;
 public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = -0.6;
 //for the climb

@@ -66,18 +66,22 @@ public class ManualDriveCommand extends CommandBase {
     else {
       driveStraightFlag = false;
     }
-    if ((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree){
+    if ((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree && SlidingClimbHooksCommand.climbNumber > 2){
       joystickY = -0.7; //positive joystickY means forward
+      RobotContainer.drive.setPercentOutput(joystickY);
     }
-    //System.out.println("X=" + joystickX + "Y=" + joystickY);
-    RobotContainer.drive.setArcade(joystickX, joystickY);
+    else {
+    
+      //System.out.println("X=" + joystickX + "Y=" + joystickY);
+      RobotContainer.drive.setArcade(joystickX, joystickY);
 
-    //Dashboard features for Joystick x and y values and right and left encoders
-    SmartDashboard.putNumber("Joystick X: ", joystickX);
-    SmartDashboard.putNumber("Joystick Y: ", joystickY);
-    SmartDashboard.putNumber("Left Encoder", RobotContainer.drive.leftFrontTalon.getSelectedSensorVelocity());
-    SmartDashboard.putNumber("Right Encoder", RobotContainer.drive.rightFrontTalon.getSelectedSensorVelocity());
-    SmartDashboard.putNumber("Yaw: ", yawPitchRollArray[0]);
+      //Dashboard features for Joystick x and y values and right and left encoders
+      SmartDashboard.putNumber("Joystick X: ", joystickX);
+      SmartDashboard.putNumber("Joystick Y: ", joystickY);
+      SmartDashboard.putNumber("Left Encoder", RobotContainer.drive.leftFrontTalon.getSelectedSensorVelocity());
+      SmartDashboard.putNumber("Right Encoder", RobotContainer.drive.rightFrontTalon.getSelectedSensorVelocity());
+      SmartDashboard.putNumber("Yaw: ", yawPitchRollArray[0]);
+    }
   }
 
   //Deadband makes the center of the joystick have leeway on absolute 0
