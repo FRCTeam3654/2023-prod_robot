@@ -66,7 +66,7 @@ public class ManualDriveCommand extends CommandBase {
     else {
       driveStraightFlag = false;
     }
-    if ((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree && SlidingClimbHooksCommand.climbNumber > 2){
+    if ((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree && SlidingClimbHooksCommand.climbNumber < 2){
       joystickY = -0.7; //positive joystickY means forward
       RobotContainer.drive.setPercentOutput(joystickY);
     }

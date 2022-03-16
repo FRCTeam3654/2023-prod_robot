@@ -62,19 +62,21 @@ public static int turnLeft90ButtonNumber = 3;
 public static int turnRight90ButtonNumber = 4; 
 public static int turnLeft180ButtonNumber = 5; 
 public static int turnRight180ButtonNumber = 6;
-public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
+public static int slidingClimbButtonNumber = 8;
+public static int slidingClimbReverseButtonNumber = 11;  
+
+//public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 
 //OPERATOR STICK
 public static int intakeStopButtonNumber = 9;
-public static int slidingClimbButtonNumber = 8;
 public static int manualSlidingClimbButtonNumber = 7;
 public static int verticalClimbUpButtonNumber = 4;
 public static int verticalClimbDownButtonNumber = 6;
 public static int climbLockButtonNumber = 12;
+public static int beltcroReverseButtonNumber = 8;
 //public static int climbUnlockLeftButtonNumber = 7;
 //public static int climbUnlockRightButtonNumber = 6;
-public static int slidingClimbReverseButtonNumber = 11;  
 
 public static int slidingShortClimbButtonNumber = 3;  //??
 public static int slidingShortClimbReverseButtonNumber = 5;  //??
@@ -252,10 +254,10 @@ public static double intakeSpeedOut = 0.7;
 public static double beltcroTimerTimeout = 10;
 public static double beltcroIntakeTimerTimeout = 4;
 public static double intakeEjectTimerTimeout = 1;
-public static double beltcroSpeed = -0.6;
+public static double beltcroSpeed = -0.64;
 //for the climb
 public static double slidingClimbTimerTimeout = 15;
-public static double slidingClimbDistance = 176000; //is the raw sensor distance     24000 is about 4 inches
+public static double slidingClimbDistance = 184000; //is the raw sensor distance     24000 is about 4 inches
 public static double slidingClimbFullDistance = 238900; //229900
 public static double verticalClimbDistance = 135000; //150000       
 public static double verticalClimbTimerTimeout = 30;

@@ -45,6 +45,7 @@ public class OI {
   public JoystickButton manualSlidingClimbButton;
   public JoystickButton slidingClimbReverseButton;
   public JoystickButton climbLockButton;
+  public JoystickButton beltcroReverseButton;
 
   public JoystickButton slidingShortClimbButton;
   public JoystickButton slidingShortClimbReverseButton;
@@ -70,10 +71,11 @@ public class OI {
   verticalClimbDownButton = new JoystickButton(operatorStick, RobotMap.verticalClimbDownButtonNumber); //change to operatorStick when we have both joystick
   beltcroShooterButton = new JoystickButton(operatorStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
   //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
-  limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
+  //limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
   slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);
   slidingClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingClimbReverseButtonNumber);
   climbLockButton = new JoystickButton(operatorStick, RobotMap.climbLockButtonNumber);
+  beltcroReverseButton = new JoystickButton(operatorStick, RobotMap.beltcroReverseButtonNumber);
 
   slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);//??
   slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);//??
@@ -96,6 +98,7 @@ public class OI {
   verticalClimbUpButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
   verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
   climbLockButton.whenPressed(new VerticalClimbCommand());
+  beltcroReverseButton.whenPressed(new BeltcroShooterCommand());
 
   slidingShortClimbButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));
   slidingShortClimbReverseButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));

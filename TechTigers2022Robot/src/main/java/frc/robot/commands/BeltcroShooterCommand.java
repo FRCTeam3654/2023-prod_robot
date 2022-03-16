@@ -14,13 +14,18 @@ import frc.robot.RobotContainer;
 
 public class BeltcroShooterCommand extends CommandBase {
   public double beltcroTimer = 0;
-  private AtomicInteger _mode = new AtomicInteger(0); //mode = 0 means button is pressed; mode = 1 means sensor triggers
+  //private AtomicInteger _mode = new AtomicInteger(0); //mode = 0 means button is pressed; mode = 1 means sensor triggers
   private boolean isButtonPressed = false;
+  private int mode = 0; //0 is normal, 1 is reverse
   public BeltcroShooterCommand() {
     addRequirements(RobotContainer.beltcro); // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake);
   }
-
+  public BeltcroShooterCommand(int new_mode) {
+    addRequirements(RobotContainer.beltcro); // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.intake);
+    mode = new_mode;
+  }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -34,9 +39,22 @@ public class BeltcroShooterCommand extends CommandBase {
       //isButtonPressed = true;
     //}
     //if (isButtonPressed==true){
+    if (RobotContainer.oi.beltcroShooterButton.get()){
+      mode = 0;
+    }
+    else if (RobotContainer.oi.beltcroReverseButton.get()){
+      mode = 1;
+    }
+    if (mode == 0){
       RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
       RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
+    }
+    else if (mode == 1){
+      RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
+      RobotContainer.intake.intakeWheels((-1)*RobotMap.intakeSpeedIn);
+    }
    // }
+    
 
   }
 
