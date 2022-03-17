@@ -97,6 +97,9 @@ public class Drive extends SubsystemBase {
 
   public double [] yawPitchRollArrayStarting = null;
 
+  private boolean isBackDrvieStarted = false;
+  private double backDriveStartTime = 0;
+  
   @Override
   public void periodic() {
    
@@ -521,8 +524,10 @@ public void mercyArcadeDrive(double joystickX, double joystickY) {
     initAngle = initAngle + Math.PI/4;
     rightSpeed = radiusPower*Math.sin(initAngle);
     leftSpeed = radiusPower*Math.cos(initAngle);
-    rightSpeed = rightSpeed*1.414;
-    leftSpeed = leftSpeed*1.414;
+    //rightSpeed = rightSpeed*1.414;
+    //leftSpeed = leftSpeed*1.414;
+    rightSpeed = rightSpeed*0.8;
+    leftSpeed = leftSpeed*0.8;
 
     if (rightSpeed > 0.3) {
       rightSpeed = 0.3;

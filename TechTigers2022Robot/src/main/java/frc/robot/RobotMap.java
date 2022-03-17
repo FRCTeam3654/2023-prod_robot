@@ -261,9 +261,9 @@ public static double slidingClimbTimerTimeout = 15;
 public static double slidingClimbDistance = 184000; //is the raw sensor distance     24000 is about 4 inches
 public static double slidingClimbFullDistance = 238900; //229900
 public static double verticalClimbDistance = 135000; //150000       
-public static double verticalClimbTimerTimeout = 8;
+public static double verticalClimbTimerTimeout = 30;
 public static double slidingShortClimbDistance = 17000; // ?? slide  a short distance
-public static double slidingTravesalDownDistance = 110000;
+public static double slidingTravesalDownDistance = 146000;
 
 //for the drive
 public static double pitchReverseDegree = 6.3;

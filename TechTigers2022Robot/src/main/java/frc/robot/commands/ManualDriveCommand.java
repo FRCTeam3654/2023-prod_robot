@@ -12,11 +12,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj.Timer;
 
 public class ManualDriveCommand extends CommandBase {
   private boolean driveStraightFlag = false;
   private double driveStraightAngle = 0;
   private double initialPitch = 0;
+  private boolean isBackDriveStarted = false;
+  private double backDriveStartTime = 0;
   public ManualDriveCommand() {
     // Use requires() here to declare subsystem dependencies
     addRequirements(RobotContainer.drive);
@@ -66,8 +69,15 @@ public class ManualDriveCommand extends CommandBase {
     else {
       driveStraightFlag = false;
     }
-    if ((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree && SlidingClimbHooksCommand.climbNumber < 2){
+
+    if (backDriveStartTime + 1.0 < Timer.getFPGATimestamp()) {
+      isBackDriveStarted = false;
+    }
+    if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true) && SlidingClimbHooksCommand.climbNumber < 2){
       joystickY = -0.7; //positive joystickY means forward
+      if (isBackDriveStarted == false){
+        isBackDriveStarted = true;
+      }
       RobotContainer.drive.setPercentOutput(joystickY);
     }
     else {
