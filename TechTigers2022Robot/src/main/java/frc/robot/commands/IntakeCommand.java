@@ -22,9 +22,16 @@ public class IntakeCommand extends CommandBase {
   private boolean isEjectingBall = false;
   public double intakeEjectTimer = 0;
   public double beltcroIntakeTimer = 0;
+  public int mode = 0; //0 is default, 1 is auto
   public IntakeCommand() {
     addRequirements(RobotContainer.intake);
     addRequirements(RobotContainer.beltcro);
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
+  public IntakeCommand(int new_mode) {
+    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.beltcro);
+    mode = new_mode;
     // Use addRequirements() here to declare subsystem dependencies.
   }
   public IntakeCommand(double timeout) {
@@ -53,6 +60,11 @@ public class IntakeCommand extends CommandBase {
     boolean allianceColor; //if allianceColor is true, we are RED team
     allianceColor = isRedAlliance.getBoolean(false);
     colorNumber = RobotContainer.intake.getRainbow();
+    /*if (mode == 1){
+      RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
+      RobotContainer.beltcro.beltcroMove(0);
+    }
+    else*/
     if (allianceColor){
       if (colorNumber == 1) {
         //if it sees a blue ball and we're on the red team, it reverses intake wheels
@@ -93,13 +105,18 @@ public class IntakeCommand extends CommandBase {
       isBeltcroMoving = false;
       }
       if (isBeltcroMoving){
+        if (mode != 1){
         RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
+        }
       }
       else {
         RobotContainer.beltcro.beltcroMove(0);
       }
     if (intakeEjectTimer + RobotMap.intakeEjectTimerTimeout < Timer.getFPGATimestamp()) {
       isEjectingBall = false;
+      }
+      if (mode == 1){
+        isEjectingBall = true;
       }
       if (isEjectingBall){
         RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
@@ -113,6 +130,7 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.intakeWheels(0);
+    mode = 0;
   }
 
   // Returns true when the command should end.

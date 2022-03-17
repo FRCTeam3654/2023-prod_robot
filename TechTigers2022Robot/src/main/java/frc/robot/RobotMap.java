@@ -250,7 +250,7 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 //for the color sensor
 public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.114}};
 public static double intakeSpeedIn = -0.3;
-public static double intakeSpeedOut = 0.7;
+public static double intakeSpeedOut = 1;
 //for the beltcro
 public static double beltcroTimerTimeout = 10;
 public static double beltcroIntakeTimerTimeout = 4;
@@ -267,6 +267,7 @@ public static double slidingTravesalDownDistance = 146000;
 
 //for the drive
 public static double pitchReverseDegree = 6.3;
+public static double turboMax = 0.8;
 
 }
 
