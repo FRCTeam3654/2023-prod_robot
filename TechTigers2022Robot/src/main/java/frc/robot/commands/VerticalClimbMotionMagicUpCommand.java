@@ -32,14 +32,14 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
   public void execute() {
     if ((RobotContainer.oi.verticalClimbUpButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      RobotContainer.verticalClimbArms.setMotionMagic(RobotMap.verticalClimbDistance, 12000, 16000); //maximum speed is 22000
+      RobotContainer.verticalClimbArms.setMotionMagic(RobotMap.verticalClimbDistance, 8000, 8000); //maximum speed is 22000
       //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
       SmartDashboard.putString("verticalUpButtonClicked", "yes");
       verticalClimbTimer = Timer.getFPGATimestamp();
     }
     else if ((RobotContainer.oi.verticalClimbDownButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 12000, 16000);
+      RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 8000, 8000);
 
       // TODO:  test ArbitraryFeedForward,  is it positive or negative for reverse climb ?
       //RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 8000, 8000, 0.07);
@@ -65,7 +65,8 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
     if(verticalClimbTimer + RobotMap.verticalClimbTimerTimeout < Timer.getFPGATimestamp()) {
       isButtonPressed = false;
       verticalClimbTimer = 0;
-      RobotContainer.verticalClimbArms.setMotionMagic(RobotContainer.verticalClimbArms.getVerticalClimbLeftTalonPosition(), 8000, 8000, 0.1);
+      //RobotContainer.verticalClimbArms.setMotionMagic(RobotContainer.verticalClimbArms.getVerticalClimbLeftTalonPosition(), 8000, 8000, 0.1);
+      RobotContainer.verticalClimbArms.setMotionMagic(RobotContainer.verticalClimbArms.getVerticalClimbLeftTalonPosition(), 8000, 8000, 0);
       return true;
     } 
     
@@ -79,7 +80,7 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
         
         SmartDashboard.putNumber("percentErrorVerticalClimbLeft", percentLeftError);
       //even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
-          if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 ))
+          if ((percentLeftError < 0.5 || percentLeftError < 0 ) && (percentRightError < 0.5 || percentRightError < 0 ))
           //if (percentLeftError < 0.9 || percentLeftError < 0 )
           return true;
         }

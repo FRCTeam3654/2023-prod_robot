@@ -44,11 +44,13 @@ public class OI {
   public JoystickButton beltcroShooterButton;
   public JoystickButton manualSlidingClimbButton;
   public JoystickButton slidingClimbReverseButton;
+  public JoystickButton slidingTraversalDownButton;
   public JoystickButton climbLockButton;
   public JoystickButton beltcroReverseButton;
 
   public JoystickButton slidingShortClimbButton;
   public JoystickButton slidingShortClimbReverseButton;
+ 
 
   public JoystickButton limeLightButton;
   public JoystickButton climbLockLeftButton;
@@ -74,6 +76,7 @@ public class OI {
   //limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
   slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);
   slidingClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingClimbReverseButtonNumber);
+  slidingTraversalDownButton = new JoystickButton(driverStick, RobotMap.slidingTraversalDownButtonNumber);
   climbLockButton = new JoystickButton(operatorStick, RobotMap.climbLockButtonNumber);
   beltcroReverseButton = new JoystickButton(operatorStick, RobotMap.beltcroReverseButtonNumber);
 
@@ -94,6 +97,7 @@ public class OI {
   beltcroShooterButton.whenPressed(new BeltcroShooterCommand());
   slidingClimbButton.whenPressed(new SlidingClimbHooksCommand());
   slidingClimbReverseButton.whenPressed(new SlidingClimbHooksCommand());
+  slidingTraversalDownButton.whenPressed(new SlidingClimbHooksCommand(3));
   manualSlidingClimbButton.whenPressed(new SlidingClimbManualControlCommand());
   verticalClimbUpButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
   verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicUpCommand());

@@ -21,7 +21,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   private static double sliderCurrentPosition  = 0;
   private double distanceToBeTraveled = 0;
   private double targetedDistance = 0;
-  private int mode = 0; // mode 0 is normal, mode 1 is auto, and mode 2 is short climb distance
+  private int mode = 0; // mode 0 is normal, mode 1 is auto, and mode 2 is short climb distance, 3 is traversal down
 
 
   /** Creates a new SlidingClimbHooksCommand. */
@@ -113,6 +113,17 @@ public class SlidingClimbHooksCommand extends CommandBase {
       SmartDashboard.putString("SlidingShortClimbReverseButtonClicked", "yes");
       slidingClimbTimer = Timer.getFPGATimestamp();
     }
+    else if ((RobotContainer.oi.slidingTraversalDownButton.get() && !isButtonPressed)){
+      isButtonPressed = true;
+
+      mode = 3;
+      
+      distanceToBeTraveled = RobotMap.slidingTravesalDownDistance;
+      RobotContainer.slidingClimbHooks.setMotionMagic(distanceToBeTraveled, 4000, 8000);
+ 
+      SmartDashboard.putString("SlidingTraversalDownButtonClicked", "yes");
+      slidingClimbTimer = Timer.getFPGATimestamp();
+    }
     
   }
 
@@ -145,6 +156,9 @@ public class SlidingClimbHooksCommand extends CommandBase {
     double newTimeout = RobotMap.slidingClimbTimerTimeout;
     if (mode == 2){
       newTimeout = 2.5;
+    }
+    if (mode == 3){
+      newTimeout = 8;
     }
 
     if(slidingClimbTimer + newTimeout < Timer.getFPGATimestamp()) {
