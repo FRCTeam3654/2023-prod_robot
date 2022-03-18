@@ -70,15 +70,19 @@ public class ManualDriveCommand extends CommandBase {
       driveStraightFlag = false;
     }
 
-    if (backDriveStartTime + 1.0 < Timer.getFPGATimestamp()) {
+    if (backDriveStartTime + 0.7 < Timer.getFPGATimestamp()) {
       isBackDriveStarted = false;
     }
     if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true) && SlidingClimbHooksCommand.climbNumber < 2){
-      joystickY = -0.7; //positive joystickY means forward
-      if (isBackDriveStarted == false){
-        isBackDriveStarted = true;
+      joystickY = -0.5; //positive joystickY means forward
+      if (((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true){
+        if (isBackDriveStarted == false){
+          isBackDriveStarted = true;
+          backDriveStartTime = Timer.getFPGATimestamp();
+        }
+        RobotContainer.drive.setPercentOutput(joystickY);
       }
-      RobotContainer.drive.setPercentOutput(joystickY);
+      
     }
     else {
     
