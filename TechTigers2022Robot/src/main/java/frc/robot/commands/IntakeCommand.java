@@ -25,18 +25,18 @@ public class IntakeCommand extends CommandBase {
   public int mode = 0; //0 is default, 1 is auto
   public IntakeCommand() {
     addRequirements(RobotContainer.intake);
-    addRequirements(RobotContainer.beltcro);
+    //addRequirements(RobotContainer.beltcro);
     // Use addRequirements() here to declare subsystem dependencies.
   }
   public IntakeCommand(int new_mode) {
     addRequirements(RobotContainer.intake);
-    addRequirements(RobotContainer.beltcro);
+    //addRequirements(RobotContainer.beltcro);
     mode = new_mode;
     // Use addRequirements() here to declare subsystem dependencies.
   }
   public IntakeCommand(double timeout) {
     addRequirements(RobotContainer.intake);
-    addRequirements(RobotContainer.beltcro);
+    //addRequirements(RobotContainer.beltcro);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -60,11 +60,11 @@ public class IntakeCommand extends CommandBase {
     boolean allianceColor; //if allianceColor is true, we are RED team
     allianceColor = isRedAlliance.getBoolean(false);
     colorNumber = RobotContainer.intake.getRainbow();
-    /*if (mode == 1){
+    if (mode == 1){
       RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
-      RobotContainer.beltcro.beltcroMove(0);
+      //RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
     }
-    else*/
+    else
     if (allianceColor){
       if (colorNumber == 1) {
         //if it sees a blue ball and we're on the red team, it reverses intake wheels
@@ -83,8 +83,8 @@ public class IntakeCommand extends CommandBase {
       //is not a blue ball and we're on the red team, it keeps intake going the same way
       }
     }
-    else
-      {if (colorNumber == 2) {
+    else {
+      if (colorNumber == 2) {
         //if it sees a red ball and we're on the blue team, it spits it away
         if (!isEjectingBall){
           isEjectingBall = true;
@@ -120,6 +120,9 @@ public class IntakeCommand extends CommandBase {
       }
       if (isEjectingBall){
         RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
+        if (mode != 1){
+        RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
+        }
       }
       else {
         RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
@@ -130,6 +133,8 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.intakeWheels(0);
+    RobotContainer.beltcro.beltcroMove(0);
+
     mode = 0;
   }
 

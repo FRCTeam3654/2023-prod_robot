@@ -19,11 +19,11 @@ public class BeltcroShooterCommand extends CommandBase {
   private int mode = 0; //0 is normal, 1 is reverse
   public BeltcroShooterCommand() {
     addRequirements(RobotContainer.beltcro); // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+    //addRequirements(RobotContainer.intake);
   }
   public BeltcroShooterCommand(int new_mode) {
     addRequirements(RobotContainer.beltcro); // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
+    //addRequirements(RobotContainer.intake);
     mode = new_mode;
   }
   // Called when the command is initially scheduled.
@@ -52,6 +52,10 @@ public class BeltcroShooterCommand extends CommandBase {
     else if (mode == 1){
       RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
       RobotContainer.intake.intakeWheels((-1)*RobotMap.intakeSpeedIn);
+    }
+    else if (mode == 2){
+      RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
+      RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
     }
    // }
     

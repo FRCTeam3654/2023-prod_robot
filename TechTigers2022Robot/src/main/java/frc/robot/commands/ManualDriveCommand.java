@@ -17,9 +17,9 @@ import edu.wpi.first.wpilibj.Timer;
 public class ManualDriveCommand extends CommandBase {
   private boolean driveStraightFlag = false;
   private double driveStraightAngle = 0;
-  private double initialPitch = 0;
-  private boolean isBackDriveStarted = false;
-  private double backDriveStartTime = 0;
+  //private double initialPitch = 0;
+  //private boolean isBackDriveStarted = false;
+  //private double backDriveStartTime = 0;
   public ManualDriveCommand() {
     // Use requires() here to declare subsystem dependencies
     addRequirements(RobotContainer.drive);
@@ -30,7 +30,7 @@ public class ManualDriveCommand extends CommandBase {
   public void initialize() {
     double [] yawPitchRollArray = new double [3];
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
-    initialPitch = yawPitchRollArray[1];
+    //initialPitch = yawPitchRollArray[1];
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -70,10 +70,12 @@ public class ManualDriveCommand extends CommandBase {
       driveStraightFlag = false;
     }
 
-    if (backDriveStartTime + 0.7 < Timer.getFPGATimestamp()) {
+    /*if (backDriveStartTime + 0.7 < Timer.getFPGATimestamp()) {
       isBackDriveStarted = false;
     }
-    if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true) && SlidingClimbHooksCommand.climbNumber < 2){
+     */
+
+    /*if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true) && SlidingClimbHooksCommand.climbNumber < 2){
       joystickY = -0.5; //positive joystickY means forward
       if (((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true){
         if (isBackDriveStarted == false){
@@ -82,9 +84,10 @@ public class ManualDriveCommand extends CommandBase {
         }
         RobotContainer.drive.setPercentOutput(joystickY);
       }
+      */
       
-    }
-    else {
+   // }
+   // else {
     
       //System.out.println("X=" + joystickX + "Y=" + joystickY);
       RobotContainer.drive.setArcade(joystickX, joystickY);
@@ -96,7 +99,7 @@ public class ManualDriveCommand extends CommandBase {
       SmartDashboard.putNumber("Right Encoder", RobotContainer.drive.rightFrontTalon.getSelectedSensorVelocity());
       SmartDashboard.putNumber("Yaw: ", yawPitchRollArray[0]);
     }
-  }
+  //}
 
   //Deadband makes the center of the joystick have leeway on absolute 0
   public double handleDeadband(double val, double deadband){

@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 public class AutonomousCCommand extends SequentialCommandGroup {
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
+  NewRunMotionProfile mp2;
   /** Creates a new AutonomousRedCCommand. */
   public AutonomousCCommand(RobotOdometry odometry, Drive driveTrain) {
     /*
@@ -53,7 +54,10 @@ addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inche
   mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()), 0,
     List.of(),
     new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(30), Rotation2d.fromDegrees(0)), 0, true, false);
-
+  
+  mp2 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
+    List.of(),
+    new Pose2d(Units.inchesToMeters(-96), Units.inchesToMeters(60), Rotation2d.fromDegrees(0)), 0, true, false);
 //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), mp);
 //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), new SlidingClimbHooksCommand(1), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
 //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), new SlidingClimbHooksCommand(1), mp);
@@ -61,13 +65,22 @@ addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inche
 //pulls down orange climb and moves forward synchronously (lol i don't think i spelled that right)
 addCommands(
   new ParallelDeadlineGroup(
-    new SequentialCommandGroup(
-      new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), new IntakeCommand(1), new SlidingClimbHooksCommand(1)
-      )
+   // new SequentialCommandGroup(
+      new IntakeCommand(1)
+   // )
+  , 
+  //new SequentialCommandGroup(
+   new BeltcroShooterCommand(2)
+  //)
+  ,
+  //  new SequentialCommandGroup(
+      new SlidingClimbHooksCommand(1)
+    //  )
     ,
     new SequentialCommandGroup(
-      new WaitCommand(2), mp1)
+      new WaitCommand(2), new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp2)
   )
+    
 );
 /*addCommands(
   new ParallelDeadlineGroup(

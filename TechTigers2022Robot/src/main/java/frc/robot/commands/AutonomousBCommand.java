@@ -29,20 +29,32 @@ public class AutonomousBCommand extends SequentialCommandGroup {
   NewRunMotionProfile mp1;
   /** Creates a new AutonoumousRedBCommand. */
   public AutonomousBCommand(RobotOdometry odometry, Drive driveTrain) {
-    mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
+    /*mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
         //new Pose2d(Units.inchesToMeters(93), Units.inchesToMeters(85), Rotation2d.fromDegrees(0)), 0, false, false);
-        new Pose2d(Units.inchesToMeters(93), Units.inchesToMeters(-35), Rotation2d.fromDegrees(-90)), 0, false, false);
+        new Pose2d(Units.inchesToMeters(93), Units.inchesToMeters(-35), Rotation2d.fromDegrees(-90)), 0, false, false);*/
+    mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d(0)), 0,
+    List.of(),
+    new Pose2d(Units.inchesToMeters(85), Units.inchesToMeters(30), Rotation2d.fromDegrees(0)), 0, false, false);
 
 
     //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(93), Units.inchesToMeters(85), new Rotation2d()), 0,
-    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(93), Units.inchesToMeters(-35), new Rotation2d(-90)), 0,
+    /*mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(93), Units.inchesToMeters(-35), new Rotation2d(-90)), 0,
 
         List.of(),
         new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        */
 
   //SlidingClimbHooksCommand.climbNumber = 1;
 
-    addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), new SlidingClimbHooksCommand(1),new BeltcroShooterCommand(), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
+    //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), new SlidingClimbHooksCommand(1),new BeltcroShooterCommand(), mp, new WaitCommand(2), mp1, new BeltcroShooterCommand());
+    addCommands(
+  new ParallelDeadlineGroup(
+    new SequentialCommandGroup(
+      new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), new SlidingClimbHooksCommand(1)
+      )
+    ,
+    mp)
+);
   }
 }
