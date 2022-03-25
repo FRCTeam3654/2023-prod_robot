@@ -22,7 +22,7 @@ public class IntakeCommand extends CommandBase {
   private boolean isEjectingBall = false;
   public double intakeEjectTimer = 0;
   public double beltcroIntakeTimer = 0;
-  public int mode = 0; //0 is default, 1 is auto
+  public int mode = 0; //0 is default, 1 is auto, 2 is intake override
   public IntakeCommand() {
     addRequirements(RobotContainer.intake);
     //addRequirements(RobotContainer.beltcro);
@@ -60,11 +60,21 @@ public class IntakeCommand extends CommandBase {
     boolean allianceColor; //if allianceColor is true, we are RED team
     allianceColor = isRedAlliance.getBoolean(false);
     colorNumber = RobotContainer.intake.getRainbow();
+    if (RobotContainer.oi.intakeOverrideButton.get()){
+      mode = 2;
+    }
     if (mode == 1){
       RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
       //RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
     }
+    if (mode == 2){
+      RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
+      if (!RobotContainer.oi.intakeOverrideButton.get()){
+        mode = 0;
+      }
+    }
     else
+    if (mode == 0){
     if (allianceColor){
       if (colorNumber == 1) {
         //if it sees a blue ball and we're on the red team, it reverses intake wheels
@@ -128,6 +138,7 @@ public class IntakeCommand extends CommandBase {
         RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
       }
     }
+  }
 
   // Called once the command ends or is interrupted.
   @Override

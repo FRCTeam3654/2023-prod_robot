@@ -76,7 +76,7 @@ public static int verticalClimbUpButtonNumber = 4;
 public static int verticalClimbDownButtonNumber = 6;
 public static int climbLockButtonNumber = 12;
 public static int beltcroReverseButtonNumber = 8;
-//public static int climbUnlockLeftButtonNumber = 7;
+public static int intakeOverrideButtonNumber = 7;
 //public static int climbUnlockRightButtonNumber = 6;
 
 public static int slidingShortClimbButtonNumber = 3;  //??

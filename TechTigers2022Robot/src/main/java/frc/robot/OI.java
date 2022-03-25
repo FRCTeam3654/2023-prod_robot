@@ -57,6 +57,7 @@ public class OI {
   public JoystickButton climbLockRightButton;
   public JoystickButton climbUnlockLeftButton;
   public JoystickButton climbUnlockRightButton;
+  public JoystickButton intakeOverrideButton;
   //public JoystickButton turretButton;
 
   public OI(){
@@ -72,7 +73,7 @@ public class OI {
   verticalClimbUpButton = new JoystickButton(operatorStick, RobotMap.verticalClimbUpButtonNumber);
   verticalClimbDownButton = new JoystickButton(operatorStick, RobotMap.verticalClimbDownButtonNumber); //change to operatorStick when we have both joystick
   beltcroShooterButton = new JoystickButton(operatorStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
-  //ballFlushButton = new JoystickButton(operatorStick, RobotMap.ballFlushButtonNumber);
+  intakeOverrideButton = new JoystickButton(operatorStick, RobotMap.intakeOverrideButtonNumber);
   //limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
   slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);
   slidingClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingClimbReverseButtonNumber);
@@ -80,8 +81,8 @@ public class OI {
   climbLockButton = new JoystickButton(operatorStick, RobotMap.climbLockButtonNumber);
   beltcroReverseButton = new JoystickButton(operatorStick, RobotMap.beltcroReverseButtonNumber);
 
-  slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);//??
-  slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);//??
+  slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
+  slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);
 
   //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
   //climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);

@@ -526,20 +526,20 @@ public void mercyArcadeDrive(double joystickX, double joystickY) {
     leftSpeed = radiusPower*Math.cos(initAngle);
     //rightSpeed = rightSpeed*1.414;
     //leftSpeed = leftSpeed*1.414;
-    rightSpeed = rightSpeed*0.8;
-    leftSpeed = leftSpeed*0.8;
+    rightSpeed = rightSpeed*0.9;
+    leftSpeed = leftSpeed*0.9;
 
-    if (rightSpeed > 0.8) {
-      rightSpeed = 0.8;
+    if (rightSpeed > 0.9) {
+      rightSpeed = 0.9;
     }
-    if (leftSpeed > 0.8) {
-      leftSpeed = 0.8;
+    if (leftSpeed > 0.9) {
+      leftSpeed = 0.9;
     }
-    if (rightSpeed < -0.8) {
-      rightSpeed = -0.8;
+    if (rightSpeed < -0.9) {
+      rightSpeed = -0.9;
     }
-    if (leftSpeed < -0.8) {
-      leftSpeed = -0.8;
+    if (leftSpeed < -0.9) {
+      leftSpeed = -0.9;
     }
           
     if (RobotMap.driveClosedLoopMode ) {
