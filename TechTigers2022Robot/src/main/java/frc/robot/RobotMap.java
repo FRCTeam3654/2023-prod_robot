@@ -77,6 +77,7 @@ public static int verticalClimbDownButtonNumber = 6;
 public static int climbLockButtonNumber = 12;
 public static int beltcroReverseButtonNumber = 8;
 public static int intakeOverrideButtonNumber = 7;
+public static int ballShooterButtonNumber = 11;
 //public static int climbUnlockRightButtonNumber = 6;
 
 public static int slidingShortClimbButtonNumber = 3;  //??
@@ -93,6 +94,8 @@ public static int rightTalonMaster = 2;
 public static int leftTalonSlave = 3;
 public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
+public static int ballShooterTopID = 13;
+public static int ballShooterBottomID = 14;
 
 //public static int climbExtendTalonID = 10;
 public static int climbHookTalonLeftID = 11;
@@ -127,7 +130,7 @@ public static double joystickDeadBand = 0.08;
 
 public static double autonomousTimeOut = 40; // used to be 7 second in normal auto mode but 2021 is different
 
-//public static double autonomousBallShooterTimeOut = 8;
+public static double autonomousBallShooterTimeOut = 8;
 //public static double autonomousBallPickUpTimeOut = 25; // MICHELE WAS HERE
 
 public static double motionMagicTimeOut = 4;// in regular, it should time out in 4 seconds
@@ -140,9 +143,12 @@ public static double radianConversionToDegree = 57.2958;
 //public static double ballPickUpSpeed = 0.8; //1; //0.9;//0.69// 0.5; //used to 0.4
 //public static int solenoidIn = 3; 
 //public static int solenoidOut = 2;
-//public static double shooterSpeed_nativeUnit = 12360; //4500 rpm 15360
+public static double shooterTopSpeed_nativeUnit = 6500; //4500 rpm 15360
+public static double shooterBottomSpeed_nativeUnit = 12360; //4500 rpm 15360 //22000 is the maximum speed
 //^^ calculated by (desired rpm * 2048 / 60sec / 10)
-//public static double shooterSpeedTolerance = 450;
+public static double shooterTopSpeedTolerance = 450;
+public static double shooterBottomSpeedTolerance = 450;
+
 
 //COLOR WHEEL!
 /**4096 * 25
@@ -197,7 +203,7 @@ public static final int kSlotIDx = 0; //default for drive
 //public static final int kColorWheelSlotIDx = 1;
 //public static final int kPickUpArmSlotIDx = 1;
 public static final int kClimbSlotIDx = 2;
-//public static final int kShooterSlotIDx = 3;
+public static final int kShooterSlotIDx = 3;
 public static final int kTurnAutonomousSlotIDx = 1;
 public static final boolean kUseMotionProfileArc = false;
 
@@ -213,7 +219,7 @@ public final static int REMOTE_1 = 1;
 //public final static Gains driveGainsVelocity = new Gains( 0.095, 0.0, 0.0, 0.0451, 100, 1);
 public final static Gains turnGainsVelocity = new Gains( 1.5, 0.0, 0.0, 0.000, 100, 1);
 public final static Gains climbGainsVelocity = new Gains( 0.25, 0.0, 0.0, 1.015, 400, 1);
-//public final static Gains shooterGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 0.5);
+public final static Gains shooterGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 0.95); //This is the falcon
 //public final static Gains kGains_MotProf = new Gains( 0.1, 0.0,  0.0, 0.0455,  400,  0.5 );
 //public static int pidLoopTimeout = 30;
 
@@ -249,7 +255,7 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 
 //for the color sensor
 public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.114}};
-public static double intakeSpeedIn = -0.3;
+public static double intakeSpeedIn = -0.5;
 public static double intakeSpeedOut = 1;
 //for the beltcro
 public static double beltcroTimerTimeout = 10;

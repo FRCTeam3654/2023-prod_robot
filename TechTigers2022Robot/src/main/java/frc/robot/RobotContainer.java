@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.RobotOdometry;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.BallShooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,6 +29,7 @@ public class RobotContainer {
   public static Drive drive;
   public static Intake intake;
   public static Beltcro beltcro;
+  public static BallShooter ballShooter;
   public static VerticalClimbArms verticalClimbArms;
   public static SlidingClimbHooks slidingClimbHooks;
   public static OI oi;
