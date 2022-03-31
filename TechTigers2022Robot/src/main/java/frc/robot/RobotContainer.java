@@ -50,6 +50,7 @@ public class RobotContainer {
     beltcro = new Beltcro();
     verticalClimbArms = new VerticalClimbArms();
     slidingClimbHooks = new SlidingClimbHooks();
+    ballShooter = new BallShooter();
     oi = new OI();  // need be after drive object
     //always keep OI last
 
@@ -60,7 +61,6 @@ public class RobotContainer {
     drive.resetHeading();
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
-
     drive.setDefaultCommand(new ManualDriveCommand());
     intake.setDefaultCommand(new IntakeCommand());
     verticalClimbArms.setDefaultCommand(new VerticalClimbCommand());
