@@ -258,10 +258,10 @@ public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.
 public static double intakeSpeedIn = -0.5;
 public static double intakeSpeedOut = 1;
 //for the beltcro
-public static double beltcroTimerTimeout = 2;
+public static double beltcroTimerTimeout = 3;
 public static double beltcroIntakeTimerTimeout = 4;
 public static double intakeEjectTimerTimeout = 1;
-public static double beltcroSpeed = 0.3;
+public static double beltcroSpeed = 0.4;
 //for the climb
 public static double slidingClimbTimerTimeout = 15;
 public static double slidingClimbDistance = 198000; //is the raw sensor distance   //190000//  24000 is about 4 inches
