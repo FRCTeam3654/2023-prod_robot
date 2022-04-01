@@ -84,6 +84,8 @@ public class SlidingClimbHooksCommand extends CommandBase {
         // distanceToBeTraveled = (-1) * sliderCurrentPosition ;// double check ??
         
         RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance + RobotMap.slidingShortClimbDistance, 4000, 8000);
+        //RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbDistance, 4000, 8000);
+
       }
       
        //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);

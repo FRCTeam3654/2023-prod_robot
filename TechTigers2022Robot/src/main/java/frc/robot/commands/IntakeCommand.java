@@ -81,6 +81,7 @@ public class IntakeCommand extends CommandBase {
         if (!isEjectingBall){
           isEjectingBall = true;
           intakeEjectTimer = Timer.getFPGATimestamp();
+          RobotContainer.beltcro.beltcroMove(0);
         }
       }
       if (colorNumber == 2) {
@@ -99,6 +100,7 @@ public class IntakeCommand extends CommandBase {
         if (!isEjectingBall){
           isEjectingBall = true;
           intakeEjectTimer = Timer.getFPGATimestamp();
+          RobotContainer.beltcro.beltcroMove(0);
         }
       }
       if (colorNumber == 1) {
@@ -116,8 +118,15 @@ public class IntakeCommand extends CommandBase {
       }
       if (isBeltcroMoving){
         if (mode != 1){
-        RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
+        if(RobotContainer.beltcro.storageSensor1() < 1200) {
+            RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed); 
+          }
+        else{
+          RobotContainer.beltcro.beltcroMove(0);
+
         }
+        }
+    
       }
       else {
         RobotContainer.beltcro.beltcroMove(0);
@@ -130,8 +139,9 @@ public class IntakeCommand extends CommandBase {
       }
       if (isEjectingBall){
         RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
+        RobotContainer.beltcro.beltcroMove(0);
         if (mode != 1){
-        RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
+        //RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
         }
       }
       else {
