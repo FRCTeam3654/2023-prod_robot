@@ -143,8 +143,8 @@ public static double radianConversionToDegree = 57.2958;
 //public static double ballPickUpSpeed = 0.8; //1; //0.9;//0.69// 0.5; //used to 0.4
 //public static int solenoidIn = 3; 
 //public static int solenoidOut = 2;
-public static double shooterTopSpeed_nativeUnit = 6500; //4500 rpm 15360
-public static double shooterBottomSpeed_nativeUnit = -12360; //4500 rpm 15360 //22000 is the maximum speed
+public static double shooterTopSpeed_nativeUnit = -13000; //4500 rpm 15360
+public static double shooterBottomSpeed_nativeUnit = -18000; //4500 rpm 15360 //22000 is the maximum speed
 //^^ calculated by (desired rpm * 2048 / 60sec / 10)
 public static double shooterTopSpeedTolerance = 450;
 public static double shooterBottomSpeedTolerance = 450;
