@@ -31,12 +31,14 @@ public class BallShooterCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     //addRequirements(RobotContainer.ballStorage);
     addRequirements(RobotContainer.ballShooter);
+    addRequirements(RobotContainer.beltcro);
     _mode.set(0);
   }
   public BallShooterCommand(int mode) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     addRequirements(RobotContainer.ballShooter);
+    addRequirements(RobotContainer.beltcro);
     //addRequirements(RobotContainer.ballStorage);
     _mode.set(mode);
     //turret=turny thing, shooter=spinny thing, storage=pushy thing -tory<3
@@ -59,6 +61,7 @@ public class BallShooterCommand extends CommandBase {
     double  turretTickChange;
   if (RobotContainer.oi.ballShooterButton.get() || _mode.get() == 1){
     RobotContainer.ballShooter.shoot(true);
+    //RobotContainer.beltcro.beltcroMove(4);
       
     //read values periodically
     //readJoeyX = MercyLimelightx.getDouble(0.0);
@@ -78,7 +81,7 @@ public class BallShooterCommand extends CommandBase {
 
 //Come back to set ball storage once it is built/programmed
     if (RobotContainer.ballShooter.targetSpeed()){
-      //RobotContainer.ballStorage.driveBallStorage1(-1.0);//-1  to move belt forward //1.0
+      RobotContainer.beltcro.beltcroMove(4);//-1  to move belt forward //1.0
       //RobotContainer.ballStorage.driveBallStorage2(-0.8);//-0.5
     }
     
@@ -103,6 +106,7 @@ public class BallShooterCommand extends CommandBase {
     //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);  //1 is force off LED - required by FRC
     ballShooterAutonomousFlag = false;
     RobotContainer.ballShooter.shoot(false);  
+    RobotContainer.beltcro.beltcroMove(0);
     //RobotContainer.ballStorage.driveBallStorage1(0);
     //RobotContainer.ballStorage.driveBallStorage2(0); 
   }
