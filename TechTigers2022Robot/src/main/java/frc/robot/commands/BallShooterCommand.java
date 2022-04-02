@@ -61,7 +61,7 @@ public class BallShooterCommand extends CommandBase {
     double  turretTickChange;
   if (RobotContainer.oi.ballShooterButton.get() || _mode.get() == 1){
     RobotContainer.ballShooter.shoot(true);
-    //RobotContainer.beltcro.beltcroMove(4);
+    RobotContainer.beltcro.beltcroMove(4);
       
     //read values periodically
     //readJoeyX = MercyLimelightx.getDouble(0.0);
