@@ -60,6 +60,7 @@ public class OI {
   public JoystickButton climbUnlockRightButton;
   public JoystickButton intakeOverrideButton;
   public JoystickButton ballShooterButton;
+  public JoystickButton highGoalShooterButton;
   //public JoystickButton turretButton;
 
   public OI(){
@@ -83,6 +84,7 @@ public class OI {
   climbLockButton = new JoystickButton(operatorStick, RobotMap.climbLockButtonNumber);
   beltcroReverseButton = new JoystickButton(operatorStick, RobotMap.beltcroReverseButtonNumber);
   ballShooterButton = new JoystickButton(operatorStick, RobotMap.ballShooterButtonNumber);
+  highGoalShooterButton = new JoystickButton(operatorStick, RobotMap.highGoalShooterButtonNumber);
 
   slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
   slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);
@@ -107,7 +109,8 @@ public class OI {
   verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
   climbLockButton.whenPressed(new VerticalClimbCommand());
   beltcroReverseButton.whenPressed(new BeltcroShooterCommand());
-  ballShooterButton.whenPressed(new BallShooterCommand());
+  ballShooterButton.whenPressed(new BallShooterCommand(0, 0));
+  highGoalShooterButton.whenPressed(new BallShooterCommand(2, 1));
 
   slidingShortClimbButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));
   slidingShortClimbReverseButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));

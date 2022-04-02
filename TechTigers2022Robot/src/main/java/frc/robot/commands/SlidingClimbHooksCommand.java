@@ -59,7 +59,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
   public void execute() {
     if (((RobotContainer.oi.slidingClimbButton.get() || mode == 1) && !isButtonPressed)){
       isButtonPressed = true;
-      if (climbNumber <= 2){
+      if (climbNumber <= 0){
         distanceToBeTraveled = RobotMap.slidingClimbFullDistance;
         RobotContainer.slidingClimbHooks.setMotionMagic(RobotMap.slidingClimbFullDistance, 8000, 8000);
       }
@@ -74,7 +74,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
     }
     else if ((RobotContainer.oi.slidingClimbReverseButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      if (climbNumber <= 2){
+      if (climbNumber <= 0){
         distanceToBeTraveled = (-1)*RobotMap.slidingClimbFullDistance;
         RobotContainer.slidingClimbHooks.setMotionMagic((-1)*RobotMap.slidingClimbFullDistance, 8000, 8000);
       }

@@ -81,7 +81,9 @@ public class IntakeCommand extends CommandBase {
         if (!isEjectingBall){
           isEjectingBall = true;
           intakeEjectTimer = Timer.getFPGATimestamp();
+          if (!BallShooterCommand.isShooterInProgress){
           RobotContainer.beltcro.beltcroMove(0);
+          }
         }
       }
       if (colorNumber == 2) {
@@ -100,8 +102,10 @@ public class IntakeCommand extends CommandBase {
         if (!isEjectingBall){
           isEjectingBall = true;
           intakeEjectTimer = Timer.getFPGATimestamp();
-          RobotContainer.beltcro.beltcroMove(0);
-        }
+          if (!BallShooterCommand.isShooterInProgress){
+            RobotContainer.beltcro.beltcroMove(0);
+            }
+          }
       }
       if (colorNumber == 1) {
         if (!isBeltcroMoving){
@@ -122,15 +126,18 @@ public class IntakeCommand extends CommandBase {
             RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed); 
           }
         else{
-          RobotContainer.beltcro.beltcroMove(0);
-
+          if (!BallShooterCommand.isShooterInProgress){
+            RobotContainer.beltcro.beltcroMove(0);
+            }
         }
         }
     
       }
       else {
-        RobotContainer.beltcro.beltcroMove(0);
-      }
+        if (!BallShooterCommand.isShooterInProgress){
+          RobotContainer.beltcro.beltcroMove(0);
+          }
+        }
     if (intakeEjectTimer + RobotMap.intakeEjectTimerTimeout < Timer.getFPGATimestamp()) {
       isEjectingBall = false;
       }
@@ -139,7 +146,9 @@ public class IntakeCommand extends CommandBase {
       }
       if (isEjectingBall){
         RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
-        RobotContainer.beltcro.beltcroMove(0);
+        if (!BallShooterCommand.isShooterInProgress){
+          RobotContainer.beltcro.beltcroMove(0);
+          }
         if (mode != 1){
         //RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed);
         }
@@ -154,8 +163,9 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.intakeWheels(0);
-    RobotContainer.beltcro.beltcroMove(0);
-
+    if (!BallShooterCommand.isShooterInProgress){
+      RobotContainer.beltcro.beltcroMove(0);
+      }
     mode = 0;
   }
 

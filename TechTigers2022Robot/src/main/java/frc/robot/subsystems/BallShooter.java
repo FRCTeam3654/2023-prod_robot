@@ -116,6 +116,25 @@ public class BallShooter extends SubsystemBase {
 
     //System.out.println(""+ speed);
   }
+  public void shootHighGoal(boolean mrWuBoolean){
+    if (mrWuBoolean)
+    {     
+      ballShooterTopTalon.set(ControlMode.Velocity, RobotMap.shooterTopHighGoalSpeed_nativeUnit);
+      ballShooterBottomTalon.set(ControlMode.Velocity, RobotMap.shooterBottomHighGoalSpeed_nativeUnit);
+    }
+    else
+    {
+      ballShooterTopTalon.set(ControlMode.Velocity, 0);
+      ballShooterBottomTalon.set(ControlMode.Velocity, 0);
+    }
+    double speedTopHighGoal = ballShooterTopTalon.getSelectedSensorVelocity(RobotMap.kPIDLoopIDx);
+    double speedBottomHighGoal = ballShooterBottomTalon.getSelectedSensorVelocity(RobotMap.kPIDLoopIDx);
+
+    SmartDashboard.putNumber("SensorShooterVel", speedTopHighGoal);
+    SmartDashboard.putNumber("SensorShooterVel", speedBottomHighGoal);
+
+    //System.out.println(""+ speed);
+  }
 
   public boolean targetSpeed(){
     double speedTop = ballShooterTopTalon.getSelectedSensorVelocity(RobotMap.kPIDLoopIDx);
@@ -127,9 +146,28 @@ public class BallShooter extends SubsystemBase {
     SmartDashboard.putNumber("Shooter Speed 2", speedBottom);
     double speedBottomDifferential = speedBottom - RobotMap.shooterBottomSpeed_nativeUnit;
     SmartDashboard.putNumber("Shooter Speed Differential", speedBottomDifferential);
+
     if ((Math.abs(speedBottomDifferential) < RobotMap.shooterBottomSpeedTolerance) && (Math.abs(speedTopDifferential) < RobotMap.shooterTopSpeedTolerance)){
       return true;
     }
+    else{
+      return false;
+    }
+    }
+
+    public boolean targetHighGoalSpeed(){
+      double speedTopHighGoal = ballShooterTopTalon.getSelectedSensorVelocity(RobotMap.kPIDLoopIDx);
+      SmartDashboard.putNumber("Shooter Speed Top High Goal", speedTopHighGoal);
+      double speedTopHighGoalDifferential = speedTopHighGoal - RobotMap.shooterTopHighGoalSpeed_nativeUnit;
+      SmartDashboard.putNumber("Shooter Speed Top High Goal Differential", speedTopHighGoalDifferential);
+  
+      double speedBottomHighGoal = ballShooterBottomTalon.getSelectedSensorVelocity(RobotMap.kPIDLoopIDx);
+      SmartDashboard.putNumber("Shooter High Goal Speed 2", speedBottomHighGoal);
+      double speedBottomHighGoalDifferential = speedBottomHighGoal - RobotMap.shooterBottomHighGoalSpeed_nativeUnit;
+      SmartDashboard.putNumber("Shooter High Goal Speed Differential", speedBottomHighGoalDifferential);
+      if ((Math.abs(speedBottomHighGoalDifferential) < RobotMap.shooterBottomSpeedTolerance) && (Math.abs(speedTopHighGoalDifferential) < RobotMap.shooterTopSpeedTolerance)){
+        return true;
+      }
     else {
       //come back to this. this is for making a timeout
     }

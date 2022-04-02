@@ -46,8 +46,8 @@ public class RobotContainer {
 
     // VERY IMPORTANT:   drive need be created before oi since oi creates Turn90DegreesCommand object in which need drive object
     drive = new Drive();
-    intake = new Intake();
     beltcro = new Beltcro();
+    intake = new Intake();
     verticalClimbArms = new VerticalClimbArms();
     slidingClimbHooks = new SlidingClimbHooks();
     ballShooter = new BallShooter();

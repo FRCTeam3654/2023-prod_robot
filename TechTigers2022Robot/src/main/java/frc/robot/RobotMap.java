@@ -78,6 +78,7 @@ public static int climbLockButtonNumber = 12;
 public static int beltcroReverseButtonNumber = 8;
 public static int intakeOverrideButtonNumber = 7;
 public static int ballShooterButtonNumber = 11;
+public static int highGoalShooterButtonNumber = 12;
 //public static int climbUnlockRightButtonNumber = 6;
 
 public static int slidingShortClimbButtonNumber = 3;  //??
@@ -130,7 +131,7 @@ public static double joystickDeadBand = 0.08;
 
 public static double autonomousTimeOut = 40; // used to be 7 second in normal auto mode but 2021 is different
 
-public static double autonomousBallShooterTimeOut = 8;
+public static double autonomousBallShooterTimeOut = 4;
 //public static double autonomousBallPickUpTimeOut = 25; // MICHELE WAS HERE
 
 public static double motionMagicTimeOut = 4;// in regular, it should time out in 4 seconds
@@ -143,11 +144,13 @@ public static double radianConversionToDegree = 57.2958;
 //public static double ballPickUpSpeed = 0.8; //1; //0.9;//0.69// 0.5; //used to 0.4
 //public static int solenoidIn = 3; 
 //public static int solenoidOut = 2;
-public static double shooterTopSpeed_nativeUnit = 10000; //4500 rpm 15360
-public static double shooterBottomSpeed_nativeUnit = -18000; //4500 rpm 15360 //22000 is the maximum speed
+public static double shooterTopSpeed_nativeUnit = 3000; //4500 rpm 15360 // 3000 top with -6000 bottom is PERFECT for low goal
+public static double shooterBottomSpeed_nativeUnit = -6000; //4500 rpm 15360 //22000 is the maximum speed
+public static double shooterTopHighGoalSpeed_nativeUnit = 1500;// 4000 top and -13000 bottom work really well
+public static double shooterBottomHighGoalSpeed_nativeUnit = -13000;
 //^^ calculated by (desired rpm * 2048 / 60sec / 10)
-public static double shooterTopSpeedTolerance = 150;
-public static double shooterBottomSpeedTolerance = 150;
+public static double shooterTopSpeedTolerance = 450;
+public static double shooterBottomSpeedTolerance = 450;
 
 
 //COLOR WHEEL!
@@ -258,7 +261,7 @@ public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.
 public static double intakeSpeedIn = -0.5;
 public static double intakeSpeedOut = 1;
 //for the beltcro
-public static double beltcroTimerTimeout = 3;
+public static double beltcroTimerTimeout = 1.6;
 public static double beltcroIntakeTimerTimeout = 4;
 public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = 0.4;
