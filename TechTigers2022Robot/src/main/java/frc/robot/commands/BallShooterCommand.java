@@ -83,13 +83,12 @@ public class BallShooterCommand extends CommandBase {
       mode = 2;
       whatGoal = 1;
     }
-
+ 
     if (_mode.get() == 1) {
       if (whatGoal == 0) {
         RobotContainer.ballShooter.shoot(true);
         // isShooterInProgress = true;
-      }
-      if (whatGoal == 1) {
+      } if (whatGoal == 1) {
         RobotContainer.ballShooter.shootHighGoal(true);
       }
 
@@ -123,12 +122,11 @@ public class BallShooterCommand extends CommandBase {
       if (RobotContainer.ballShooter.targetHighGoalSpeed()) {
         RobotContainer.beltcro.beltcroMove(0.8);
       }
-    }
 
-    if (!ballShooterAutonomousFlag) {
-      ballShooterAutonomousFlag = true;
-      _mode.set(1);
-
+      if (!ballShooterAutonomousFlag) {
+        ballShooterAutonomousFlag = true;
+        _mode.set(1);
+      }
     } else {
       RobotContainer.ballShooter.shoot(false);
       RobotContainer.ballShooter.shootHighGoal(false);
@@ -157,12 +155,10 @@ public class BallShooterCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
     if (ballShooterAutonomousFlag == true && (_mode.get() == 1)) {
       if ((startTimeAutonomous + 0.1) > Timer.getFPGATimestamp()) {
         // if autonomous started, let it run at least 100 ms
         return false;
-
       }
       // enforce timeout in case MP is stucked or running too long
       else if (startTimeAutonomous + RobotMap.autonomousBallShooterTimeOut < Timer.getFPGATimestamp()) {
@@ -179,10 +175,8 @@ public class BallShooterCommand extends CommandBase {
         whatGoal = 2;
         return true;
       }
-     else {
-      return false;
+
     }
-  }
-  return false;
+    return false;
   }
 }
