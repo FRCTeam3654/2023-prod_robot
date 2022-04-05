@@ -85,6 +85,7 @@ public class BallShooterCommand extends CommandBase {
     }
  
     if (_mode.get() == 1) {
+      isShooterInProgress = true;
       if (whatGoal == 0) {
         RobotContainer.ballShooter.shoot(true);
         // isShooterInProgress = true;
