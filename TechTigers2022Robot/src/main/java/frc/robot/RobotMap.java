@@ -262,7 +262,7 @@ public static double intakeSpeedIn = -0.5;
 public static double intakeSpeedOut = 1;
 //for the beltcro
 public static double beltcroTimerTimeout = 1.6;
-public static double beltcroIntakeTimerTimeout = 4;
+public static double beltcroIntakeTimerTimeout = 3;
 public static double intakeEjectTimerTimeout = 1;
 public static double beltcroSpeed = 0.4;
 //for the climb

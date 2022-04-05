@@ -157,7 +157,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
 
     double newTimeout = RobotMap.slidingClimbTimerTimeout;
     if (mode == 2){
-      newTimeout = 2.5;
+      newTimeout = 1.5;
     }
     if (mode == 3){
       newTimeout = 8;

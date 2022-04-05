@@ -14,6 +14,8 @@ import frc.robot.RobotContainer;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.AnalogInput;
+
 
 public class IntakeCommand extends CommandBase {
   /** Creates a new IntakeCommand. */
@@ -22,6 +24,8 @@ public class IntakeCommand extends CommandBase {
   private boolean isEjectingBall = false;
   public double intakeEjectTimer = 0;
   public double beltcroIntakeTimer = 0;
+  //private AnalogInput analogDistanceSensor1;
+
   public int mode = 0; //0 is default, 1 is auto, 2 is intake override
   public IntakeCommand() {
     addRequirements(RobotContainer.intake);
@@ -44,6 +48,9 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void initialize() {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    
+    //analogDistanceSensor1 = new AnalogInput(RobotMap.analogDistanceSensorPort1);
+    //analogDistanceSensor1.setAverageBits(12);
 
       //get a reference to the subtable called "datatable"
       NetworkTable fmsInfo = inst.getTable("FMSInfo");
@@ -56,7 +63,14 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //double cmDistanceSensor1;
+
+    //cmDistanceSensor1 = analogDistanceSensor1.getAverageValue();
+    //SmartDashboard.putNumber("Analog Distance Sensor 1 raw", cmDistanceSensor1); 
+    //RobotContainer.beltcro.storageSensor1();
+
     int colorNumber;
+
     boolean allianceColor; //if allianceColor is true, we are RED team
     allianceColor = isRedAlliance.getBoolean(false);
     colorNumber = RobotContainer.intake.getRainbow();
@@ -122,7 +136,7 @@ public class IntakeCommand extends CommandBase {
       }
       if (isBeltcroMoving){
         if (mode != 1){
-        if(RobotContainer.beltcro.storageSensor1() < 1200) {
+        if(RobotContainer.beltcro.storageSensor1() < 1000) {
             RobotContainer.beltcro.beltcroMove(RobotMap.beltcroSpeed); 
           }
         else{

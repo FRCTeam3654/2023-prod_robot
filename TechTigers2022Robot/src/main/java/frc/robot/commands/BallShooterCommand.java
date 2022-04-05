@@ -119,6 +119,10 @@ public class BallShooterCommand extends CommandBase {
         RobotContainer.beltcro.beltcroMove(0.8);// -1 to move belt forward //1.0
         // RobotContainer.ballStorage.driveBallStorage2(-0.8);//-0.5
       }
+      if (!ballShooterAutonomousFlag) {
+        ballShooterAutonomousFlag = true;
+        _mode.set(1);
+      }
     } else if (whatGoal == 1) {
       if (RobotContainer.ballShooter.targetHighGoalSpeed()) {
         RobotContainer.beltcro.beltcroMove(0.8);
@@ -128,7 +132,8 @@ public class BallShooterCommand extends CommandBase {
         ballShooterAutonomousFlag = true;
         _mode.set(1);
       }
-    } else {
+    } 
+    else {
       RobotContainer.ballShooter.shoot(false);
       RobotContainer.ballShooter.shootHighGoal(false);
       // RobotContainer.ballStorage.driveBallStorage1(0);
