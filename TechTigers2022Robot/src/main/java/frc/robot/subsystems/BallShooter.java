@@ -165,7 +165,6 @@ public class BallShooter extends SubsystemBase {
       SmartDashboard.putNumber("Shooter High Goal Speed 2", speedBottomHighGoal);
       double speedBottomHighGoalDifferential = speedBottomHighGoal - RobotMap.shooterBottomHighGoalSpeed_nativeUnit;
       SmartDashboard.putNumber("Shooter High Goal Speed Differential", speedBottomHighGoalDifferential);
-      
       if ((Math.abs(speedBottomHighGoalDifferential) < RobotMap.shooterBottomSpeedTolerance) && (Math.abs(speedTopHighGoalDifferential) < RobotMap.shooterTopSpeedTolerance)){
         return true;
       }

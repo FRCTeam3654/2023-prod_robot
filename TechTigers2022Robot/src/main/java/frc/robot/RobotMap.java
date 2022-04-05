@@ -24,10 +24,10 @@ static Preferences prefs;
 
 //DRIVE VALUES!
 //test branch
-public static double driveStraightProportion = 0.02;//0.02
+public static double driveStraightProportion = 0.01;//0.02
 public static double turnDegreeProportion = 0.0038;
 public static double LimelightJoeyX = -0.007;
-public static double turn90DegreeTimeout = 2.5;
+public static double turn90DegreeTimeout = 1.5;
 public static double limeLightTimeout = 2;
 //public static double ballStorageTimerAndysVision = 2;
 public static double autonomousVelocity = 0.5; 
@@ -146,8 +146,8 @@ public static double radianConversionToDegree = 57.2958;
 //public static int solenoidOut = 2;
 public static double shooterTopSpeed_nativeUnit = 3000; //4500 rpm 15360 // 3000 top with -6000 bottom is PERFECT for low goal
 public static double shooterBottomSpeed_nativeUnit = -6000; //4500 rpm 15360 //22000 is the maximum speed
-public static double shooterTopHighGoalSpeed_nativeUnit = 1000;// 4000 top and -13000 bottom work really well
-public static double shooterBottomHighGoalSpeed_nativeUnit = -15000;
+public static double shooterTopHighGoalSpeed_nativeUnit = 1500;// 4000 top and -13000 bottom work really well
+public static double shooterBottomHighGoalSpeed_nativeUnit = -13000;
 //^^ calculated by (desired rpm * 2048 / 60sec / 10)
 public static double shooterTopSpeedTolerance = 450;
 public static double shooterBottomSpeedTolerance = 450;
