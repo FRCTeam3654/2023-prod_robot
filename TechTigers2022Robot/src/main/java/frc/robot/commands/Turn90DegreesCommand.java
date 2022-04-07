@@ -33,6 +33,7 @@ public class Turn90DegreesCommand extends CommandBase {
   }
 
   // Called repeatedly when this Command is scheduled to run
+  //Only use the left button 180/90
   @Override
   public void execute() {
     double turn90X;
@@ -45,13 +46,13 @@ public class Turn90DegreesCommand extends CommandBase {
           desiredTurnAngle = 180;
         }
         if (RobotContainer.oi.turnRight180Button.get()){
-          desiredTurnAngle = - 180;
+          desiredTurnAngle = -180;
         }
         if (RobotContainer.oi.turnLeft90Button.get()){
           desiredTurnAngle = 90;
         }
         if (RobotContainer.oi.turnRight90Button.get()){
-          desiredTurnAngle = - 90;
+          desiredTurnAngle = -90;
         }
         turnEndpointAngle = yawPitchRollArray[0] + desiredTurnAngle;
         startTime90degree = Timer.getFPGATimestamp();
@@ -60,21 +61,28 @@ public class Turn90DegreesCommand extends CommandBase {
       vinniesError = turnEndpointAngle - yawPitchRollArray[0];
       if (Math.abs(vinniesError) > 90){   // for large angles we tune it down a bit
         if (vinniesError > 0){
-          //vinniesError = 60;
-          turn90X = vinniesError * RobotMap.turnDegreeProportion;
+          vinniesError = 60;
+          turn90X = vinniesError * RobotMap.turnDegreeProportion*(0.85);
         }
         else {
-          //vinniesError = -60;
-          turn90X = vinniesError * RobotMap.turnDegreeProportion;
+          vinniesError = -60;
+          turn90X = vinniesError * RobotMap.turnDegreeProportion*(0.85);
         }
       }
       else {
-        turn90X = vinniesError * RobotMap.turnDegreeProportion;
+        if (Math.abs(desiredTurnAngle) == 180){
+          turn90X = vinniesError * 0.004;
+        }
+        else{
+        turn90X = vinniesError * 0.007;
+        }
       }
-       turn90X = Math.min(1, turn90X);
-       turn90X = Math.max(-1, turn90X);
+       //turn90X = Math.min(1, turn90X);
+       //turn90X = Math.max(-1, turn90X);
+       turn90X = Math.min(0.5, turn90X);
+       turn90X = Math.max(-0.5, turn90X);
        turn90Y = 0;
-       RobotContainer.drive.setArcade(turn90X, turn90Y);
+       RobotContainer.drive.setArcade(turn90X + 0.07, turn90Y, 0.3, false);
   }
 
   // Make this return true when this Command no longer needs to run execute()

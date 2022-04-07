@@ -395,10 +395,18 @@ public void tankDriveVolts(double leftVolts, double rightVolts) {
 
 //////  end of a set of functions for Ramsete ///////////////////////////
 
-  public void setArcade(double velocity, double turn) {
-      mercyArcadeDrive(velocity, turn);
+//joystickX is turn, joystickY is drive forward
+  public void setArcade(double joystickX, double joystickY) {
+      mercyArcadeDrive(joystickX, joystickY, 0.9, false);
   }
 
+  public void setArcade(double joystickX, double joystickY, boolean driveStraightFlag) {
+    mercyArcadeDrive(joystickX, joystickY, 0.9, driveStraightFlag);
+}
+
+  public void setArcade(double joystickX, double joystickY, double maxPower, boolean driveStraightFlag) {
+    mercyArcadeDrive(joystickX, joystickY, maxPower, driveStraightFlag);
+}
   public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity) {
     setMotionMagic (distance, 0.0, cruiseVelocity,  accelerationVelocity, false);
   }
@@ -517,6 +525,11 @@ public void tankDriveVolts(double leftVolts, double rightVolts) {
 
 //Mercy Arcade Drive allows us to smoothly control the robot
 public void mercyArcadeDrive(double joystickX, double joystickY) {
+    mercyArcadeDrive (joystickX, joystickY, 0.9 ,false);
+  }
+
+public void mercyArcadeDrive(double joystickX, double joystickY, double maxPower, boolean driveStraightFlag) {
+
 
     double radiusPower = Math.hypot(joystickX, joystickY);
     double initAngle = Math.atan2(joystickX, joystickY);
@@ -529,20 +542,20 @@ public void mercyArcadeDrive(double joystickX, double joystickY) {
     rightSpeed = rightSpeed*0.9;
     leftSpeed = leftSpeed*0.9;
 
-    if (rightSpeed > 0.9) {
-      rightSpeed = 0.9;
+    if (rightSpeed > maxPower) {
+      rightSpeed = maxPower;
     }
-    if (leftSpeed > 0.9) {
-      leftSpeed = 0.9;
+    if (leftSpeed > maxPower) {
+      leftSpeed = maxPower;
     }
-    if (rightSpeed < -0.9) {
-      rightSpeed = -0.9;
+    if (rightSpeed < (-1)*maxPower) {
+      rightSpeed = (-1)*maxPower;
     }
-    if (leftSpeed < -0.9) {
-      leftSpeed = -0.9;
+    if (leftSpeed < (-1)*maxPower) {
+      leftSpeed = (-1)*maxPower;
     }
           
-    if (RobotMap.driveClosedLoopMode ) {
+    if (RobotMap.driveClosedLoopMode && !driveStraightFlag) {
             //closed loop
             double targetVelocity_UnitsPer100ms_left = leftSpeed * 22000;
             double targetVelocity_UnitsPer100ms_right = rightSpeed * 22000;

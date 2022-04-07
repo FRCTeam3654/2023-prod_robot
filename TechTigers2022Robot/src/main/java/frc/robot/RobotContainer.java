@@ -74,9 +74,9 @@ public class RobotContainer {
     
 
   
-    autoChooser.setDefaultOption("Autonomous Route (B)", new AutonomousBCommand(odometry, drive));
-    autoChooser.addOption("Autonomous Route (C)", new AutonomousCCommand(odometry, drive));
-    autoChooser.addOption("Autonomous Route (A)", new AutonomousACommand(odometry, drive));
+    autoChooser.setDefaultOption("MoveAndShootHigh", new AutonomousACommand(odometry, drive));
+    autoChooser.addOption("5Ball DEFENSE", new AutonomousCCommand(odometry, drive));
+    autoChooser.addOption("taxi only", new AutonomousBCommand(odometry, drive));
 
     
     

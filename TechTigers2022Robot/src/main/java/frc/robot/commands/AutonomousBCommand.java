@@ -51,7 +51,7 @@ public class AutonomousBCommand extends SequentialCommandGroup {
     addCommands(
   new ParallelDeadlineGroup(
     new SequentialCommandGroup(
-      new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d()))), new SlidingClimbHooksCommand(1)
+      new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(35), Units.inchesToMeters(30), new Rotation2d())))
       )
     ,
     mp)

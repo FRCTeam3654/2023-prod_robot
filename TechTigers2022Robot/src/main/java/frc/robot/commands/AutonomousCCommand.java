@@ -74,9 +74,9 @@ addCommands(
   //)
   ,
   //  new SequentialCommandGroup(
-      new SlidingClimbHooksCommand(1)
+      //new SlidingClimbHooksCommand(1)
     //  )
-    ,
+   // ,
     new SequentialCommandGroup(
       new WaitCommand(2), new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp2)
   )

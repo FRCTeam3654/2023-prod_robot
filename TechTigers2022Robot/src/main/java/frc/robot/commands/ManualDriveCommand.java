@@ -90,7 +90,7 @@ public class ManualDriveCommand extends CommandBase {
    // else {
     
       //System.out.println("X=" + joystickX + "Y=" + joystickY);
-      RobotContainer.drive.setArcade(joystickX, joystickY);
+      RobotContainer.drive.setArcade(joystickX, joystickY, driveStraightFlag);
 
       //Dashboard features for Joystick x and y values and right and left encoders
       SmartDashboard.putNumber("Joystick X: ", joystickX);
