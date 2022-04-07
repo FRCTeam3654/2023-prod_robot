@@ -32,14 +32,14 @@ public class VerticalClimbMotionMagicUpCommand extends CommandBase {
   public void execute() {
     if ((RobotContainer.oi.verticalClimbUpButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      RobotContainer.verticalClimbArms.setMotionMagic(RobotMap.verticalClimbDistance, 8000, 8000); //maximum speed is 22000
+      RobotContainer.verticalClimbArms.setMotionMagic(RobotMap.verticalClimbDistance, 12000, 16000); //maximum speed is 22000
       //RobotContainer.slidingClimbHooks.driveClimbMotors(0.3);
       SmartDashboard.putString("verticalUpButtonClicked", "yes");
       verticalClimbTimer = Timer.getFPGATimestamp();
     }
     else if ((RobotContainer.oi.verticalClimbDownButton.get() && !isButtonPressed)){
       isButtonPressed = true;
-      RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 8000, 8000);
+      RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 12000, 16000); //8000 8000
 
       // TODO:  test ArbitraryFeedForward,  is it positive or negative for reverse climb ?
       //RobotContainer.verticalClimbArms.setMotionMagic((-1)*RobotMap.verticalClimbDistance, 8000, 8000, 0.07);
