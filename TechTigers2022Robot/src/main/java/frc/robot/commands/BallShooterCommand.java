@@ -22,6 +22,10 @@ public class BallShooterCommand extends CommandBase {
   public static boolean isShooterInProgress = false;
   private int mode = 0; // 0 is low goal, 1 auto, 2 is high goal
   private int whatGoal = 2; // 0 is low, 1 is high goal
+  //private boolean hasBall = false; // was the ball in robot amoment ago (~20 ms);
+  //private double startTimePause = 0; // pause the bell moving for the second ball for ~ 1 second 
+  
+  
   // NetworkTable mercyLimelightTable =
   // NetworkTableInstance.getDefault().getTable("limelight");
   // NetworkTableEntry MercyLimelightx = mercyLimelightTable.getEntry("tx");
@@ -57,6 +61,10 @@ public class BallShooterCommand extends CommandBase {
   @Override
   public void initialize() {
     startTimeAutonomous = Timer.getFPGATimestamp();
+    //if(RobotContainer.beltcro.storageSensor1() > 900) {
+    //  hasBall = true;
+    //}
+    
     // startTimeLimelight = Timer.getFPGATimestamp();
     // NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);
     // //3 is force on
@@ -126,6 +134,24 @@ public class BallShooterCommand extends CommandBase {
     } else if (whatGoal == 1) {
       if (RobotContainer.ballShooter.targetHighGoalSpeed()) {
         RobotContainer.beltcro.beltcroMove(0.8);
+        /*
+        boolean detectedBall = RobotContainer.beltcro.storageSensor1() > 900;
+        // new code to pause the second ball for one second if the robot has two balls for high goal
+        if( hasBall == false && detectedBall == true ) {
+           startTimePause = Timer.getFPGATimestamp();
+           hasBall = true;
+        }
+        if(detectedBall == false) {
+          hasBall = false;
+        }
+        
+        // tricky logic here to pause the second ball:  use startTimePause = 0 as indicator of shooting first ball
+        if( (detectedBall == true && startTimePause > 0.01) && ( (Timer.getFPGATimestamp() - startTimePause)  <  1) ) {
+          RobotContainer.beltcro.beltcroMove(0); // pause the bell for 1 second
+        } else {
+          RobotContainer.beltcro.beltcroMove(0.4); // for high ball, let bell running a little slower
+        }
+        */
       }
 
       if (!ballShooterAutonomousFlag) {
