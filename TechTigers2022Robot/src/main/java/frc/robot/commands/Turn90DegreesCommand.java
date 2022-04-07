@@ -61,11 +61,11 @@ public class Turn90DegreesCommand extends CommandBase {
       if (Math.abs(vinniesError) > 90){   // for large angles we tune it down a bit
         if (vinniesError > 0){
           //vinniesError = 60;
-          turn90X = vinniesError * RobotMap.turnDegreeProportion * 0.75;
+          turn90X = vinniesError * RobotMap.turnDegreeProportion;
         }
         else {
           //vinniesError = -60;
-          turn90X = vinniesError * RobotMap.turnDegreeProportion * 0.75;
+          turn90X = vinniesError * RobotMap.turnDegreeProportion;
         }
       }
       else {
