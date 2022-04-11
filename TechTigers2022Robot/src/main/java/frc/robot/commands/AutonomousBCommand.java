@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 public class AutonomousBCommand extends SequentialCommandGroup {
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
+  NewRunMotionProfile mp2;
   /** Creates a new AutonoumousRedBCommand. */
   public AutonomousBCommand(RobotOdometry odometry, Drive driveTrain) {
     /*mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
