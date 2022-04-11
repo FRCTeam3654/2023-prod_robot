@@ -157,7 +157,7 @@ public class SlidingClimbHooksCommand extends CommandBase {
 
     double newTimeout = RobotMap.slidingClimbTimerTimeout;
     if (mode == 2){
-      newTimeout = 1.5;
+      newTimeout = 1.1;
     }
     if (mode == 3){
       newTimeout = 8;
@@ -188,7 +188,8 @@ public class SlidingClimbHooksCommand extends CommandBase {
 
         SmartDashboard.putNumber("percentErrorClimbLeft", percentLeftError);
       //even though it is desired to achieve error < 1%, it depends on PID tuning, sometimes it is always achieable
-          if ((percentLeftError < 0.3 || percentLeftError < 0 ) && (percentRightError < 0.3 || percentRightError < 0 ))
+        //0.3 to 1 
+      if ((percentLeftError < 1 || percentLeftError < 0 ) && (percentRightError < 1 || percentRightError < 0 ))
           //if (percentLeftError < 0.9 || percentLeftError < 0 )
           return true;
         }

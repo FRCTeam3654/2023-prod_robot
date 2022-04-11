@@ -46,13 +46,13 @@ public class Turn90DegreesCommand extends CommandBase {
           desiredTurnAngle = 180;
         }
         if (RobotContainer.oi.turnRight180Button.get()){
-          desiredTurnAngle = -180;
+          desiredTurnAngle = -188;
         }
         if (RobotContainer.oi.turnLeft90Button.get()){
           desiredTurnAngle = 90;
         }
         if (RobotContainer.oi.turnRight90Button.get()){
-          desiredTurnAngle = -90;
+          desiredTurnAngle = -98;
         }
         turnEndpointAngle = yawPitchRollArray[0] + desiredTurnAngle;
         startTime90degree = Timer.getFPGATimestamp();
