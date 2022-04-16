@@ -40,7 +40,7 @@ public class AutonomousBCommand extends SequentialCommandGroup {
     new Pose2d(Units.inchesToMeters(85), Units.inchesToMeters(30), Rotation2d.fromDegrees(0)), 0, false, false);
    */
     
-    
+    // move away from the the hangar
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(0)), 0,
     List.of(),
     new Pose2d(Units.inchesToMeters(-62.5), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
@@ -48,10 +48,10 @@ public class AutonomousBCommand extends SequentialCommandGroup {
     
     mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-62.5), Units.inchesToMeters(0), new Rotation2d()), 0,
     List.of(new Translation2d(Units.inchesToMeters(-21), Units.inchesToMeters(0)), new Translation2d(Units.inchesToMeters(6), Units.inchesToMeters(30))),
-    new Pose2d(Units.inchesToMeters(-21), Units.inchesToMeters(80), Rotation2d.fromDegrees(-135)), 0, false, false);
+    new Pose2d(Units.inchesToMeters(-21), Units.inchesToMeters(-94), Rotation2d.fromDegrees(-135)), 0, false, false);
     
-    mp2 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-21), Units.inchesToMeters(80), new Rotation2d(-135)), 0,
-    List.of(new Translation2d(Units.inchesToMeters(6), Units.inchesToMeters(30))),
+    mp2 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-21), Units.inchesToMeters(-94), new Rotation2d(-135)), 0,
+    List.of(new Translation2d(Units.inchesToMeters(6), Units.inchesToMeters(-30))),
     new Pose2d(Units.inchesToMeters(-21), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
     
     
