@@ -275,7 +275,7 @@ public static double slidingShortClimbDistance = 17000; // ?? slide  a short dis
 public static double slidingTravesalDownDistance = 182000;
 
 //for the drive
-//public static double pitchReverseDegree = 6.3;
+public static double pitchReverseDegree = 8;
 public static double turboMax = 0.8;
 
 }

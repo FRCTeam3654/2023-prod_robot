@@ -109,7 +109,7 @@ public class VerticalClimbCommand extends CommandBase {
 
         RobotContainer.verticalClimbArms.karenaArcadeDrive(joystickX, joystickY);
           
-        System.out.println("ElevatorX = " + joystickX + "ElevatorY = " + joystickY);
+        //System.out.println("ElevatorX = " + joystickX + "ElevatorY = " + joystickY);
 
       //}
     

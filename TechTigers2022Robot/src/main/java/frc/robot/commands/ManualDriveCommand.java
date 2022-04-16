@@ -17,9 +17,11 @@ import edu.wpi.first.wpilibj.Timer;
 public class ManualDriveCommand extends CommandBase {
   private boolean driveStraightFlag = false;
   private double driveStraightAngle = 0;
-  //private double initialPitch = 0;
-  //private boolean isBackDriveStarted = false;
-  //private double backDriveStartTime = 0;
+  private double initialPitch = 0;
+  private boolean isBackDriveStarted = false;
+  private double backDriveStartTime = 0;
+  private int backDriveCount = 0;// continous backout count. if > 3 , stop backout
+
   public ManualDriveCommand() {
     // Use requires() here to declare subsystem dependencies
     addRequirements(RobotContainer.drive);
@@ -28,9 +30,9 @@ public class ManualDriveCommand extends CommandBase {
   // Called just before this Command runs the first time
   @Override
   public void initialize() {
-    double [] yawPitchRollArray = new double [3];
+    double[] yawPitchRollArray = new double[3];
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
-    //initialPitch = yawPitchRollArray[1];
+    initialPitch = yawPitchRollArray[1];
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -38,27 +40,26 @@ public class ManualDriveCommand extends CommandBase {
   public void execute() {
     double joystickX;
     double joystickY;
-    double [] yawPitchRollArray;
-    yawPitchRollArray = new double [3];
+    double[] yawPitchRollArray;
+    yawPitchRollArray = new double[3];
     joystickX = (RobotContainer.oi.driverStick.getX() * -1);
     joystickY = (RobotContainer.oi.driverStick.getY() * -1);
     joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
-    //This is to activate turbo mode. If the button is pressed, turbo mode is on
-    
-    if (RobotContainer.oi.turboButton.get()){
-    }
-    else{
-      joystickX = joystickX * RobotMap.nonTurboMultiplierTurn; 
+    // This is to activate turbo mode. If the button is pressed, turbo mode is on
+
+    if (RobotContainer.oi.turboButton.get()) {
+    } else {
+      joystickX = joystickX * RobotMap.nonTurboMultiplierTurn;
       joystickY = joystickY * RobotMap.nonTurboMultiplierForward;
     }
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
-    
+
     SmartDashboard.putNumber("Pitch", yawPitchRollArray[1]);
 
-    if (RobotContainer.oi.driveStraightButton.get()){  
-      //joystickX = 0;
-      if (!driveStraightFlag){
+    if (RobotContainer.oi.driveStraightButton.get()) {
+      // joystickX = 0;
+      if (!driveStraightFlag) {
         driveStraightAngle = yawPitchRollArray[0];
         driveStraightFlag = true;
       }
@@ -70,42 +71,51 @@ public class ManualDriveCommand extends CommandBase {
       driveStraightFlag = false;
     }
 
-    /*if (backDriveStartTime + 0.7 < Timer.getFPGATimestamp()) {
-      isBackDriveStarted = false;
-    }
-     */
+    if (backDriveStartTime + 0.7 < Timer.getFPGATimestamp()) {
 
-    /*if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true) && SlidingClimbHooksCommand.climbNumber < 2){
-      joystickY = -0.5; //positive joystickY means forward
-      if (((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true){
-        if (isBackDriveStarted == false){
+      isBackDriveStarted = false;
+     
+    }
+
+    // reset backout count if the robot is not tipped
+    if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
+      backDriveCount = 0;
+    }
+
+    if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true)
+        && SlidingClimbHooksCommand.climbNumber < 1) {
+      joystickY = -0.5; // positive joystickY means forward
+      if ((((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true) && (backDriveCount < 3) ) {
+        if (isBackDriveStarted == false) {
           isBackDriveStarted = true;
+          backDriveCount = backDriveCount + 1;
           backDriveStartTime = Timer.getFPGATimestamp();
         }
         RobotContainer.drive.setPercentOutput(joystickY);
       }
-      */
-      
-   // }
-   // else {
-    
-      //System.out.println("X=" + joystickX + "Y=" + joystickY);
+      else {
+        RobotContainer.drive.setPercentOutput(0);// after back for 0.7 s , stop running up to 2 seconds
+      }
+
+    } else {
+
+      // System.out.println("X=" + joystickX + "Y=" + joystickY);
       RobotContainer.drive.setArcade(joystickX, joystickY, driveStraightFlag);
 
-      //Dashboard features for Joystick x and y values and right and left encoders
+      // Dashboard features for Joystick x and y values and right and left encoders
       SmartDashboard.putNumber("Joystick X: ", joystickX);
       SmartDashboard.putNumber("Joystick Y: ", joystickY);
       SmartDashboard.putNumber("Left Encoder", RobotContainer.drive.leftFrontTalon.getSelectedSensorVelocity());
       SmartDashboard.putNumber("Right Encoder", RobotContainer.drive.rightFrontTalon.getSelectedSensorVelocity());
       SmartDashboard.putNumber("Yaw: ", yawPitchRollArray[0]);
     }
-  //}
+  }
 
-  //Deadband makes the center of the joystick have leeway on absolute 0
-  public double handleDeadband(double val, double deadband){
+  // Deadband makes the center of the joystick have leeway on absolute 0
+  public double handleDeadband(double val, double deadband) {
     return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
   }
-  
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   public boolean isFinished() {
@@ -116,6 +126,5 @@ public class ManualDriveCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
   }
-
 
 }

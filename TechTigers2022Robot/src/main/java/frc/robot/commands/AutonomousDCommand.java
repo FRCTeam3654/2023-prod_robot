@@ -30,11 +30,14 @@ public class AutonomousDCommand extends SequentialCommandGroup {
   public AutonomousDCommand(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(0)), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(20), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(10), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, false, false);
 
+   mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(10), Units.inchesToMeters(0), new Rotation2d(0)), 0,
+        List.of(),
+        new Pose2d(Units.inchesToMeters(-82.5), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new WaitCommand(2), mp, new BallShooterCommand(1,0));
+      new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new WaitCommand(2), mp, new BallShooterCommand(1,0),mp1);
 }
 }
