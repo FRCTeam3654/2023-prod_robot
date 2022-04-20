@@ -74,19 +74,19 @@ public class IntakeCommand extends CommandBase {
     boolean allianceColor; //if allianceColor is true, we are RED team
     allianceColor = isRedAlliance.getBoolean(false);
     colorNumber = RobotContainer.intake.getRainbow();
-    if (RobotContainer.oi.intakeOverrideButton.get()){
-      mode = 2;
-    }
+    //if (RobotContainer.oi.intakeOverrideButton.get()){
+     // mode = 2;
+   // }
     if (mode == 1){
       RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedOut);
       //RobotContainer.beltcro.beltcroMove((-1)*RobotMap.beltcroSpeed);
     }
-    if (mode == 2){
-      RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
-      if (!RobotContainer.oi.intakeOverrideButton.get()){
-        mode = 0;
-      }
-    }
+    //if (mode == 2){
+     // RobotContainer.intake.intakeWheels(RobotMap.intakeSpeedIn);
+     // if (!RobotContainer.oi.intakeOverrideButton.get()){
+      //  mode = 0;
+     // }
+   // }
     else
     if (mode == 0){
     if (allianceColor){
