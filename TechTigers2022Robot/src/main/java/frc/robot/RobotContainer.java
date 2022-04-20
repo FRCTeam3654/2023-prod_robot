@@ -74,9 +74,9 @@ public class RobotContainer {
     
 
   
-    autoChooser.addOption("MoveAndShootHigh", new AutonomousACommand(odometry, drive));
-    autoChooser.addOption("5Ball DEFENSE", new AutonomousCCommand(odometry, drive));
-    autoChooser.addOption("taxi only", new AutonomousBCommand(odometry, drive));
+    autoChooser.addOption("1 High Goal", new AutonomousACommand(odometry, drive));
+    autoChooser.addOption("2 Ball C", new AutonomousCCommand(odometry, drive));
+    autoChooser.addOption("2 Ball B", new AutonomousBCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     
