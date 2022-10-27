@@ -102,7 +102,7 @@ public class HapMapAutoRoute extends SequentialCommandGroup {
     addCommands(
       new ParallelDeadlineGroup(
         new SequentialCommandGroup(
-          new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), forward194TurnLeft90, forward165, new WaitCommand(10), back100TurnRight90,
+          new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new WaitCommand(30), forward194TurnLeft90, forward165, new WaitCommand(10), back100TurnRight90,
           fig8x1, fig8x3, fig8x4, fig8x5, fig8x7, fig8x8, forward100TurnRight90, new WaitCommand(2), new BallShooterCommand(1,1))),
       
         new IntakeStopCommand()
