@@ -9,14 +9,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Turn90DegreesCommand;
-import frc.robot.commands.IntakeStopCommand;
-import frc.robot.commands.BeltcroShooterCommand;
-import frc.robot.commands.IntakeOverrideCommand;
-import frc.robot.commands.SlidingClimbHooksCommand;
-import frc.robot.commands.SlidingClimbManualControlCommand;
-import frc.robot.commands.VerticalClimbCommand;
-import frc.robot.commands.VerticalClimbMotionMagicUpCommand;
-import frc.robot.commands.BallShooterCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -76,16 +68,8 @@ public class OI {
   manualSlidingClimbButton = new JoystickButton(driverStick, RobotMap.manualSlidingClimbButtonNumber);
   verticalClimbUpButton = new JoystickButton(operatorStick, RobotMap.verticalClimbUpButtonNumber);
   verticalClimbDownButton = new JoystickButton(operatorStick, RobotMap.verticalClimbDownButtonNumber); //change to operatorStick when we have both joystick
-  beltcroShooterButton = new JoystickButton(operatorStick, RobotMap.beltcroShooterButtonNumber); //change to operatorStick when we have both joystick
-  intakeOverrideButton = new JoystickButton(operatorStick, RobotMap.intakeOverrideButtonNumber);
   //limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
-  slidingClimbButton = new JoystickButton(driverStick, RobotMap.slidingClimbButtonNumber);
-  slidingClimbReverseButton = new JoystickButton(driverStick, RobotMap.slidingClimbReverseButtonNumber);
-  slidingTraversalDownButton = new JoystickButton(driverStick, RobotMap.slidingTraversalDownButtonNumber);
-  climbLockButton = new JoystickButton(operatorStick, RobotMap.climbLockButtonNumber);
-  beltcroReverseButton = new JoystickButton(operatorStick, RobotMap.beltcroReverseButtonNumber);
-  ballShooterButton = new JoystickButton(operatorStick, RobotMap.ballShooterButtonNumber);
-  highGoalShooterButton = new JoystickButton(operatorStick, RobotMap.highGoalShooterButtonNumber);
+
 
   slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
   slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);
@@ -100,23 +84,6 @@ public class OI {
   turnRight90Button.whenPressed(new Turn90DegreesCommand());
   turnLeft180Button.whenPressed(new Turn90DegreesCommand());
   turnRight180Button.whenPressed(new Turn90DegreesCommand());
-  intakeStopButton.whenPressed(new IntakeStopCommand());
-  beltcroShooterButton.whenPressed(new BeltcroShooterCommand());
-  slidingClimbButton.whenPressed(new SlidingClimbHooksCommand());
-  slidingClimbReverseButton.whenPressed(new SlidingClimbHooksCommand());
-  slidingTraversalDownButton.whenPressed(new SlidingClimbHooksCommand(3));
-  manualSlidingClimbButton.whenPressed(new SlidingClimbManualControlCommand());
-  verticalClimbUpButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
-  verticalClimbDownButton.whenPressed(new VerticalClimbMotionMagicUpCommand());
-  climbLockButton.whenPressed(new VerticalClimbCommand());
-  beltcroReverseButton.whenPressed(new BeltcroShooterCommand());
-  ballShooterButton.whenPressed(new BallShooterCommand(0, 0));
-  highGoalShooterButton.whenPressed(new BallShooterCommand(2, 1));
-  intakeOverrideButton.whenPressed(new IntakeOverrideCommand());
-
-  slidingShortClimbButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));
-  slidingShortClimbReverseButton.whenPressed(new SlidingClimbHooksCommand(RobotMap.slidingShortClimbDistance));
-
 
   }
   

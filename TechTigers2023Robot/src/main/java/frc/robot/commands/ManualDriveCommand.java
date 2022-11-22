@@ -82,6 +82,8 @@ public class ManualDriveCommand extends CommandBase {
       backDriveCount = 0;
     }
 
+    //tippy logic
+    /*
     if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchReverseDegree) || isBackDriveStarted == true)
         && SlidingClimbHooksCommand.climbNumber < 1) {
       joystickY = -0.5; // positive joystickY means forward
@@ -96,8 +98,8 @@ public class ManualDriveCommand extends CommandBase {
       else {
         RobotContainer.drive.setPercentOutput(0);// after back for 0.7 s , stop running up to 2 seconds
       }
-
-    } else {
+*/
+    else {
 
       // System.out.println("X=" + joystickX + "Y=" + joystickY);
       RobotContainer.drive.setArcade(joystickX, joystickY, driveStraightFlag);

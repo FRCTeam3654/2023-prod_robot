@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.RobotOdometry;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.BallShooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,11 +26,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 public class RobotContainer {
   // The robot's subsystems
   public static Drive drive;
-  public static Intake intake;
-  public static Beltcro beltcro;
-  public static BallShooter ballShooter;
-  public static VerticalClimbArms verticalClimbArms;
-  public static SlidingClimbHooks slidingClimbHooks;
   public static OI oi;
 
   private RobotOdometry odometry;
@@ -46,11 +40,6 @@ public class RobotContainer {
 
     // VERY IMPORTANT:   drive need be created before oi since oi creates Turn90DegreesCommand object in which need drive object
     drive = new Drive();
-    beltcro = new Beltcro();
-    intake = new Intake();
-    verticalClimbArms = new VerticalClimbArms();
-    slidingClimbHooks = new SlidingClimbHooks();
-    ballShooter = new BallShooter();
     oi = new OI();  // need be after drive object
     //always keep OI last
 
@@ -62,24 +51,21 @@ public class RobotContainer {
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
     drive.setDefaultCommand(new ManualDriveCommand());
-    intake.setDefaultCommand(new IntakeCommand());
-    verticalClimbArms.setDefaultCommand(new VerticalClimbCommand());
 
     CameraServer.startAutomaticCapture(0);
 
-    autoChooser.addOption("Auto (Shot and Move)", new NewCommandGroup(odometry, drive));
+    //autoChooser.addOption("Auto (Shot and Move)", new NewCommandGroup(odometry, drive));
         
     //autoChooser.addOption("Galactic Search (A)", new RunGalacticSearchA(odometry, drive));
     //autoChooser.addOption("Galactic Search (B)", new RunGalacticSearchB(odometry, drive));
     
 
-  
     autoChooser.addOption("1 High Goal", new AutonomousACommand(odometry, drive));
-    autoChooser.addOption("2 Ball C", new AutonomousCCommand(odometry, drive));
-    autoChooser.addOption("2 Ball B", new AutonomousBCommand(odometry, drive));
+    //autoChooser.addOption("2 Ball C", new AutonomousCCommand(odometry, drive));
+    //autoChooser.addOption("2 Ball B", new AutonomousBCommand(odometry, drive));
     //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
-    autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
+    //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
     
     SmartDashboard.putData("Auto Mode", autoChooser);
 
