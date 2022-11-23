@@ -62,7 +62,7 @@ public class OI {
 
   turboButton = new JoystickButton(driverStick, RobotMap.turboButtonNumber);
   driveStraightButton = new JoystickButton(driverStick, RobotMap.driveStraightButtonNumber);
-  turnLeft90Button = new JoystickButton(driverStick, RobotMap.turnLeft90ButtonNumber);
+  //turnLeft90Button = new JoystickButton(driverStick, RobotMap.turnLeft90ButtonNumber);
   turnRight90Button = new JoystickButton(driverStick, RobotMap.turnRight90ButtonNumber);
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
@@ -73,7 +73,7 @@ public class OI {
   //limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
 
 
-  slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
+  //slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
   slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);
 
   emmasPneumaticsButton = new JoystickButton(driverStick, RobotMap.emmasPneumaticsButtonNumber);

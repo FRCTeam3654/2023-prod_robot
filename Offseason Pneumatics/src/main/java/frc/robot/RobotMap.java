@@ -58,7 +58,7 @@ public static int operatorJoystickPort = 1;
 //DRIVE STICK
 public static int turboButtonNumber = 1;
 public static int driveStraightButtonNumber = 2;
-public static int turnLeft90ButtonNumber = 3; 
+//public static int turnLeft90ButtonNumber = 3; 
 public static int turnRight90ButtonNumber = 4; 
 public static int turnLeft180ButtonNumber = 5; 
 public static int turnRight180ButtonNumber = 6;
@@ -78,10 +78,10 @@ public static int climbLockButtonNumber = 12;
 public static int beltcroReverseButtonNumber = 8;
 public static int intakeOverrideButtonNumber = 7;
 public static int ballShooterButtonNumber = 11;
-public static int emmasPneumaticsButtonNumber = 0;
+public static int emmasPneumaticsButtonNumber = 3;
 //public static int climbUnlockRightButtonNumber = 6;
 
-public static int slidingShortClimbButtonNumber = 3;  //??
+//public static int slidingShortClimbButtonNumber = 3;  //??
 public static int slidingShortClimbReverseButtonNumber = 5;  //??
 
 //public static int colorSensorButtonNumber = 10; 
