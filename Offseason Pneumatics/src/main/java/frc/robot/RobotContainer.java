@@ -8,13 +8,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller;
 import frc.robot.subsystems.RobotOdometry;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.PneumaticsTesting;
+//import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.CameraServer;
 
 /**
@@ -32,9 +34,12 @@ public class RobotContainer {
   private RobotOdometry odometry;
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
+  private final SendableChooser<Command> autoChooser1 = new SendableChooser<Command>();
 
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  //XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  PS4Controller p_driverController = new PS4Controller(OIConstants.kDriverControllerPort);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -52,7 +57,7 @@ public class RobotContainer {
     drive.resetHeading();
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
-    drive.setDefaultCommand(new ManualDriveCommand());
+    drive.setDefaultCommand(new ManualDriveRCommand());
 
     CameraServer.startAutomaticCapture(0);
 
@@ -68,8 +73,13 @@ public class RobotContainer {
     //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
+
+    autoChooser1.setDefaultOption("Right Joysitck Only", new ManualDriveRCommand());
+    autoChooser1.addOption("Right Y Left X Joystick", new ManualDriveLRCommand());
+    autoChooser1.addOption("Left Joystick Only", new ManualDriveLCommand());
     
     SmartDashboard.putData("Auto Mode", autoChooser);
+    SmartDashboard.putData("Drive Control", autoChooser1);
 
   }
 

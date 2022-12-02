@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 
 
+
 public class PneumaticsTesting extends SubsystemBase {
   private Compressor emmasCompressor = new Compressor (0, PneumaticsModuleType.CTREPCM);
   private DoubleSolenoid emmasSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0,1);

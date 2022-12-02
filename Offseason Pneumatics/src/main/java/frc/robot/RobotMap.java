@@ -52,36 +52,31 @@ public static double nonTurboMultiplierForward = 0.5; //.32, .40
 public static boolean driveClosedLoopMode = true;
 
 //BUTTON/PORT NUMBERS!
-public static int driverJoystickPort = 0;
+public static int driverControllerPort = 0;
 public static int operatorJoystickPort = 1;
 
 //DRIVE STICK
-public static int turboButtonNumber = 1;
-public static int driveStraightButtonNumber = 2;
-//public static int turnLeft90ButtonNumber = 3; 
-public static int turnRight90ButtonNumber = 4; 
-public static int turnLeft180ButtonNumber = 5; 
-public static int turnRight180ButtonNumber = 6;
-public static int slidingClimbButtonNumber = 8;
-public static int slidingClimbReverseButtonNumber = 11;  
-public static int slidingTraversalDownButtonNumber = 9;
+public static int turboButtonNumber = 5;
+public static int driveStraightButtonNumber = 4;
+public static int turnLeft90ButtonNumber = 6; 
+public static int turnRight90ButtonNumber = 7; 
+public static int turnLeft180ButtonNumber = 8; 
+public static int turnRight180ButtonNumber = 9;
+public static int emmasPneumaticsButtonNumber = 0;
 
 //public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 
 //OPERATOR STICK
-public static int intakeStopButtonNumber = 9;
-public static int manualSlidingClimbButtonNumber = 7;
 public static int verticalClimbUpButtonNumber = 4;
 public static int verticalClimbDownButtonNumber = 6;
 public static int climbLockButtonNumber = 12;
 public static int beltcroReverseButtonNumber = 8;
 public static int intakeOverrideButtonNumber = 7;
 public static int ballShooterButtonNumber = 11;
-public static int emmasPneumaticsButtonNumber = 3;
 //public static int climbUnlockRightButtonNumber = 6;
 
-//public static int slidingShortClimbButtonNumber = 3;  //??
+public static int slidingShortClimbButtonNumber = 3;  //??
 public static int slidingShortClimbReverseButtonNumber = 5;  //??
 
 //public static int colorSensorButtonNumber = 10; 

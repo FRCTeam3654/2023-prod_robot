@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+//NOT PROGRAMMEDD CORRECTLY RN (12/1/22)
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,7 +14,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
 
-public class ManualDriveCommand extends CommandBase {
+public class ManualDriveLRCommand extends CommandBase {
   private boolean driveStraightFlag = false;
   private double driveStraightAngle = 0;
   private double initialPitch = 0;
@@ -22,7 +22,7 @@ public class ManualDriveCommand extends CommandBase {
   private double backDriveStartTime = 0;
   private int backDriveCount = 0;// continous backout count. if > 3 , stop backout
 
-  public ManualDriveCommand() {
+  public ManualDriveLRCommand() {
     // Use requires() here to declare subsystem dependencies
     addRequirements(RobotContainer.drive);
   }
@@ -38,20 +38,20 @@ public class ManualDriveCommand extends CommandBase {
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    double joystickX;
-    double joystickY;
+    double joystickRightX;
+    double joystickRightY;
     double[] yawPitchRollArray;
     yawPitchRollArray = new double[3];
-    joystickX = (RobotContainer.oi.driverStick.getX() * -1);
-    joystickY = (RobotContainer.oi.driverStick.getY() * -1);
-    joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
-    joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
+    joystickRightX = (RobotContainer.oi.driverStick.getRightX() * -1);
+    joystickRightY = (RobotContainer.oi.driverStick.getRightY() * -1);
+    joystickRightX = handleDeadband(joystickRightX, RobotMap.joystickDeadBand);
+    joystickRightY = handleDeadband(joystickRightY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
 
     if (RobotContainer.oi.turboButton.get()) {
     } else {
-      joystickX = joystickX * RobotMap.nonTurboMultiplierTurn;
-      joystickY = joystickY * RobotMap.nonTurboMultiplierForward;
+      joystickRightX = joystickRightX * RobotMap.nonTurboMultiplierTurn;
+      joystickRightY = joystickRightY * RobotMap.nonTurboMultiplierForward;
     }
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
@@ -64,7 +64,7 @@ public class ManualDriveCommand extends CommandBase {
         driveStraightFlag = true;
       }
       double vinniesError = driveStraightAngle - yawPitchRollArray[0];
-      joystickX = vinniesError * RobotMap.driveStraightProportion;
+      joystickRightX = vinniesError * RobotMap.driveStraightProportion;
     }
 
     else {
@@ -102,11 +102,11 @@ public class ManualDriveCommand extends CommandBase {
     else {
 
       // System.out.println("X=" + joystickX + "Y=" + joystickY);
-      RobotContainer.drive.setArcade(joystickX, joystickY, driveStraightFlag);
+      RobotContainer.drive.setArcade(joystickRightX, joystickRightY, driveStraightFlag);
 
       // Dashboard features for Joystick x and y values and right and left encoders
-      SmartDashboard.putNumber("Joystick X: ", joystickX);
-      SmartDashboard.putNumber("Joystick Y: ", joystickY);
+      SmartDashboard.putNumber("Joystick X: ", joystickRightX);
+      SmartDashboard.putNumber("Joystick Y: ", joystickRightY);
       SmartDashboard.putNumber("Left Encoder", RobotContainer.drive.leftFrontTalon.getSelectedSensorVelocity());
       SmartDashboard.putNumber("Right Encoder", RobotContainer.drive.rightFrontTalon.getSelectedSensorVelocity());
       SmartDashboard.putNumber("Yaw: ", yawPitchRollArray[0]);
