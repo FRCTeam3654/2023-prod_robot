@@ -7,15 +7,8 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Turn90DegreesCommand;
-import frc.robot.commands.EmmaPneumaticsCommand;
-import frc.robot.commands.ManualDriveRCommand;
-import frc.robot.commands.ManualDriveLRCommand;
-
-//import edu.wpi.first.wpilibj.PS4Controller.Button;
-
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -30,9 +23,8 @@ public class OI {
   //// joystick.
   // You create one by telling it which joystick it's on and which button
   // number it is.
-  //public Joystick driverStick = new Joystick(RobotMap.driverJoystickPort);
+  public Joystick driverStick = new Joystick(RobotMap.driverJoystickPort);
   public Joystick operatorStick = new Joystick(RobotMap.operatorJoystickPort);
-  public PS4Controller driverStick = new PS4Controller(RobotMap.driverControllerPort);
   public JoystickButton turboButton;
   public JoystickButton driveStraightButton;
   public JoystickButton turnLeft90Button;
@@ -62,28 +54,27 @@ public class OI {
   public JoystickButton intakeOverrideButton;
   public JoystickButton ballShooterButton;
   public JoystickButton highGoalShooterButton;
-  public JoystickButton emmasPneumaticsButton;
-  
   //public JoystickButton turretButton;
 
   public OI(){
 
   turboButton = new JoystickButton(driverStick, RobotMap.turboButtonNumber);
   driveStraightButton = new JoystickButton(driverStick, RobotMap.driveStraightButtonNumber);
-  //turnLeft90Button = new JoystickButton(driverStick, RobotMap.turnLeft90ButtonNumber);
+  turnLeft90Button = new JoystickButton(driverStick, RobotMap.turnLeft90ButtonNumber);
   turnRight90Button = new JoystickButton(driverStick, RobotMap.turnRight90ButtonNumber);
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
+  intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
+  manualSlidingClimbButton = new JoystickButton(driverStick, RobotMap.manualSlidingClimbButtonNumber);
   verticalClimbUpButton = new JoystickButton(operatorStick, RobotMap.verticalClimbUpButtonNumber);
   verticalClimbDownButton = new JoystickButton(operatorStick, RobotMap.verticalClimbDownButtonNumber); //change to operatorStick when we have both joystick
   //limeLightButton = new JoystickButton(driverStick, RobotMap.limeLightButtonNumber);
 
 
-  //slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
+  slidingShortClimbButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbButtonNumber);
   slidingShortClimbReverseButton = new JoystickButton(operatorStick, RobotMap.slidingShortClimbReverseButtonNumber);
 
-  emmasPneumaticsButton = new JoystickButton(driverStick, RobotMap.emmasPneumaticsButtonNumber);
-  //emmasPneumaticsButton = new PS4ControllerButton(driverStick, RobotMap.emmasPneumaticsButtonNumber);
+  //climbLockRightButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
   //climbLockLeftButton = new JoystickButton(operatorStick, RobotMap.climbLockRightButtonNumber);
   //climbUnlockLeftButton = new JoystickButton(operatorStick, RobotMap.climbUnlockLeftButtonNumber);
   //climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
@@ -93,7 +84,6 @@ public class OI {
   turnRight90Button.whenPressed(new Turn90DegreesCommand());
   turnLeft180Button.whenPressed(new Turn90DegreesCommand());
   turnRight180Button.whenPressed(new Turn90DegreesCommand());
-  emmasPneumaticsButton.whenPressed(new EmmaPneumaticsCommand());
 
   }
   
