@@ -78,7 +78,7 @@ public class DriveTargetCommand extends CommandBase {
     if(startTimeLimelight + RobotMap.limeLightTimeout < Timer.getFPGATimestamp()) {   // to much time to turn to target
       return true;
     }
-    if(RobotContainer.oi.turboButton.get()){ // pressing Turbo breaks this mode
+    if(RobotContainer.oi.turboButton.getAsBoolean()){ // pressing Turbo breaks this mode
       return true;
     } 
   return false;
