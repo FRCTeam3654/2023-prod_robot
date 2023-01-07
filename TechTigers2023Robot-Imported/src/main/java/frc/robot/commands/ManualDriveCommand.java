@@ -48,7 +48,7 @@ public class ManualDriveCommand extends CommandBase {
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
 
-    if (RobotContainer.oi.turboButton.get()) {
+    if (RobotContainer.oi.turboButton.getAsBoolean()) {
     } else {
       joystickX = joystickX * RobotMap.nonTurboMultiplierTurn;
       joystickY = joystickY * RobotMap.nonTurboMultiplierForward;
@@ -57,7 +57,7 @@ public class ManualDriveCommand extends CommandBase {
 
     SmartDashboard.putNumber("Pitch", yawPitchRollArray[1]);
 
-    if (RobotContainer.oi.driveStraightButton.get()) {
+    if (RobotContainer.oi.driveStraightButton.getAsBoolean()) {
       // joystickX = 0;
       if (!driveStraightFlag) {
         driveStraightAngle = yawPitchRollArray[0];

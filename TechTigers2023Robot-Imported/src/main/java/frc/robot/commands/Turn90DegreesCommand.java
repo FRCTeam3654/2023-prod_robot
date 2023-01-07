@@ -42,16 +42,16 @@ public class Turn90DegreesCommand extends CommandBase {
     yawPitchRollArray = new double [3];
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
       if (!turn90Flag){
-        if (RobotContainer.oi.turnLeft180Button.get()){
+        if (RobotContainer.oi.turnLeft180Button.getAsBoolean()){
           desiredTurnAngle = 180;
         }
-        if (RobotContainer.oi.turnRight180Button.get()){
+        if (RobotContainer.oi.turnRight180Button.getAsBoolean()){
           desiredTurnAngle = -188;
         }
-        if (RobotContainer.oi.turnLeft90Button.get()){
+        if (RobotContainer.oi.turnLeft90Button.getAsBoolean()){
           desiredTurnAngle = 90;
         }
-        if (RobotContainer.oi.turnRight90Button.get()){
+        if (RobotContainer.oi.turnRight90Button.getAsBoolean()){
           desiredTurnAngle = -98;
         }
         turnEndpointAngle = yawPitchRollArray[0] + desiredTurnAngle;
@@ -96,7 +96,7 @@ public class Turn90DegreesCommand extends CommandBase {
       turn90Flag = false;
       return true;
     }
-    if(RobotContainer.oi.turboButton.get()){   // Pressing Turbo buttion stops turning
+    if(RobotContainer.oi.turboButton.getAsBoolean()){   // Pressing Turbo buttion stops turning
       turn90Flag = false;
       return true;
     }

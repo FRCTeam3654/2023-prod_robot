@@ -80,10 +80,10 @@ public class OI {
   //climbUnlockRightButton = new JoystickButton(operatorStick, RobotMap.climbUnlockRightButtonNumber);
   //turretButton = new JoystickButton(operatorStick, RobotMap.turretButtonNumber);
 
-  turnLeft90Button.whenPressed(new Turn90DegreesCommand());
-  turnRight90Button.whenPressed(new Turn90DegreesCommand());
-  turnLeft180Button.whenPressed(new Turn90DegreesCommand());
-  turnRight180Button.whenPressed(new Turn90DegreesCommand());
+  turnLeft90Button.onTrue(new Turn90DegreesCommand());
+  turnRight90Button.onTrue(new Turn90DegreesCommand());
+  turnLeft180Button.onTrue(new Turn90DegreesCommand());
+  turnRight180Button.onTrue(new Turn90DegreesCommand());
 
   }
   

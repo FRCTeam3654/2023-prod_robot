@@ -37,7 +37,8 @@ public class RobotOdometry extends SubsystemBase {
   public RobotOdometry(Drive driveTrain, PigeonIMU pigeon) {
     this.driveTrain = driveTrain;
     this.pigeon = pigeon;
-    driveOdometry = new DifferentialDriveOdometry(getCurrentRotation());
+    //driveOdometry = new DifferentialDriveOdometry(getCurrentRotation());
+    driveOdometry = new DifferentialDriveOdometry(getCurrentRotation(), baseLeftDistance, baseRightDistance);
     resetBaseDistances();
   }
 
@@ -111,7 +112,8 @@ public Rotation2d getHeading() {
    * @param position The position (both translation and rotation)
    */
   public void setPosition(Pose2d position) {
-    driveOdometry.resetPosition(position, getCurrentRotation());
+    //driveOdometry.resetPosition(position, getCurrentRotation());
+    driveOdometry.resetPosition(getCurrentRotation(), baseLeftDistance, baseRightDistance, position);
     resetBaseDistances();
   }
 
