@@ -48,8 +48,10 @@ public class RobotOdometry extends SubsystemBase {
   }
 
   private Pose2d updateOdometry() {
-    Pose2d pose = driveOdometry.update(getCurrentRotation(), driveTrain.getDistanceLeft() - baseLeftDistance,
-        driveTrain.getDistanceRight() - baseRightDistance);
+    // ?? need double check if need substract baseLeftDistance ?
+   // Pose2d pose = driveOdometry.update(getCurrentRotation(), driveTrain.getDistanceLeft() - baseLeftDistance,
+   //     driveTrain.getDistanceRight() - baseRightDistance);
+   Pose2d pose = driveOdometry.update(getCurrentRotation(), driveTrain.getDistanceLeft() , driveTrain.getDistanceRight() );
     Translation2d translation = pose.getTranslation();
     xData.addDataPoint(translation.getX());
     yData.addDataPoint(translation.getY());
@@ -113,7 +115,11 @@ public Rotation2d getHeading() {
    */
   public void setPosition(Pose2d position) {
     //driveOdometry.resetPosition(position, getCurrentRotation());
-    driveOdometry.resetPosition(getCurrentRotation(), baseLeftDistance, baseRightDistance, position);
+    //?? double check if left and right distance should get from position or from drivertrain
+    //?? driveOdometry.resetPosition(getCurrentRotation(),  position.getTranslation().getX() ,  position.getTranslation().getY() , driveTrain.getDistanceLeft() , position);
+ 
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+   
     resetBaseDistances();
   }
 
@@ -147,9 +153,9 @@ public Rotation2d getHeading() {
     // the provided position
     xData.addCorrectedData(x, timestamp);
     yData.addCorrectedData(y, timestamp);
-    driveOdometry.resetPosition(
-        new Pose2d(xData.getCurrentPoint(), yData.getCurrentPoint(), getCurrentPose().getRotation()),
-        getCurrentRotation());
+    //driveOdometry.resetPosition( new Pose2d(xData.getCurrentPoint(), yData.getCurrentPoint(), getCurrentPose().getRotation()), getCurrentRotation());
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
     resetBaseDistances();
   }
 
@@ -164,9 +170,13 @@ public Rotation2d getHeading() {
   public void setX(double x, double timestamp) {
     updateOdometry();
     xData.addCorrectedData(x, timestamp);
-    driveOdometry.resetPosition(
-        new Pose2d(xData.getCurrentPoint(), getCurrentPose().getTranslation().getY(), getCurrentPose().getRotation()),
-        getCurrentRotation());
+    //driveOdometry.resetPosition(
+    //    new Pose2d(xData.getCurrentPoint(), getCurrentPose().getTranslation().getY(), getCurrentPose().getRotation()),
+    //    getCurrentRotation());
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    
+
     resetBaseDistances();
   }
 
@@ -181,9 +191,13 @@ public Rotation2d getHeading() {
   public void setY(double y, double timestamp) {
     updateOdometry();
     yData.addCorrectedData(y, timestamp);
-    driveOdometry.resetPosition(
-        new Pose2d(getCurrentPose().getTranslation().getX(), yData.getCurrentPoint(), getCurrentPose().getRotation()),
-        getCurrentRotation());
+    //driveOdometry.resetPosition(
+    //    new Pose2d(getCurrentPose().getTranslation().getX(), yData.getCurrentPoint(), getCurrentPose().getRotation()),
+    //    getCurrentRotation());
+
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    
     resetBaseDistances();
   }
 
@@ -196,7 +210,10 @@ public Rotation2d getHeading() {
   public void setRotation(Rotation2d rotation) {
     updateOdometry();
     Translation2d currentTranslation = getCurrentPose().getTranslation();
-    driveOdometry.resetPosition(new Pose2d(currentTranslation, rotation), getCurrentRotation());
+    //driveOdometry.resetPosition(new Pose2d(currentTranslation, rotation), getCurrentRotation());
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    
     resetBaseDistances();
   }
 
@@ -204,11 +221,17 @@ public Rotation2d getHeading() {
 
 
   public void resetOdometry() {
-    driveOdometry.resetPosition(new Pose2d(), getHeading());
+   // driveOdometry.resetPosition(new Pose2d(), getHeading());
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    
   }
   public void resetOdometry(Pose2d pose) {
     driveTrain.resetEncoders();
-    driveOdometry.resetPosition(pose, getHeading());
+    //driveOdometry.resetPosition(pose, getHeading());
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    
   }
 
   //Resets the robot's position on the field.
