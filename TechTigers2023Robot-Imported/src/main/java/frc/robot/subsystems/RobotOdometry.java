@@ -23,6 +23,7 @@ public class RobotOdometry extends SubsystemBase {
   private LatencyData xData = new LatencyData(latencyDataPoints);
   private LatencyData yData = new LatencyData(latencyDataPoints);
 
+  // the following variables are no longer needed in new DifferentialDriveOdometry  in 2023
   private double baseLeftDistance;
   private double baseRightDistance;
 
@@ -38,7 +39,8 @@ public class RobotOdometry extends SubsystemBase {
     this.driveTrain = driveTrain;
     this.pigeon = pigeon;
     //driveOdometry = new DifferentialDriveOdometry(getCurrentRotation());
-    driveOdometry = new DifferentialDriveOdometry(getCurrentRotation(), baseLeftDistance, baseRightDistance);
+    // need use the current distance reading , not baseLeftDistance -- new DifferentialDriveOdometry force to track left/right distance, no need for baseLeftDistance
+    driveOdometry = new DifferentialDriveOdometry(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight());
     resetBaseDistances();
   }
 
@@ -77,6 +79,7 @@ public Rotation2d getHeading() {
 
 // https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/differential-drive-odometry.html?highlight=rotation2d#creating-the-odometry-object 
 //  As your robot turns to the left, your gyroscope angle should increase. By default, WPILib gyros exhibit the opposite behavior, so you should negate the gyro angle.
+  // it is same as driveTrain.getHeading()
   private Rotation2d getCurrentRotation() {
     return Rotation2d.fromDegrees(getYaw() );
   }
@@ -115,10 +118,8 @@ public Rotation2d getHeading() {
    */
   public void setPosition(Pose2d position) {
     //driveOdometry.resetPosition(position, getCurrentRotation());
-    //?? double check if left and right distance should get from position or from drivertrain
-    //?? driveOdometry.resetPosition(getCurrentRotation(),  position.getTranslation().getX() ,  position.getTranslation().getY() , driveTrain.getDistanceLeft() , position);
- 
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), position );
    
     resetBaseDistances();
   }
@@ -154,8 +155,8 @@ public Rotation2d getHeading() {
     xData.addCorrectedData(x, timestamp);
     yData.addCorrectedData(y, timestamp);
     //driveOdometry.resetPosition( new Pose2d(xData.getCurrentPoint(), yData.getCurrentPoint(), getCurrentPose().getRotation()), getCurrentRotation());
-
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), new Pose2d(xData.getCurrentPoint(), yData.getCurrentPoint(), getCurrentPose().getRotation())  );
+    
     resetBaseDistances();
   }
 
@@ -174,7 +175,7 @@ public Rotation2d getHeading() {
     //    new Pose2d(xData.getCurrentPoint(), getCurrentPose().getTranslation().getY(), getCurrentPose().getRotation()),
     //    getCurrentRotation());
 
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), new Pose2d(xData.getCurrentPoint(), getCurrentPose().getTranslation().getY(), getCurrentPose().getRotation()) );
     
 
     resetBaseDistances();
@@ -196,7 +197,7 @@ public Rotation2d getHeading() {
     //    getCurrentRotation());
 
 
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), new Pose2d(getCurrentPose().getTranslation().getX(), yData.getCurrentPoint(), getCurrentPose().getRotation()) );
     
     resetBaseDistances();
   }
@@ -212,7 +213,7 @@ public Rotation2d getHeading() {
     Translation2d currentTranslation = getCurrentPose().getTranslation();
     //driveOdometry.resetPosition(new Pose2d(currentTranslation, rotation), getCurrentRotation());
 
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), new Pose2d(currentTranslation, rotation) );
     
     resetBaseDistances();
   }
@@ -222,15 +223,15 @@ public Rotation2d getHeading() {
 
   public void resetOdometry() {
    // driveOdometry.resetPosition(new Pose2d(), getHeading());
-
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+   // note:  getHeading is the same as getCurrentRotation()
+    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), new Pose2d() );
     
   }
   public void resetOdometry(Pose2d pose) {
     driveTrain.resetEncoders();
     //driveOdometry.resetPosition(pose, getHeading());
 
-    driveOdometry.resetPosition(getCurrentRotation(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), getCurrentPose() );
+    driveOdometry.resetPosition(getHeading(), driveTrain.getDistanceLeft(), driveTrain.getDistanceRight(), pose );
     
   }
 
