@@ -70,8 +70,11 @@ public class RobotContainer {
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
     autoChooser.setDefaultOption("1 High Goal", new AutonomousACommand(odometry, drive));
+    driveChooser.setDefaultOption("Left Joystick Drive", new ManualDriveCommand());
+    driveChooser.addOption("Both Joystick Drive", new BothJoystickDriveCommand());
     
     SmartDashboard.putData("Auto Mode", autoChooser);
+    SmartDashboard.putData("Drive Mode", driveChooser);
 
   }
 
