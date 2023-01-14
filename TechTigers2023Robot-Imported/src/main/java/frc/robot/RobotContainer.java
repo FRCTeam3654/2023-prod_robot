@@ -32,6 +32,7 @@ public class RobotContainer {
   private RobotOdometry odometry;
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
+  private final SendableChooser<Command> driveChooser = new SendableChooser<>();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -68,6 +69,9 @@ public class RobotContainer {
     //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
+    
+    driveChooser.setDefaultOption("Left Joystick Drive", new ManualDriveCommand());
+    driveChooser.addOption("Both Joysticks Control", new BothJoystickDriveCommand());
     
     SmartDashboard.putData("Auto Mode", autoChooser);
 
