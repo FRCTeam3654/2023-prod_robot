@@ -32,7 +32,7 @@ public class RobotContainer {
   private RobotOdometry odometry;
 
   private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
-  private final SendableChooser<Command> driveChooser = new SendableChooser<>();
+  private final SendableChooser<Command> driveChooser = new SendableChooser<Command>();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
