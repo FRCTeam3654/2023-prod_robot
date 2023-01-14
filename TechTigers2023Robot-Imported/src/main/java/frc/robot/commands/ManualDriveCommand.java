@@ -56,6 +56,9 @@ public class ManualDriveCommand extends CommandBase {
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
     SmartDashboard.putNumber("Pitch", yawPitchRollArray[1]);
+    //System.out.println("Joystick X ="+ joystickX);
+    //System.out.println("Joystick Y ="+ joystickY);
+
 
     if (RobotContainer.oi.driveStraightButton.getAsBoolean()) {
       // joystickX = 0;
@@ -78,9 +81,11 @@ public class ManualDriveCommand extends CommandBase {
     }
 
     // reset backout count if the robot is not tipped
-    if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
+    /*if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
       backDriveCount = 0;
+      System.out.println("isitstuck");
     }
+    */
 
     //tippy logic
     /*
@@ -99,9 +104,9 @@ public class ManualDriveCommand extends CommandBase {
         RobotContainer.drive.setPercentOutput(0);// after back for 0.7 s , stop running up to 2 seconds
       }
 */
-    else {
+   // else {
 
-      // System.out.println("X=" + joystickX + "Y=" + joystickY);
+      System.out.println("X=" + joystickX + "Y=" + joystickY);
       RobotContainer.drive.setArcade(joystickX, joystickY, driveStraightFlag);
 
       // Dashboard features for Joystick x and y values and right and left encoders
@@ -111,7 +116,7 @@ public class ManualDriveCommand extends CommandBase {
       SmartDashboard.putNumber("Right Encoder", RobotContainer.drive.rightFrontTalon.getSelectedSensorVelocity());
       SmartDashboard.putNumber("Yaw: ", yawPitchRollArray[0]);
     }
-  }
+ // }
 
   // Deadband makes the center of the joystick have leeway on absolute 0
   public double handleDeadband(double val, double deadband) {
