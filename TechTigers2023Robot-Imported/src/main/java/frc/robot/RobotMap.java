@@ -52,8 +52,8 @@ public static double nonTurboMultiplierForward = 0.5; //.32, .40
 public static boolean driveClosedLoopMode = true;
 
 //BUTTON/PORT NUMBERS!
-public static int driverJoystickPort = 0;
-public static int operatorJoystickPort = 1;
+public static int driverControllerPort = 0;
+public static int operatorControllerPort = 1;
 
 //DRIVE STICK
 public static int turboButtonNumber = 1;
