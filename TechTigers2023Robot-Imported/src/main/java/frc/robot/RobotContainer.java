@@ -53,7 +53,7 @@ public class RobotContainer {
     drive.resetHeading();
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
-    //drive.setDefaultCommand(new ManualDriveCommand());
+    drive.setDefaultCommand(new ManualDriveCommand());
 
     CameraServer.startAutomaticCapture(0);
 
@@ -90,6 +90,10 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
+  }
+
+  public Command getDriveModeCommand(){
+    return driveChooser.getSelected();
   }
 
 }
