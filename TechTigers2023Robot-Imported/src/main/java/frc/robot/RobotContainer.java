@@ -69,6 +69,7 @@ public class RobotContainer {
     //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
+    autoChooser.setDefaultOption("1 High Goal", new AutonomousACommand(odometry, drive));
     
     SmartDashboard.putData("Auto Mode", autoChooser);
 
