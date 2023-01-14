@@ -42,8 +42,8 @@ public class ManualDriveCommand extends CommandBase {
     double joystickY;
     double[] yawPitchRollArray;
     yawPitchRollArray = new double[3];
-    joystickX = (RobotContainer.oi.driverStick.getX() * -1);
-    joystickY = (RobotContainer.oi.driverStick.getY() * -1);
+    joystickX = (RobotContainer.oi.driverStick.getLeftX() * -1);
+    joystickY = (RobotContainer.oi.driverStick.getLeftY() * -1);
     joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
