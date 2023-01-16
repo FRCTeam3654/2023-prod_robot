@@ -93,9 +93,8 @@ public class Robot extends TimedRobot {
     RobotContainer.drive.configureDrive(); //to reset to correct drive PID settings for teleop
     m_driveChooserCommand = m_robotContainer.getDriveModeCommand();
 
-    if (m_driveChooserCommand != null) {
-      m_driveChooserCommand.schedule();
-    }
+    m_driveChooserCommand.schedule();
+    
 
   }
 

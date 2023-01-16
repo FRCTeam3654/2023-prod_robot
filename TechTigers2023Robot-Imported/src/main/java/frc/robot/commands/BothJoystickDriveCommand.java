@@ -59,6 +59,8 @@ public class BothJoystickDriveCommand extends CommandBase {
    // } else {
       joystickLeftX = joystickLeftX * RobotMap.nonTurboMultiplierTurn;
       joystickRightY = joystickRightY * RobotMap.nonTurboMultiplierForward;
+      joystickRightX = joystickRightX * RobotMap.nonTurboMultiplierTurn;
+      joystickLeftY = joystickLeftY * RobotMap.nonTurboMultiplierForward;
    // }
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
@@ -116,7 +118,7 @@ public class BothJoystickDriveCommand extends CommandBase {
    // else {
 
       //System.out.println("X=" + joystickLeftX + "Y=" + joystickLeftY);
-      RobotContainer.drive.setArcade(joystickLeftX, joystickRightY);
+      RobotContainer.drive.setArcade(joystickRightX, joystickLeftY);
 
       // Dashboard features for Joystick x and y values and right and left encoders
       SmartDashboard.putNumber("Joystick Left X: ", joystickLeftX);
