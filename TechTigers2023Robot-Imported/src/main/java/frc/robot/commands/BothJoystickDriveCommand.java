@@ -15,7 +15,7 @@ import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
 
 public class BothJoystickDriveCommand extends CommandBase {
-  private boolean driveStraightFlag = false;
+  //private boolean driveStraightFlag = false;
   private double driveStraightAngle = 0;
   private double initialPitch = 0;
   private boolean isBackDriveStarted = false;
@@ -55,11 +55,11 @@ public class BothJoystickDriveCommand extends CommandBase {
     joystickRightY = handleDeadband(joystickRightY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
 
-    if (RobotContainer.oi.turboButton.getAsBoolean()) {
-    } else {
+    //if (RobotContainer.oi.turboButton.getAsBoolean()) {
+   // } else {
       joystickLeftX = joystickLeftX * RobotMap.nonTurboMultiplierTurn;
       joystickRightY = joystickRightY * RobotMap.nonTurboMultiplierForward;
-    }
+   // }
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
     SmartDashboard.putNumber("Pitch", yawPitchRollArray[1]);
