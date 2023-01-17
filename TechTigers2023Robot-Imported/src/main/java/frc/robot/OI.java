@@ -35,6 +35,7 @@ public class OI {
   public JoystickButton turnRight90Button; 
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
+  public JoystickButton turretDPad;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -88,7 +89,6 @@ public class OI {
   turnRight90Button.onTrue(new Turn90DegreesCommand());
   turnLeft180Button.onTrue(new Turn90DegreesCommand());
   turnRight180Button.onTrue(new Turn90DegreesCommand());
-
   }
   
 }
