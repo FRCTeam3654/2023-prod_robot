@@ -70,10 +70,11 @@ public static int turnRight180ButtonNumber = 1;
 
 
 //OPERATOR STICK
-//public static int intakeStopButtonNumber = 9;
-//public static int manualSlidingClimbButtonNumber = 7;
-//public static int verticalClimbUpButtonNumber = 4;
-//public static int verticalClimbDownButtonNumber = 6;
+public static int turretTurnRight90ButtonNumber = 2;
+public static int turretTurnLeft90ButtonNumber = 0;
+public static int turretTurnRight180ButtonNumber = 1;
+public static int turretTurnLeft180ButtonNumber = 3;
+public static int pneumaticGrabButtonNumber = 7;
 //public static int climbLockButtonNumber = 12;
 //public static int beltcroReverseButtonNumber = 8;
 //public static int intakeOverrideButtonNumber = 7;
@@ -95,7 +96,7 @@ public static int rightTalonMaster = 2;
 public static int leftTalonSlave = 3;
 public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
-public static int ballShooterTopID = 13;
+//public static int turretTalonID = 13;
 public static int ballShooterBottomID = 14;
 
 //public static int climbExtendTalonID = 10;
@@ -276,6 +277,7 @@ public static double verticalClimbDistance = 135000; //150000
 public static double verticalClimbTimerTimeout = 15;
 public static double slidingShortClimbDistance = 17000; // ?? slide  a short distance
 public static double slidingTravesalDownDistance = 182000;
+public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
 //for the drive
 public static double pitchReverseDegree = 8;

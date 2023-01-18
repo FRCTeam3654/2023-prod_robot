@@ -36,6 +36,11 @@ public class OI {
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
   public JoystickButton turretDPad;
+  public JoystickButton turretTurnRight90Button;
+  public JoystickButton turretTurnRight180Button;
+  public JoystickButton turretTurnLeft90Button;
+  public JoystickButton turretTurnLeft180Button;
+  public JoystickButton pneumaticGrabButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -63,12 +68,21 @@ public class OI {
 
   public OI(){
 
+    //Driver Stick
   turboButton = new JoystickButton(driverStick, RobotMap.turboButtonNumber);
   driveStraightButton = new JoystickButton(driverStick, RobotMap.driveStraightButtonNumber);
   turnLeft90Button = new JoystickButton(driverStick, RobotMap.turnLeft90ButtonNumber);
   turnRight90Button = new JoystickButton(driverStick, RobotMap.turnRight90ButtonNumber);
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
+
+  //Operator Stick
+  turretTurnRight90Button = new JoystickButton(operatorStick, RobotMap.turretTurnRight90ButtonNumber);
+  turretTurnLeft90Button = new JoystickButton(operatorStick, RobotMap.turretTurnLeft90ButtonNumber);
+  turretTurnLeft180Button = new JoystickButton(operatorStick, RobotMap.turretTurnLeft180ButtonNumber);
+  turretTurnRight180Button = new JoystickButton(operatorStick, RobotMap.turretTurnRight180ButtonNumber);
+  pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
+
   //intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
   //manualSlidingClimbButton = new JoystickButton(driverStick, RobotMap.manualSlidingClimbButtonNumber);
   //verticalClimbUpButton = new JoystickButton(operatorStick, RobotMap.verticalClimbUpButtonNumber);
@@ -89,6 +103,7 @@ public class OI {
   turnRight90Button.onTrue(new Turn90DegreesCommand());
   turnLeft180Button.onTrue(new Turn90DegreesCommand());
   turnRight180Button.onTrue(new Turn90DegreesCommand());
+  
   }
   
 }
