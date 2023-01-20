@@ -29,6 +29,9 @@ public class RobotContainer {
   public static Turret turret;
   public static PneumaticGrab pneumaticGrab;
   public static OI oi;
+  public static double initialPitch;
+  double[] yawPitchRollArray;
+
 
   private RobotOdometry odometry;
 
@@ -77,6 +80,11 @@ public class RobotContainer {
     
     SmartDashboard.putData("Auto Mode", autoChooser);
     SmartDashboard.putData("Drive Mode", driveChooser);
+
+    yawPitchRollArray = new double[3];
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    initialPitch = yawPitchRollArray[1];
+
 
   }
 
