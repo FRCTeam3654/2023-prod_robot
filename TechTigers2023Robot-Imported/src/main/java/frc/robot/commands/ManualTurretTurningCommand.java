@@ -8,10 +8,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
+import edu.wpi.first.wpilibj.Timer;
 
-public class TurretTurningCommand extends CommandBase {
+public class ManualTurretTurningCommand extends CommandBase {
   /** Creates a new TurretTurningCommand. */
-  public TurretTurningCommand() {
+  private int desiredTurnAngle = 0;
+  private boolean turn90Flag = false;
+  private double turnEndpointAngle = 0;//vinnies desired finish endpoint angle 
+  private double vinniesError = 2;//greater than 1 so it doesn't get triggered until the error is correct
+  private double startTime90degree = 0;
+
+  public ManualTurretTurningCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.turret);
 
@@ -27,8 +34,9 @@ public class TurretTurningCommand extends CommandBase {
   @Override
   public void execute() {
     RobotContainer.turret.turretTurning(RobotMap.turretTickAmount);
-
+  
   }
+  
 
   // Called once the command ends or is interrupted.
   @Override

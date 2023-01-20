@@ -56,37 +56,38 @@ public static int driverControllerPort = 0;
 public static int operatorControllerPort = 1;
 
 //DRIVE STICK
-public static int turboButtonNumber = 1;
-public static int driveStraightButtonNumber = 2;
-public static int turnLeft90ButtonNumber = 3; 
-public static int turnRight90ButtonNumber = 4; 
-public static int turnLeft180ButtonNumber = 5; 
-public static int turnRight180ButtonNumber = 6;
-public static int slidingClimbButtonNumber = 8;
-public static int slidingClimbReverseButtonNumber = 11;  
-public static int slidingTraversalDownButtonNumber = 9;
+public static int turboButtonNumber = 6;
+public static int driveStraightButtonNumber = 7;
+public static int turnLeft90ButtonNumber = 0; 
+public static int turnRight90ButtonNumber = 2; 
+public static int turnLeft180ButtonNumber = 3; 
+public static int turnRight180ButtonNumber = 1;
+//public static int slidingClimbButtonNumber = 8;
+//public static int slidingClimbReverseButtonNumber = 11;  
+//public static int slidingTraversalDownButtonNumber = 9;
 
 //public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
 
 
 //OPERATOR STICK
-public static int intakeStopButtonNumber = 9;
-public static int manualSlidingClimbButtonNumber = 7;
-public static int verticalClimbUpButtonNumber = 4;
-public static int verticalClimbDownButtonNumber = 6;
-public static int climbLockButtonNumber = 12;
-public static int beltcroReverseButtonNumber = 8;
-public static int intakeOverrideButtonNumber = 7;
-public static int ballShooterButtonNumber = 11;
-public static int highGoalShooterButtonNumber = 12;
+public static int turretTurnRight90ButtonNumber = 2;
+public static int turretTurnLeft90ButtonNumber = 0;
+public static int turretTurnRight180ButtonNumber = 1;
+public static int turretTurnLeft180ButtonNumber = 3;
+public static int pneumaticGrabButtonNumber = 7;
+public static int balanceButtonNumber = 8;
+//public static int beltcroReverseButtonNumber = 8;
+//public static int intakeOverrideButtonNumber = 7;
+//public static int ballShooterButtonNumber = 11;
+//public static int highGoalShooterButtonNumber = 12;
 //public static int climbUnlockRightButtonNumber = 6;
 
-public static int slidingShortClimbButtonNumber = 3;  //??
-public static int slidingShortClimbReverseButtonNumber = 5;  //??
+//public static int slidingShortClimbButtonNumber = 3;  //??
+//public static int slidingShortClimbReverseButtonNumber = 5;  //??
 
 //public static int colorSensorButtonNumber = 10; 
 //public static int pickUpButtonNumber = 1;
-public static int beltcroShooterButtonNumber = 10; 
+//public static int beltcroShooterButtonNumber = 10; 
 //public static int turretButtonNumber = 3;
 
 //TALONS/TALON ID NUMBERS!
@@ -95,17 +96,17 @@ public static int rightTalonMaster = 2;
 public static int leftTalonSlave = 3;
 public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
-public static int ballShooterTopID = 13;
+//public static int turretTalonID = 13;
 public static int ballShooterBottomID = 14;
 
 //public static int climbExtendTalonID = 10;
-public static int climbHookTalonLeftID = 11;
-public static int climbHookTalonRightID = 12;
-public static int IntakeTalonLeftID = 7;
-public static int IntakeTalonRightID = 5;
-public static int BeltcroTalonID = 6;
-public static int verticalClimbRightTalonID = 9;
-public static int verticalClimbLeftTalonID = 10;
+//public static int climbHookTalonLeftID = 11;
+//public static int climbHookTalonRightID = 12;
+//public static int IntakeTalonLeftID = 7;
+//public static int IntakeTalonRightID = 5;
+//public static int BeltcroTalonID = 6;
+//public static int verticalClimbRightTalonID = 9;
+//public static int verticalClimbLeftTalonID = 10;
 public static int turretTurningID = 17; //THIS IS JUST A PLACEHOLDER. REMEMBER TO CHANGE
 
 // Digital IO for the ballpickup sensor
@@ -276,9 +277,14 @@ public static double verticalClimbDistance = 135000; //150000
 public static double verticalClimbTimerTimeout = 15;
 public static double slidingShortClimbDistance = 17000; // ?? slide  a short distance
 public static double slidingTravesalDownDistance = 182000;
+public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
+
+public static double reverseTippySpeed = -0.5;
+public static double forwardTippySpeed = 0.5;
 
 //for the drive
-public static double pitchReverseDegree = 8;
+public static double pitchReverseDegree = 5;  //Change to PID during testing
+public static double pitchForwardDegree = 5;  //Change to PID during testing
 public static double turboMax = 0.8;
 
 }

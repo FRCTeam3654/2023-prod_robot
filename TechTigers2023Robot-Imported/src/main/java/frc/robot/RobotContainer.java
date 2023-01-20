@@ -27,7 +27,11 @@ public class RobotContainer {
   // The robot's subsystems
   public static Drive drive;
   public static Turret turret;
+  public static PneumaticGrab pneumaticGrab;
   public static OI oi;
+  public static double initialPitch;
+  double[] yawPitchRollArray;
+
 
   private RobotOdometry odometry;
 
@@ -43,6 +47,7 @@ public class RobotContainer {
     // VERY IMPORTANT:   drive need be created before oi since oi creates Turn90DegreesCommand object in which need drive object
     drive = new Drive();
     turret = new Turret();
+    pneumaticGrab = new PneumaticGrab();
     oi = new OI();  // need be after drive object
     //always keep OI last
 
@@ -75,6 +80,11 @@ public class RobotContainer {
     
     SmartDashboard.putData("Auto Mode", autoChooser);
     SmartDashboard.putData("Drive Mode", driveChooser);
+
+    yawPitchRollArray = new double[3];
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    initialPitch = yawPitchRollArray[1];
+
 
   }
 
