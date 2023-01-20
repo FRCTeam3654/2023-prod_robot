@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Turn90DegreesCommand;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.BalanceCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -41,6 +42,7 @@ public class OI {
   public JoystickButton turretTurnLeft90Button;
   public JoystickButton turretTurnLeft180Button;
   public JoystickButton pneumaticGrabButton;
+  public JoystickButton balanceButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -82,6 +84,7 @@ public class OI {
   turretTurnLeft180Button = new JoystickButton(operatorStick, RobotMap.turretTurnLeft180ButtonNumber);
   turretTurnRight180Button = new JoystickButton(operatorStick, RobotMap.turretTurnRight180ButtonNumber);
   pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
+  balanceButton = new JoystickButton(operatorStick, RobotMap.balanceButtonNumber);
 
   //intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
   //manualSlidingClimbButton = new JoystickButton(driverStick, RobotMap.manualSlidingClimbButtonNumber);
@@ -103,6 +106,7 @@ public class OI {
   turnRight90Button.onTrue(new Turn90DegreesCommand());
   turnLeft180Button.onTrue(new Turn90DegreesCommand());
   turnRight180Button.onTrue(new Turn90DegreesCommand());
+  balanceButton.onTrue(new BalanceCommand());
   
   }
   
