@@ -530,8 +530,8 @@ public void mercyArcadeDrive(double joystickX, double joystickY) {
 
 public void mercyArcadeDrive(double joystickX, double joystickY, double maxPower, boolean driveStraightFlag) {
 
-  System.out.println("JoystickX =" + joystickX);
-  System.out.println("JoystickY =" + joystickY);
+  //System.out.println("JoystickX =" + joystickX);
+  //System.out.println("JoystickY =" + joystickY);
 
 
     double radiusPower = Math.hypot(joystickX, joystickY);
@@ -562,8 +562,8 @@ public void mercyArcadeDrive(double joystickX, double joystickY, double maxPower
             //closed loop
             double targetVelocity_UnitsPer100ms_left = leftSpeed * 22000;
             double targetVelocity_UnitsPer100ms_right = rightSpeed * 22000;
-            System.out.println("leftSpeed =" + targetVelocity_UnitsPer100ms_left);
-            System.out.println("rightSpeed =" + targetVelocity_UnitsPer100ms_right);
+            //System.out.println("leftSpeed =" + targetVelocity_UnitsPer100ms_left);
+           // System.out.println("rightSpeed =" + targetVelocity_UnitsPer100ms_right);
 
             leftFrontTalon.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms_left);
           rightFrontTalon.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms_right);   

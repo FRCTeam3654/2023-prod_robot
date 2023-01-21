@@ -12,7 +12,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 //import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotContainer;
+import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.wpilibj.Timer;
+
+import java.util.List;
+
+import org.photonvision.PhotonCamera;
+import org.photonvision.targeting.PhotonTrackedTarget;
+import org.photonvision.targeting.TargetCorner;
 
 public class ManualDriveCommand extends CommandBase {
   private boolean driveStraightFlag = false;
@@ -21,6 +29,9 @@ public class ManualDriveCommand extends CommandBase {
   private boolean isBackDriveStarted = false;
   private double backDriveStartTime = 0;
   private int backDriveCount = 0;// continous backout count. if > 3 , stop backout
+  //private PhotonCamera camera = new PhotonCamera("photonvision");
+  private PhotonCamera camera = new PhotonCamera("LimeLight Internal");
+
 
   public ManualDriveCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -47,6 +58,33 @@ public class ManualDriveCommand extends CommandBase {
     joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
+    
+    if( camera != null) {
+      var result = camera.getLatestResult();
+      if(result != null) {
+        boolean hasTargets = result.hasTargets();
+        if(hasTargets == false) {
+          System.out.println("no target " );
+        }
+        else {
+         // System.out.println("hasTargest =  " + hasTargets);
+          //List<PhotonTrackedTarget> targets = result.getTargets();
+          PhotonTrackedTarget target = result.getBestTarget();
+          double yaw = target.getYaw();
+          double pitch = target.getPitch();
+          double area = target.getArea();
+          double skew = target.getSkew();
+          Transform3d pose = target.getBestCameraToTarget();
+          List<TargetCorner> corners = target.getDetectedCorners();
+         
+          int targetID = target.getFiducialId();
+          double poseAmbiguity = target.getPoseAmbiguity();
+          System.out.println("yaw = " + yaw + ", area"+ area + ", pitch = " + pitch + ", targetID =" + targetID);
+
+          
+        }
+      }
+  }
 
     if (RobotContainer.oi.turboButton.getAsBoolean()) {
     } else {
@@ -106,7 +144,7 @@ public class ManualDriveCommand extends CommandBase {
 */
    // else {
 
-      System.out.println("X=" + joystickX + "Y=" + joystickY);
+     // System.out.println("X=" + joystickX + "Y=" + joystickY);
       RobotContainer.drive.setArcade(joystickX, joystickY, driveStraightFlag);
 
       // Dashboard features for Joystick x and y values and right and left encoders
