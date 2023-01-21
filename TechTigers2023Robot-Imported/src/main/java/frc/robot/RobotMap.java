@@ -29,6 +29,8 @@ public static double turnDegreeProportion = 0.005;
 public static double LimelightJoeyX = -0.007;
 public static double turn90DegreeTimeout = 3;
 public static double limeLightTimeout = 2;
+public static double driveToAprilTagProportion = 0.005;//0.02
+
 //public static double ballStorageTimerAndysVision = 2;
 public static double autonomousVelocity = 0.5; 
 public static double leftOverRightCompensation = .98;
@@ -76,7 +78,7 @@ public static int turretTurnRight180ButtonNumber = 1;
 public static int turretTurnLeft180ButtonNumber = 3;
 public static int pneumaticGrabButtonNumber = 7;
 public static int balanceButtonNumber = 8;
-public static int limelightButtonNumber = 4;
+public static int limelightButtonNumber = 5;
 //public static int beltcroReverseButtonNumber = 8;
 //public static int intakeOverrideButtonNumber = 7;
 //public static int ballShooterButtonNumber = 11;

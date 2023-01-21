@@ -51,6 +51,7 @@ public class ManualDriveCommand extends CommandBase {
   public void execute() {
     double joystickX;
     double joystickY;
+    double yawFromAprilTag=0;
     double[] yawPitchRollArray;
     yawPitchRollArray = new double[3];
     joystickX = (RobotContainer.oi.driverStick.getLeftX() * -1);
@@ -59,9 +60,9 @@ public class ManualDriveCommand extends CommandBase {
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
     
-    if( camera != null) {
+    
       var result = camera.getLatestResult();
-      if(result != null) {
+    
         boolean hasTargets = result.hasTargets();
         if(hasTargets == false) {
           System.out.println("no target " );
@@ -79,12 +80,12 @@ public class ManualDriveCommand extends CommandBase {
          
           int targetID = target.getFiducialId();
           double poseAmbiguity = target.getPoseAmbiguity();
-          System.out.println("yaw = " + yaw + ", area"+ area + ", pitch = " + pitch + ", targetID =" + targetID);
-
+         // System.out.println("yaw = " + yaw + ", area"+ area + ", pitch = " + pitch + ", targetID =" + targetID);
+          yawFromAprilTag = yaw;
           
         }
-      }
-  }
+      
+  
 
     if (RobotContainer.oi.turboButton.getAsBoolean()) {
     } else {
@@ -107,9 +108,17 @@ public class ManualDriveCommand extends CommandBase {
       double vinniesError = driveStraightAngle - yawPitchRollArray[0];
       joystickX = vinniesError * RobotMap.driveStraightProportion;
     }
-
     else {
-      driveStraightFlag = false;
+      if  (RobotContainer.oi.limelightButton.getAsBoolean() && hasTargets == true)  {
+        // drive towards the april tag 
+        
+        joystickX = (-1) * yawFromAprilTag * RobotMap.driveToAprilTagProportion;
+        driveStraightFlag = false;
+        System.out.println("AprilTag Button is clicked ... joystickX  ="+joystickX +", yawFromAprilTag = "+yawFromAprilTag);
+      }
+      else {
+        driveStraightFlag = false;
+      }
     }
 
     if (backDriveStartTime + 0.7 < Timer.getFPGATimestamp()) {
@@ -117,7 +126,7 @@ public class ManualDriveCommand extends CommandBase {
       isBackDriveStarted = false;
      
     }
-
+    
     // reset backout count if the robot is not tipped
     /*if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
       backDriveCount = 0;
