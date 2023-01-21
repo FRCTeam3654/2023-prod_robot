@@ -128,6 +128,8 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
 
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    BalanceCommand.initialPitch = yawPitchRollArray[1];
     //get a reference to the subtable called "datatable"
     NetworkTable fmsInfo = inst.getTable("FMSInfo");
     isRedAlliance = fmsInfo.getEntry("IsRedAlliance");

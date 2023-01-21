@@ -14,11 +14,12 @@ public class BalanceCommand extends CommandBase {
   /** Creates a new BalanceCommand. */
   private boolean isBackDriveStarted = false;
   private boolean isForwardDriveStarted = false;
-  private double backDriveCount = 0;
+  //private double backDriveCount = 0;
   private double backDriveStartTime = 0;
-  private double forwardDriveCount = 0;
+  //private double forwardDriveCount = 0;
   private double forwardDriveStartTime = 0;
-  private static double initialPitch = 0;
+  public static double initialPitch = 0; //set once at beginning of auto
+  private boolean isAngleReached = false;
   private double reverseTippySpeed;
   private double forwardTippySpeed;
 
@@ -48,48 +49,52 @@ public class BalanceCommand extends CommandBase {
   public void execute() {
     double[] yawPitchRollArray;
     yawPitchRollArray = new double[3];
+    double angleDifference = yawPitchRollArray[1] - initialPitch;
+    if ((isAngleReached == false) && (Math.abs(angleDifference) > 10) ){
+      isAngleReached = true;
+    }
 
-IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
+    IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
       if (!IsButtonPressed) {
         WasButtonNotPressed=true;
       }
 
-//if tipped backward drive forward
-   // if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
-     // backDriveCount = 0;
-    //}
-//if tipped back drive forward
-    if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchForwardDegree) || isForwardDriveStarted == true)) {
-      forwardTippySpeed = RobotMap.forwardTippySpeed;  //need to change to a PID
-      if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) && (forwardDriveCount < 3) ) {
-        if (isForwardDriveStarted == false) {
-        isForwardDriveStarted = true;
-        forwardDriveCount = backDriveCount + 1;
-        forwardDriveStartTime = Timer.getFPGATimestamp();
-    }
-    RobotContainer.drive.setPercentOutput(forwardTippySpeed);
-  }
-  if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
-    backDriveCount = 0;
-  }
-else{ //if tipped forward drive backward
-  if ((((yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree) || isBackDriveStarted == true)) {
-    reverseTippySpeed = RobotMap.reverseTippySpeed; //need to change to a PID
-    if ((((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true) && (backDriveCount < 3) ) {
-      if (isBackDriveStarted == false) {
-      isBackDriveStarted = true;
-      backDriveCount = backDriveCount + 1;
-      backDriveStartTime = Timer.getFPGATimestamp();
-  }
-  RobotContainer.drive.setPercentOutput(reverseTippySpeed);
-}
-  else {
-    RobotContainer.drive.setPercentOutput(0);// after back for 0.7 s , stop running up to 2 seconds
-  }
-  }
-}
 
-}
+    //if tipped back drive forward
+    //assume that it is a positive angle
+    if (((angleDifference > RobotMap.balanceAngleTolerance) || isForwardDriveStarted == true)) {
+      forwardTippySpeed = RobotMap.forwardTippySpeed;  //need to change to a PID
+      if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) ) {
+        if (isForwardDriveStarted == false) {
+          isForwardDriveStarted = true;
+          //forwardDriveCount = backDriveCount + 1;
+          forwardDriveStartTime = Timer.getFPGATimestamp();
+       }
+        RobotContainer.drive.setPercentOutput(forwardTippySpeed);
+      }
+    }
+
+      //if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
+         //backDriveCount = 0;
+      //}
+
+//if tipped forward drive backward
+    else {
+      if (((angleDifference < RobotMap.pitchReverseDegree) || isBackDriveStarted == true)) {
+        reverseTippySpeed = RobotMap.reverseTippySpeed; //need to change to a PID
+        if ((((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true) ) {
+          if (isBackDriveStarted == false) {
+            isBackDriveStarted = true;
+            //backDriveCount = backDriveCount + 1;
+            backDriveStartTime = Timer.getFPGATimestamp();
+          }
+          RobotContainer.drive.setPercentOutput(reverseTippySpeed);
+        }
+      }
+      else {
+        RobotContainer.drive.setPercentOutput(0);// after back for 0.7 s , stop running up to 2 seconds
+      }
+   }
 
 
 }

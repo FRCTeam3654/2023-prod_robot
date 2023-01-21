@@ -288,6 +288,7 @@ public static double forwardTippySpeed = 0.5;
 //for the drive
 public static double pitchReverseDegree = 5;  //Change to PID during testing
 public static double pitchForwardDegree = 5;  //Change to PID during testing
+public static double balanceAngleTolerance = 3;
 public static double turboMax = 0.8;
 
 }
