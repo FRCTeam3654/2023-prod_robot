@@ -16,6 +16,9 @@ import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -32,10 +35,16 @@ public class RobotContainer {
   public static double initialPitch;
   double[] yawPitchRollArray;
 
+  boolean allianceColor;
+
 
   private RobotOdometry odometry;
+  NetworkTableEntry isRedAlliance;
 
-  private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
+
+  private final SendableChooser<Command> autoRedChooser = new SendableChooser<Command>();
+  private final SendableChooser<Command> autoBlueChooser = new SendableChooser<Command>();
+
   private final SendableChooser<Command> driveChooser = new SendableChooser<Command>();
 
   // The driver's controller
@@ -74,12 +83,30 @@ public class RobotContainer {
     //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
-    autoChooser.setDefaultOption("1 High Goal", new AutonomousACommand(odometry, drive));
+    autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceCommand(odometry, drive));
+    autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceCommand(odometry, drive));
     driveChooser.setDefaultOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.addOption("Both Joystick Drive", new BothJoystickDriveCommand());
     
-    SmartDashboard.putData("Auto Mode", autoChooser);
     SmartDashboard.putData("Drive Mode", driveChooser);
+
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+
+    //get a reference to the subtable called "datatable"
+    NetworkTable fmsInfo = inst.getTable("FMSInfo");
+    isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
+
+    //boolean allianceColor; //if allianceColor is true, we are RED team
+    allianceColor = isRedAlliance.getBoolean(false);
+    if (allianceColor = true){
+      SmartDashboard.putData("Auto Red Mode", autoRedChooser);
+
+    }
+    if (allianceColor = false){
+      SmartDashboard.putData("Auto Blue Mode", autoBlueChooser);
+    }
+
+
 
     yawPitchRollArray = new double[3];
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
@@ -99,7 +126,22 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return autoChooser.getSelected();
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+
+    //get a reference to the subtable called "datatable"
+    NetworkTable fmsInfo = inst.getTable("FMSInfo");
+    isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
+
+    boolean allianceColor; //if allianceColor is true, we are RED team
+    allianceColor = isRedAlliance.getBoolean(false);
+    if (allianceColor = true){
+      return autoRedChooser.getSelected();
+
+    }
+    else{
+      return autoBlueChooser.getSelected();
+
+    }
   }
 
   public Command getDriveModeCommand(){
