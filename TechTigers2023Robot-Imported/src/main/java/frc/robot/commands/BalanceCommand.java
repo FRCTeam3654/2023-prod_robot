@@ -61,7 +61,7 @@ IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
 //if tipped back drive forward
     if ((((yawPitchRollArray[1] - initialPitch) > RobotMap.pitchForwardDegree) || isForwardDriveStarted == true)) {
       forwardTippySpeed = RobotMap.forwardTippySpeed;  //need to change to a PID
-      if ((((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isForwardDriveStarted == true) && (forwardDriveCount < 3) ) {
+      if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) && (forwardDriveCount < 3) ) {
         if (isForwardDriveStarted == false) {
         isForwardDriveStarted = true;
         forwardDriveCount = backDriveCount + 1;

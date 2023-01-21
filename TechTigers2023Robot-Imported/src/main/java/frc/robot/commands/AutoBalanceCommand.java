@@ -19,15 +19,16 @@ import frc.robot.subsystems.RobotOdometry;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.BalanceCommand;
 
 
-public class AutonomousACommand extends SequentialCommandGroup {
+public class AutoBalanceCommand extends SequentialCommandGroup {
 
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
 
-  /** Creates a new AutonomousRedACommand. */
-  public AutonomousACommand(RobotOdometry odometry, Drive driveTrain) {
+  /** Creates a new AutonBalanceCommand. */
+  public AutoBalanceCommand(RobotOdometry odometry, Drive driveTrain) {
     /*mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
         new Pose2d(Units.inchesToMeters(116), Units.inchesToMeters(-30), Rotation2d.fromDegrees(0)), 0, false, false);
@@ -36,15 +37,15 @@ public class AutonomousACommand extends SequentialCommandGroup {
         List.of(),
         new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
         */
-        mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(30), Units.inchesToMeters(30), new Rotation2d(0)), 0,
+        mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(0)), 0,
         List.of(),
        // new Pose2d(Units.inchesToMeters(-62.5), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
-        new Pose2d(Units.inchesToMeters(92.5), Units.inchesToMeters(30), Rotation2d.fromDegrees(20)), 0, false, false);
+        new Pose2d(Units.inchesToMeters(120.8), Units.inchesToMeters(0), Rotation2d.fromDegrees(20)), 0, false, false);
     //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp, new WaitCommand(2), mp1);
 
    //SlidingClimbHooksCommand.climbNumber = 1;
        addCommands(
-              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(30),  Units.inchesToMeters(30), new Rotation2d()))), mp);
+              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), mp, new BalanceCommand());
   }
 
   
