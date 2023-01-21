@@ -35,6 +35,8 @@ public class RobotContainer {
   public static double initialPitch;
   double[] yawPitchRollArray;
 
+  boolean allianceColor;
+
 
   private RobotOdometry odometry;
   NetworkTableEntry isRedAlliance;
@@ -94,13 +96,13 @@ public class RobotContainer {
     NetworkTable fmsInfo = inst.getTable("FMSInfo");
     isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
 
-    boolean allianceColor; //if allianceColor is true, we are RED team
+    //boolean allianceColor; //if allianceColor is true, we are RED team
     allianceColor = isRedAlliance.getBoolean(false);
     if (allianceColor = true){
       SmartDashboard.putData("Auto Red Mode", autoRedChooser);
 
     }
-    else{
+    if (allianceColor = false){
       SmartDashboard.putData("Auto Blue Mode", autoBlueChooser);
     }
 
