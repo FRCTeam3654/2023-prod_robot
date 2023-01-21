@@ -76,6 +76,7 @@ public static int turretTurnRight180ButtonNumber = 1;
 public static int turretTurnLeft180ButtonNumber = 3;
 public static int pneumaticGrabButtonNumber = 7;
 public static int balanceButtonNumber = 8;
+public static int limelightButtonNumber = 4;
 //public static int beltcroReverseButtonNumber = 8;
 //public static int intakeOverrideButtonNumber = 7;
 //public static int ballShooterButtonNumber = 11;
