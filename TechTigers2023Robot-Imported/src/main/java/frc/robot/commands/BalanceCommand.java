@@ -62,17 +62,22 @@ public class BalanceCommand extends CommandBase {
 
     //if tipped back drive forward
     //assume that it is a positive angle
-    if (((angleDifference > RobotMap.balanceAngleTolerance) || isForwardDriveStarted == true)) {
+    if (((angleDifference > RobotMap.balanceAngleTolerance) || isAngleReached == false)) {
       forwardTippySpeed = RobotMap.forwardTippySpeed;  //need to change to a PID
-      if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) ) {
-        if (isForwardDriveStarted == false) {
-          isForwardDriveStarted = true;
+      //if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) ) {
+        //if (isForwardDriveStarted == false) {
+          //isForwardDriveStarted = true;
           //forwardDriveCount = backDriveCount + 1;
-          forwardDriveStartTime = Timer.getFPGATimestamp();
-       }
+         // forwardDriveStartTime = Timer.getFPGATimestamp();
+      // }
         RobotContainer.drive.setPercentOutput(forwardTippySpeed);
-      }
+      //}
     }
+    else if(Math.abs(angleDifference) <= RobotMap.balanceAngleTolerance && isAngleReached == true){
+      RobotContainer.drive.setPercentOutput(0);
+    }
+
+    else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){}
 
       //if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
          //backDriveCount = 0;
