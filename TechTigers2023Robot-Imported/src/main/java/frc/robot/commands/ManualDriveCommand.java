@@ -92,7 +92,7 @@ public class ManualDriveCommand extends CommandBase {
          // System.out.println("yaw = " + yaw + ", area"+ area + ", pitch = " + pitch + ", targetID =" + targetID);
           yawFromAprilTag = yaw;
           // figure out the drive straight angles
-          driveStraightAngleByAprilTag = yaw + yawPitchRollArray[0];
+          driveStraightAngleByAprilTag = yawPitchRollArray[0] - yaw;
           
         }
       
