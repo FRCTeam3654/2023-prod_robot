@@ -290,6 +290,8 @@ public static double forwardTippySpeed = 0.2;
 //public static double pitchForwardDegree = 5;  //Change to PID during testing
 public static double balanceAngleTolerance = 3;
 public static double turboMax = 0.8;
+public static double balanceAngleM = 0.02917;
+public static double balanceAngleB = -0.0375;
 
 }
 

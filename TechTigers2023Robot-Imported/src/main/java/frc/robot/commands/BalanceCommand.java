@@ -38,8 +38,8 @@ public class BalanceCommand extends CommandBase {
   public void initialize() {
    
     initialPitch = 0;
-    reverseTippySpeed = RobotMap.reverseTippySpeed;
-    forwardTippySpeed = RobotMap.forwardTippySpeed;
+    //reverseTippySpeed = RobotMap.reverseTippySpeed;
+    //forwardTippySpeed = RobotMap.forwardTippySpeed;
 
     IsButtonPressed=true;
     WasButtonNotPressed=false;
@@ -61,8 +61,11 @@ public class BalanceCommand extends CommandBase {
     IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
       if (!IsButtonPressed) {
         WasButtonNotPressed=true;
-        System.out.println("help im stuck");
       }
+
+    reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+    forwardTippySpeed = (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+
 
 
     //if tipped back drive forward
@@ -74,6 +77,7 @@ public class BalanceCommand extends CommandBase {
           //forwardDriveCount = backDriveCount + 1;
          // forwardDriveStartTime = Timer.getFPGATimestamp();
       // }
+        
         RobotContainer.drive.setPercentOutput(reverseTippySpeed);
       //}
     }
