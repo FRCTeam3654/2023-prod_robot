@@ -27,7 +27,12 @@ public class ManualDriveCommand extends CommandBase {
   private double driveStraightAngle = 0;
   private double initialPitch = 0;
   private boolean isBackDriveStarted = false;
+  private double driveStraightAngleByAprilTag = 0;
   private double backDriveStartTime = 0;
+  private boolean hasTargetEver = false;
+  public static double initialYawAngle = 0; //set once at beginning of auto
+  private double lastYawAngleByAprilTag = 0;
+
   private int backDriveCount = 0;// continous backout count. if > 3 , stop backout
   //private PhotonCamera camera = new PhotonCamera("photonvision");
   private PhotonCamera camera = new PhotonCamera("LimeLight Internal");
@@ -44,6 +49,7 @@ public class ManualDriveCommand extends CommandBase {
     double[] yawPitchRollArray = new double[3];
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
     initialPitch = yawPitchRollArray[1];
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -59,7 +65,8 @@ public class ManualDriveCommand extends CommandBase {
     joystickX = handleDeadband(joystickX, RobotMap.joystickDeadBand);
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
-    
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+
     
       var result = camera.getLatestResult();
     
@@ -70,8 +77,10 @@ public class ManualDriveCommand extends CommandBase {
         else {
          // System.out.println("hasTargest =  " + hasTargets);
           //List<PhotonTrackedTarget> targets = result.getTargets();
+          hasTargetEver = true;
           PhotonTrackedTarget target = result.getBestTarget();
           double yaw = target.getYaw();
+          lastYawAngleByAprilTag = yaw;
           double pitch = target.getPitch();
           double area = target.getArea();
           double skew = target.getSkew();
@@ -82,6 +91,8 @@ public class ManualDriveCommand extends CommandBase {
           double poseAmbiguity = target.getPoseAmbiguity();
          // System.out.println("yaw = " + yaw + ", area"+ area + ", pitch = " + pitch + ", targetID =" + targetID);
           yawFromAprilTag = yaw;
+          // figure out the drive straight angles
+          driveStraightAngleByAprilTag = yaw + yawPitchRollArray[0];
           
         }
       
@@ -92,8 +103,7 @@ public class ManualDriveCommand extends CommandBase {
       joystickX = joystickX * RobotMap.nonTurboMultiplierTurn;
       joystickY = joystickY * RobotMap.nonTurboMultiplierForward;
     }
-    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
-
+   
     SmartDashboard.putNumber("Pitch", yawPitchRollArray[1]);
     //System.out.println("Joystick X ="+ joystickX);
     //System.out.println("Joystick Y ="+ joystickY);
@@ -109,12 +119,23 @@ public class ManualDriveCommand extends CommandBase {
       joystickX = vinniesError * RobotMap.driveStraightProportion;
     }
     else {
-      if  (RobotContainer.oi.limelightButton.getAsBoolean() && hasTargets == true)  {
+      if  (RobotContainer.oi.limelightButton.getAsBoolean() )  {
         // drive towards the april tag 
-        
-        joystickX = (-1) * yawFromAprilTag * RobotMap.driveToAprilTagProportion;
-        driveStraightFlag = false;
-        System.out.println("AprilTag Button is clicked ... joystickX  ="+joystickX +", yawFromAprilTag = "+yawFromAprilTag);
+        if ( hasTargets == true) {
+          joystickX = (-1) * yawFromAprilTag * RobotMap.driveToAprilTagProportion;
+          driveStraightFlag = false;
+          System.out.println("AprilTag Button is clicked ... joystickX  ="+joystickX +", yawFromAprilTag = "+yawFromAprilTag);
+        }
+        else {
+          if (hasTargetEver == true) {
+            double vinniesError = driveStraightAngleByAprilTag - yawPitchRollArray[0];
+            joystickX = vinniesError * RobotMap.driveStraightProportion;
+            driveStraightFlag = true;
+          }
+          else {
+            driveStraightFlag = false;
+          }
+        }
       }
       else {
         driveStraightFlag = false;
