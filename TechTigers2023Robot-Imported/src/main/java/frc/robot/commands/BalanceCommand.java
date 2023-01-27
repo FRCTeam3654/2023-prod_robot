@@ -26,6 +26,8 @@ public class BalanceCommand extends CommandBase {
   private boolean IsButtonPressed=true;
   private boolean WasButtonNotPressed=false;
 
+  double[] yawPitchRollArray = new double[3];
+
   public BalanceCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.drive);
@@ -34,9 +36,8 @@ public class BalanceCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double[] yawPitchRollArray = new double[3];
-    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
-    initialPitch = yawPitchRollArray[1];
+   
+    initialPitch = 0;
     reverseTippySpeed = RobotMap.reverseTippySpeed;
     forwardTippySpeed = RobotMap.forwardTippySpeed;
 
@@ -47,9 +48,12 @@ public class BalanceCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double[] yawPitchRollArray;
-    yawPitchRollArray = new double[3];
+    //double[] yawPitchRollArray;
+    //yawPitchRollArray = new double[3];
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+
     double angleDifference = yawPitchRollArray[1] - initialPitch;
+
     if ((isAngleReached == false) && (Math.abs(angleDifference) > 10) ){
       isAngleReached = true;
     }
@@ -57,34 +61,36 @@ public class BalanceCommand extends CommandBase {
     IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
       if (!IsButtonPressed) {
         WasButtonNotPressed=true;
+        System.out.println("help im stuck");
       }
 
 
     //if tipped back drive forward
     //assume that it is a positive angle
-    if (((angleDifference > RobotMap.balanceAngleTolerance) || isAngleReached == false)) {
-      forwardTippySpeed = RobotMap.forwardTippySpeed;  //need to change to a PID
+    if (((angleDifference > RobotMap.balanceAngleTolerance))) {
       //if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) ) {
         //if (isForwardDriveStarted == false) {
           //isForwardDriveStarted = true;
           //forwardDriveCount = backDriveCount + 1;
          // forwardDriveStartTime = Timer.getFPGATimestamp();
       // }
-        RobotContainer.drive.setPercentOutput(forwardTippySpeed);
+        RobotContainer.drive.setPercentOutput(reverseTippySpeed);
       //}
     }
     else if(Math.abs(angleDifference) <= RobotMap.balanceAngleTolerance && isAngleReached == true){
       RobotContainer.drive.setPercentOutput(0);
     }
 
-    else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){}
+    else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){
+      RobotContainer.drive.setPercentOutput(forwardTippySpeed);
+    }
 
       //if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {
          //backDriveCount = 0;
       //}
 
 //if tipped forward drive backward
-    else {
+   /*  else {
       if (((angleDifference < RobotMap.pitchReverseDegree) || isBackDriveStarted == true)) {
         reverseTippySpeed = RobotMap.reverseTippySpeed; //need to change to a PID
         if ((((Timer.getFPGATimestamp() - backDriveStartTime) > 2) || isBackDriveStarted == true) ) {
@@ -99,7 +105,7 @@ public class BalanceCommand extends CommandBase {
       else {
         RobotContainer.drive.setPercentOutput(0);// after back for 0.7 s , stop running up to 2 seconds
       }
-   }
+   }*/
 
 
 }

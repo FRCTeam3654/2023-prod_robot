@@ -77,7 +77,7 @@ public static int turretTurnLeft90ButtonNumber = 0;
 public static int turretTurnRight180ButtonNumber = 1;
 public static int turretTurnLeft180ButtonNumber = 3;
 public static int pneumaticGrabButtonNumber = 7;
-public static int balanceButtonNumber = 8;
+public static int balanceButtonNumber = 6;
 public static int limelightButtonNumber = 5;
 //public static int beltcroReverseButtonNumber = 8;
 //public static int intakeOverrideButtonNumber = 7;
@@ -282,12 +282,12 @@ public static double slidingShortClimbDistance = 17000; // ?? slide  a short dis
 public static double slidingTravesalDownDistance = 182000;
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
-public static double reverseTippySpeed = -0.5;
-public static double forwardTippySpeed = 0.5;
+public static double reverseTippySpeed = -0.2;
+public static double forwardTippySpeed = 0.2;
 
 //for the drive
-public static double pitchReverseDegree = 5;  //Change to PID during testing
-public static double pitchForwardDegree = 5;  //Change to PID during testing
+//public static double pitchReverseDegree = 5;  //Change to PID during testing
+//public static double pitchForwardDegree = 5;  //Change to PID during testing
 public static double balanceAngleTolerance = 3;
 public static double turboMax = 0.8;
 
