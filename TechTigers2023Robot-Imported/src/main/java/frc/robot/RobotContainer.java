@@ -85,8 +85,8 @@ public class RobotContainer {
     //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
-    autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceCommand(odometry, drive));
-    autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceCommand(odometry, drive));
+    autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
+    autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     driveChooser.setDefaultOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.addOption("Both Joystick Drive", new BothJoystickDriveCommand());
     
