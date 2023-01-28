@@ -78,7 +78,7 @@ public class BalanceCommand extends CommandBase {
          // forwardDriveStartTime = Timer.getFPGATimestamp();
       // }
         
-        RobotContainer.drive.setPercentOutput(reverseTippySpeed);
+        RobotContainer.drive.setPercentOutput(forwardTippySpeed);
       //}
     }
     else if(Math.abs(angleDifference) <= RobotMap.balanceAngleTolerance && isAngleReached == true){
@@ -86,7 +86,7 @@ public class BalanceCommand extends CommandBase {
     }
 
     else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){
-      RobotContainer.drive.setPercentOutput(forwardTippySpeed);
+      RobotContainer.drive.setPercentOutput(reverseTippySpeed);
     }
 
       //if( (yawPitchRollArray[1] - initialPitch) < RobotMap.pitchReverseDegree ) {

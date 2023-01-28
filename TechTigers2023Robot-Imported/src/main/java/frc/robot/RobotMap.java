@@ -58,12 +58,12 @@ public static int driverControllerPort = 0;
 public static int operatorControllerPort = 1;
 
 //DRIVE STICK
-public static int turboButtonNumber = 6;
-public static int driveStraightButtonNumber = 7;
-public static int turnLeft90ButtonNumber = 0; 
-public static int turnRight90ButtonNumber = 2; 
-public static int turnLeft180ButtonNumber = 3; 
-public static int turnRight180ButtonNumber = 1;
+public static int turboButtonNumber = 7;
+public static int driveStraightButtonNumber = 8;
+public static int turnLeft90ButtonNumber = 1; 
+public static int turnRight90ButtonNumber = 3; 
+public static int turnLeft180ButtonNumber = 4; 
+public static int turnRight180ButtonNumber = 2;
 //public static int slidingClimbButtonNumber = 8;
 //public static int slidingClimbReverseButtonNumber = 11;  
 //public static int slidingTraversalDownButtonNumber = 9;
@@ -76,7 +76,7 @@ public static int turretTurnRight90ButtonNumber = 2;
 public static int turretTurnLeft90ButtonNumber = 0;
 public static int turretTurnRight180ButtonNumber = 1;
 public static int turretTurnLeft180ButtonNumber = 3;
-public static int pneumaticGrabButtonNumber = 7;
+public static int pneumaticGrabButtonNumber = 8;
 public static int balanceButtonNumber = 6;
 public static int limelightButtonNumber = 5;
 //public static int beltcroReverseButtonNumber = 8;
