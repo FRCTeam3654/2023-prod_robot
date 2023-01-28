@@ -40,7 +40,7 @@ public class AutoBalanceRouteCommand extends SequentialCommandGroup {
         mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(0)), 0,
         List.of(),
        // new Pose2d(Units.inchesToMeters(-62.5), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
-        new Pose2d(Units.inchesToMeters(-190), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-10), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
     //addCommands(new InstantCommand(() -> odometry.setPosition(new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()))), mp, new WaitCommand(2), mp1);
 
    //SlidingClimbHooksCommand.climbNumber = 1;
