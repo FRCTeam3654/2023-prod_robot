@@ -54,7 +54,7 @@ public class BalanceCommand extends CommandBase {
 
     double angleDifference = yawPitchRollArray[1] - initialPitch;
 
-    if ((isAngleReached == false) && (Math.abs(angleDifference) > 10) ){
+    if ((isAngleReached == false) && (Math.abs(angleDifference) > 4) ){
       isAngleReached = true;
     }
 
@@ -63,8 +63,16 @@ public class BalanceCommand extends CommandBase {
         WasButtonNotPressed=true;
       }
 
-    reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
-    forwardTippySpeed = (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+    reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
+    forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+    System.out.println(reverseTippySpeed + " , " + forwardTippySpeed);
+    if(reverseTippySpeed < -0.3){
+      reverseTippySpeed = -0.3;
+    }
+    if(forwardTippySpeed > 0.3){
+      forwardTippySpeed = 0.3;
+    }
+    
 
 
 
