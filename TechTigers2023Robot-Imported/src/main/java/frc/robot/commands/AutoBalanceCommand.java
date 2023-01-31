@@ -18,7 +18,7 @@ public class AutoBalanceCommand extends CommandBase {
   private double backDriveStartTime = 0;
   //private double forwardDriveCount = 0;
   private double forwardDriveStartTime = 0;
-  public static double initialPitch = 0; 
+  public static double initialPitch = 0; // only set once at the beginning of automonous
   private boolean isAngleReached = false;
   private double reverseTippySpeed;
   private double forwardTippySpeed;
@@ -37,7 +37,11 @@ public class AutoBalanceCommand extends CommandBase {
   @Override
   public void initialize() {
    
-    initialPitch = 0;
+    //initialPitch = 0;
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+
+    initialPitch = yawPitchRollArray[1] ;
+
     //reverseTippySpeed = RobotMap.reverseTippySpeed;
     //forwardTippySpeed = RobotMap.forwardTippySpeed;
 
@@ -63,6 +67,7 @@ public class AutoBalanceCommand extends CommandBase {
         WasButtonNotPressed=true;
       }
 
+    /* 
     reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
     forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
     System.out.println(reverseTippySpeed + " , " + forwardTippySpeed);
@@ -72,23 +77,32 @@ public class AutoBalanceCommand extends CommandBase {
     if(forwardTippySpeed > 0.3){
       forwardTippySpeed = 0.3;
     }
-    
+    */
+    reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
+    forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+    System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
+    if(reverseTippySpeed < -0.22){
+      reverseTippySpeed = -0.22;
+    }
+    if(forwardTippySpeed > 0.22){
+      forwardTippySpeed = 0.22;
+    }
 
  
       RobotContainer.drive.setPercentOutput(0.25);
   
     //if tipped back drive forward
     //assume that it is a positive angle
-    if (((angleDifference > RobotMap.balanceAngleTolerance && isAngleReached == true))) {
-        
+   //if (((angleDifference > RobotMap.balanceAngleTolerance && isAngleReached == true))) {
+    if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){   
         RobotContainer.drive.setPercentOutput(forwardTippySpeed);
       //}
     }
     else if(Math.abs(angleDifference) <= RobotMap.balanceAngleTolerance && isAngleReached == true){
       RobotContainer.drive.setPercentOutput(0);
     }
-
-    else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){
+    else if (((angleDifference > RobotMap.balanceAngleTolerance && isAngleReached == true))) {
+    //else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){
       RobotContainer.drive.setPercentOutput(reverseTippySpeed);
       System.out.println("am i reversing");
     }

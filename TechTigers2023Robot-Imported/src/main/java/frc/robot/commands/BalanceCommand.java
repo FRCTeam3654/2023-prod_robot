@@ -37,7 +37,8 @@ public class BalanceCommand extends CommandBase {
   @Override
   public void initialize() {
    
-    initialPitch = 0;
+    //initialPitch = 0;
+    initialPitch = AutoBalanceCommand.initialPitch;
     //reverseTippySpeed = RobotMap.reverseTippySpeed;
     //forwardTippySpeed = RobotMap.forwardTippySpeed;
 
@@ -63,22 +64,26 @@ public class BalanceCommand extends CommandBase {
         WasButtonNotPressed=true;
       }
 
+    //reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
+    //forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+    
     reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
     forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
-    System.out.println(reverseTippySpeed + " , " + forwardTippySpeed);
-    if(reverseTippySpeed < -0.3){
-      reverseTippySpeed = -0.3;
+    System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
+    if(reverseTippySpeed < -0.22){
+      reverseTippySpeed = -0.22;
     }
-    if(forwardTippySpeed > 0.3){
-      forwardTippySpeed = 0.3;
+    if(forwardTippySpeed > 0.22){
+      forwardTippySpeed = 0.22;
     }
     
 
 
 
     //if tipped back drive forward
-    //assume that it is a positive angle
-    if (((angleDifference > RobotMap.balanceAngleTolerance))) {
+    //assume that it is a positive angle --> actually sis bot is negative angle
+    //if (((angleDifference > RobotMap.balanceAngleTolerance))) {
+    if ( angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance ) {
       //if ((((Timer.getFPGATimestamp() - forwardDriveStartTime) > 2) || isForwardDriveStarted == true) ) {
         //if (isForwardDriveStarted == false) {
           //isForwardDriveStarted = true;
@@ -92,8 +97,8 @@ public class BalanceCommand extends CommandBase {
     else if(Math.abs(angleDifference) <= RobotMap.balanceAngleTolerance && isAngleReached == true){
       RobotContainer.drive.setPercentOutput(0);
     }
-
-    else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){
+    else if (((angleDifference > RobotMap.balanceAngleTolerance))) {
+    //else if(angleDifference < 0 && Math.abs(angleDifference) > RobotMap.balanceAngleTolerance && isAngleReached == true){
       RobotContainer.drive.setPercentOutput(reverseTippySpeed);
     }
 
@@ -129,7 +134,7 @@ public class BalanceCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (IsButtonPressed && WasButtonNotPressed){
+    if (!IsButtonPressed && WasButtonNotPressed){
       return true;
     }
     return false;
