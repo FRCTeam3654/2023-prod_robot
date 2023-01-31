@@ -292,7 +292,7 @@ public static double balanceAngleTolerance = 2;
 public static double turboMax = 0.8;
 //public static double balanceAngleM = 0.0268713;
 //public static double balanceAngleB = -0.12;
-public static double balanceAngleM = 0.008;
+public static double balanceAngleM = 0.007;
 public static double balanceAngleB = -0.06;
 }
 
