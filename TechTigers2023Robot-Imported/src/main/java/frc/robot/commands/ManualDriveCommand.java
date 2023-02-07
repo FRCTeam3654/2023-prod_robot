@@ -35,7 +35,7 @@ public class ManualDriveCommand extends CommandBase {
 
   private int backDriveCount = 0;// continous backout count. if > 3 , stop backout
   //private PhotonCamera camera = new PhotonCamera("photonvision");
-  private PhotonCamera camera = new PhotonCamera("LimeLight Internal");
+  private PhotonCamera camera = new PhotonCamera("Limelight Local");
 
 
   public ManualDriveCommand() {
@@ -75,6 +75,8 @@ public class ManualDriveCommand extends CommandBase {
           //System.out.println("no target " );
         }
         else {
+
+          System.out.println("has target " );
          // System.out.println("hasTargest =  " + hasTargets);
           //List<PhotonTrackedTarget> targets = result.getTargets();
           hasTargetEver = true;
@@ -120,6 +122,7 @@ public class ManualDriveCommand extends CommandBase {
     }
     else {
       if  (RobotContainer.oi.limelightButton.getAsBoolean() )  {
+        
         // drive towards the april tag 
         if ( hasTargets == true) {
           joystickX = (-1) * yawFromAprilTag * RobotMap.driveToAprilTagProportion;
