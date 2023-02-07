@@ -64,11 +64,7 @@ public static int turnLeft90ButtonNumber = 1;
 public static int turnRight90ButtonNumber = 3; 
 public static int turnLeft180ButtonNumber = 4; 
 public static int turnRight180ButtonNumber = 2;
-//public static int slidingClimbButtonNumber = 8;
-//public static int slidingClimbReverseButtonNumber = 11;  
-//public static int slidingTraversalDownButtonNumber = 9;
-
-//public static int limeLightButtonNumber = 8; //not programmed properly 3/17/21
+public static int limelightButtonNumber = 5;
 
 
 //OPERATOR STICK
@@ -78,20 +74,7 @@ public static int turretTurnRight180ButtonNumber = 1;
 public static int turretTurnLeft180ButtonNumber = 3;
 public static int pneumaticGrabButtonNumber = 8;
 public static int balanceButtonNumber = 6;
-public static int limelightButtonNumber = 5;
-//public static int beltcroReverseButtonNumber = 8;
-//public static int intakeOverrideButtonNumber = 7;
-//public static int ballShooterButtonNumber = 11;
-//public static int highGoalShooterButtonNumber = 12;
-//public static int climbUnlockRightButtonNumber = 6;
 
-//public static int slidingShortClimbButtonNumber = 3;  //??
-//public static int slidingShortClimbReverseButtonNumber = 5;  //??
-
-//public static int colorSensorButtonNumber = 10; 
-//public static int pickUpButtonNumber = 1;
-//public static int beltcroShooterButtonNumber = 10; 
-//public static int turretButtonNumber = 3;
 
 //TALONS/TALON ID NUMBERS!
 public static int leftTalonMaster = 1;

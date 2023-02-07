@@ -87,6 +87,7 @@ public class RobotContainer {
     //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
     autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
+    
     driveChooser.setDefaultOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.addOption("Both Joystick Drive", new BothJoystickDriveCommand());
     
