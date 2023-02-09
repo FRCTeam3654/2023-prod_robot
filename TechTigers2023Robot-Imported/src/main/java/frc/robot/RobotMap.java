@@ -49,7 +49,7 @@ public final static double kNeutralDeadband = 0.001; // testing MP
 public static double leftPercentOutput = 0.9;
 public static double rightPercentOutput = 0.9;
 public static double nonTurboMultiplierTurn = 0.15;
-public static double nonTurboMultiplierForward = 0.5; //.32, .40 
+public static double nonTurboMultiplierForward = 0.32; //.5, .40 
 
 public static boolean driveClosedLoopMode = true;
 
@@ -276,6 +276,6 @@ public static double turboMax = 0.8;
 //public static double balanceAngleM = 0.0268713;
 //public static double balanceAngleB = -0.12;
 public static double balanceAngleM = 0.007;
-public static double balanceAngleB = -0.06;
+public static double balanceAngleB = 0.06; //-0.06
 }
 

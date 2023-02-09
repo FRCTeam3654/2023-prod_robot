@@ -37,8 +37,8 @@ public class BalanceCommand extends CommandBase {
   @Override
   public void initialize() {
    
-    //initialPitch = 0;
-    initialPitch = AutoBalanceCommand.initialPitch;
+    initialPitch = 0;
+    //initialPitch = AutoBalanceCommand.initialPitch;
     //reverseTippySpeed = RobotMap.reverseTippySpeed;
     //forwardTippySpeed = RobotMap.forwardTippySpeed;
 
@@ -67,8 +67,8 @@ public class BalanceCommand extends CommandBase {
     //reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
     //forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
     
-    reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
-    forwardTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
+    reverseTippySpeed = (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
+    forwardTippySpeed = (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
     System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
     if(reverseTippySpeed < -0.22){
       reverseTippySpeed = -0.22;
@@ -77,7 +77,7 @@ public class BalanceCommand extends CommandBase {
       forwardTippySpeed = 0.22;
     }
     
-
+    System.out.println("help im stuck");
 
 
     //if tipped back drive forward
@@ -134,7 +134,7 @@ public class BalanceCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (!IsButtonPressed && WasButtonNotPressed){
+    if (IsButtonPressed && WasButtonNotPressed){
       return true;
     }
     return false;

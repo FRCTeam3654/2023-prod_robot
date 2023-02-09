@@ -525,7 +525,7 @@ public void tankDriveVolts(double leftVolts, double rightVolts) {
 
 //Mercy Arcade Drive allows us to smoothly control the robot
 public void mercyArcadeDrive(double joystickX, double joystickY) {
-    mercyArcadeDrive (joystickX, joystickY, 0.9 ,false);
+    mercyArcadeDrive (joystickX, joystickY, 0.95 ,false); //0.9
   }
 
 public void mercyArcadeDrive(double joystickX, double joystickY, double maxPower, boolean driveStraightFlag) {
@@ -561,7 +561,7 @@ public void mercyArcadeDrive(double joystickX, double joystickY, double maxPower
     if (RobotMap.driveClosedLoopMode && !driveStraightFlag) {
             //closed loop
             double targetVelocity_UnitsPer100ms_left = leftSpeed * 22000;
-            double targetVelocity_UnitsPer100ms_right = rightSpeed * 22000;
+            double targetVelocity_UnitsPer100ms_right = rightSpeed * 22000; 
             //System.out.println("leftSpeed =" + targetVelocity_UnitsPer100ms_left);
            // System.out.println("rightSpeed =" + targetVelocity_UnitsPer100ms_right);
 

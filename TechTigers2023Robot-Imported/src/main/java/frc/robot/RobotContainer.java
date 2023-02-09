@@ -88,8 +88,8 @@ public class RobotContainer {
     autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     
-    driveChooser.setDefaultOption("Left Joystick Drive", new ManualDriveCommand());
-    driveChooser.addOption("Both Joystick Drive", new BothJoystickDriveCommand());
+    driveChooser.addOption("Left Joystick Drive", new ManualDriveCommand());
+    driveChooser.setDefaultOption("Both Joystick Drive", new BothJoystickDriveCommand());
     
     SmartDashboard.putData("Drive Mode", driveChooser);
 
