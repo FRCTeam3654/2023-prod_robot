@@ -77,8 +77,6 @@ public class BalanceCommand extends CommandBase {
       forwardTippySpeed = 0.22;
     }
     
-    System.out.println("help im stuck");
-
 
     //if tipped back drive forward
     //assume that it is a positive angle --> actually sis bot is negative angle
