@@ -58,8 +58,8 @@ public static int driverControllerPort = 0;
 public static int operatorControllerPort = 1;
 
 //DRIVE STICK
-public static int turboButtonNumber = 7;
-public static int driveStraightButtonNumber = 8;
+public static int turboButtonNumber = 8;
+public static int driveStraightButtonNumber = 7;
 public static int turnLeft90ButtonNumber = 1; 
 public static int turnRight90ButtonNumber = 9; 
 public static int turnLeft180ButtonNumber = 4; 
