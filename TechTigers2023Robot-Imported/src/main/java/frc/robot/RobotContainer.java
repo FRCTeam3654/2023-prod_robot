@@ -90,6 +90,7 @@ public class RobotContainer {
     
     driveChooser.addOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.setDefaultOption("Both Joystick Drive", new BothJoystickDriveCommand());
+    driveChooser.addOption("Right Joystick Drive", new ManualDriveRightCommand());
     
     SmartDashboard.putData("Drive Mode", driveChooser);
 
