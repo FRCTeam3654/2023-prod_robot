@@ -525,7 +525,7 @@ public void tankDriveVolts(double leftVolts, double rightVolts) {
 
 //Mercy Arcade Drive allows us to smoothly control the robot
 public void mercyArcadeDrive(double joystickX, double joystickY) {
-    mercyArcadeDrive (joystickX, joystickY, 0.95 ,false); //0.9
+    mercyArcadeDrive (joystickX, joystickY, 0.9 ,false); //0.9
   }
 
 public void mercyArcadeDrive(double joystickX, double joystickY, double maxPower, boolean driveStraightFlag) {

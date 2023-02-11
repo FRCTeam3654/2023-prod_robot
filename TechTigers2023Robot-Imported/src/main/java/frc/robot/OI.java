@@ -8,6 +8,7 @@
 package frc.robot;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Turn90DegreesCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BalanceCommand;
@@ -32,7 +33,7 @@ public class OI {
 
   public XboxController driverStick = new XboxController(RobotMap.driverControllerPort);
   public XboxController operatorStick = new XboxController(RobotMap.operatorControllerPort);
-  public JoystickButton turboButton;
+  public Trigger turboButton;
   public JoystickButton driveStraightButton;
   public JoystickButton turnLeft90Button;
   public JoystickButton turnRight90Button; 

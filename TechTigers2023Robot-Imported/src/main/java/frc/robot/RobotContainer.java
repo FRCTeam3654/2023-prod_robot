@@ -109,6 +109,8 @@ public class RobotContainer {
       SmartDashboard.putData("Auto Blue Mode", autoBlueChooser);
     }
 
+    
+
 
 
     yawPitchRollArray = new double[3];
@@ -148,6 +150,11 @@ public class RobotContainer {
 
     }
   }
+
+
+  //public double getLeftTriggerAxis() {
+   // return m_hid.getLeftTriggerAxis();
+ // }
 
   public Command getDriveModeCommand(){
     return driveChooser.getSelected();
