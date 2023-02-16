@@ -20,8 +20,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
   public ManualTurretTurningCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.turret);
-
+    addRequirements(RobotContainer.turretSpark);
   }
 
   // Called when the command is initially scheduled.
@@ -33,8 +32,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.turret.turretTurning(RobotMap.turretTickAmount);
-  
+    
   }
   
 

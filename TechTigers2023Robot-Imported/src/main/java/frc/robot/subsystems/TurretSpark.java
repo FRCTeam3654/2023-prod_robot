@@ -18,41 +18,47 @@ public class TurretSpark extends SubsystemBase {
 
   private static final int deviceID = 1;
   private CANSparkMax m_motor;
-  private SparkMaxPIDController m_pidController;
+  private SparkMaxPIDController m_pidTurretController;
   private RelativeEncoder m_encoder;
-  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+  public double kTurretP, kTurretI, kTurretD, kTurretIz, kTurretFF, kTurretMaxOutput, kTurretMinOutput;
+  public double setPoint;
 
   public TurretSpark() {
     m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
     m_motor.restoreFactoryDefaults();
-    m_pidController = m_motor.getPIDController();
+    m_pidTurretController = m_motor.getPIDController();
     m_encoder = m_motor.getEncoder();
 
     // PID coefficients
-    kP = 0.1; 
-    kI = 1e-4;
-    kD = 1; 
-    kIz = 0; 
-    kFF = 0; 
-    kMaxOutput = 1; 
-    kMinOutput = -1;
+    kTurretP = 0.1; 
+    kTurretI = 1e-4;
+    kTurretD = 1; 
+    kTurretIz = 0; 
+    kTurretFF = 0; 
+    kTurretMaxOutput = 1; 
+    kTurretMinOutput = -1;
 
     // set PID coefficients
-    m_pidController.setP(kP);
-    m_pidController.setI(kI);
-    m_pidController.setD(kD);
-    m_pidController.setIZone(kIz);
-    m_pidController.setFF(kFF);
-    m_pidController.setOutputRange(kMinOutput, kMaxOutput);
+    m_pidTurretController.setP(kTurretP);
+    m_pidTurretController.setI(kTurretI);
+    m_pidTurretController.setD(kTurretD);
+    m_pidTurretController.setIZone(kTurretIz);
+    m_pidTurretController.setFF(kTurretFF);
+    m_pidTurretController.setOutputRange(kTurretMinOutput, kTurretMaxOutput);
 
-    kMinOutput = -0.3;
-    kMaxOutput = 0.3; 
-    m_pidController.setOutputRange(kMinOutput, kMaxOutput); 
+    kTurretMinOutput = -0.3;
+    kTurretMaxOutput = 0.3; 
+    m_pidTurretController.setOutputRange(kTurretMinOutput, kTurretMaxOutput); 
 
-    //m_pidController.setReference(rotations, CANSparkMax.ControlType.kPosition);
 
 
   }
+
+  public void manualTurretControl(double setPoint){
+    m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
+
+  }
+
 
   @Override
   public void periodic() {

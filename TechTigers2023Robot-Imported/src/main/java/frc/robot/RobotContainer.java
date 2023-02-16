@@ -30,6 +30,7 @@ public class RobotContainer {
   // The robot's subsystems
   public static Drive drive;
   public static Turret turret;
+  public static TurretSpark turretSpark;
   public static PneumaticGrab pneumaticGrab;
   public static TelescopingArm telescopingArm;
   public static OI oi;
@@ -59,6 +60,7 @@ public class RobotContainer {
     // VERY IMPORTANT:   drive need be created before oi since oi creates Turn90DegreesCommand object in which need drive object
     drive = new Drive();
     turret = new Turret();
+    turretSpark = new TurretSpark();
     pneumaticGrab = new PneumaticGrab();
     oi = new OI();  // need be after drive object
     //always keep OI last
