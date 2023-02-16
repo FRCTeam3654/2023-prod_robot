@@ -92,7 +92,7 @@ public static int ballShooterBottomID = 14;
 //public static int IntakeTalonRightID = 5;
 //public static int BeltcroTalonID = 6;
 //public static int verticalClimbRightTalonID = 9;
-//public static int verticalClimbLeftTalonID = 10;
+public static int armTalonID = 10;
 public static int turretTurningID = 17; //THIS IS JUST A PLACEHOLDER. REMEMBER TO CHANGE
 
 // Digital IO for the ballpickup sensor

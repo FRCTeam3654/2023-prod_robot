@@ -31,6 +31,7 @@ public class RobotContainer {
   public static Drive drive;
   public static Turret turret;
   public static PneumaticGrab pneumaticGrab;
+  public static TelescopingArm telescopingArm;
   public static OI oi;
   public static double initialPitch;
   double[] yawPitchRollArray;
