@@ -277,5 +277,7 @@ public static double turboMax = 0.8;
 //public static double balanceAngleB = -0.12;
 public static double balanceAngleM = 0.007;
 public static double balanceAngleB = 0.06; //-0.06
+
+public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }
 
