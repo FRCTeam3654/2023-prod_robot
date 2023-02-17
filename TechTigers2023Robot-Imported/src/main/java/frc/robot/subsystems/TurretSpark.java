@@ -21,7 +21,7 @@ public class TurretSpark extends SubsystemBase {
   private SparkMaxPIDController m_pidTurretController;
   private RelativeEncoder m_encoder;
   public double kTurretP, kTurretI, kTurretD, kTurretIz, kTurretFF, kTurretMaxOutput, kTurretMinOutput;
-  public double setPoint;
+  private double setPoint;
 
   public TurretSpark() {
     m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);

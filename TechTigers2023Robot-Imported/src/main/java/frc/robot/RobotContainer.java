@@ -61,6 +61,7 @@ public class RobotContainer {
     drive = new Drive();
     turret = new Turret();
     turretSpark = new TurretSpark();
+    telescopingArm = new TelescopingArm();
     pneumaticGrab = new PneumaticGrab();
     oi = new OI();  // need be after drive object
     //always keep OI last
