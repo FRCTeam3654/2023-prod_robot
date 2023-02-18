@@ -59,6 +59,10 @@ public class TurretSpark extends SubsystemBase {
 
   }
 
+  public void resetEncoders(){
+    m_encoder.setPosition(0);
+  }
+
 
   @Override
   public void periodic() {
