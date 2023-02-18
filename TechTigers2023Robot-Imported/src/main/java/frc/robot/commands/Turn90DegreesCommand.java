@@ -49,7 +49,7 @@ public class Turn90DegreesCommand extends CommandBase {
           desiredTurnAngle = -188;
         }
         if (RobotContainer.oi.turnLeft90Button.getAsBoolean()){
-          desiredTurnAngle = 90;
+          desiredTurnAngle = 70;
         }
         if (RobotContainer.oi.turnRight90Button.getAsBoolean()){
           desiredTurnAngle = -98;
@@ -74,7 +74,7 @@ public class Turn90DegreesCommand extends CommandBase {
           turn90X = vinniesError * 0.004;
         }
         else{
-        turn90X = vinniesError * 0.007;
+        turn90X = vinniesError * 0.0056;
         }
       }
        //turn90X = Math.min(1, turn90X);

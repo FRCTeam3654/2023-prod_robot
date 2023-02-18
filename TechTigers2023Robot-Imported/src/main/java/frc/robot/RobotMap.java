@@ -60,10 +60,10 @@ public static int operatorControllerPort = 1;
 //DRIVE STICK
 public static int turboButtonNumber = 8;
 public static int driveStraightButtonNumber = 7;
-public static int turnLeft90ButtonNumber = 1; 
-public static int turnRight90ButtonNumber = 9; 
+public static int turnLeft90ButtonNumber = 3; 
+public static int turnRight90ButtonNumber = 2; 
 public static int turnLeft180ButtonNumber = 4; 
-public static int turnRight180ButtonNumber = 2;
+public static int turnRight180ButtonNumber = 1;
 public static int limelightButtonNumber = 5;
 
 
