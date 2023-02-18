@@ -68,12 +68,10 @@ public static int limelightButtonNumber = 5;
 
 
 //OPERATOR STICK
-public static int turretTurnRight90ButtonNumber = 2;
-public static int turretTurnLeft90ButtonNumber = 0;
-public static int turretTurnRight180ButtonNumber = 1;
-public static int turretTurnLeft180ButtonNumber = 3;
 public static int pneumaticGrabButtonNumber = 8;
 public static int balanceButtonNumber = 6;
+public static int armFullOutButtonNumber = 4;
+public static int armFullBackButtonNumber = 2;
 
 
 //TALONS/TALON ID NUMBERS!
@@ -93,7 +91,7 @@ public static int ballShooterBottomID = 14;
 //public static int BeltcroTalonID = 6;
 //public static int verticalClimbRightTalonID = 9;
 public static int armTalonID = 10;
-public static int turretTurningID = 17; //THIS IS JUST A PLACEHOLDER. REMEMBER TO CHANGE
+public static int turretTurningID = 7; //THIS IS JUST A PLACEHOLDER. REMEMBER TO CHANGE
 
 // Digital IO for the ballpickup sensor
 public static int ArmStatusID = 0;

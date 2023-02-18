@@ -17,59 +17,59 @@ import com.ctre.phoenix.motorcontrol.DemandType;
 
 public class TelescopingArm extends SubsystemBase {
   /** Creates a new TelescopingArm. */
-  private TalonSRX verticalClimbLeftTalon = new TalonSRX(RobotMap.armTalonID);
+  private TalonSRX armTalon = new TalonSRX(RobotMap.armTalonID);
 
   public double leftSpeed; 
 
     
 
   public TelescopingArm() {
-    verticalClimbLeftTalon.configFactoryDefault();
+    armTalon.configFactoryDefault();
 
-    verticalClimbLeftTalon.setNeutralMode(NeutralMode.Brake);
+    armTalon.setNeutralMode(NeutralMode.Brake);
 
-    verticalClimbLeftTalon.setInverted(true);
+    armTalon.setInverted(true);
     
-    //verticalClimbRightTalon.follow(verticalClimbLeftTalon);
+    //verticalClimbRightTalon.follow(armTalon);
 
-    verticalClimbLeftTalon.configNeutralDeadband(0.00, RobotMap.kTimeoutMs);
+    armTalon.configNeutralDeadband(0.00, RobotMap.kTimeoutMs);
     
 
    
 
-    verticalClimbLeftTalon.config_kF(0,0.045,30);// 0.045
-    verticalClimbLeftTalon.config_kP(0,0.049,30); //0.095 //0.049
-    verticalClimbLeftTalon.config_kI(0,0,30);
-    verticalClimbLeftTalon.config_kD(0,0,30);
+    armTalon.config_kF(0,0.045,30);// 0.045
+    armTalon.config_kP(0,0.049,30); //0.095 //0.049
+    armTalon.config_kI(0,0,30);
+    armTalon.config_kD(0,0,30);
 
    
 
-    verticalClimbLeftTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, RobotMap.kTimeoutMs);
-    verticalClimbLeftTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+    armTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, RobotMap.kTimeoutMs);
+    armTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
    
     /* set the peak and nominal outputs */
-    verticalClimbLeftTalon.configNominalOutputForward(0, RobotMap.kTimeoutMs);
-    verticalClimbLeftTalon.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
-    verticalClimbLeftTalon.configPeakOutputForward(1, RobotMap.kTimeoutMs);
-    verticalClimbLeftTalon.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
+    armTalon.configNominalOutputForward(0, RobotMap.kTimeoutMs);
+    armTalon.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
+    armTalon.configPeakOutputForward(1, RobotMap.kTimeoutMs);
+    armTalon.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
 
    
 
-    verticalClimbLeftTalon.configMotionCruiseVelocity(8000, 30);
-    verticalClimbLeftTalon.configMotionAcceleration(8000, 30);
+    armTalon.configMotionCruiseVelocity(8000, 30);
+    armTalon.configMotionAcceleration(8000, 30);
 
    
 
-    verticalClimbLeftTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+    armTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
     
     zeroSensors();
   }
   public void resetMotors(){
     zeroSensors();
-    verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+    armTalon.set(ControlMode.PercentOutput, 0);
   }
   public void zeroSensors() {
-    verticalClimbLeftTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
+    armTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
     System.out.println("[Quadrature Encoders] All drive sensors are zeroed.\n");
   }
   public void setArcade(double velocity, double turn){
@@ -93,12 +93,12 @@ public class TelescopingArm extends SubsystemBase {
       if (RobotMap.climbClosedLoopMode ) {
         //closed loop
         double targetVelocity_UnitsPer100ms_left = leftSpeed * RobotMap.maximumVelocityFalcon;
-        verticalClimbLeftTalon.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms_left);
+        armTalon.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms_left);
       }
       
     else {
       //open loop
-      verticalClimbLeftTalon.set(ControlMode.PercentOutput, leftSpeed);
+      armTalon.set(ControlMode.PercentOutput, leftSpeed);
    }
   }
   public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity ) {
@@ -106,19 +106,19 @@ public class TelescopingArm extends SubsystemBase {
    }
 
   public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity, double arbitraryFeedForwardValue) {
-        verticalClimbLeftTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
-        verticalClimbLeftTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+        armTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
+        armTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
       
-        verticalClimbLeftTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+        armTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
       
-        verticalClimbLeftTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+        armTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
 
         if( Math.abs(arbitraryFeedForwardValue) > 0.001) {
           // add  DemandType.ArbitraryFeedForward to hold the vertical arm in position
-          verticalClimbLeftTalon.set(ControlMode.MotionMagic, distance,  DemandType.ArbitraryFeedForward, arbitraryFeedForwardValue);
+          armTalon.set(ControlMode.MotionMagic, distance,  DemandType.ArbitraryFeedForward, arbitraryFeedForwardValue);
         }
         else {
-          verticalClimbLeftTalon.set(ControlMode.MotionMagic, distance);
+          armTalon.set(ControlMode.MotionMagic, distance);
         }
 }
 public void karenaArcadeDrive(double joystickX, double joystickY){
@@ -168,70 +168,70 @@ public void karenaArcadeDrive(double joystickX, double joystickY){
 
 if(  isAboutAngle (initAngleDegree,0) ) {
   //  joystick is shifted to the right within angle deadband, move right arm up
-  //verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+  //armTalon.set(ControlMode.PercentOutput, 0);
   //verticalClimbRightTalon.set(ControlMode.PercentOutput,(RobotMap.climbSpeed));
  }
  else if(  isAboutAngle (initAngleDegree,90) ) {
   //  joystick upwards within deadband, move both arms up
-  verticalClimbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+  armTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
  }
  else if(  isAboutAngle (initAngleDegree,180) ) {
   //  joystick is shifted to the left within angle deadband, move left arm up
-  //verticalClimbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+  //armTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
   //verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
  }
  else if(  isAboutAngle (initAngleDegree,270) ) {
   //  joystick downwards within angle deadband, move both arms down
-  verticalClimbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+  armTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
  }
 
 
       /*
       if (initAngleDegree > (-1 * RobotMap.angleDeadBand) && initAngleDegree < RobotMap.angleDeadBand){
         //joystick is shifted to the right within angle deadband, does nothing
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+        armTalon.set(ControlMode.PercentOutput, 0);
         verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
       }
       else if (initAngleDegree > RobotMap.angleDeadBand && initAngleDegree < (90 - RobotMap.angleDeadBand)){
         //joystick is shifted to ther right above angle deadband, only the right arm moves up
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+        armTalon.set(ControlMode.PercentOutput, 0);
         verticalClimbRightTalon.set(ControlMode.PercentOutput,(-1 * RobotMap.climbSpeed));
       }
       else if (initAngleDegree > (90 - RobotMap.angleDeadBand) && initAngleDegree < (90 + RobotMap.angleDeadBand)){
         //shift upwards within deadband, both arms move up
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+        armTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
         verticalClimbRightTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
       }
       else if (initAngleDegree > (90 + RobotMap.angleDeadBand) && initAngleDegree < (180 - RobotMap.angleDeadBand)){
         //shifted to the left within deadband, where only the left arm moves up
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+        armTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
         verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
       }
       else if (initAngleDegree > (180 - RobotMap.angleDeadBand) && initAngleDegree < (180 + RobotMap.angleDeadBand)){
         //shift to the left, within deadband so it does nothing
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+        armTalon.set(ControlMode.PercentOutput, 0);
         verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
       }
       else if (initAngleDegree > (180 + RobotMap.angleDeadBand) && initAngleDegree < (270 - RobotMap.angleDeadBand)){
         //shift downwards to the left outside the deadband, so only the left arm moves down
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput,  (-1 * RobotMap.climbSpeed));
+        armTalon.set(ControlMode.PercentOutput,  (-1 * RobotMap.climbSpeed));
         verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
       }
       else if (initAngleDegree > (270 - RobotMap.angleDeadBand) && initAngleDegree < (270 + RobotMap.angleDeadBand)){
         //shift downwards within deadband, so both arms move downwards
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
+        armTalon.set(ControlMode.PercentOutput, (-1 * RobotMap.climbSpeed));
         verticalClimbRightTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
       }
       else if (initAngleDegree > (270 + RobotMap.angleDeadBand) && initAngleDegree < (360 - RobotMap.angleDeadBand)){
         //shift downwards within deadband, so only the right arm moves down
-        verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+        armTalon.set(ControlMode.PercentOutput, 0);
         verticalClimbRightTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
       }
       */
     }
 
     else {
-      verticalClimbLeftTalon.set(ControlMode.PercentOutput, 0);
+      armTalon.set(ControlMode.PercentOutput, 0);
     }
   }
 
@@ -259,8 +259,8 @@ if(  isAboutAngle (initAngleDegree,0) ) {
 
   
 
-public double getVerticalClimbLeftTalonPosition(){
-  return verticalClimbLeftTalon.getSelectedSensorPosition(0);
+public double getarmTalonPosition(){
+  return armTalon.getSelectedSensorPosition(0);
 }
 
   @Override

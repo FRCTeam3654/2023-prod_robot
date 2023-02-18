@@ -16,6 +16,8 @@ import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.ManualTurretTurningCommand;
 import frc.robot.commands.PneumaticsGrabbingCommand;
 import frc.robot.commands.ApriltagTurnCommand;
+import frc.robot.commands.ArmSetPositionsCommand;
+
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -41,15 +43,12 @@ public class OI {
   public JoystickButton turnRight90Button; 
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
-  public JoystickButton turretDPad;
-  public JoystickButton turretTurnRight90Button;
-  public JoystickButton turretTurnRight180Button;
-  public JoystickButton turretTurnLeft90Button;
-  public JoystickButton turretTurnLeft180Button;
   public JoystickButton pneumaticGrabButton;
   public JoystickButton balanceButton;
   public POVButton turretRightPOV;
   public POVButton turretLeftPOV;
+  public JoystickButton armFullOutButton;
+  public JoystickButton armFullBackButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -88,14 +87,13 @@ public class OI {
 
 
   //Operator Stick
-  turretTurnRight90Button = new JoystickButton(operatorStick, RobotMap.turretTurnRight90ButtonNumber);
-  turretTurnLeft90Button = new JoystickButton(operatorStick, RobotMap.turretTurnLeft90ButtonNumber);
-  turretTurnLeft180Button = new JoystickButton(operatorStick, RobotMap.turretTurnLeft180ButtonNumber);
-  turretTurnRight180Button = new JoystickButton(operatorStick, RobotMap.turretTurnRight180ButtonNumber);
   turretRightPOV = new POVButton(operatorStick, 90, 0);
   turretLeftPOV = new POVButton(driverStick, 270, 0);
   pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
   balanceButton = new JoystickButton(operatorStick, RobotMap.balanceButtonNumber);
+  armFullOutButton = new JoystickButton(operatorStick, RobotMap.armFullOutButtonNumber);
+  armFullBackButton = new JoystickButton(operatorStick, RobotMap.armFullBackButtonNumber);
+
 
   //intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
   //manualSlidingClimbButton = new JoystickButton(driverStick, RobotMap.manualSlidingClimbButtonNumber);
@@ -121,6 +119,9 @@ public class OI {
   pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
   turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
   turretRightPOV.whileTrue(new ManualTurretTurningCommand());
+  armFullBackButton.onTrue(new ArmSetPositionsCommand());
+  armFullOutButton.onTrue(new ArmSetPositionsCommand());
+
   
   }
   

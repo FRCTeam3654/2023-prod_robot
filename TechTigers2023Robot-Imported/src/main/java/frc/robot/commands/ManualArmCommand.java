@@ -28,37 +28,17 @@ public class ManualArmCommand extends CommandBase {
   @Override
   public void execute() {
     double joystickX;
-      double joystickY;
-     
-      joystickY = (RobotContainer.oi.operatorStick.getRightY());
-      joystickX = (RobotContainer.oi.operatorStick.getRightX());
+    double joystickY;
     
-      SmartDashboard.putNumber("JoystickX", joystickX);
-      SmartDashboard.putNumber("JoystickY", joystickY);
+    joystickY = (RobotContainer.oi.operatorStick.getRightY());
+    joystickX = (RobotContainer.oi.operatorStick.getRightX());
+  
+    SmartDashboard.putNumber("JoystickX", joystickX);
+    SmartDashboard.putNumber("JoystickY", joystickY);
 
-      /*
-      // add additional logic to unlock:  1) by button 2) by joystick move up ) sliding climber
-      if(Math.abs(joystickY) > 0.25  || isSlidingClimberMovingDown == true) {
-        // reset the lock condition
-        isLocked = false;
-        IsLockButtonPressed = false;// reset
-      }
-      */
+     
+    RobotContainer.telescopingArm.karenaArcadeDrive(joystickX, joystickY);
 
-      
-
-
-      //if ( isLocked == true ) {
-      //  RobotContainer.verticalClimbArms.sizzleClimbHold();
-      //}
-      //else {
-       
-
-        RobotContainer.telescopingArm.karenaArcadeDrive(joystickX, joystickY);
-          
-        //System.out.println("ElevatorX = " + joystickX + "ElevatorY = " + joystickY);
-
-      //}
     
 }
 
@@ -66,7 +46,9 @@ public class ManualArmCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+
+  }
 
   // Returns true when the command should end.
   @Override
