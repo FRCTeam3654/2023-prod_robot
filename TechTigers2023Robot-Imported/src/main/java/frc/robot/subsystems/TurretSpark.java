@@ -16,12 +16,17 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class TurretSpark extends SubsystemBase {
   /** Creates a new TurretSpark. */
 
-  private static final int deviceID = 1;
+  private static final int deviceID = 15;
   private CANSparkMax m_motor;
   private SparkMaxPIDController m_pidTurretController;
   private RelativeEncoder m_encoder;
   public double kTurretP, kTurretI, kTurretD, kTurretIz, kTurretFF, kTurretMaxOutput, kTurretMinOutput;
-  private double setPoint;
+  //private double setPoint;
+  private double joystickX;
+  private double joysticky;
+  public double maxRPM;
+
+
 
   public TurretSpark() {
     m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
@@ -30,13 +35,22 @@ public class TurretSpark extends SubsystemBase {
     m_encoder = m_motor.getEncoder();
 
     // PID coefficients
-    kTurretP = 0.1; 
+    /*kTurretP = 0.1; 
     kTurretI = 1e-4;
     kTurretD = 1; 
     kTurretIz = 0; 
     kTurretFF = 0; 
-    kTurretMaxOutput = 1; 
+    kTurretMinOutput = -0.3;
+    kTurretMaxOutput = 0.3; 
+*/
+    kTurretP = 6e-5; 
+    kTurretI = 0;
+    kTurretD = 0; 
+    kTurretIz = 0; 
+    kTurretFF = 0.000015; 
     kTurretMinOutput = -1;
+    kTurretMaxOutput = 1; 
+    maxRPM = 5700;
 
     // set PID coefficients
     m_pidTurretController.setP(kTurretP);
@@ -55,9 +69,13 @@ public class TurretSpark extends SubsystemBase {
   }
 
   public void manualTurretControl(double setPoint){
-    m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
 
+    //setPoint = .2 * maxRPM;
+    //setPoint = -0.2 * maxRPM;
+    System.out.println("set point" + setPoint);
+    m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
   }
+
 
   public void resetEncoders(){
     m_encoder.setPosition(0);

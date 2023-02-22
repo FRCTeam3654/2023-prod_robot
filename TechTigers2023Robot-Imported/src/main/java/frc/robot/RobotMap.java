@@ -81,7 +81,6 @@ public static int leftTalonSlave = 3;
 public static int rightTalonSlave = 4;
 public static int vinnieTalonNumber = 6;
 //public static int turretTalonID = 13;
-public static int ballShooterBottomID = 14;
 
 //public static int climbExtendTalonID = 10;
 //public static int climbHookTalonLeftID = 11;
@@ -91,7 +90,8 @@ public static int ballShooterBottomID = 14;
 //public static int BeltcroTalonID = 6;
 //public static int verticalClimbRightTalonID = 9;
 public static int armTalonID = 10;
-public static int turretTurningID = 7; //THIS IS JUST A PLACEHOLDER. REMEMBER TO CHANGE
+public static int turretTurningID = 15;
+public static int wristTalonID = 14;
 
 // Digital IO for the ballpickup sensor
 public static int ArmStatusID = 0;
@@ -218,7 +218,9 @@ public final static Gains driveGainsVelocity = new Gains( 0.1, 0.0, 0.0, 0.0451,
 //public final static Gains shooterGainsVelocity = new Gains(0.095, 0.0, 0, 0.0451, 0, 1); //0.03
 
 //Turret Gains Velocity is just what i had from old Leia code. must be tested and retried with 2023 robot
+public final static Gains wristGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
 public final static Gains turretGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
+
 
 public final static Gains kGains_MotProf = new Gains( 0.001, 0.0,  0.0, 0.0451,  100,  1.0 );// p=0.00095
 //static final Gains kGains = new Gains(0.03, 0.0, 0, 0.0451, 0, 0.5);

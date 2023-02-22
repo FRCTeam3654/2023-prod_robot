@@ -15,11 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class ManualTurretTurningCommand extends CommandBase {
   /** Creates a new TurretTurningCommand. */
-  private int desiredTurnAngle = 0;
-  private boolean turn90Flag = false;
-  private double turnEndpointAngle = 0;//vinnies desired finish endpoint angle 
-  private double vinniesError = 2;//greater than 1 so it doesn't get triggered until the error is correct
-  private double startTime90degree = 0;
+
 
   public ManualTurretTurningCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,12 +32,16 @@ public class ManualTurretTurningCommand extends CommandBase {
   @Override
   public void execute() {
     //RobotContainer.oi.turretButton.
-    if(RobotContainer.oi.turretRightPOV.getAsBoolean()){
-      RobotContainer.turretSpark.manualTurretControl(3);
+    if(RobotContainer.oi.turretRightPOV.getAsBoolean() == true){
+      RobotContainer.turretSpark.manualTurretControl(0.2 * RobotContainer.turretSpark.maxRPM);
     }
 
-    if(RobotContainer.oi.turretLeftPOV.getAsBoolean()){
-      RobotContainer.turretSpark.manualTurretControl(-3);
+    else if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == true){
+      RobotContainer.turretSpark.manualTurretControl(-0.2 * RobotContainer.turretSpark.maxRPM);
+    }
+    
+    else{
+      RobotContainer.turretSpark.manualTurretControl(0);
     }
   }
   
@@ -50,6 +50,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.turretSpark.manualTurretControl(0);
+
   }
 
   // Returns true when the command should end.

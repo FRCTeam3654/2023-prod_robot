@@ -33,6 +33,7 @@ public class RobotContainer {
   public static TurretSpark turretSpark;
   public static PneumaticGrab pneumaticGrab;
   public static TelescopingArm telescopingArm;
+  public static Wrist wrist;
   public static OI oi;
   public static double initialPitch;
   double[] yawPitchRollArray;
@@ -62,6 +63,7 @@ public class RobotContainer {
     turret = new Turret();
     turretSpark = new TurretSpark();
     telescopingArm = new TelescopingArm();
+    wrist = new Wrist();
     pneumaticGrab = new PneumaticGrab();
     oi = new OI();  // need be after drive object
     //always keep OI last
@@ -77,18 +79,7 @@ public class RobotContainer {
 
     CameraServer.startAutomaticCapture(0);
 
-    //autoChooser.addOption("Auto (Shot and Move)", new NewCommandGroup(odometry, drive));
-        
-    //autoChooser.addOption("Galactic Search (A)", new RunGalacticSearchA(odometry, drive));
-    //autoChooser.addOption("Galactic Search (B)", new RunGalacticSearchB(odometry, drive));
-    
 
-    //autoChooser.addOption("1 High Goal", new AutonomousACommand(odometry, drive));
-    //autoChooser.addOption("2 Ball C", new AutonomousCCommand(odometry, drive));
-    //autoChooser.addOption("2 Ball B", new AutonomousBCommand(odometry, drive));
-    //autoChooser.setDefaultOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
-    //autoChooser.addOption("MoveAndShootLow", new AutonomousDCommand(odometry, drive));
-    //autoChooser.setDefaultOption("Complicated Auto Route", new HapMapAutoRoute(odometry, drive));
     autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     

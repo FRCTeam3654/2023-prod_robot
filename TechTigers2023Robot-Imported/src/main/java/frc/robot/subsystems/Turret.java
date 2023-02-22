@@ -84,9 +84,6 @@ public class Turret extends SubsystemBase {
     turretTurningTalon.set(ControlMode.PercentOutput, percentOutput);
   }
 
-  public void dpadTurret(){
-    
-  }
 
   public boolean atTargetPosition(){
     if(Math.abs(turretTargetPosition - (double)turretTickCount()) <= 400){ //100 //deadband for position of turret when shooting

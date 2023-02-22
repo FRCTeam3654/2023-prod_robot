@@ -17,6 +17,7 @@ import frc.robot.commands.ManualTurretTurningCommand;
 import frc.robot.commands.PneumaticsGrabbingCommand;
 import frc.robot.commands.ApriltagTurnCommand;
 import frc.robot.commands.ArmSetPositionsCommand;
+import frc.robot.commands.ManualWristCommand;
 
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
@@ -47,6 +48,8 @@ public class OI {
   public JoystickButton balanceButton;
   public POVButton turretRightPOV;
   public POVButton turretLeftPOV;
+  public POVButton wristUpPOV;
+  public POVButton wristDownPOV;
   public JoystickButton armFullOutButton;
   public JoystickButton armFullBackButton;
   //public JoystickButton intakeStopButton;
@@ -87,12 +90,14 @@ public class OI {
 
 
   //Operator Stick
-  turretRightPOV = new POVButton(operatorStick, 90, 0);
-  turretLeftPOV = new POVButton(driverStick, 270, 0);
+  turretRightPOV = new POVButton(operatorStick, 90);
+  turretLeftPOV = new POVButton(operatorStick, 270);
   pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
   balanceButton = new JoystickButton(operatorStick, RobotMap.balanceButtonNumber);
   armFullOutButton = new JoystickButton(operatorStick, RobotMap.armFullOutButtonNumber);
   armFullBackButton = new JoystickButton(operatorStick, RobotMap.armFullBackButtonNumber);
+  wristUpPOV = new POVButton(operatorStick, 0);
+  wristDownPOV = new POVButton(operatorStick, 180);
 
 
   //intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
@@ -115,12 +120,20 @@ public class OI {
   turnRight90Button.onTrue(new Turn90DegreesCommand());
   turnLeft180Button.onTrue(new Turn90DegreesCommand());
   turnRight180Button.onTrue(new Turn90DegreesCommand());
+  
   balanceButton.onTrue(new BalanceCommand());
+
   pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
+
   turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
   turretRightPOV.whileTrue(new ManualTurretTurningCommand());
+
   armFullBackButton.onTrue(new ArmSetPositionsCommand());
   armFullOutButton.onTrue(new ArmSetPositionsCommand());
+
+  wristUpPOV.whileTrue(new ManualWristCommand());
+  wristDownPOV.whileTrue(new ManualWristCommand());
+
 
   
   }
