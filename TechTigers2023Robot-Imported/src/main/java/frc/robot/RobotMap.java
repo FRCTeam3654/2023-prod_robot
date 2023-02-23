@@ -92,6 +92,7 @@ public static int vinnieTalonNumber = 6;
 public static int armTalonID = 10;
 public static int turretTurningID = 15;
 public static int wristTalonID = 14;
+public static int armVerticalTalonID = 12;
 
 // Digital IO for the ballpickup sensor
 public static int ArmStatusID = 0;
@@ -220,6 +221,8 @@ public final static Gains driveGainsVelocity = new Gains( 0.1, 0.0, 0.0, 0.0451,
 //Turret Gains Velocity is just what i had from old Leia code. must be tested and retried with 2023 robot
 public final static Gains wristGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
 public final static Gains turretGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
+public final static Gains verticalArmGainsVelocity = new Gains( 0.03, 0.0, 0, 0.0451, 0, 1);
+
 
 
 public final static Gains kGains_MotProf = new Gains( 0.001, 0.0,  0.0, 0.0451,  100,  1.0 );// p=0.00095

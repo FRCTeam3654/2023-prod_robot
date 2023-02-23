@@ -33,6 +33,7 @@ public class RobotContainer {
   public static TurretSpark turretSpark;
   public static PneumaticGrab pneumaticGrab;
   public static TelescopingArm telescopingArm;
+  public static VerticalMotionArm verticalMotionArm;
   public static Wrist wrist;
   public static OI oi;
   public static double initialPitch;
@@ -63,6 +64,7 @@ public class RobotContainer {
     turret = new Turret();
     turretSpark = new TurretSpark();
     telescopingArm = new TelescopingArm();
+    verticalMotionArm = new VerticalMotionArm();
     wrist = new Wrist();
     pneumaticGrab = new PneumaticGrab();
     oi = new OI();  // need be after drive object
@@ -76,6 +78,7 @@ public class RobotContainer {
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
     drive.setDefaultCommand(new BothJoystickDriveCommand());
+    pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
 
     CameraServer.startAutomaticCapture(0);
 

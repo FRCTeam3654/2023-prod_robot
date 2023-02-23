@@ -6,12 +6,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
+import frc.robot.RobotMap;
 
-public class PneumaticsGrabbingCommand extends CommandBase {
-  /** Creates a new PneumaticsGrabbingCommand. */
-  public PneumaticsGrabbingCommand() {
+import edu.wpi.first.wpilibj.Timer;
+
+public class ManualVerticalArmCommand extends CommandBase {
+  /** Creates a new ManualVerticalArmCommand. */
+  public ManualVerticalArmCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.pneumaticGrab);
+    addRequirements(RobotContainer.verticalMotionArm);
   }
 
   // Called when the command is initially scheduled.
@@ -21,35 +24,30 @@ public class PneumaticsGrabbingCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 4){
-      RobotContainer.pneumaticGrab.practiceSolenoid(true);
-    }
-
-    else if(RobotContainer.oi.operatorStick.getLeftTriggerAxis() > 4){
-      RobotContainer.pneumaticGrab.practiceSolenoid(false);
-    }
-
-    else{
-      RobotContainer.pneumaticGrab.practiceSolenoid(false);
-
-    }
+    //double joystickX;
+    double joystickY;
+    
+    joystickY = (RobotContainer.oi.operatorStick.getRightY());
+    //joystickX = (RobotContainer.oi.operatorStick.getRightX());
+  
 
     
+    
+    //else{
+      RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+   // }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.verticalMotionArm.manualVerticalArm(0);
+
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    /*if (RobotContainer.oi.pneumaticGrabButton.getAsBoolean() == false) {
-      RobotContainer.pneumaticGrab.practiceSolenoid(false);
-      return true;
-    }
-    */
     return false;
   }
 }

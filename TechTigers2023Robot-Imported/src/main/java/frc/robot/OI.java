@@ -44,7 +44,8 @@ public class OI {
   public JoystickButton turnRight90Button; 
   public JoystickButton turnLeft180Button;
   public JoystickButton turnRight180Button;
-  public JoystickButton pneumaticGrabButton;
+  public Trigger pneumaticGrabButton;
+  public Trigger pneumaticDropButton;
   public JoystickButton balanceButton;
   public POVButton turretRightPOV;
   public POVButton turretLeftPOV;
@@ -92,7 +93,7 @@ public class OI {
   //Operator Stick
   turretRightPOV = new POVButton(operatorStick, 90);
   turretLeftPOV = new POVButton(operatorStick, 270);
-  pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
+  //pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
   balanceButton = new JoystickButton(operatorStick, RobotMap.balanceButtonNumber);
   armFullOutButton = new JoystickButton(operatorStick, RobotMap.armFullOutButtonNumber);
   armFullBackButton = new JoystickButton(operatorStick, RobotMap.armFullBackButtonNumber);
@@ -123,7 +124,7 @@ public class OI {
   
   balanceButton.onTrue(new BalanceCommand());
 
-  pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
+  //pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
 
   turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
   turretRightPOV.whileTrue(new ManualTurretTurningCommand());
