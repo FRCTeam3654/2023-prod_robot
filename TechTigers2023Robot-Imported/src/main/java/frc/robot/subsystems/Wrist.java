@@ -9,7 +9,8 @@ import frc.robot.RobotMap;
 //import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 //import com.ctre.phoenix.motorcontrol.InvertType; 
-import com.ctre.phoenix.motorcontrol.ControlMode; 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -83,6 +84,27 @@ public class Wrist extends SubsystemBase {
   public void manualwrist(double percentOutput){
     wristTalon.set(ControlMode.PercentOutput, percentOutput);
   }
+  public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity ) {
+    setMotionMagic( distance, cruiseVelocity,  accelerationVelocity, 0) ;
+   }
+
+
+  public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity, double arbitraryFeedForwardValue) {
+        wristTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
+        wristTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+      
+        wristTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+      
+        wristTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+
+        if( Math.abs(arbitraryFeedForwardValue) > 0.001) {
+          // add  DemandType.ArbitraryFeedForward to hold the vertical arm in position
+          wristTalon.set(ControlMode.MotionMagic, distance,  DemandType.ArbitraryFeedForward, arbitraryFeedForwardValue);
+        }
+        else {
+          wristTalon.set(ControlMode.MotionMagic, distance);
+        }
+}
 
 
   public boolean atTargetPosition(){

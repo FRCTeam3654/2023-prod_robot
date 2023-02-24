@@ -72,6 +72,8 @@ public static int pneumaticGrabButtonNumber = 8;
 public static int balanceButtonNumber = 6;
 public static int armFullOutButtonNumber = 4;
 public static int armFullBackButtonNumber = 2;
+public static int wristDownUpButtonNumber = 1;
+public static int wristDeployButtonNumber = 3;
 
 
 //TALONS/TALON ID NUMBERS!
@@ -267,6 +269,13 @@ public static double verticalClimbTimerTimeout = 15;
 public static double slidingShortClimbDistance = 17000; // ?? slide  a short distance
 public static double slidingTravesalDownDistance = 182000;
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
+
+//for the wrist
+public static double wristFullUpDistance = 17000; //PLACEHOLDER MUST TEST
+public static double wristFullDownDistance = -17000; //PLACEHOLDER MUST TEST
+public static double wristDeployDistance = 10000; //PLACEHOLDER MUST TEST
+public static double wristDeployBackDistance = -10000; //PLACEHOLDER MUST TEST
+
 
 public static double reverseTippySpeed = -0.2;
 public static double forwardTippySpeed = 0.2;

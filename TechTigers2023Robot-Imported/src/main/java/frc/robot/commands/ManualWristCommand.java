@@ -26,14 +26,13 @@ public class ManualWristCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  double joystickY;
-  joystickY = (RobotContainer.oi.driverStick.getLeftY() * -1);
-  joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
 
-    if(RobotContainer.oi.wristUpPOV.getAsBoolean() == true || RobotContainer.oi.wristDownPOV.getAsBoolean()){
-      RobotContainer.wrist.manualwrist(joystickY * 0.2);
+    if(RobotContainer.oi.wristUpPOV.getAsBoolean() == true){
+      RobotContainer.wrist.manualwrist(0.05);
     }
-    
+    else if(RobotContainer.oi.wristDownPOV.getAsBoolean() == true){
+      RobotContainer.wrist.manualwrist(-0.05);
+    }
     else{
       RobotContainer.wrist.manualwrist(0);
     }
@@ -42,9 +41,6 @@ public class ManualWristCommand extends CommandBase {
   }
 
 
-  public double handleDeadband(double val, double deadband) {
-    return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
-  }
 
   // Called once the command ends or is interrupted.
   @Override

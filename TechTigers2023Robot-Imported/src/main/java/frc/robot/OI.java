@@ -18,6 +18,7 @@ import frc.robot.commands.PneumaticsGrabbingCommand;
 import frc.robot.commands.ApriltagTurnCommand;
 import frc.robot.commands.ArmSetPositionsCommand;
 import frc.robot.commands.ManualWristCommand;
+import frc.robot.commands.WristSetPositionsCommand;
 
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
@@ -53,6 +54,8 @@ public class OI {
   public POVButton wristDownPOV;
   public JoystickButton armFullOutButton;
   public JoystickButton armFullBackButton;
+  public JoystickButton wristDeployButton;
+  public JoystickButton wristDownUpButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -99,6 +102,9 @@ public class OI {
   armFullBackButton = new JoystickButton(operatorStick, RobotMap.armFullBackButtonNumber);
   wristUpPOV = new POVButton(operatorStick, 0);
   wristDownPOV = new POVButton(operatorStick, 180);
+  wristDownUpButton = new JoystickButton(operatorStick, RobotMap.wristDownUpButtonNumber);
+  wristDeployButton = new JoystickButton(operatorStick, RobotMap.wristDeployButtonNumber);
+
 
 
   //intakeStopButton = new JoystickButton(operatorStick, RobotMap.intakeStopButtonNumber);
@@ -135,6 +141,8 @@ public class OI {
   wristUpPOV.whileTrue(new ManualWristCommand());
   wristDownPOV.whileTrue(new ManualWristCommand());
 
+  wristDeployButton.onTrue(new WristSetPositionsCommand());
+  wristDownUpButton.onTrue(new WristSetPositionsCommand());
 
   
   }
