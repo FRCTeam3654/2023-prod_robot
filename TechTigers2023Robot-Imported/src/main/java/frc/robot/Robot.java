@@ -20,6 +20,10 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public static long m_auto_starttime = 0l;
+  public static double initialPitch;
+
+  double[] yawPitchRollArray = new double[3];
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -94,8 +98,6 @@ public class Robot extends TimedRobot {
     m_driveChooserCommand = m_robotContainer.getDriveModeCommand();
 
     m_driveChooserCommand.schedule();
-    
-
   }
 
   /** This function is called periodically during operator control. */

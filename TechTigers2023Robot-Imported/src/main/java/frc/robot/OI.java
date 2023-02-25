@@ -58,6 +58,7 @@ public class OI {
   public JoystickButton wristDownUpButton;
   public JoystickButton wristLockButton;
   public JoystickButton armLockButton;
+  public JoystickButton initialPitchButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -94,6 +95,7 @@ public class OI {
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
   limelightButton = new JoystickButton(driverStick, RobotMap.limelightButtonNumber);
   balanceButton = new JoystickButton(driverStick, RobotMap.balanceButtonNumber);
+  initialPitchButton = new JoystickButton(driverStick, RobotMap.initialPitchButtonNumber);
 
 
 

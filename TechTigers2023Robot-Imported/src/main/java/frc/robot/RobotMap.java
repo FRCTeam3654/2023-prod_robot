@@ -66,6 +66,7 @@ public static int turnLeft180ButtonNumber = 4;
 public static int turnRight180ButtonNumber = 1;
 public static int limelightButtonNumber = 5;
 public static int balanceButtonNumber = 6;
+public static int initialPitchButtonNumber = 10;
 
 
 //OPERATOR STICK

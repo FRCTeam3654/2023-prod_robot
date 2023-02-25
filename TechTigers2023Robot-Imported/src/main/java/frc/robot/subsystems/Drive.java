@@ -99,6 +99,10 @@ public class Drive extends SubsystemBase {
 
   private boolean isBackDrvieStarted = false;
   private double backDriveStartTime = 0;
+
+  public int initialDrivePitch;
+  double[] yawPitchRollArray = new double[3];
+
   
   @Override
   public void periodic() {
@@ -229,6 +233,11 @@ public class Drive extends SubsystemBase {
   public void setPower(double leftPower, double rightPower) {
       leftFrontTalon.set(ControlMode.PercentOutput, leftPower);
       rightFrontTalon.set(ControlMode.PercentOutput, rightPower);
+  }
+
+  public void setLevel(){
+    pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    yawPitchRollArray[1] = initialDrivePitch;
   }
 
   /** Zero Quadrature Encoders on Talons */

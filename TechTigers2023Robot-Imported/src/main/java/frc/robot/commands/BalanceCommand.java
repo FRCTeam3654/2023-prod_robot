@@ -51,6 +51,14 @@ public class BalanceCommand extends CommandBase {
   public void execute() {
     //double[] yawPitchRollArray;
     //yawPitchRollArray = new double[3];
+    if(RobotContainer.oi.initialPitchButton.getAsBoolean() == true){
+      RobotContainer.drive.setLevel();
+      initialPitch = RobotContainer.drive.initialDrivePitch;
+    }
+    else{
+      initialPitch = 0;
+    }
+
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
     double angleDifference = yawPitchRollArray[1] - initialPitch;
