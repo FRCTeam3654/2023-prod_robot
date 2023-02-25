@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
 public class PneumaticGrab extends SubsystemBase {
   /** Creates a new PneumaticGrab. */
-  private Compressor emmasCompressor = new Compressor (0, PneumaticsModuleType.CTREPCM);
-  private DoubleSolenoid emmasSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0,1);
+  private Compressor emmasCompressor = new Compressor (0, PneumaticsModuleType.REVPH);
+  private DoubleSolenoid emmasSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0,1);
   public PneumaticGrab() {
     emmasCompressor.enableDigital();
     emmasCompressor.isEnabled();
