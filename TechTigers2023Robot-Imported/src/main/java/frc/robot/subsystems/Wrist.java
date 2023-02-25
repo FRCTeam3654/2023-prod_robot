@@ -21,6 +21,50 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+/*
+Emily we might want to add some of these two things somewere in this  subsystem
+
+TalonSRX talon = new TalonSRX(0);
+talon.configPeakCurrentLimit(30); // don't activate current limit until current exceeds 30 A ...
+talon.configPeakCurrentDuration(100); // ... for at least 100 ms
+talon.configContinuousCurrentLimit(20); // once current-limiting is actived, hold at 20A
+talon.enableCurrentLimit(true);
+
+
+
+ Configured forward and reverse limit switch of Talon to be from a feedback connector and be normally open 
+Hardware.leftTalonMaster.configForwardLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+Hardware.leftTalonMaster.configReverseLimitSwitchSource(LimitSwitchSource.FeedbackConnector, LimitSwitchNormal.NormallyOpen, 0);
+Limit Switch Override Enable
+The enable state of the limit switches can be overridden in software. This can be called at any time to enable or disable both limit switches.
+
+Generally you should call this instead of a config if you want to dynamically change whether you are using the limit switch or not inside a loop. This value is not persistent across power cycles.
+
+ Limit switches are forced disabled on Talon and forced enabled on Victor 
+Hardware.leftTalonMaster.overrideLimitSwitchesEnable(false);
+Hardware.rightVictorMaster.overrideLimitSwitchesEnable(true);;
+
+
+
+Soft Limits
+Soft limits can be used to disable motor drive when the “Sensor Position” is outside of a specified range. Forward throttle will be disabled if the “Sensor Position” is greater than the Forward Soft Limit. Reverse throttle will be disabled if the “Sensor Position” is less than the Reverse Soft Limit. The respective Soft Limit Enable must be enabled for this feature to take effect.
+
+ Talon configured to have soft limits 10000 native units in either direction and enabled 
+rightMaster.configForwardSoftLimitThreshold(10000, 0);
+rightMaster.configReverseSoftLimitThreshold(-10000, 0);
+rightMaster.configForwardSoftLimitEnable(true, 0);
+rightMaster.configReverseSoftLimitEnable(true, 0);
+
+var forwardLimit = m_motor.getForwardLimit();
+
+if (forwardLimit.getValue() == ForwardLimitValue.ClosedToGround) {
+   // do action when forward limit is closed
+}
+
+
+
+*/
+
 public class Wrist extends SubsystemBase {
   /** Creates a new Wrist. */
   private TalonFX wristTalon = new TalonFX (RobotMap.wristTalonID);
