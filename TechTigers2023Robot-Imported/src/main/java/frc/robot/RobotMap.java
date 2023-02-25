@@ -252,29 +252,12 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 //public static final Gains kGains = new Gains(0.095, 0.0, 0, 0.0451, 0, 0.25); // colorWheelTalon  use this
 
 //for the color sensor
-public static double[][] colorTargets = {{0.141, 0.371, 0.490},{0.560, 0.328, 0.114}};
-public static double intakeSpeedIn = -0.5;
-public static double intakeSpeedOut = 1;
-//for the beltcro
-public static double beltcroTimerTimeout = 1.6;
-public static double beltcroIntakeTimerTimeout = 3;
-public static double intakeEjectTimerTimeout = 1;
-public static double beltcroSpeed = 0.4;
-//for the climb
-public static double slidingClimbTimerTimeout = 15;
-public static double slidingClimbDistance = 198000; //is the raw sensor distance   //190000//  24000 is about 4 inches
-public static double slidingClimbFullDistance = 238900; //229900
-public static double verticalClimbDistance = 135000; //150000       
-public static double verticalClimbTimerTimeout = 15;
-public static double slidingShortClimbDistance = 17000; // ?? slide  a short distance
-public static double slidingTravesalDownDistance = 182000;
+
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
 //for the wrist
 public static double wristFullUpDistance = 17000; //PLACEHOLDER MUST TEST
-public static double wristFullDownDistance = -17000; //PLACEHOLDER MUST TEST
 public static double wristDeployDistance = 10000; //PLACEHOLDER MUST TEST
-public static double wristDeployBackDistance = -10000; //PLACEHOLDER MUST TEST
 
 
 public static double reverseTippySpeed = -0.2;

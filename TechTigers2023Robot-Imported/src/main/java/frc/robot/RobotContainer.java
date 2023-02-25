@@ -79,6 +79,7 @@ public class RobotContainer {
     odometry.resetOdometry();
     drive.setDefaultCommand(new BothJoystickDriveCommand());
     pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
+    wrist.setDefaultCommand(new WristSetPositionsCommand());
 
     CameraServer.startAutomaticCapture(0);
 
