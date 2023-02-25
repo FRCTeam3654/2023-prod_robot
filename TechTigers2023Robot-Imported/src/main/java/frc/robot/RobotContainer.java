@@ -43,11 +43,11 @@ public class RobotContainer {
 
 
   private RobotOdometry odometry;
-  NetworkTableEntry isRedAlliance;
 
+  //private final SendableChooser<Command> autoRedChooser = new SendableChooser<Command>();
+  //private final SendableChooser<Command> autoBlueChooser = new SendableChooser<Command>();
+  private final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
 
-  private final SendableChooser<Command> autoRedChooser = new SendableChooser<Command>();
-  private final SendableChooser<Command> autoBlueChooser = new SendableChooser<Command>();
 
   private final SendableChooser<Command> driveChooser = new SendableChooser<Command>();
 
@@ -84,8 +84,8 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture(0);
 
 
-    autoRedChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
-    autoBlueChooser.setDefaultOption("move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
+    autoChooser.setDefaultOption("RED move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
+    autoChooser.setDefaultOption("BLUE move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
     
     driveChooser.addOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.setDefaultOption("Both Joystick Drive", new BothJoystickDriveCommand());
@@ -97,17 +97,6 @@ public class RobotContainer {
 
     //get a reference to the subtable called "datatable"
     NetworkTable fmsInfo = inst.getTable("FMSInfo");
-    isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
-
-    //boolean allianceColor; //if allianceColor is true, we are RED team
-    allianceColor = isRedAlliance.getBoolean(false);
-    if (allianceColor = true){
-      SmartDashboard.putData("Auto Red Mode", autoRedChooser);
-
-    }
-    if (allianceColor = false){
-      SmartDashboard.putData("Auto Blue Mode", autoBlueChooser);
-    }
 
     
 
@@ -132,23 +121,9 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
-
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
-    BalanceCommand.initialPitch = yawPitchRollArray[1];
-    //get a reference to the subtable called "datatable"
-    NetworkTable fmsInfo = inst.getTable("FMSInfo");
-    isRedAlliance = fmsInfo.getEntry("IsRedAlliance");
-
-    boolean allianceColor; //if allianceColor is true, we are RED team
-    allianceColor = isRedAlliance.getBoolean(false);
-    if (allianceColor = true){
-      return autoRedChooser.getSelected();
-
-    }
-    else{
-      return autoBlueChooser.getSelected();
-
-    }
+    
+    return autoChooser.getSelected();
   }
 
 

@@ -40,13 +40,14 @@ public class AutoBalanceCommand extends CommandBase {
     //initialPitch = 0;
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
-    initialPitch = yawPitchRollArray[1] ;
+    //initialPitch = yawPitchRollArray[1];
+    initialPitch = 0;
 
     //reverseTippySpeed = RobotMap.reverseTippySpeed;
     //forwardTippySpeed = RobotMap.forwardTippySpeed;
 
-    IsButtonPressed=true;
-    WasButtonNotPressed=false;
+    //IsButtonPressed=true;
+    //WasButtonNotPressed=false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -62,10 +63,10 @@ public class AutoBalanceCommand extends CommandBase {
       isAngleReached = true;
     }
 
-    IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
-      if (!IsButtonPressed) {
-        WasButtonNotPressed=true;
-      }
+    //IsButtonPressed=RobotContainer.oi.balanceButton.getAsBoolean();
+      //if (!IsButtonPressed) {
+        //WasButtonNotPressed=true;
+      //}
 
     /* 
     reverseTippySpeed = -1 * (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
@@ -139,9 +140,9 @@ public class AutoBalanceCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (IsButtonPressed && WasButtonNotPressed){
-      return true;
-    }
+    //if (IsButtonPressed && WasButtonNotPressed){
+      //return true;
+    //}
     return false;
   }
 }
