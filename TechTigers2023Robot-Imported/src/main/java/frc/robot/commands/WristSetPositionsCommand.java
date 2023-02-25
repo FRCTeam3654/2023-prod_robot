@@ -16,6 +16,8 @@ public class WristSetPositionsCommand extends CommandBase {
   private boolean wasDownUpButtonNotPressed = false;
   private int fullButtonPressNumber = 0;
   private int deployButtonPressNumber = 0;
+  private boolean isLockButtonPressed = false;
+  private int lockButtonPressNumber = 0;
 
   public WristSetPositionsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,6 +30,7 @@ public class WristSetPositionsCommand extends CommandBase {
 
     fullButtonPressNumber = 0;
     deployButtonPressNumber = 0;
+    lockButtonPressNumber = 0;
 
     /*if(RobotContainer.oi.wristDeployButton.getAsBoolean() == true){
       isDeployButtonPressed = true;
@@ -54,23 +57,37 @@ public class WristSetPositionsCommand extends CommandBase {
       fullButtonPressNumber = fullButtonPressNumber + 1;
     }
 
+//lock button
+
+    if(RobotContainer.oi.wristLockButton.getAsBoolean() == true){
+      isLockButtonPressed = true;
+     }
+  
+     if(isLockButtonPressed == true){
+      RobotContainer.wrist.manualwrist(0);
+     }
+
 //----------------------------------------------------------------------------------------------------
 
     //if the number is odd, it goes the distance down; if the number is even, bring the arm up
     if(fullButtonPressNumber % 2 == 1){
       RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 500, 500);
+      isLockButtonPressed = false;
     }
 
     else if(fullButtonPressNumber % 2 == 0){
       RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 500, 500);
+      isLockButtonPressed = false;
     }
 
     if(deployButtonPressNumber % 2 == 1){
       RobotContainer.wrist.setMotionMagic(RobotMap.wristDeployDistance, 500, 500);
+      isLockButtonPressed = false;
     }
 
     else if(deployButtonPressNumber % 2 == 0){
       RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristDeployDistance, 500, 500);
+      isLockButtonPressed = false;
     }
     //end of the odd/even functions
 
@@ -88,6 +105,8 @@ public class WristSetPositionsCommand extends CommandBase {
       fullButtonPressNumber = fullButtonPressNumber - 1;
     }
    //------------------------------------------------------------------------------------------------------------------------- 
+
+
 
     /*
     isDownUpButtonPressed=RobotContainer.oi.wristDownUpButton.getAsBoolean();

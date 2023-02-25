@@ -80,6 +80,8 @@ public class VerticalMotionArm extends SubsystemBase {
   }
 
   public void manualVerticalArm(double percentOutput){
+    verticalArmTalon.enableVoltageCompensation(true);
+    verticalArmTalon.configVoltageCompSaturation(11, 0);
     verticalArmTalon.set(ControlMode.PercentOutput, percentOutput);
   }
 

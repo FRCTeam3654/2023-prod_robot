@@ -56,6 +56,8 @@ public class OI {
   public JoystickButton armFullBackButton;
   public JoystickButton wristDeployButton;
   public JoystickButton wristDownUpButton;
+  public JoystickButton wristLockButton;
+  public JoystickButton armLockButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -91,19 +93,23 @@ public class OI {
   turnLeft180Button = new JoystickButton(driverStick, RobotMap.turnLeft180ButtonNumber);
   turnRight180Button = new JoystickButton(driverStick, RobotMap.turnRight180ButtonNumber);
   limelightButton = new JoystickButton(driverStick, RobotMap.limelightButtonNumber);
+  balanceButton = new JoystickButton(driverStick, RobotMap.balanceButtonNumber);
+
 
 
   //Operator Stick
   turretRightPOV = new POVButton(operatorStick, 90);
   turretLeftPOV = new POVButton(operatorStick, 270);
   //pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
-  balanceButton = new JoystickButton(operatorStick, RobotMap.balanceButtonNumber);
   armFullOutButton = new JoystickButton(operatorStick, RobotMap.armFullOutButtonNumber);
   armFullBackButton = new JoystickButton(operatorStick, RobotMap.armFullBackButtonNumber);
   wristUpPOV = new POVButton(operatorStick, 0);
   wristDownPOV = new POVButton(operatorStick, 180);
   wristDownUpButton = new JoystickButton(operatorStick, RobotMap.wristDownUpButtonNumber);
   wristDeployButton = new JoystickButton(operatorStick, RobotMap.wristDeployButtonNumber);
+  wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
+  armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
+
 
 
 

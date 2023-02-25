@@ -65,15 +65,17 @@ public static int turnRight90ButtonNumber = 2;
 public static int turnLeft180ButtonNumber = 4; 
 public static int turnRight180ButtonNumber = 1;
 public static int limelightButtonNumber = 5;
+public static int balanceButtonNumber = 6;
 
 
 //OPERATOR STICK
 public static int pneumaticGrabButtonNumber = 8;
-public static int balanceButtonNumber = 6;
 public static int armFullOutButtonNumber = 4;
 public static int armFullBackButtonNumber = 2;
 public static int wristDownUpButtonNumber = 1;
 public static int wristDeployButtonNumber = 3;
+public static int armLockButtonNumber = 6;
+public static int wristLockButtonNumber = 7;
 
 
 //TALONS/TALON ID NUMBERS!

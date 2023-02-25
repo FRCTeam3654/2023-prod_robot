@@ -55,7 +55,7 @@ public class BalanceCommand extends CommandBase {
 
     double angleDifference = yawPitchRollArray[1] - initialPitch;
 
-    if ((isAngleReached == false) && (Math.abs(angleDifference) > 4) ){
+    if ((isAngleReached == false) && (Math.abs(angleDifference) > 2) ){
       isAngleReached = true;
     }
 

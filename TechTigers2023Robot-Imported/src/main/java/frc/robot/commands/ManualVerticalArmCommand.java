@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class ManualVerticalArmCommand extends CommandBase {
   /** Creates a new ManualVerticalArmCommand. */
+
+  private boolean isLockButtonPressed; 
+
+
   public ManualVerticalArmCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.verticalMotionArm);
@@ -26,16 +30,38 @@ public class ManualVerticalArmCommand extends CommandBase {
   public void execute() {
     //double joystickX;
     double joystickY;
-    
     joystickY = (RobotContainer.oi.operatorStick.getRightY());
-    //joystickX = (RobotContainer.oi.operatorStick.getRightX());
-  
 
     
+    joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
+
     
-    //else{
+    //joystickX = (RobotContainer.oi.operatorStick.getRightX());
+  
+    if(RobotContainer.oi.armLockButton.getAsBoolean()){
+      isLockButtonPressed = true;
+    }
+
+    if(isLockButtonPressed = true){
+      RobotContainer.verticalMotionArm.manualVerticalArm(0);
+    }
+
+    if(RobotContainer.oi.operatorStick.getRightY() > RobotMap.joystickDeadBand){
+      isLockButtonPressed = false;
+    }
+    
+    if(isLockButtonPressed == false){
       RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
-   // }
+    }
+    
+
+    else{
+      RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+   }
+  }
+
+  public double handleDeadband(double val, double deadband) {
+    return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
   }
 
   // Called once the command ends or is interrupted.
