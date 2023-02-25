@@ -66,8 +66,9 @@ public class RobotContainer {
     telescopingArm = new TelescopingArm();
     verticalMotionArm = new VerticalMotionArm();
     wrist = new Wrist();
+    oi = new OI();
     pneumaticGrab = new PneumaticGrab();
-    oi = new OI();  // need be after drive object
+      // need be after drive object
     //always keep OI last
 
     // Configure the button bindings
@@ -78,8 +79,8 @@ public class RobotContainer {
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
     drive.setDefaultCommand(new BothJoystickDriveCommand());
-    pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
-    wrist.setDefaultCommand(new WristSetPositionsCommand());
+    //pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
+    //wrist.setDefaultCommand(new WristSetPositionsCommand());
 
     CameraServer.startAutomaticCapture(0);
 

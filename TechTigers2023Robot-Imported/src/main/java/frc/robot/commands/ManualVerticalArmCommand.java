@@ -32,7 +32,7 @@ public class ManualVerticalArmCommand extends CommandBase {
     double joystickY;
     joystickY = (RobotContainer.oi.operatorStick.getRightY());
 
-    
+
     joystickY = handleDeadband(joystickY, RobotMap.joystickDeadBand);
 
     

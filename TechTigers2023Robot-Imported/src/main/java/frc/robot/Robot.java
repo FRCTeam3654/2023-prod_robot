@@ -20,9 +20,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public static long m_auto_starttime = 0l;
-  public static double initialPitch;
-
-  double[] yawPitchRollArray = new double[3];
 
 
   /**

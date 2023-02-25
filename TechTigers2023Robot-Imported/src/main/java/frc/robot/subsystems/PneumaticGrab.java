@@ -5,15 +5,27 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.PneumaticsControlModule;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.CompressorConfigType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import frc.robot.RobotContainer;
+import com.revrobotics.REVLibError;
+import com.revrobotics.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogOutput;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PneumaticHub;
+
+
+
 
 public class PneumaticGrab extends SubsystemBase {
   /** Creates a new PneumaticGrab. */
-  private Compressor emmasCompressor = new Compressor (0, PneumaticsModuleType.REVPH);
+  private Compressor emmasCompressor = new Compressor (5, PneumaticsModuleType.REVPH);
   private DoubleSolenoid emmasSolenoid = new DoubleSolenoid(PneumaticsModuleType.REVPH, 0,1);
+
   public PneumaticGrab() {
     emmasCompressor.enableDigital();
     emmasCompressor.isEnabled();

@@ -84,7 +84,9 @@ public static int leftTalonMaster = 1;
 public static int rightTalonMaster = 2;
 public static int leftTalonSlave = 3;
 public static int rightTalonSlave = 4;
+//pneumatics hub is CAN ID 5
 public static int vinnieTalonNumber = 6;
+
 //public static int turretTalonID = 13;
 
 //public static int climbExtendTalonID = 10;

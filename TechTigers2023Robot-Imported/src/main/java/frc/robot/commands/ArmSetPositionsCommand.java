@@ -11,8 +11,8 @@ public class ArmSetPositionsCommand extends CommandBase {
   /** Creates a new TurretSetPositionsCommand. */
   public ArmSetPositionsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.turretSpark);
-    addRequirements(RobotContainer.telescopingArm);
+    //addRequirements(RobotContainer.turretSpark);
+    //addRequirements(RobotContainer.telescopingArm);
   }
 
   // Called when the command is initially scheduled.

@@ -16,7 +16,7 @@ public class ManualWristCommand extends CommandBase {
   
   public ManualWristCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.wrist);
+    //addRequirements(RobotContainer.wrist);
   }
 
   // Called when the command is initially scheduled.
