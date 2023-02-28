@@ -40,9 +40,35 @@ public class ManualTurretTurningCommand extends CommandBase {
       RobotContainer.turretSpark.manualTurretControl(-0.2 * RobotContainer.turretSpark.maxRPM);
     }
     
-    else{
+    
+/* 
+     else if(RobotContainer.oi.limelightButton.getAsBoolean() )  {
+        
+        // drive towards the april tag 
+        if ( hasTargets == true) {
+          joystickRightX = (-1) * yawFromAprilTag * RobotMap.driveToAprilTagProportion;
+          driveStraightFlag = false;
+          System.out.println("AprilTag Button is clicked ... joystickX  ="+joystickRightX +", yawFromAprilTag = "+yawFromAprilTag);
+        }
+        else {
+          if (hasTargetEver == true) {
+            double vinniesError = driveStraightAngleByAprilTag - yawPitchRollArray[0];
+            joystickRightX = vinniesError * RobotMap.driveStraightProportion;
+            driveStraightFlag = true;
+          }
+          else {
+            driveStraightFlag = false;
+          }
+        }
+      }
+      else if(!RobotContainer.oi.limelightButton.getAsBoolean()){
+        driveStraightFlag = false;
+      }
+    */
+    else {
       RobotContainer.turretSpark.manualTurretControl(0);
     }
+
   }
   
 
