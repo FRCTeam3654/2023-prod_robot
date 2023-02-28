@@ -79,7 +79,7 @@ public class RobotContainer {
     odometry = new RobotOdometry(drive, drive.getPigeonIMU());
     odometry.resetOdometry();
     drive.setDefaultCommand(new BothJoystickDriveCommand());
-    //pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
+    pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
     //wrist.setDefaultCommand(new WristSetPositionsCommand());
 
     CameraServer.startAutomaticCapture(0);

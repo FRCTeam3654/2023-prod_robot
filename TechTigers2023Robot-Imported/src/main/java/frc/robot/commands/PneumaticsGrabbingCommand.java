@@ -11,7 +11,7 @@ public class PneumaticsGrabbingCommand extends CommandBase {
   /** Creates a new PneumaticsGrabbingCommand. */
   public PneumaticsGrabbingCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(RobotContainer.pneumaticGrab);
+    addRequirements(RobotContainer.pneumaticGrab);
   }
 
   // Called when the command is initially scheduled.
@@ -22,12 +22,12 @@ public class PneumaticsGrabbingCommand extends CommandBase {
   @Override
   public void execute() {
 
-    if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 4){
-      //RobotContainer.pneumaticGrab.practiceSolenoid(true);
+     if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 0.4){
+      RobotContainer.pneumaticGrab.practiceSolenoid(true);
     }
 
-    else if(RobotContainer.oi.operatorStick.getLeftTriggerAxis() > 4){
-      //RobotContainer.pneumaticGrab.practiceSolenoid(false);
+    else if(RobotContainer.oi.operatorStick.getLeftTriggerAxis() > 0.4){
+      RobotContainer.pneumaticGrab.practiceSolenoid(false);
     }
 
     
