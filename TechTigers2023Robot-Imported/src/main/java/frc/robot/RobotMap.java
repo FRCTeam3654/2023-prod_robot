@@ -76,7 +76,7 @@ public static int armFullBackButtonNumber = 2;
 public static int wristDownUpButtonNumber = 1;
 public static int wristDeployButtonNumber = 3;
 public static int armLockButtonNumber = 6;
-public static int wristLockButtonNumber = 7;
+public static int wristLockButtonNumber = 5;
 
 
 //TALONS/TALON ID NUMBERS!
