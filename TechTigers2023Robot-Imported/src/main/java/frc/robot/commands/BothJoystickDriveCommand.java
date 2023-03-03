@@ -96,7 +96,7 @@ public class BothJoystickDriveCommand extends CommandBase {
 
         else {
 
-          System.out.println("has target " );
+         // System.out.println("has target " );
          // System.out.println("hasTargest =  " + hasTargets);
           //List<PhotonTrackedTarget> targets = result.getTargets();
           hasTargetEver = true;

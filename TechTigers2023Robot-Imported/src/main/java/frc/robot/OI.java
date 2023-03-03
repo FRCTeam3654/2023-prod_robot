@@ -21,6 +21,7 @@ import frc.robot.commands.ManualWristCommand;
 import frc.robot.commands.WristSetPositionsCommand;
 import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.Turn90DegreesCommand;
+import frc.robot.commands.WristMotionMagic;
 
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;

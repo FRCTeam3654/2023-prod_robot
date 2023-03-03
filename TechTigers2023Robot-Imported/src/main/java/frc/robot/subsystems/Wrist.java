@@ -20,6 +20,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 /*
 Emily we might want to add some of these two things somewere in this  subsystem
@@ -67,7 +68,9 @@ if (forwardLimit.getValue() == ForwardLimitValue.ClosedToGround) {
 
 public class Wrist extends SubsystemBase {
   /** Creates a new Wrist. */
-  private TalonFX wristTalon = new TalonFX (RobotMap.wristTalonID);
+  private WPI_TalonFX wristTalon = new WPI_TalonFX (RobotMap.wristTalonID);
+  //private TalonFX wristTalon = new TalonFX (RobotMap.wristTalonID);
+
   private double wristTargetPosition;
   
   public Wrist() {
@@ -76,6 +79,9 @@ public class Wrist extends SubsystemBase {
     
     wristTalon.setNeutralMode(NeutralMode.Brake);
     wristTalon.configNeutralDeadband(0.01, RobotMap.pidLoopTimeout); //during testing was 0.001
+
+    wristTalon.configClosedloopRamp(1);
+    wristTalon.configOpenloopRamp(1);
     
     wristTalon.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, RobotMap.pidLoopTimeout);
 
@@ -84,21 +90,26 @@ public class Wrist extends SubsystemBase {
 		wristTalon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.pidLoopTimeout);
 
 		/* Set the peak and nominal outputs */
-		wristTalon.configNominalOutputForward(0, RobotMap.pidLoopTimeout);
-		wristTalon.configNominalOutputReverse(0, RobotMap.pidLoopTimeout);
-		wristTalon.configPeakOutputForward(1, RobotMap.pidLoopTimeout);
-		wristTalon.configPeakOutputReverse(-1, RobotMap.pidLoopTimeout);
+		wristTalon.configNominalOutputForward(0, 30);
+		wristTalon.configNominalOutputReverse(0, 30);
+		wristTalon.configPeakOutputForward(1, 30);
+		wristTalon.configPeakOutputReverse(-1, 30);
+
+    wristTalon.config_kF(0,0.045,30); // 0.045
+    wristTalon.config_kP(0,0.049,30); //0.095 //0.049
+    wristTalon.config_kI(0,0,30);
+    wristTalon.config_kD(0,0,30);
 
 		/* Set gains in slot0 - see documentation */
-    wristTalon.selectProfileSlot(RobotMap.kShooterSlotIDx, RobotMap.kPIDLoopIDx);
-		wristTalon.config_kF(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kF, RobotMap.pidLoopTimeout);
-		wristTalon.config_kP(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kP, RobotMap.pidLoopTimeout);
-		wristTalon.config_kI(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kI, RobotMap.pidLoopTimeout);
-		wristTalon.config_kD(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kD, RobotMap.pidLoopTimeout);
+    //wristTalon.selectProfileSlot(RobotMap.kShooterSlotIDx, RobotMap.kPIDLoopIDx);
+		//wristTalon.config_kF(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kF, RobotMap.pidLoopTimeout);
+		//wristTalon.config_kP(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kP, RobotMap.pidLoopTimeout);
+		//wristTalon.config_kI(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kI, RobotMap.pidLoopTimeout);
+		//wristTalon.config_kD(RobotMap.kShooterSlotIDx, RobotMap.wristGainsVelocity.kD, RobotMap.pidLoopTimeout);
 
 		/* Set acceleration and vcruise velocity - see documentation */
-		wristTalon.configMotionCruiseVelocity(500, RobotMap.pidLoopTimeout);
-		wristTalon.configMotionAcceleration(500, RobotMap.pidLoopTimeout);
+		wristTalon.configMotionCruiseVelocity(2000, RobotMap.pidLoopTimeout);
+		wristTalon.configMotionAcceleration(2000, RobotMap.pidLoopTimeout);
 
 		/* Zero the sensor once on robot boot up */    
     zeroSensor();
@@ -107,6 +118,10 @@ public class Wrist extends SubsystemBase {
   public void zeroSensor() {
     wristTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
     //System.out.println("wrist Sensor is 0");
+  }
+
+  public double getWristTalonPosition(){
+    return wristTalon.getSelectedSensorPosition(0);
   }
 
   public void wristTurning(double targetPos) {
@@ -139,9 +154,9 @@ public class Wrist extends SubsystemBase {
         wristTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
         wristTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
       
-        wristTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+        //wristTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
       
-        wristTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+        //wristTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
 
         if( Math.abs(arbitraryFeedForwardValue) > 0.001) {
           // add  DemandType.ArbitraryFeedForward to hold the vertical arm in position

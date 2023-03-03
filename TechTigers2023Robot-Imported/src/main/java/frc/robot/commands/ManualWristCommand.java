@@ -16,7 +16,7 @@ public class ManualWristCommand extends CommandBase {
   
   public ManualWristCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    //addRequirements(RobotContainer.wrist);
+    addRequirements(RobotContainer.wrist);
   }
 
   // Called when the command is initially scheduled.
@@ -28,10 +28,10 @@ public class ManualWristCommand extends CommandBase {
   public void execute() {
 
     if(RobotContainer.oi.wristUpPOV.getAsBoolean() == true){
-      RobotContainer.wrist.manualwrist(0.05);
+      RobotContainer.wrist.manualwrist(0.15);
     }
     else if(RobotContainer.oi.wristDownPOV.getAsBoolean() == true){
-      RobotContainer.wrist.manualwrist(-0.05);
+      RobotContainer.wrist.manualwrist(-0.15);
     }
     else{
       RobotContainer.wrist.manualwrist(0);
