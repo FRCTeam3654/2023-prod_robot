@@ -78,9 +78,10 @@ public static int pneumaticGrabButtonNumber = 8;
 public static int armFullOutButtonNumber = 4;
 public static int armFullBackButtonNumber = 1;
 public static int wristDownUpButtonNumber = 2;
-public static int wristDeployButtonNumber = 3;
+//public static int wristDeployButtonNumber = 3;
 public static int armLockButtonNumber = 6;
 public static int wristLockButtonNumber = 5;
+public static int armPivotButtonNumber = 3;
 
 
 //TALONS/TALON ID NUMBERS!
