@@ -51,8 +51,8 @@ public class VerticalMotionArm extends SubsystemBase {
 		verticalArmTalon.config_kD(RobotMap.kShooterSlotIDx, RobotMap.verticalArmGainsVelocity.kD, RobotMap.pidLoopTimeout);
 
 		/* Set acceleration and vcruise velocity - see documentation */
-		verticalArmTalon.configMotionCruiseVelocity(500, RobotMap.pidLoopTimeout);
-		verticalArmTalon.configMotionAcceleration(500, RobotMap.pidLoopTimeout);
+		verticalArmTalon.configMotionCruiseVelocity(2000, RobotMap.pidLoopTimeout);
+		verticalArmTalon.configMotionAcceleration(2000, RobotMap.pidLoopTimeout);
 
 		/* Zero the sensor once on robot boot up */    
     zeroSensor();
@@ -61,6 +61,10 @@ public class VerticalMotionArm extends SubsystemBase {
   public void zeroSensor() {
     verticalArmTalon.setSelectedSensorPosition(0, RobotMap.kPIDLoopIDx, RobotMap.kTimeoutMs);
     //System.out.println("verticalArm Sensor is 0");
+  }
+
+  public double getArmTalonPosition(){
+    return verticalArmTalon.getSelectedSensorPosition(0);
   }
 
   public void verticalArmMovement(double targetPos) {
@@ -84,6 +88,29 @@ public class VerticalMotionArm extends SubsystemBase {
     verticalArmTalon.configVoltageCompSaturation(11, 0);
     verticalArmTalon.set(ControlMode.PercentOutput, percentOutput);
   }
+
+  public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity ) {
+    setMotionMagic( distance, cruiseVelocity,  accelerationVelocity, 0) ;
+   }
+
+
+  public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity, double arbitraryFeedForwardValue) {
+        verticalArmTalon.configMotionCruiseVelocity(cruiseVelocity, RobotMap.pidLoopTimeout);
+        verticalArmTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+      
+        //armTalon.configMotionAcceleration(accelerationVelocity, RobotMap.pidLoopTimeout);
+      
+        //armTalon.selectProfileSlot(RobotMap.kSlotIDx, RobotMap.kPIDLoopIDx);
+
+        if( Math.abs(arbitraryFeedForwardValue) > 0.001) {
+          // add  DemandType.ArbitraryFeedForward to hold the vertical arm in position
+          verticalArmTalon.set(ControlMode.MotionMagic, distance,  DemandType.ArbitraryFeedForward, arbitraryFeedForwardValue);
+        }
+        else {
+          verticalArmTalon.set(ControlMode.MotionMagic, distance);
+        }
+}
+
 
 
   public boolean atTargetPosition(){

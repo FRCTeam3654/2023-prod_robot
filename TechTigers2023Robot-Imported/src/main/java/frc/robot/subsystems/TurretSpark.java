@@ -81,6 +81,10 @@ public class TurretSpark extends SubsystemBase {
     m_encoder.setPosition(0);
   }
 
+  public double getSensorReading(){
+    return m_encoder.getPosition();
+  }
+
 
   @Override
   public void periodic() {

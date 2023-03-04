@@ -9,11 +9,16 @@ import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.commands.ArmSetPositionsCommand;
 
 public class ManualVerticalArmCommand extends CommandBase {
   /** Creates a new ManualVerticalArmCommand. */
 
   private boolean isLockButtonPressed; 
+  private double armHoldingPower = 0.12;
+  private double maxAngle = 60;
+  private double initialAngle = -45;
+
 
 
   public ManualVerticalArmCommand() {
@@ -43,20 +48,31 @@ public class ManualVerticalArmCommand extends CommandBase {
     }
 
     if(isLockButtonPressed = true){
-      RobotContainer.verticalMotionArm.manualVerticalArm(0);
+      //RobotContainer.verticalMotionArm.manualVerticalArm(0);
     }
 
     if(RobotContainer.oi.operatorStick.getRightY() > RobotMap.joystickDeadBand){
-      isLockButtonPressed = false;
+      //isLockButtonPressed = false;
     }
     
     if(isLockButtonPressed == false){
-      RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+      //RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
     }
     
 
     else{
-      RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+      //RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+      if(ArmSetPositionsCommand.armMoveNumber %2 == 1 && ArmSetPositionsCommand.isMotionMagicInProgress == false){
+        //need to figure out the angles times the cosine angles
+        double currentSensorReading = RobotContainer.verticalMotionArm.getArmTalonPosition();
+        double theta = (((Math.abs(currentSensorReading))/Math.abs(RobotMap.armFullUpDistance)) * maxAngle) + initialAngle;
+        RobotContainer.wrist.manualwrist(armHoldingPower * Math.cos(Math.toRadians(theta)));
+      }
+      else if(ArmSetPositionsCommand.armMoveNumber %2 == 0 && ArmSetPositionsCommand.isMotionMagicInProgress == false){
+        RobotContainer.wrist.manualwrist(0);
+      }
+      //RobotContainer.wrist.
+      System.out.println("Should i be staying still");
    }
   }
 

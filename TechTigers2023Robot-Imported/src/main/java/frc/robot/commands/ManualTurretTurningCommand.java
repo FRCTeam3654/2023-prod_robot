@@ -11,10 +11,23 @@ import frc.robot.RobotMap;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Timer;
+import java.util.List;
+import org.photonvision.PhotonCamera;
+import org.photonvision.targeting.PhotonTrackedTarget;
+import org.photonvision.targeting.TargetCorner;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Transform2d;
+
 
 
 public class ManualTurretTurningCommand extends CommandBase {
   /** Creates a new TurretTurningCommand. */
+  private PhotonCamera camera = new PhotonCamera("Limelight Local");
+  private boolean hasTargetEver = false;
+  private double lastYawAngleByPhotonvision = 0;
+  private double driveStraightAngleByPhotonvision = 0;
+
+
 
 
   public ManualTurretTurningCommand() {
@@ -26,12 +39,22 @@ public class ManualTurretTurningCommand extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.turretSpark.resetEncoders();
+    //double[] yawPitchRollArray = new double[3];
+    //RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+    //RobotContainer.turretSpark.getSensorReading();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //RobotContainer.oi.turretButton.
+
+    double yawFromPhotonvision=0;
+    double[] yawPitchRollArray;
+    yawPitchRollArray = new double[3];
+
+    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+
     if(RobotContainer.oi.turretRightPOV.getAsBoolean() == true){
       RobotContainer.turretSpark.manualTurretControl(0.2 * RobotContainer.turretSpark.maxRPM);
     }
@@ -41,7 +64,7 @@ public class ManualTurretTurningCommand extends CommandBase {
     }
     
     
-/* 
+/*
      else if(RobotContainer.oi.limelightButton.getAsBoolean() )  {
         
         // drive towards the april tag 
@@ -64,12 +87,74 @@ public class ManualTurretTurningCommand extends CommandBase {
       else if(!RobotContainer.oi.limelightButton.getAsBoolean()){
         driveStraightFlag = false;
       }
-    */
-    else {
-      RobotContainer.turretSpark.manualTurretControl(0);
-    }
+    
+      */
+      else if(RobotContainer.oi.photonvisionButton.getAsBoolean() )  {
+        //PhotonVision stuff
+        var result = camera.getLatestResult();
+            
+        boolean hasTargets = result.hasTargets();
+        if(hasTargets == false) {
+          //System.out.println("no target " );
+        }
+        else {
 
+          // System.out.println("has target " );
+          // System.out.println("hasTargest =  " + hasTargets);
+           //List<PhotonTrackedTarget> targets = result.getTargets();
+           hasTargetEver = true;
+           PhotonTrackedTarget target = result.getBestTarget();
+           double yaw = target.getYaw();
+           lastYawAngleByPhotonvision = yaw;
+           double pitch = target.getPitch();
+           double area = target.getArea();
+           double skew = target.getSkew();
+           Transform3d pose = target.getBestCameraToTarget();
+           List<TargetCorner> corners = target.getDetectedCorners();
+          
+           int targetID = target.getFiducialId();
+           double poseAmbiguity = target.getPoseAmbiguity();
+          // System.out.println("yaw = " + yaw + ", area"+ area + ", pitch = " + pitch + ", targetID =" + targetID);
+           yawFromPhotonvision = yaw;
+           // figure out the target position based on the angle. not sure if it's positive or negative
+           driveStraightAngleByPhotonvision = RobotContainer.turretSpark.getSensorReading() - (yaw / 360);
+        }
+        
+        if ( hasTargets == true) {
+          double movePower;
+          movePower = (-1) * yawFromPhotonvision * RobotMap.driveToPhotonvisionProportion;
+          if(movePower > 0.2){
+            movePower = 0.2;
+          }
+          if(movePower < -0.2){
+            movePower = -0.2;
+          }
+          System.out.println("Photonvision Button is clicked ... movePower  ="+ movePower +", yawFromAprilTag = "+yawFromPhotonvision);
+          RobotContainer.turretSpark.manualTurretControl(movePower);
+        }
+        else {
+          double movePower;
+          if (hasTargetEver == true) {
+            double vinniesError = driveStraightAngleByPhotonvision - RobotContainer.turretSpark.getSensorReading();
+            movePower = vinniesError * RobotMap.driveToPhotonvisionByPositionProportion;
+            if(movePower > 0.2){
+              movePower = 0.2;
+            }
+            if(movePower < -0.2){
+              movePower = -0.2;
+            }
+          }
+         
+        }
+
+
+      }
+
+      else {
+        RobotContainer.turretSpark.manualTurretControl(0);
+      }
   }
+  
   
 
   // Called once the command ends or is interrupted.

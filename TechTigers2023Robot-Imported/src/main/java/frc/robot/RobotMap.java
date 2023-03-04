@@ -30,6 +30,9 @@ public static double LimelightJoeyX = -0.007;
 public static double turn90DegreeTimeout = 3;
 public static double limeLightTimeout = 2;
 public static double driveToAprilTagProportion = 0.005;//0.02
+public static double driveToPhotonvisionProportion = 0.005;//0.02
+public static double driveToPhotonvisionByPositionProportion = 2.5;
+
 
 //public static double ballStorageTimerAndysVision = 2;
 public static double autonomousVelocity = 0.5; 
@@ -65,8 +68,9 @@ public static int turnRight90ButtonNumber = 2;
 public static int turnLeft180ButtonNumber = 4; 
 public static int turnRight180ButtonNumber = 1;
 public static int limelightButtonNumber = 5;
-public static int balanceButtonNumber = 6;
+public static int balanceButtonNumber = 9;
 public static int initialPitchButtonNumber = 10;
+public static int photonvisionButtonNumber = 6;
 
 
 //OPERATOR STICK
@@ -261,7 +265,7 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
 //for the wrist
-public static double wristFullUpDistance = -5000; //PLACEHOLDER MUST TEST
+public static double wristFullUpDistance = 13000; //PLACEHOLDER MUST TEST
 public static double wristDeployDistance = -5000; //PLACEHOLDER MUST TEST
 
 
@@ -277,6 +281,9 @@ public static double turboMax = 0.8;
 //public static double balanceAngleB = -0.12;
 public static double balanceAngleM = 0.007;
 public static double balanceAngleB = 0.06; //-0.06
+
+public static double armFullUpDistance = 4000;
+//arm gear box ratio is 12.5 : 1
 
 public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }

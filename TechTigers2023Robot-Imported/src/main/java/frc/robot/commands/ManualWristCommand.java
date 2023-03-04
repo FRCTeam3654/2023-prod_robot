@@ -7,13 +7,15 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.RobotMap;
+import frc.robot.commands.WristMotionMagic;
 
 import edu.wpi.first.wpilibj.Timer;
 
 
 public class ManualWristCommand extends CommandBase {
   /** Creates a new WristCommand. */
-  
+  private double wristHoldingPower = 0.12;
+
   public ManualWristCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.wrist);
@@ -28,13 +30,22 @@ public class ManualWristCommand extends CommandBase {
   public void execute() {
 
     if(RobotContainer.oi.wristUpPOV.getAsBoolean() == true){
-      RobotContainer.wrist.manualwrist(0.15);
+      //RobotContainer.wrist.manualwrist(0.15);
     }
     else if(RobotContainer.oi.wristDownPOV.getAsBoolean() == true){
-      RobotContainer.wrist.manualwrist(-0.15);
+      //RobotContainer.wrist.manualwrist(-0.15);
     }
     else{
-      RobotContainer.wrist.wristTurning(0);
+      if(WristMotionMagic.wristMoveNumber %2 == 1 && WristMotionMagic.isMotionMagicInProgress == false){
+        //need to figure out the angles times the cosine angles
+        double currentSensorReading = RobotContainer.wrist.getWristTalonPosition();
+        double theta = ((Math.abs(RobotMap.wristFullUpDistance) - Math.abs(currentSensorReading))/Math.abs(RobotMap.wristFullUpDistance)) * 90;
+        RobotContainer.wrist.manualwrist(wristHoldingPower * Math.cos(Math.toRadians(theta)));
+      }
+      else if(WristMotionMagic.wristMoveNumber %2 == 0 && WristMotionMagic.isMotionMagicInProgress == false){
+        RobotContainer.wrist.manualwrist(0);
+      }
+      //RobotContainer.wrist.
       System.out.println("Should i be staying still");
     }
 
