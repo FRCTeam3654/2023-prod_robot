@@ -13,8 +13,9 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class WristMotionMagic extends CommandBase {
   /** Creates a new WristMotionMagic. */
-
+  private static int wristMoveNumber = 0;
   double wristTimer;
+
   public WristMotionMagic() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.wrist);
@@ -24,9 +25,21 @@ public class WristMotionMagic extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.wrist.zeroSensor();
-    wristTimer = Timer.getFPGATimestamp();
-    RobotContainer.wrist.setMotionMagic(14000, 2000, 2000);
-    System.out.println("should i be motion magicking");
+    wristMoveNumber = wristMoveNumber + 1;
+
+    if(wristMoveNumber %2 == 1){
+      wristTimer = Timer.getFPGATimestamp();
+      RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 2000, 2000);
+      System.out.println("should i be motion magicking down");
+    }
+
+    if(wristMoveNumber %2 != 1){
+      wristTimer = Timer.getFPGATimestamp();
+      RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 2000, 2000);
+      System.out.println("should i be motion magicking up");
+    }
+
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.

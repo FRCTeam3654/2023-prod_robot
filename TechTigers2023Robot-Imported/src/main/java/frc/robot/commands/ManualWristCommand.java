@@ -34,7 +34,8 @@ public class ManualWristCommand extends CommandBase {
       RobotContainer.wrist.manualwrist(-0.15);
     }
     else{
-      RobotContainer.wrist.manualwrist(0);
+      RobotContainer.wrist.wristTurning(0);
+      System.out.println("Should i be staying still");
     }
 
   //need to add an if statement for if it rotates x amount of revolutions it stops
