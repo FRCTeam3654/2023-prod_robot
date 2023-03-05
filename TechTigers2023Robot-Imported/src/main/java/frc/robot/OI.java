@@ -156,7 +156,7 @@ public class OI {
   wristUpPOV.whileTrue(new ManualWristCommand());
   wristDownPOV.whileTrue(new ManualWristCommand());
 
-  wristDeployButton.onTrue(new WristMotionMagic());
+  //wristDeployButton.onTrue(new WristMotionMagic());
   wristDownUpButton.onTrue(new WristMotionMagic());
 
   armPivotButton.onTrue(new ArmSetPositionsCommand());

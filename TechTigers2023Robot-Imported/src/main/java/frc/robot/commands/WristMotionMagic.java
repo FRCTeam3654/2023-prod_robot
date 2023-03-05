@@ -36,7 +36,7 @@ public class WristMotionMagic extends CommandBase {
       isMotionMagicInProgress = true;
     }
 
-    if(wristMoveNumber %2 != 1){ //moves up
+    else if(wristMoveNumber %2 != 1){ //moves up
       wristTimer = Timer.getFPGATimestamp();
       //RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 2000, 2000);
       RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
@@ -48,6 +48,9 @@ public class WristMotionMagic extends CommandBase {
       wristTimer = Timer.getFPGATimestamp();
     }
 
+//RobotContainer.wrist.setMotionMagic(-13000, 2000, 2000);
+//wristTimer = Timer.getFPGATimestamp();
+//System.out.println("should i be motion magicking down");
 
   }
 
@@ -64,7 +67,7 @@ public class WristMotionMagic extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( (wristTimer + 3.0) < Timer.getFPGATimestamp()) {
+    if( (wristTimer + 2.0) < Timer.getFPGATimestamp()) {
       // after 3 second, stop command
       isMotionMagicInProgress = false;
       return true;

@@ -56,11 +56,11 @@ public class ManualTurretTurningCommand extends CommandBase {
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
     if(RobotContainer.oi.turretRightPOV.getAsBoolean() == true){
-      RobotContainer.turretSpark.manualTurretControl(0.2 * RobotContainer.turretSpark.maxRPM);
+      RobotContainer.turretSpark.manualTurretControl(-0.25 * RobotContainer.turretSpark.maxRPM);
     }
 
     else if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == true){
-      RobotContainer.turretSpark.manualTurretControl(-0.2 * RobotContainer.turretSpark.maxRPM);
+      RobotContainer.turretSpark.manualTurretControl(0.25 * RobotContainer.turretSpark.maxRPM);
     }
     
     

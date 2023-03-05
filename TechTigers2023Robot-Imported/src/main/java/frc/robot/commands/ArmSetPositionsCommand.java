@@ -29,13 +29,13 @@ public class ArmSetPositionsCommand extends CommandBase {
 
     if(armMoveNumber %2 == 1){ //moves up
       armTimer = Timer.getFPGATimestamp();
-      RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
+      RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000, 0.1);
       //RobotContainer.arm.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking up");
       isMotionMagicInProgress = true;
     }
 
-    if(armMoveNumber %2 != 1){ //moves down
+    else if(armMoveNumber %2 != 1){ //moves down
       armTimer = Timer.getFPGATimestamp();
       //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
       RobotContainer.verticalMotionArm.setMotionMagic(0, 2000, 2000);
@@ -46,6 +46,12 @@ public class ArmSetPositionsCommand extends CommandBase {
       RobotContainer.verticalMotionArm.setMotionMagic(0, 0, 0);
       armTimer = Timer.getFPGATimestamp();
     }
+    
+    
+    //RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000, 0.3);
+    //System.out.println("should i be motion magicking up");
+    //isMotionMagicInProgress = true;
+    //armTimer = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -56,23 +62,27 @@ public class ArmSetPositionsCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     isMotionMagicInProgress = false;
+    //System.out.println("is the arm command over");
+    RobotContainer.verticalMotionArm.manualVerticalArm(0.2);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( (armTimer + 3.0) < Timer.getFPGATimestamp()) {
+    if( (armTimer + 2.0) < Timer.getFPGATimestamp()) {
       // after 3 second, stop command
       isMotionMagicInProgress = false;
+      System.out.println("should i be quitting the arm command");
       return true;
     }
     else {
         double sensorDistance = Math.abs(RobotContainer.wrist.getWristTalonPosition());
         double percentError = 100 * (RobotMap.wristFullUpDistance - sensorDistance)/RobotMap.wristFullUpDistance;
-
+      
         if (Math.abs(percentError) < 1){
         //if (percentLeftError < 0.9 || percentLeftError < 0 )
         isMotionMagicInProgress = false;
+        System.out.println("should i be quitting the arm command");
         return true;
         }
 

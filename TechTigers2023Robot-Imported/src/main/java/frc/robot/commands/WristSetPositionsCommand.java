@@ -32,7 +32,7 @@ public class WristSetPositionsCommand extends CommandBase {
   public void initialize() {
 
     fullButtonPressNumber = 0;
-    deployButtonPressNumber = 0;
+    //deployButtonPressNumber = 0;
     lockButtonPressNumber = 0;
 
     /*if(RobotContainer.oi.wristDeployButton.getAsBoolean() == true){
@@ -60,9 +60,9 @@ public class WristSetPositionsCommand extends CommandBase {
       RobotContainer.wrist.manualwrist(0);
      }
 
-    if(isDeployButtonPressed == true || isDownUpButtonPressed == true){
+    //if(isDeployButtonPressed == true || isDownUpButtonPressed == true){
 //System.out.println("am i stopped");
-    }
+    //}
 
    else{
     //pressing the button will add +1 to the integer
@@ -182,7 +182,7 @@ public class WristSetPositionsCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
 
-    isDeployButtonPressed = false;
+    //isDeployButtonPressed = false;
     isDownUpButtonPressed = false;
   }
 
@@ -204,15 +204,17 @@ public class WristSetPositionsCommand extends CommandBase {
       }
       }
 
-      else if (isDeployButtonPressed){
+      /*else if (isDeployButtonPressed){
         double sensorDistance = Math.abs(RobotContainer.wrist.getWristTalonPosition());
         double percentError = 100 * (RobotMap.wristDeployDistance - sensorDistance)/RobotMap.wristDeployDistance;
 
         if (Math.abs(percentError) < 1){
         //if (percentLeftError < 0.9 || percentLeftError < 0 )
         return true;
+        
       }
       }
+      */
 
   }
   return false;

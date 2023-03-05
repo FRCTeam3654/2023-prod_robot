@@ -56,7 +56,7 @@ public class ManualVerticalArmCommand extends CommandBase {
     }
     
     if(isLockButtonPressed == false){
-      //RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+      RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
     }
     
 

@@ -77,11 +77,11 @@ public static int photonvisionButtonNumber = 6;
 public static int pneumaticGrabButtonNumber = 8;
 public static int armFullOutButtonNumber = 4;
 public static int armFullBackButtonNumber = 1;
-public static int wristDownUpButtonNumber = 2;
+public static int wristDownUpButtonNumber = 3;
 //public static int wristDeployButtonNumber = 3;
 public static int armLockButtonNumber = 6;
 public static int wristLockButtonNumber = 5;
-public static int armPivotButtonNumber = 3;
+public static int armPivotButtonNumber = 2;
 
 
 //TALONS/TALON ID NUMBERS!
@@ -266,7 +266,7 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
 //for the wrist
-public static double wristFullUpDistance = 13000; //PLACEHOLDER MUST TEST
+public static double wristFullUpDistance = 14000; //PLACEHOLDER MUST TEST
 public static double wristDeployDistance = -5000; //PLACEHOLDER MUST TEST
 
 
