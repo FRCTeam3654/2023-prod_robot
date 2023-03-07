@@ -22,7 +22,7 @@ import frc.robot.commands.WristSetPositionsCommand;
 import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.Turn90DegreesCommand;
 import frc.robot.commands.WristMotionMagic;
-
+import frc.robot.commands.ArmJoustCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -150,8 +150,8 @@ public class OI {
   turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
   turretRightPOV.whileTrue(new ManualTurretTurningCommand());
 
-  armFullBackButton.onTrue(new ArmSetPositionsCommand());
-  armFullOutButton.onTrue(new ArmSetPositionsCommand());
+  armFullBackButton.onTrue(new ArmJoustCommand());
+  armFullOutButton.onTrue(new ArmJoustCommand());
 
   wristUpPOV.whileTrue(new ManualWristCommand());
   wristDownPOV.whileTrue(new ManualWristCommand());

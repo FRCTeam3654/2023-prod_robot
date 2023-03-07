@@ -9,9 +9,14 @@ import frc.robot.RobotContainer;
 
 public class PneumaticsGrabbingCommand extends CommandBase {
   /** Creates a new PneumaticsGrabbingCommand. */
+  private int mode = 0; //0 is regular, 1 is auto open, 2 is auto close
   public PneumaticsGrabbingCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.pneumaticGrab);
+  }
+  public PneumaticsGrabbingCommand(int new_mode){
+    addRequirements(RobotContainer.pneumaticGrab);
+    mode = new_mode;
   }
 
   // Called when the command is initially scheduled.
@@ -22,11 +27,11 @@ public class PneumaticsGrabbingCommand extends CommandBase {
   @Override
   public void execute() {
 
-     if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 0.4){
+     if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 0.4 || mode == 1){ // opens
       RobotContainer.pneumaticGrab.practiceSolenoid(true);
     }
 
-    else if(RobotContainer.oi.operatorStick.getLeftTriggerAxis() > 0.4){
+    else if(RobotContainer.oi.operatorStick.getLeftTriggerAxis() > 0.4 || mode == 2){ //closes
       RobotContainer.pneumaticGrab.practiceSolenoid(false);
     }
 

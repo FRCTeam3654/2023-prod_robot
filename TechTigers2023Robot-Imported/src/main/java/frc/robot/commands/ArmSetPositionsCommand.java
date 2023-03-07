@@ -22,6 +22,7 @@ public class ArmSetPositionsCommand extends CommandBase {
     addRequirements(RobotContainer.verticalMotionArm);
   }
 
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -63,13 +64,13 @@ public class ArmSetPositionsCommand extends CommandBase {
   public void end(boolean interrupted) {
     isMotionMagicInProgress = false;
     //System.out.println("is the arm command over");
-    RobotContainer.verticalMotionArm.manualVerticalArm(0.2);
+    //RobotContainer.verticalMotionArm.manualVerticalArm(0.2);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( (armTimer + 2.0) < Timer.getFPGATimestamp()) {
+    if( (armTimer + 3.0) < Timer.getFPGATimestamp()) {
       // after 3 second, stop command
       isMotionMagicInProgress = false;
       System.out.println("should i be quitting the arm command");

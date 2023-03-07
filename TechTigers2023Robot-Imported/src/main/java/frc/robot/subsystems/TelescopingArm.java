@@ -259,7 +259,7 @@ if(  isAboutAngle (initAngleDegree,0) ) {
 
   
 
-public double getarmTalonPosition(){
+public double getArmTalonPosition(){
   return armTalon.getSelectedSensorPosition(0);
 }
 

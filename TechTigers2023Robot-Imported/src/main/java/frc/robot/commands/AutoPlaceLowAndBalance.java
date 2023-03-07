@@ -20,22 +20,24 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.BalanceCommand;
+import frc.robot.commands.WristMotionMagic;
+import frc.robot.commands.PneumaticsGrabbingCommand;
 
 
-public class AutoBalanceRouteCommand extends SequentialCommandGroup {
+public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
 
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
 
   /** Creates a new AutonBalanceCommand. */
-  public AutoBalanceRouteCommand(RobotOdometry odometry, Drive driveTrain) {
+  public AutoPlaceLowAndBalance(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-190), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
-    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
-        List.of(),
-        new Pose2d(Units.inchesToMeters(-100), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, false, false);
+    //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
+       // List.of(),
+       // new Pose2d(Units.inchesToMeters(-100), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, false, false);
         //NEED TO CHANGE THE VALUE IT SHOULD NOT GO ALL THE WAY BACK TO 0,0
         
        // mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(0)), 0,
@@ -49,7 +51,7 @@ public class AutoBalanceRouteCommand extends SequentialCommandGroup {
 
    //SlidingClimbHooksCommand.climbNumber = 1;
        addCommands(
-              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), mp, new AutoBalanceCommand());
+              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new WristMotionMagic(), new PneumaticsGrabbingCommand(1), new WaitCommand (2), new WristMotionMagic(), new PneumaticsGrabbingCommand(2), mp, new AutoBalanceCommand());
   }
 
   

@@ -86,8 +86,10 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture(0);
 
 
-    autoChooser.setDefaultOption("RED move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
-    autoChooser.setDefaultOption("BLUE move forward and balance", new AutoBalanceRouteCommand(odometry, drive));
+    autoChooser.setDefaultOption("place low and balance", new AutoPlaceLowAndBalance(odometry, drive));
+    autoChooser.addOption("place low and back up", new AutoPlaceLowAndMove(odometry, drive));
+    autoChooser.addOption("place mid and balance", new AutoPlaceMidAndBalance(odometry, drive));
+    autoChooser.addOption("place mid and move", new AutoPlaceMidAndMove(odometry, drive));
     
     driveChooser.addOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.setDefaultOption("Both Joystick Drive", new BothJoystickDriveCommand());

@@ -59,7 +59,7 @@ public class AutoBalanceCommand extends CommandBase {
 
     double angleDifference = yawPitchRollArray[1] - initialPitch;
 
-    if ((isAngleReached == false) && (Math.abs(angleDifference) > 2) ){
+    if ((isAngleReached == false) && (Math.abs(angleDifference) > 3) ){
       isAngleReached = true;
     }
 
