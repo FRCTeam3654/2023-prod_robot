@@ -15,6 +15,8 @@ public class ArmSetPositionsCommand extends CommandBase {
   public static int armMoveNumber = 0;
   double armTimer;
   public static boolean isMotionMagicInProgress = false;
+  private double armDistance = RobotMap.armFullUpDistance;
+  private double armTimerTimeout = 3;
 
   public ArmSetPositionsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,6 +24,11 @@ public class ArmSetPositionsCommand extends CommandBase {
     addRequirements(RobotContainer.verticalMotionArm);
   }
 
+public ArmSetPositionsCommand(double distance){
+  addRequirements(RobotContainer.verticalMotionArm);
+  armDistance = distance;
+  armTimerTimeout = 1.5;
+}
 
   // Called when the command is initially scheduled.
   @Override
@@ -30,7 +37,7 @@ public class ArmSetPositionsCommand extends CommandBase {
 
     if(armMoveNumber %2 == 1){ //moves up
       armTimer = Timer.getFPGATimestamp();
-      RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000, 0.1);
+      RobotContainer.verticalMotionArm.setMotionMagic(armDistance, 2000, 2000, 0.05);
       //RobotContainer.arm.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking up");
       isMotionMagicInProgress = true;
@@ -39,7 +46,7 @@ public class ArmSetPositionsCommand extends CommandBase {
     else if(armMoveNumber %2 != 1){ //moves down
       armTimer = Timer.getFPGATimestamp();
       //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
-      RobotContainer.verticalMotionArm.setMotionMagic(0, 2000, 2000);
+      RobotContainer.verticalMotionArm.setMotionMagic(2000, 2000, 2000);
       System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
@@ -63,6 +70,8 @@ public class ArmSetPositionsCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     isMotionMagicInProgress = false;
+    armDistance = RobotMap.armFullUpDistance;
+    armTimerTimeout = 3;
     //System.out.println("is the arm command over");
     //RobotContainer.verticalMotionArm.manualVerticalArm(0.2);
   }
@@ -70,7 +79,7 @@ public class ArmSetPositionsCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( (armTimer + 3.0) < Timer.getFPGATimestamp()) {
+    if( (armTimer + armTimerTimeout) < Timer.getFPGATimestamp()) {
       // after 3 second, stop command
       isMotionMagicInProgress = false;
       System.out.println("should i be quitting the arm command");

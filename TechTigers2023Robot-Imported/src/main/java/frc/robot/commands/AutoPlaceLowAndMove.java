@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.AutoBalanceCommand;
 import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.PneumaticsGrabbingCommand;
+import frc.robot.commands.ArmSetPositionsCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -37,7 +38,7 @@ public class AutoPlaceLowAndMove extends SequentialCommandGroup {
         List.of(),
         new Pose2d(Units.inchesToMeters(-200), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
     addCommands(
-      new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new WristMotionMagic(), new PneumaticsGrabbingCommand(1), new WaitCommand(2), new WristMotionMagic(), new PneumaticsGrabbingCommand(2), mp
+      new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new ArmSetPositionsCommand(2000), new WristMotionMagic(), new PneumaticsGrabbingCommand(1), new WaitCommand(2), new WristMotionMagic(), new PneumaticsGrabbingCommand(2), mp
     );
   }
 }

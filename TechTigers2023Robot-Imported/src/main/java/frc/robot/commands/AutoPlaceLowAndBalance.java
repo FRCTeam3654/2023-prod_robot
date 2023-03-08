@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.PneumaticsGrabbingCommand;
+import frc.robot.commands.ArmSetPositionsCommand;
 
 
 public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
@@ -51,7 +52,7 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
 
    //SlidingClimbHooksCommand.climbNumber = 1;
        addCommands(
-              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new WristMotionMagic(), new PneumaticsGrabbingCommand(1), new WaitCommand (2), new WristMotionMagic(), new PneumaticsGrabbingCommand(2), mp, new AutoBalanceCommand());
+              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new ArmSetPositionsCommand(2000), new WristMotionMagic(), new PneumaticsGrabbingCommand(1), new WaitCommand (2), new WristMotionMagic(), new PneumaticsGrabbingCommand(2), mp, new AutoBalanceCommand());
   }
 
   

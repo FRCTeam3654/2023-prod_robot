@@ -82,6 +82,7 @@ public class RobotContainer {
     pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
     //wrist.setDefaultCommand(new ManualWristCommand());
     //verticalMotionArm.setDefaultCommand(new ManualVerticalArmCommand());
+    telescopingArm.setDefaultCommand(new ManualArmCommand());
 
     CameraServer.startAutomaticCapture(0);
 

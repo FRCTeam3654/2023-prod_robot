@@ -14,10 +14,11 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 public class TelescopingArm extends SubsystemBase {
   /** Creates a new TelescopingArm. */
-  private TalonSRX armTalon = new TalonSRX(RobotMap.armTalonID);
+  private WPI_TalonFX armTalon = new WPI_TalonFX(RobotMap.armTalonID);
 
   public double leftSpeed; 
 
@@ -168,7 +169,7 @@ public void karenaArcadeDrive(double joystickX, double joystickY){
 
 if(  isAboutAngle (initAngleDegree,0) ) {
   //  joystick is shifted to the right within angle deadband, move right arm up
-  //armTalon.set(ControlMode.PercentOutput, 0);
+  armTalon.set(ControlMode.PercentOutput, 0);
   //verticalClimbRightTalon.set(ControlMode.PercentOutput,(RobotMap.climbSpeed));
  }
  else if(  isAboutAngle (initAngleDegree,90) ) {
@@ -177,7 +178,7 @@ if(  isAboutAngle (initAngleDegree,0) ) {
  }
  else if(  isAboutAngle (initAngleDegree,180) ) {
   //  joystick is shifted to the left within angle deadband, move left arm up
-  //armTalon.set(ControlMode.PercentOutput, RobotMap.climbSpeed);
+  armTalon.set(ControlMode.PercentOutput, 0);
   //verticalClimbRightTalon.set(ControlMode.PercentOutput, 0);
  }
  else if(  isAboutAngle (initAngleDegree,270) ) {
@@ -257,6 +258,11 @@ if(  isAboutAngle (initAngleDegree,0) ) {
   return ret;
   }
 
+  public void manualJoust(double percentOutput){
+    armTalon.enableVoltageCompensation(true);
+    armTalon.configVoltageCompSaturation(11, 0);
+    armTalon.set(ControlMode.PercentOutput, percentOutput);
+  }
   
 
 public double getArmTalonPosition(){

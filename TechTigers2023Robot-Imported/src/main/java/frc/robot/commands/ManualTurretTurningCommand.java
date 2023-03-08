@@ -33,12 +33,15 @@ public class ManualTurretTurningCommand extends CommandBase {
   public ManualTurretTurningCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.turretSpark);
+    //addRequirements(RobotContainer.verticalMotionArm);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     RobotContainer.turretSpark.resetEncoders();
+    //RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armTurretUpDistance, 8000, 8000, 0.1);
+
     //double[] yawPitchRollArray = new double[3];
     //RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
     //RobotContainer.turretSpark.getSensorReading();
@@ -161,7 +164,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.turretSpark.manualTurretControl(0);
-
+    //RobotContainer.verticalMotionArm.setMotionMagic(0, 8000, 8000);
   }
 
   // Returns true when the command should end.

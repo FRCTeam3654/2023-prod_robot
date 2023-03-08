@@ -37,7 +37,19 @@ public class ManualArmCommand extends CommandBase {
     SmartDashboard.putNumber("JoystickY", joystickY);
 
      
-    RobotContainer.telescopingArm.karenaArcadeDrive(joystickX, joystickY);
+    //RobotContainer.telescopingArm.karenaArcadeDrive(joystickX, joystickY);
+   
+    if(joystickY > 0.3){
+      RobotContainer.telescopingArm.manualJoust(0.3);
+    }
+
+    else if(joystickY < -0.3){
+      RobotContainer.telescopingArm.manualJoust(-0.3);
+    }
+    else{
+      RobotContainer.telescopingArm.manualJoust(0);
+    }
+    
 
     
 }

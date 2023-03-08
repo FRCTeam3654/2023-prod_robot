@@ -283,10 +283,11 @@ public static double turboMax = 0.8;
 public static double balanceAngleM = 0.007;
 public static double balanceAngleB = 0.06; //-0.06
 
-public static double armFullUpDistance = 12000;
+public static double armFullUpDistance = 16000;
+public static double armTurretUpDistance = 6000;
 //arm gear box ratio is 12.5 : 1
-public static double joustExtendDistance = 12000;
-public static double joustTimerTimeout = 2;
+public static double joustExtendDistance = -150000;
+public static double joustTimerTimeout = 3;
 
 public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }
