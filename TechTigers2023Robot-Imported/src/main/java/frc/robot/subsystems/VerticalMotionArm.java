@@ -55,9 +55,9 @@ public class VerticalMotionArm extends SubsystemBase {
 		verticalArmTalon.configPeakOutputForward(1, 30);
 		verticalArmTalon.configPeakOutputReverse(-1, 30);
 
-    verticalArmTalon.config_kF(0,0.06,30); // 0.045
+    verticalArmTalon.config_kF(0,0.045,30); // 0.045
     //verticalArmTalon.config_kF(0,0.045,30); // 0.045
-    verticalArmTalon.config_kP(0,0.2,30); //0.095 //0.049
+    verticalArmTalon.config_kP(0,0.095,30); //0.095 //0.049
     //verticalArmTalon.config_kP(0,0.095,30); //0.095 //0.049
     //verticalArmTalon.config_kP(0,0.049,30); //0.095 //0.049
     verticalArmTalon.config_kI(0,0,30);

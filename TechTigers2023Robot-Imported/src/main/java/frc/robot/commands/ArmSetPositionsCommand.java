@@ -16,7 +16,7 @@ public class ArmSetPositionsCommand extends CommandBase {
   double armTimer;
   public static boolean isMotionMagicInProgress = false;
   private double armDistance = RobotMap.armFullUpDistance;
-  private double armTimerTimeout = 3;
+  private double armTimerTimeout = 2;
 
   public ArmSetPositionsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.

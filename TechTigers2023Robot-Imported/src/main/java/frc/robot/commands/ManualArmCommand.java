@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class ManualArmCommand extends CommandBase {
   /** Creates a new ManualArmCommand. */
   private int maxLength = 20000;
+  private double howFar;
   public ManualArmCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.telescopingArm);
@@ -42,16 +43,18 @@ public class ManualArmCommand extends CommandBase {
    
     if(joystickY > 0.3){
       RobotContainer.telescopingArm.manualJoust(0.3);
-      if(RobotContainer.telescopingArm.getArmTalonPosition() > maxLength){
-        RobotContainer.telescopingArm.manualJoust(0);
-      }
+      howFar = RobotContainer.telescopingArm.getArmTalonPosition();
+      SmartDashboard.putNumber("full extend distance", howFar);
+      //if(RobotContainer.telescopingArm.getArmTalonPosition() > maxLength){
+       // RobotContainer.telescopingArm.manualJoust(0);
+    //  }
     }
 
     else if(joystickY < -0.3){
       RobotContainer.telescopingArm.manualJoust(-0.3);
-      if(RobotContainer.telescopingArm.getArmTalonPosition() < 0){
-        RobotContainer.telescopingArm.manualJoust(0);
-      }
+      //if(RobotContainer.telescopingArm.getArmTalonPosition() < 0){
+        //RobotContainer.telescopingArm.manualJoust(0);
+      //}
     }
     else{
       RobotContainer.telescopingArm.manualJoust(0);
