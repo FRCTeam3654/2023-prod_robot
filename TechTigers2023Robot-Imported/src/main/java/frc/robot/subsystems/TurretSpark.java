@@ -85,6 +85,10 @@ public class TurretSpark extends SubsystemBase {
     return m_encoder.getPosition();
   }
 
+  public void stayStill(){
+    //CANSparkMax.ControlType.kSmartMotion;
+  }
+
 
   @Override
   public void periodic() {

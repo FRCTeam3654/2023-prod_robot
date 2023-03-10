@@ -59,11 +59,13 @@ public class OI {
   public JoystickButton armFullBackButton;
   public JoystickButton wristDeployButton;
   public JoystickButton wristDownUpButton;
-  public JoystickButton wristLockButton;
-  public JoystickButton armLockButton;
+  //public JoystickButton wristLockButton;
+  //public JoystickButton armLockButton;
   public JoystickButton initialPitchButton;
   public JoystickButton photonvisionButton;
   public JoystickButton armPivotButton;
+  public JoystickButton armShortPivotUpButton;
+  public JoystickButton armShortPivotDownButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -116,8 +118,10 @@ public class OI {
   wristDownUpButton = new JoystickButton(operatorStick, RobotMap.wristDownUpButtonNumber);
   //wristDeployButton = new JoystickButton(operatorStick, RobotMap.wristDeployButtonNumber);
   armPivotButton = new JoystickButton(operatorStick, RobotMap.armPivotButtonNumber);
-  wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
-  armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
+  armShortPivotUpButton = new JoystickButton(operatorStick, RobotMap.armShortPivotUpButtonNumber);
+  armShortPivotDownButton = new JoystickButton(operatorStick, RobotMap.armShortPivotDownButtonNumber);
+  //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
+  //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
 
 
 
@@ -160,6 +164,8 @@ public class OI {
   wristDownUpButton.onTrue(new WristMotionMagic());
 
   armPivotButton.onTrue(new ArmSetPositionsCommand());
+  armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
+  armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   
   }
   

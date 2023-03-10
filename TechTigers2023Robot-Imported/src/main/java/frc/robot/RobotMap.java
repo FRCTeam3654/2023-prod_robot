@@ -79,8 +79,10 @@ public static int armFullOutButtonNumber = 4;
 public static int armFullBackButtonNumber = 1;
 public static int wristDownUpButtonNumber = 3;
 //public static int wristDeployButtonNumber = 3;
-public static int armLockButtonNumber = 6;
-public static int wristLockButtonNumber = 5;
+//public static int armLockButtonNumber = 6;
+//public static int wristLockButtonNumber = 5;
+public static int armShortPivotDownButtonNumber = 6;
+public static int armShortPivotUpButtonNumber = 5;
 public static int armPivotButtonNumber = 2;
 
 

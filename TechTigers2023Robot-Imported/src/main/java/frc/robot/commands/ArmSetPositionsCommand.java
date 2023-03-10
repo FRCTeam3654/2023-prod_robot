@@ -17,6 +17,11 @@ public class ArmSetPositionsCommand extends CommandBase {
   public static boolean isMotionMagicInProgress = false;
   private double armDistance = RobotMap.armFullUpDistance;
   private double armTimerTimeout = 2;
+  private boolean isFullPivotPressed = false;
+  private boolean isShortPivotUpPressed = false;
+  private boolean isShortPivotDownPressed = false;
+  private double currentPos;
+  private int mode = 0;
 
   public ArmSetPositionsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,14 +33,20 @@ public ArmSetPositionsCommand(double distance){
   addRequirements(RobotContainer.verticalMotionArm);
   armDistance = distance;
   armTimerTimeout = 1.5;
+  mode = 1;
 }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    if(RobotContainer.oi.armPivotButton.getAsBoolean() || mode == 1){
+      isFullPivotPressed = true;
+    }
+
+    if(isFullPivotPressed == true ){
     armMoveNumber = armMoveNumber + 1;
 
-    if(armMoveNumber %2 == 1){ //moves up
+    if(armMoveNumber %2 == 1 || mode == 1){ //moves up
       armTimer = Timer.getFPGATimestamp();
       RobotContainer.verticalMotionArm.setMotionMagic(armDistance, 2000, 2000, 0.05);
       //RobotContainer.arm.setMotionMagic(0, 2000, 2000);
@@ -54,7 +65,39 @@ public ArmSetPositionsCommand(double distance){
       RobotContainer.verticalMotionArm.setMotionMagic(0, 0, 0);
       armTimer = Timer.getFPGATimestamp();
     }
-    
+  }
+
+  else if(RobotContainer.oi.armShortPivotDownButton.getAsBoolean()){
+    isShortPivotDownPressed = true;
+  }
+
+  if(isShortPivotDownPressed == true){
+    armTimer = Timer.getFPGATimestamp();
+    armTimerTimeout = 1.5;
+    //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
+    currentPos = RobotContainer.verticalMotionArm.getArmTalonPosition();
+    RobotContainer.verticalMotionArm.setMotionMagic(currentPos - 2000, 2000, 2000);
+    System.out.println("should i be motion magicking short down");
+    isMotionMagicInProgress = true;
+  }
+
+
+  else if(RobotContainer.oi.armShortPivotUpButton.getAsBoolean()){
+    isShortPivotUpPressed = true;
+  }
+
+  if(isShortPivotUpPressed == true){
+    armTimer = Timer.getFPGATimestamp();
+    armTimerTimeout = 1.5;
+    //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
+    currentPos = RobotContainer.verticalMotionArm.getArmTalonPosition();
+    RobotContainer.verticalMotionArm.setMotionMagic(currentPos + 2000, 2000, 2000);
+    System.out.println("should i be motion magicking short up");
+    isMotionMagicInProgress = true;
+  }
+  else{
+    //RobotContainer.verticalMotionArm.setMotionMagic(armDistance, 2000, 2000, 0.05);
+  }
     
     //RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000, 0.3);
     //System.out.println("should i be motion magicking up");
@@ -72,6 +115,9 @@ public ArmSetPositionsCommand(double distance){
     isMotionMagicInProgress = false;
     armDistance = RobotMap.armFullUpDistance;
     armTimerTimeout = 3;
+    isFullPivotPressed = false;
+    isShortPivotUpPressed = false;
+    mode = 0;
     //System.out.println("is the arm command over");
     //RobotContainer.verticalMotionArm.manualVerticalArm(0.2);
   }

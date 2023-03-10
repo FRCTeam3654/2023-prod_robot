@@ -20,8 +20,8 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.AutoBalanceCommand;
-import frc.robot.commands.WristMotionMagic;
-import frc.robot.commands.PneumaticsGrabbingCommand;
+import frc.robot.commands.AutoWrist;
+import frc.robot.commands.AutoPneumatics;
 import frc.robot.commands.ArmSetPositionsCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -36,9 +36,14 @@ public class AutoPlaceLowAndMove extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-200), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-170), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+
     addCommands(
-      new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), new ArmSetPositionsCommand(2000), new WristMotionMagic(), new PneumaticsGrabbingCommand(1), new WaitCommand(2), new WristMotionMagic(), new PneumaticsGrabbingCommand(2), mp
+      new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), 
+      //new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(1), new AutoPneumatics(1), 
+      new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(2), new AutoPneumatics(2),
+      mp
     );
+
   }
 }

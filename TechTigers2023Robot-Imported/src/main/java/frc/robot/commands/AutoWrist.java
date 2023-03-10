@@ -11,8 +11,8 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
 
 
-public class WristMotionMagic extends CommandBase {
-  /** Creates a new WristMotionMagic. */
+public class AutoWrist extends CommandBase {
+  /** Creates a new AutoWrist. */
   public static int wristMoveNumber = 0;
   double wristTimer;
   public static boolean isMotionMagicInProgress = false;
@@ -20,14 +20,14 @@ public class WristMotionMagic extends CommandBase {
   private boolean isUpPOVPressed = false;
   private boolean isMotionMagicButtonPressed = false;
   private double currentPos;
-  private int mode = 0;
+  private int mode = 1;
 
-  public WristMotionMagic() {
+  public AutoWrist() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.wrist);
   }
 
-  public WristMotionMagic(int mode){
+  public AutoWrist(int mode){
     addRequirements(RobotContainer.wrist);
     this.mode = mode;
   }
@@ -37,14 +37,14 @@ public class WristMotionMagic extends CommandBase {
   public void initialize() {
     //RobotContainer.wrist.zeroSensor();
 
-    if(RobotContainer.oi.wristDownUpButton.getAsBoolean()  || mode == 1){
-      isMotionMagicButtonPressed = true;
-    }
+    //if(RobotContainer.oi.wristDownUpButton.getAsBoolean()  || mode == 1){
+      //isMotionMagicButtonPressed = true;
+   // }
 
-    if(isMotionMagicButtonPressed == true){
-    wristMoveNumber = wristMoveNumber + 1;
+    //if(isMotionMagicButtonPressed == true){
+    //wristMoveNumber = wristMoveNumber + 1;
 
-    if(wristMoveNumber %2 == 1 ){ //moves down
+    if(mode == 1){ //moves down
       wristTimer = Timer.getFPGATimestamp();
       RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 2000, 2000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
@@ -52,7 +52,7 @@ public class WristMotionMagic extends CommandBase {
       isMotionMagicInProgress = true;
     }
 
-    else if(wristMoveNumber %2 != 1 ){ //moves up
+    else if(mode == 2){ //moves up
       wristTimer = Timer.getFPGATimestamp();
       //RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 2000, 2000);
       RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
@@ -63,9 +63,9 @@ public class WristMotionMagic extends CommandBase {
       RobotContainer.wrist.setMotionMagic(0, 0, 0);
       wristTimer = Timer.getFPGATimestamp();
     }
-  }
+  //}
 
-  else if(RobotContainer.oi.wristDownPOV.getAsBoolean()){
+  /*else if(RobotContainer.oi.wristDownPOV.getAsBoolean()){
     isDownPOVPressed = true;
   }
 
@@ -90,7 +90,8 @@ public class WristMotionMagic extends CommandBase {
       System.out.println("should i be motion magicking short up");
       isMotionMagicInProgress = true;
   }
-  else{}
+  */
+  //else{}
 
 //RobotContainer.wrist.setMotionMagic(-13000, 2000, 2000);
 //wristTimer = Timer.getFPGATimestamp();
@@ -106,10 +107,10 @@ public class WristMotionMagic extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     isMotionMagicInProgress = false;
-    isMotionMagicButtonPressed = false;
-    isDownPOVPressed = false;
-    isUpPOVPressed = false;
-    mode = 0;
+    //isMotionMagicButtonPressed = false;
+    //isDownPOVPressed = false;
+    //isUpPOVPressed = false;
+    mode = 1;
   }
 
   // Returns true when the command should end.

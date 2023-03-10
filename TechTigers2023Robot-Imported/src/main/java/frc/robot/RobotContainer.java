@@ -87,16 +87,22 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture(0);
 
 
-    autoChooser.setDefaultOption("place low and balance", new AutoPlaceLowAndBalance(odometry, drive));
+    autoChooser.setDefaultOption("back up and balance", new AutoBackUpAndBalance(odometry, drive));
     autoChooser.addOption("place low and back up", new AutoPlaceLowAndMove(odometry, drive));
     autoChooser.addOption("place mid and balance", new AutoPlaceMidAndBalance(odometry, drive));
     autoChooser.addOption("place mid and move", new AutoPlaceMidAndMove(odometry, drive));
+    autoChooser.addOption("place low and balance", new AutoPlaceLowAndBalance(odometry, drive));
+    autoChooser.addOption("back up", new AutoBackUp(odometry, drive));
+
+
     
     driveChooser.addOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.setDefaultOption("Both Joystick Drive", new BothJoystickDriveCommand());
     driveChooser.addOption("Right Joystick Drive", new ManualDriveRightCommand());
     
     SmartDashboard.putData("Drive Mode", driveChooser);
+    SmartDashboard.putData("Auto Route", autoChooser);
+
 
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
 
@@ -125,8 +131,8 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
+   // NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    //RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
     
     return autoChooser.getSelected();
   }

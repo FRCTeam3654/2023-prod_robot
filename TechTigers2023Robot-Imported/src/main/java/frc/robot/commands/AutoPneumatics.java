@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
 
-public class PneumaticsGrabbingCommand extends CommandBase {
-  /** Creates a new PneumaticsGrabbingCommand. */
-  private int mode = 0; //0 is regular, 1 is auto open, 2 is auto close
+public class AutoPneumatics extends CommandBase {
+  /** Creates a new AutoPneumatics. */
+  private int mode = 2; //0 is regular, 1 is auto open, 2 is auto close
   private double pneumaticTimer;
-  public PneumaticsGrabbingCommand() {
+  public AutoPneumatics() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.pneumaticGrab);
   }
-  public PneumaticsGrabbingCommand(int new_mode){
+  public AutoPneumatics(int new_mode){
     addRequirements(RobotContainer.pneumaticGrab);
     mode = new_mode;
     
@@ -30,12 +30,12 @@ public class PneumaticsGrabbingCommand extends CommandBase {
   @Override
   public void execute() {
 
-     if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 0.4 || mode == 2){ // opens
+     if(mode == 2){ // opens
       RobotContainer.pneumaticGrab.practiceSolenoid(true);
       //pneumaticTimer = Timer.getFPGATimestamp();
     }
 
-    else if(RobotContainer.oi.operatorStick.getLeftTriggerAxis() > 0.4 || mode == 1){ //closes
+    else if(mode == 1){ //closes
       RobotContainer.pneumaticGrab.practiceSolenoid(false);
       //pneumaticTimer = Timer.getFPGATimestamp();
     }
@@ -50,10 +50,10 @@ public class PneumaticsGrabbingCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      //if( (pneumaticTimer + 1.0) < Timer.getFPGATimestamp()) {
+      if( (pneumaticTimer + 1.0) < Timer.getFPGATimestamp()) {
         // after 3 second, stop command
-        //return true;
-      //}
+        return true;
+      }
 
     /*if (RobotContainer.oi.pneumaticGrabButton.getAsBoolean() == false) {
       RobotContainer.pneumaticGrab.practiceSolenoid(false);

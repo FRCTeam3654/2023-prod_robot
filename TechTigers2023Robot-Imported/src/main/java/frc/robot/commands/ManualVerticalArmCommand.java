@@ -43,21 +43,21 @@ public class ManualVerticalArmCommand extends CommandBase {
     
     //joystickX = (RobotContainer.oi.operatorStick.getRightX());
   
-    if(RobotContainer.oi.armLockButton.getAsBoolean()){
-      isLockButtonPressed = true;
-    }
+    //if(RobotContainer.oi.armLockButton.getAsBoolean()){
+      //isLockButtonPressed = true;
+    //}
 
-    if(isLockButtonPressed = true){
+    //if(isLockButtonPressed = true){
       //RobotContainer.verticalMotionArm.manualVerticalArm(0);
-    }
+    //}
 
     if(RobotContainer.oi.operatorStick.getRightY() > RobotMap.joystickDeadBand){
       //isLockButtonPressed = false;
     }
     
-    if(isLockButtonPressed == false){
-      RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
-    }
+    //if(isLockButtonPressed == false){
+     // RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
+    //}
     
 
     else{

@@ -19,8 +19,8 @@ public class WristSetPositionsCommand extends CommandBase {
   public double wristTimer = 0;
   private static int fullButtonPressNumber = 0;
   private static int deployButtonPressNumber = 0;
-  private boolean isLockButtonPressed = false;
-  private int lockButtonPressNumber = 0;
+  //private boolean isLockButtonPressed = false;
+  //private int lockButtonPressNumber = 0;
 
   public WristSetPositionsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -33,7 +33,7 @@ public class WristSetPositionsCommand extends CommandBase {
 
     fullButtonPressNumber = 0;
     //deployButtonPressNumber = 0;
-    lockButtonPressNumber = 0;
+    //lockButtonPressNumber = 0;
 
     /*if(RobotContainer.oi.wristDeployButton.getAsBoolean() == true){
       isDeployButtonPressed = true;
@@ -52,19 +52,19 @@ public class WristSetPositionsCommand extends CommandBase {
   @Override
   public void execute() {
 
-    if(RobotContainer.oi.wristLockButton.getAsBoolean() == true){
-      isLockButtonPressed = true;
-     }
+    //if(RobotContainer.oi.wristLockButton.getAsBoolean() == true){
+      //isLockButtonPressed = true;
+     //}
   
-     if(isLockButtonPressed == true){
-      RobotContainer.wrist.manualwrist(0);
-     }
+     //if(isLockButtonPressed == true){
+     // RobotContainer.wrist.manualwrist(0);
+     //}
 
     //if(isDeployButtonPressed == true || isDownUpButtonPressed == true){
 //System.out.println("am i stopped");
     //}
 
-   else{
+   
     //pressing the button will add +1 to the integer
    // if(RobotContainer.oi.wristDeployButton.getAsBoolean() == true){
      // deployButtonPressNumber = deployButtonPressNumber + 1;
@@ -84,14 +84,14 @@ public class WristSetPositionsCommand extends CommandBase {
     //if the number is odd, it goes the distance down; if the number is even, bring the arm up
     if(fullButtonPressNumber % 2 == 1){
       RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 2000, 2000);
-      isLockButtonPressed = false;
+      //isLockButtonPressed = false;
       //System.out.println("should i be moving down");
       wristTimer = Timer.getFPGATimestamp();
     }
 
     else if(fullButtonPressNumber % 2 == 0){
       RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 2000, 2000);
-      isLockButtonPressed = false;
+      //isLockButtonPressed = false;
       //System.out.println("should i be moving up");
       wristTimer = Timer.getFPGATimestamp();
     }
@@ -128,7 +128,7 @@ public class WristSetPositionsCommand extends CommandBase {
       //RobotContainer.wrist.setMotionMagic(0, 0, 0);
       //fullButtonPressNumber = fullButtonPressNumber - 1;
       //System.out.println("why am i stopped");
-    }
+    
    //------------------------------------------------------------------------------------------------------------------------- 
 
 

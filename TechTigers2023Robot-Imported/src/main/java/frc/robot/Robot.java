@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
 
   }
 
@@ -91,7 +92,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
     
     RobotContainer.drive.configureDrive(); //to reset to correct drive PID settings for teleop
     m_driveChooserCommand = m_robotContainer.getDriveModeCommand();
