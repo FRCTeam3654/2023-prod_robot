@@ -34,7 +34,7 @@ public class AutoBackUpAndBalance extends SequentialCommandGroup {
   public AutoBackUpAndBalance(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-170), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-190), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
     //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
        // List.of(),

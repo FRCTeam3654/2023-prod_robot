@@ -36,7 +36,7 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
   public AutoPlaceLowAndBalance(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-170), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-190), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
     //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
        // List.of(),
@@ -56,7 +56,7 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
        addCommands(
               new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))),
               new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(2), new AutoPneumatics(2),
-              mp, new AutoBalanceCommand());
+              mp, new WaitCommand(2), new AutoBalanceCommand());
   }
 
   
