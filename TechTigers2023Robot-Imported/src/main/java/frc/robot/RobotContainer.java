@@ -87,12 +87,13 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture(0);
 
 
-    autoChooser.setDefaultOption("back up and balance", new AutoBackUpAndBalance(odometry, drive));
-    autoChooser.addOption("place low and back up", new AutoPlaceLowAndMove(odometry, drive));
-    autoChooser.addOption("place mid and balance", new AutoPlaceMidAndBalance(odometry, drive));
-    autoChooser.addOption("place mid and move", new AutoPlaceMidAndMove(odometry, drive));
+    autoChooser.addOption("back up and balance", new AutoBackUpAndBalance(odometry, drive));
+    autoChooser.setDefaultOption("place low and back up", new AutoPlaceLowAndMove(odometry, drive));
+    //autoChooser.addOption("place mid and balance", new AutoPlaceMidAndBalance(odometry, drive));
+    //autoChooser.addOption("place mid and move", new AutoPlaceMidAndMove(odometry, drive));
     autoChooser.addOption("place low and balance", new AutoPlaceLowAndBalance(odometry, drive));
     autoChooser.addOption("back up", new AutoBackUp(odometry, drive));
+    autoChooser.addOption("Place + balance don't exit", new AutoBalanceDontExit(odometry, drive));
 
 
     

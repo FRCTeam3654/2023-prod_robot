@@ -34,7 +34,7 @@ public class AutoBackUpAndBalance extends SequentialCommandGroup {
   public AutoBackUpAndBalance(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-190), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
     //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
        // List.of(),
@@ -52,7 +52,7 @@ public class AutoBackUpAndBalance extends SequentialCommandGroup {
 
    //SlidingClimbHooksCommand.climbNumber = 1;
        addCommands(
-              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), mp, new AutoBalanceCommand());
+              new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), mp, new WaitCommand(2), new AutoBalanceCommand());
   }
 
   

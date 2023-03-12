@@ -27,16 +27,16 @@ import frc.robot.commands.AutoPneumatics;
 import frc.robot.commands.AutoWrist;
 
 
-public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
+public class AutoBalanceDontExit extends SequentialCommandGroup {
 
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
 
   /** Creates a new AutonBalanceCommand. */
-  public AutoPlaceLowAndBalance(RobotOdometry odometry, Drive driveTrain) {
+  public AutoBalanceDontExit(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-100), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
     //mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
        // List.of(),
