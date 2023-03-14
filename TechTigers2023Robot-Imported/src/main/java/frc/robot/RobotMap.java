@@ -290,7 +290,7 @@ public static double armFullUpDistance = 16000;
 public static double armTurretUpDistance = 6000;
 //arm gear box ratio is 12.5 : 1
 public static double joustExtendDistance = -150000;
-public static double joustTimerTimeout = 3;
+public static double joustTimerTimeout = 2;// from 3
 
 public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }

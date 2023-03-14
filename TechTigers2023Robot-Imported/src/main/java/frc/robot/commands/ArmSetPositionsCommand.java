@@ -16,7 +16,7 @@ public class ArmSetPositionsCommand extends CommandBase {
   double armTimer;
   public static boolean isMotionMagicInProgress = false;
   private double armDistance = RobotMap.armFullUpDistance;
-  private double armTimerTimeout = 2;
+  private double armTimerTimeout = 2.5;
   private boolean isFullPivotPressed = false;
   private boolean isShortPivotUpPressed = false;
   private boolean isShortPivotDownPressed = false;
@@ -39,7 +39,7 @@ public ArmSetPositionsCommand(double distance){
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(RobotContainer.oi.armPivotButton.getAsBoolean() || mode == 1){
+    if(RobotContainer.oi.armPivotButton.getAsBoolean() || mode == 1 || mode == 2){
       isFullPivotPressed = true;
     }
 
@@ -54,7 +54,7 @@ public ArmSetPositionsCommand(double distance){
       isMotionMagicInProgress = true;
     }
 
-    else if(armMoveNumber %2 != 1){ //moves down
+    else if(armMoveNumber %2 != 1 || mode == 2 ){ //moves down
       armTimer = Timer.getFPGATimestamp();
       //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
       RobotContainer.verticalMotionArm.setMotionMagic(2000, 2000, 2000);
