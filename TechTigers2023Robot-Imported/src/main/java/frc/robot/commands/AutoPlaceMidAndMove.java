@@ -74,6 +74,7 @@ public class AutoPlaceMidAndMove extends SequentialCommandGroup {
           new ArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
           new  SequentialCommandGroup (
             new WaitCommand(1),   // wait for 1 second for wrist to raise above group
+            new ArmSetPositionsCommand(), // lower arm to near bottom, 2.5 seconds
             new ParallelCommandGroup(
               new AutoPneumatics(2),  // 1 second   
               mp                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
