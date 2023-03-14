@@ -75,8 +75,9 @@ public static int photonvisionButtonNumber = 9;
 
 //OPERATOR STICK
 public static int pneumaticGrabButtonNumber = 8;
-public static int armFullOutButtonNumber = 4;
-public static int armFullBackButtonNumber = 1;
+public static int armFullOutButtonNumber = 10;
+public static int armFullBackButtonNumber = 9;
+public static int dropLowButtonNumber = 4;
 public static int wristDownUpButtonNumber = 3;
 //public static int wristDeployButtonNumber = 3;
 //public static int armLockButtonNumber = 6;

@@ -18,7 +18,7 @@ public class ArmJoustCommand extends CommandBase {
   private int mode = 0; //0 is normal, 1 is auto out, 2 is auto in
 
   public ArmJoustCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
+    //Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.telescopingArm);
   }
 
@@ -34,6 +34,7 @@ public class ArmJoustCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     if ((RobotContainer.oi.armFullOutButton.getAsBoolean() && !isButtonPressed) || mode == 1){ //extends it
       isButtonPressed = true;
       RobotContainer.telescopingArm.setMotionMagic(RobotMap.joustExtendDistance, 8000, 8000); //maximum speed is 22000
@@ -51,6 +52,7 @@ public class ArmJoustCommand extends CommandBase {
       SmartDashboard.putString("JoustButtonClicked", "yes");
       joustTimer = Timer.getFPGATimestamp();
     }
+    
   }
 
   // Called once the command ends or is interrupted.

@@ -23,6 +23,7 @@ import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.Turn90DegreesCommand;
 import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.ArmJoustCommand;
+import frc.robot.commands.DropLowCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -57,6 +58,7 @@ public class OI {
   public POVButton wristDownPOV;
   public JoystickButton armFullOutButton;
   public JoystickButton armFullBackButton;
+  public JoystickButton dropLowButton;
   public JoystickButton wristDeployButton;
   public JoystickButton wristDownUpButton;
   //public JoystickButton wristLockButton;
@@ -113,6 +115,7 @@ public class OI {
   //pneumaticGrabButton = new JoystickButton(operatorStick, RobotMap.pneumaticGrabButtonNumber);
   armFullOutButton = new JoystickButton(operatorStick, RobotMap.armFullOutButtonNumber);
   armFullBackButton = new JoystickButton(operatorStick, RobotMap.armFullBackButtonNumber);
+  dropLowButton = new JoystickButton(operatorStick, RobotMap.dropLowButtonNumber);
   wristUpPOV = new POVButton(operatorStick, 0);
   wristDownPOV = new POVButton(operatorStick, 180);
   wristDownUpButton = new JoystickButton(operatorStick, RobotMap.wristDownUpButtonNumber);
@@ -162,6 +165,8 @@ public class OI {
 
   //wristDeployButton.onTrue(new WristMotionMagic());
   wristDownUpButton.onTrue(new WristMotionMagic());
+
+  dropLowButton.onTrue(new DropLowCommand());
 
   armPivotButton.onTrue(new ArmSetPositionsCommand());
   armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
