@@ -36,8 +36,8 @@ public class DropLowCommand extends SequentialCommandGroup {
 
   /** Creates a new AutonBalanceCommand. */
   public DropLowCommand() {
-    addRequirements(RobotContainer.wrist);
-    addRequirements(RobotContainer.pneumaticGrab);
+   // addRequirements(RobotContainer.wrist);
+  //  addRequirements(RobotContainer.pneumaticGrab);
     //mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         //List.of(),
         //new Pose2d(Units.inchesToMeters(-160), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
@@ -62,10 +62,10 @@ public class DropLowCommand extends SequentialCommandGroup {
               //new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(2), new AutoPneumatics(2),
               //mp, new WaitCommand(0.5), new AutoBalanceCommand());
 
-              addCommands(
-                new ParallelCommandGroup(
-                  new  AutoWrist(1) // lowers wrist , 2 seconds
-                )
+           addCommands(
+                //new ParallelCommandGroup(
+                  new  AutoWrist(3) // lowers wrist , 2 seconds, use mode 3 to down 80% full distance
+                //)
            );
       
            addCommands(new AutoPneumatics(1 )); // opens pnematic to drop, 1 second
@@ -75,9 +75,9 @@ public class DropLowCommand extends SequentialCommandGroup {
                   new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
                   new  SequentialCommandGroup (
                     new WaitCommand(1),   // wait for 1 second for wrist to raise above group
-                    new ParallelCommandGroup(
+                    //new ParallelCommandGroup(
                       new AutoPneumatics(2)  // 1 second
-                    )
+                    //)
                   )
                 )
            );

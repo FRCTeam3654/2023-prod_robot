@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
+    RobotContainer.wrist.setMotionMagic(0, 4000, 3000);
 
   }
 
