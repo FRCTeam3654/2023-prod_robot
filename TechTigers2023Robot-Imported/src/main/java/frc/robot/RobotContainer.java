@@ -66,8 +66,8 @@ public class RobotContainer {
     telescopingArm = new TelescopingArm();
     verticalMotionArm = new VerticalMotionArm();
     wrist = new Wrist();
-    oi = new OI();
     pneumaticGrab = new PneumaticGrab();
+    oi = new OI();
       // need be after drive object
     //always keep OI last
 

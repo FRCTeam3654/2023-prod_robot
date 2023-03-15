@@ -87,6 +87,7 @@ public class TurretSpark extends SubsystemBase {
 
   public void stayStill(){
     //CANSparkMax.ControlType.kSmartMotion;
+    //m_pidTurretController.setReference(rotations, CANSparkMax.ControlType.kPosition);
   }
 
 
