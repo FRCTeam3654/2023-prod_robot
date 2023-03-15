@@ -269,7 +269,7 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
 //for the wrist
-public static double wristFullUpDistance = 19000; //PLACEHOLDER MUST TEST
+public static double wristFullUpDistance = 18000; //PLACEHOLDER MUST TEST
 public static double wristDeployDistance = -5000; //PLACEHOLDER MUST TEST
 
 
