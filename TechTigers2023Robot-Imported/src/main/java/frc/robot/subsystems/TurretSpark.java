@@ -25,6 +25,7 @@ public class TurretSpark extends SubsystemBase {
   private double joystickX;
   private double joysticky;
   public double maxRPM;
+  public double holdRotations;
 
 
 
@@ -64,7 +65,7 @@ public class TurretSpark extends SubsystemBase {
     kTurretMaxOutput = 0.3; 
     m_pidTurretController.setOutputRange(kTurretMinOutput, kTurretMaxOutput); 
 
-
+    holdRotations = getSensorReading();
 
   }
 
@@ -85,9 +86,9 @@ public class TurretSpark extends SubsystemBase {
     return m_encoder.getPosition();
   }
 
-  public void stayStill(){
-    //CANSparkMax.ControlType.kSmartMotion;
-    //m_pidTurretController.setReference(rotations, CANSparkMax.ControlType.kPosition);
+  public void stayStill(double rotations){
+    //CANSparkMax.ControlType.kSmartMotion
+    m_pidTurretController.setReference(rotations, CANSparkMax.ControlType.kPosition);
   }
 
 

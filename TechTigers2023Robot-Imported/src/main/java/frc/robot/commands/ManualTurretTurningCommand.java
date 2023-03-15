@@ -39,7 +39,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.turretSpark.resetEncoders();
+    //RobotContainer.turretSpark.resetEncoders();
     //RobotContainer.verticalMotionArm.setMotionMagic(RobotMap.armTurretUpDistance, 8000, 8000, 0.1);
 
     //double[] yawPitchRollArray = new double[3];
@@ -155,6 +155,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
       else {
         RobotContainer.turretSpark.manualTurretControl(0);
+        RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
       }
   }
   
@@ -165,6 +166,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   public void end(boolean interrupted) {
     RobotContainer.turretSpark.manualTurretControl(0);
     //RobotContainer.verticalMotionArm.setMotionMagic(0, 8000, 8000);
+    RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
   }
 
   // Returns true when the command should end.
