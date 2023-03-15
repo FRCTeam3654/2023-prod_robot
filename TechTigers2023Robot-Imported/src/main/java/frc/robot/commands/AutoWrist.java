@@ -61,7 +61,7 @@ public class AutoWrist extends CommandBase {
     }
     else if(mode == 3){ //moves down at 80% full distance
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-0.8 * RobotMap.wristFullUpDistance, 4000, 3000);
+      RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 4000, 3000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
@@ -123,7 +123,7 @@ public class AutoWrist extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( (wristTimer + 2.0) < Timer.getFPGATimestamp()) {
+    if( (wristTimer + 1.5) < Timer.getFPGATimestamp()) {
       // after 3 second, stop command
       isMotionMagicInProgress = false;
       return true;

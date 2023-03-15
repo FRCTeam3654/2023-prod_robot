@@ -65,8 +65,13 @@ public class DropLowCommand extends SequentialCommandGroup {
           //addCommands(new WaitCommand(1));
 
            addCommands(   
-              new  AutoWrist(3),
-              new AutoPneumatics(1),
+            new ParallelCommandGroup(
+              new AutoWrist(3),
+              new  SequentialCommandGroup (
+                new WaitCommand(0.5),
+                new AutoPneumatics(1)
+              )
+            ), 
               new ParallelCommandGroup(
                   new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
                   new  SequentialCommandGroup (
