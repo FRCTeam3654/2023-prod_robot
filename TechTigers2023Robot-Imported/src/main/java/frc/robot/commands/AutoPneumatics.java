@@ -51,7 +51,7 @@ else {}
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      if( (pneumaticTimer + 2.0) < Timer.getFPGATimestamp()) {
+      if( (pneumaticTimer + 1.0) < Timer.getFPGATimestamp()) {
         // after 3 second, stop command
         return true;
       }
