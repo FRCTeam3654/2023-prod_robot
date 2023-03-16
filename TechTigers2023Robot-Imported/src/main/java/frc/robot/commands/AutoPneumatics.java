@@ -24,7 +24,10 @@ public class AutoPneumatics extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    pneumaticTimer = Timer.getFPGATimestamp();
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -32,14 +35,12 @@ public class AutoPneumatics extends CommandBase {
 
      if(mode == 2){ // opens
       RobotContainer.pneumaticGrab.practiceSolenoid(true);
-      //pneumaticTimer = Timer.getFPGATimestamp();
     }
 
     else if(mode == 1){ //closes
       RobotContainer.pneumaticGrab.practiceSolenoid(false);
-      //pneumaticTimer = Timer.getFPGATimestamp();
     }
-
+else {}
     
   }
 
@@ -50,7 +51,7 @@ public class AutoPneumatics extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      if( (pneumaticTimer + 1.0) < Timer.getFPGATimestamp()) {
+      if( (pneumaticTimer + 2.0) < Timer.getFPGATimestamp()) {
         // after 3 second, stop command
         return true;
       }

@@ -117,13 +117,13 @@ public class AutoWrist extends CommandBase {
     //isMotionMagicButtonPressed = false;
     //isDownPOVPressed = false;
     //isUpPOVPressed = false;
-    mode = 1;
+    //mode = 1;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if( (wristTimer + 1.5) < Timer.getFPGATimestamp()) {
+    if( (wristTimer + 2) < Timer.getFPGATimestamp()) {
       // after 3 second, stop command
       isMotionMagicInProgress = false;
       return true;
