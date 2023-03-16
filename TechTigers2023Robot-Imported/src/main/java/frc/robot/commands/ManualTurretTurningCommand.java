@@ -17,6 +17,7 @@ import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Transform2d;
+import org.photonvision.common.hardware.VisionLEDMode;
 
 
 
@@ -34,6 +35,7 @@ public class ManualTurretTurningCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.turretSpark);
     //addRequirements(RobotContainer.verticalMotionArm);
+    camera.setLED(VisionLEDMode.kOff);
   }
 
   // Called when the command is initially scheduled.
