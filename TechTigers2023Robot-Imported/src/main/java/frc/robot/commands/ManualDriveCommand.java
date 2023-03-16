@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.Timer;
 import java.util.List;
 
 import org.photonvision.PhotonCamera;
+import org.photonvision.common.hardware.VisionLEDMode;
 import org.photonvision.targeting.PhotonTrackedTarget;
 import org.photonvision.targeting.TargetCorner;
 
@@ -51,7 +52,7 @@ public class ManualDriveCommand extends CommandBase {
     double[] yawPitchRollArray = new double[3];
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
     initialPitch = yawPitchRollArray[1];
-
+    camera.setLED(VisionLEDMode.kOff);
   }
 
   // Called repeatedly when this Command is scheduled to run
