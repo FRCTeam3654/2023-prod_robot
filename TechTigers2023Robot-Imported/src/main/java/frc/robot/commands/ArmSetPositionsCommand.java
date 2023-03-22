@@ -16,7 +16,7 @@ public class ArmSetPositionsCommand extends CommandBase {
   double armTimer;
   public static boolean isMotionMagicInProgress = false;
   private double armDistance = RobotMap.armFullUpDistance;
-  private double armTimerTimeout = 2.5;
+  private double armTimerTimeout = 2;
   private boolean isFullPivotPressed = false;
   private boolean isShortPivotUpPressed = false;
   private boolean isShortPivotDownPressed = false;
