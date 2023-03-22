@@ -34,11 +34,11 @@ public class AutoPneumatics extends CommandBase {
   public void execute() {
 
      if(mode == 2){ // opens
-      RobotContainer.pneumaticGrab.practiceSolenoid(true);
+      RobotContainer.pneumaticGrab.practiceSolenoid(false);
     }
 
     else if(mode == 1){ //closes
-      RobotContainer.pneumaticGrab.practiceSolenoid(false);
+      RobotContainer.pneumaticGrab.practiceSolenoid(true);
     }
 else {}
     

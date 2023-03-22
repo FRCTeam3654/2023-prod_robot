@@ -37,11 +37,11 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
   public AutoPlaceLowAndBalance(RobotOdometry odometry, Drive driveTrain) {
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+        new Pose2d(Units.inchesToMeters(-135), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
 
     mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
         List.of(),
-        new Pose2d(Units.inchesToMeters(-110), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, false, false);
+        new Pose2d(Units.inchesToMeters(-65), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, false, false);
 
 
 
@@ -82,12 +82,10 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
                 new ParallelCommandGroup(
                   new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
                   new  SequentialCommandGroup (
-                    new WaitCommand(1),   // wait for 1 second for wrist to raise above group
                     new ParallelCommandGroup(
                       new AutoPneumatics(2),  // 1 second
                       new  SequentialCommandGroup(
                           mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
-                          new WaitCommand(1),   // wait for 1 second for the balance swing back to nornal
                           mp1,                          // drive towards the platform via mp instead of percent output in autobalance
                           new AutoBalance2Command()       // about 5 to 6 seconds left to auto balance
                       )
