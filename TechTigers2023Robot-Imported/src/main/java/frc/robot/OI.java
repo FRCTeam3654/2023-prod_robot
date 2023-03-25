@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Turn90DegreesCommand;
-import frc.robot.commands.WristGrabCommand;
+import frc.robot.commands.WristGrabDownCommand;
+import frc.robot.commands.WristGrabUpCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.ManualTurretTurningCommand;
@@ -162,8 +163,8 @@ public class OI {
 
   //pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
 
-  turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
-  turretRightPOV.whileTrue(new ManualTurretTurningCommand());
+  turretLeftPOV.onTrue(new ManualTurretTurningCommand());
+  turretRightPOV.onTrue(new ManualTurretTurningCommand());
   turretHomeButton.onTrue(new ManualTurretTurningCommand());
 
   //armFullBackButton.onTrue(new ArmJoustCommand());
@@ -175,8 +176,8 @@ public class OI {
   //wristDeployButton.onTrue(new WristMotionMagic());
   //wristDownUpButton.onTrue(new WristMotionMagic());
   
-  wristGrabDownButton.onTrue(new WristGrabCommand());
-  wristGrabUpButton.onTrue(new WristGrabCommand());
+  wristGrabDownButton.onTrue(new WristGrabDownCommand());
+  wristGrabUpButton.onTrue(new WristGrabUpCommand());
 
   dropLowButton.onTrue(new DropLowCommand());
 

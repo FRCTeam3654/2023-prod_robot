@@ -29,13 +29,13 @@ import frc.robot.commands.AutoWrist;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 
-public class WristGrabCommand extends SequentialCommandGroup {
+public class WristGrabDownCommand extends SequentialCommandGroup {
 
  // NewRunMotionProfile mp;
   //NewRunMotionProfile mp1;
 
   /** Creates a new AutonBalanceCommand. */
-  public WristGrabCommand() {
+  public WristGrabDownCommand() {
    // addRequirements(RobotContainer.wrist);
   //  addRequirements(RobotContainer.pneumaticGrab);
     //mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
@@ -63,18 +63,21 @@ public class WristGrabCommand extends SequentialCommandGroup {
               //mp, new WaitCommand(0.5), new AutoBalanceCommand());
 
           //addCommands(new WaitCommand(1));
- if(RobotContainer.oi.wristGrabDownButton.getAsBoolean()){
-           addCommands(   
+
+          
+ //if(RobotContainer.oi.wristGrabDownButton.getAsBoolean()){
+          addCommands(   
             new ParallelCommandGroup(
-              new AutoWrist(3),
-              new  SequentialCommandGroup (
-                new WaitCommand(0.5),
-                new AutoPneumatics(1)
-              )
+              new AutoPneumatics(1),
+              //new  SequentialCommandGroup (
+                //new WaitCommand(0.5),
+                new AutoWrist(4)
+              //)
             )
             );
-            }
+            //}
 
+            /* 
 else if(RobotContainer.oi.wristGrabUpButton.getAsBoolean()){
             addCommands(
               new ParallelCommandGroup(
@@ -88,6 +91,7 @@ else if(RobotContainer.oi.wristGrabUpButton.getAsBoolean()){
                 )
               );
       }
+      */
           //addCommands(new AutoPneumatics(1 )); // opens pnematic to drop, 1 second
       
            /*addCommands(

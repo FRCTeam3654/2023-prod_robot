@@ -44,7 +44,7 @@ public class TurretSpark extends SubsystemBase {
     kTurretMinOutput = -0.3;
     kTurretMaxOutput = 0.3; 
 */
-    kTurretP = 0.1;  //6e-5 //make larger if it doesn't hold
+    kTurretP = 0.1;  //6e-5 //make larger if it doesn't hold //0.1
     kTurretI = 0;
     kTurretD = 0; 
     kTurretIz = 0; 
