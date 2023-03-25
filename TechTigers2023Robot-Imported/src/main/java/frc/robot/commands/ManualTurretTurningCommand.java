@@ -27,6 +27,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   private boolean hasTargetEver = false;
   private double lastYawAngleByPhotonvision = 0;
   private double driveStraightAngleByPhotonvision = 0;
+  private double turretTimer;
 
 
 
@@ -70,6 +71,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
     else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true){
       RobotContainer.turretSpark.goHome();
+      turretTimer = Timer.getFPGATimestamp();
     }
     
     
@@ -98,6 +100,7 @@ public class ManualTurretTurningCommand extends CommandBase {
       }
     
       */
+      /* 
       else if(RobotContainer.oi.photonvisionButton.getAsBoolean() )  {
         //PhotonVision stuff
         var result = camera.getLatestResult();
@@ -158,7 +161,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
 
       }
-
+*/
       else {
         RobotContainer.turretSpark.manualTurretControl(0);
         RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
@@ -182,6 +185,9 @@ public class ManualTurretTurningCommand extends CommandBase {
       //RobotContainer.turret.zeroSensor();
       //return true;
     //}
+    if((turretTimer + 2) < Timer.getFPGATimestamp()){
+      return true;
+    }
     return false;
   }
 }
