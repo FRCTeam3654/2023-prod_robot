@@ -68,7 +68,7 @@ public ArmSetPositionsCommand(double distance){
   }
 
   else if(RobotContainer.oi.armShortPivotDownButton.getAsBoolean()){
-    isShortPivotDownPressed = true;
+    isShortPivotDownPressed = false;
   }
 
   if(isShortPivotDownPressed == true){
@@ -83,7 +83,7 @@ public ArmSetPositionsCommand(double distance){
 
 
   else if(RobotContainer.oi.armShortPivotUpButton.getAsBoolean()){
-    isShortPivotUpPressed = true;
+    isShortPivotUpPressed = false;
   }
 
   if(isShortPivotUpPressed == true){

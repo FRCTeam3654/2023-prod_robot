@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Turn90DegreesCommand;
+import frc.robot.commands.WristGrabCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.ManualTurretTurningCommand;
@@ -69,6 +70,8 @@ public class OI {
   public JoystickButton armShortPivotUpButton;
   public JoystickButton armShortPivotDownButton;
   public JoystickButton turretHomeButton;
+  public JoystickButton wristGrabDownButton;
+  public JoystickButton wristGrabUpButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -125,6 +128,9 @@ public class OI {
   armPivotButton = new JoystickButton(operatorStick, RobotMap.armPivotButtonNumber);
   armShortPivotUpButton = new JoystickButton(operatorStick, RobotMap.armShortPivotUpButtonNumber);
   armShortPivotDownButton = new JoystickButton(operatorStick, RobotMap.armShortPivotDownButtonNumber);
+  wristGrabDownButton = new JoystickButton(operatorStick, RobotMap.wristGrabDownButtonNumber);
+  wristGrabUpButton = new JoystickButton(operatorStick, RobotMap.wristGrabUpButtonNumber);
+
   //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
   //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
 
@@ -160,20 +166,23 @@ public class OI {
   turretRightPOV.whileTrue(new ManualTurretTurningCommand());
   turretHomeButton.onTrue(new ManualTurretTurningCommand());
 
-  armFullBackButton.onTrue(new ArmJoustCommand());
-  armFullOutButton.onTrue(new ArmJoustCommand());
+  //armFullBackButton.onTrue(new ArmJoustCommand());
+  //armFullOutButton.onTrue(new ArmJoustCommand());
 
-  wristUpPOV.whileTrue(new ManualWristCommand());
-  wristDownPOV.whileTrue(new ManualWristCommand());
+  //wristUpPOV.whileTrue(new ManualWristCommand());
+  //wristDownPOV.whileTrue(new ManualWristCommand());
 
   //wristDeployButton.onTrue(new WristMotionMagic());
-  wristDownUpButton.onTrue(new WristMotionMagic());
+  //wristDownUpButton.onTrue(new WristMotionMagic());
+  
+  wristGrabDownButton.onTrue(new WristGrabCommand());
+  wristGrabUpButton.onTrue(new WristGrabCommand());
 
   dropLowButton.onTrue(new DropLowCommand());
 
   armPivotButton.onTrue(new ArmSetPositionsCommand());
-  armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
-  armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
+  //armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
+  //armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   
   }
   

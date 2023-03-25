@@ -69,23 +69,25 @@ public static int turnLeft180ButtonNumber = 4;
 public static int turnRight180ButtonNumber = 1;
 public static int limelightButtonNumber = 5;
 public static int balanceButtonNumber = 6;
-public static int initialPitchButtonNumber = 15;
+public static int initialPitchButtonNumber = 15;//not used
 public static int photonvisionButtonNumber = 9;
 public static int turretHomeButtonNumber = 10;
 
 
 //OPERATOR STICK
 public static int pneumaticGrabButtonNumber = 8;
-public static int armFullOutButtonNumber = 10;
-public static int armFullBackButtonNumber = 9;
+public static int armFullOutButtonNumber = 16;//not used
+public static int armFullBackButtonNumber = 17;//not used
 public static int dropLowButtonNumber = 4;
-public static int wristDownUpButtonNumber = 3;
+public static int wristDownUpButtonNumber = 15; //not used
+public static int wristGrabDownButtonNumber = 1;
+public static int wristGrabUpButtonNumber = 2;
 //public static int wristDeployButtonNumber = 3;
 //public static int armLockButtonNumber = 6;
 //public static int wristLockButtonNumber = 5;
 public static int armShortPivotDownButtonNumber = 6;
 public static int armShortPivotUpButtonNumber = 5;
-public static int armPivotButtonNumber = 2;
+public static int armPivotButtonNumber = 3;
 
 
 //TALONS/TALON ID NUMBERS!

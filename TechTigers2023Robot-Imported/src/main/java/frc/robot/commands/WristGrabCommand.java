@@ -63,7 +63,7 @@ public class WristGrabCommand extends SequentialCommandGroup {
               //mp, new WaitCommand(0.5), new AutoBalanceCommand());
 
           //addCommands(new WaitCommand(1));
- //if(RobotContainer.oi.wristGrabDownButton.getAsBoolean){
+ if(RobotContainer.oi.wristGrabDownButton.getAsBoolean()){
            addCommands(   
             new ParallelCommandGroup(
               new AutoWrist(3),
@@ -71,12 +71,12 @@ public class WristGrabCommand extends SequentialCommandGroup {
                 new WaitCommand(0.5),
                 new AutoPneumatics(1)
               )
-            ), 
-            //)
-            //}
+            )
+            );
+            }
 
-//else if(RobotContainer.oi.wristGrabUpButton.getAsBoolean){
-            //addCommands(
+else if(RobotContainer.oi.wristGrabUpButton.getAsBoolean()){
+            addCommands(
               new ParallelCommandGroup(
                   new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
                   new  SequentialCommandGroup (
@@ -87,7 +87,7 @@ public class WristGrabCommand extends SequentialCommandGroup {
                   )
                 )
               );
-      //}
+      }
           //addCommands(new AutoPneumatics(1 )); // opens pnematic to drop, 1 second
       
            /*addCommands(
