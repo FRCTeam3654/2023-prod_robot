@@ -51,8 +51,8 @@ public final static double kNeutralDeadband = 0.001; // testing MP
 
 public static double leftPercentOutput = 0.9;
 public static double rightPercentOutput = 0.9;
-public static double nonTurboMultiplierTurn = 0.15;
-public static double nonTurboMultiplierForward = 0.5; //.5, .40 
+public static double nonTurboMultiplierTurn = 0.2; //0.15
+public static double nonTurboMultiplierForward = 0.6; //.5, .40 
 
 public static boolean driveClosedLoopMode = true;
 
@@ -69,8 +69,9 @@ public static int turnLeft180ButtonNumber = 4;
 public static int turnRight180ButtonNumber = 1;
 public static int limelightButtonNumber = 5;
 public static int balanceButtonNumber = 6;
-public static int initialPitchButtonNumber = 10;
+public static int initialPitchButtonNumber = 15;
 public static int photonvisionButtonNumber = 9;
+public static int turretHomeButtonNumber = 10;
 
 
 //OPERATOR STICK

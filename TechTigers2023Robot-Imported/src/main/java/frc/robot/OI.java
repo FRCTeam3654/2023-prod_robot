@@ -68,6 +68,7 @@ public class OI {
   public JoystickButton armPivotButton;
   public JoystickButton armShortPivotUpButton;
   public JoystickButton armShortPivotDownButton;
+  public JoystickButton turretHomeButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -106,6 +107,7 @@ public class OI {
   balanceButton = new JoystickButton(driverStick, RobotMap.balanceButtonNumber);
   initialPitchButton = new JoystickButton(driverStick, RobotMap.initialPitchButtonNumber);
   photonvisionButton = new JoystickButton(driverStick, RobotMap.photonvisionButtonNumber);
+  turretHomeButton = new JoystickButton(driverStick, RobotMap.turretHomeButtonNumber);
 
 
 
@@ -156,6 +158,7 @@ public class OI {
 
   turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
   turretRightPOV.whileTrue(new ManualTurretTurningCommand());
+  turretHomeButton.onTrue(new ManualTurretTurningCommand());
 
   armFullBackButton.onTrue(new ArmJoustCommand());
   armFullOutButton.onTrue(new ArmJoustCommand());

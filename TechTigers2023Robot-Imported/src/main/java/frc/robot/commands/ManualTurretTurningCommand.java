@@ -67,6 +67,10 @@ public class ManualTurretTurningCommand extends CommandBase {
     else if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == true){
       RobotContainer.turretSpark.manualTurretControl(0.25 * RobotContainer.turretSpark.maxRPM);
     }
+
+    else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true){
+      RobotContainer.turretSpark.goHome();
+    }
     
     
 /*

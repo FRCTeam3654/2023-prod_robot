@@ -68,7 +68,7 @@ if (forwardLimit.getValue() == ForwardLimitValue.ClosedToGround) {
 
 public class Wrist extends SubsystemBase {
   /** Creates a new Wrist. */
-  private WPI_TalonFX wristTalon = new WPI_TalonFX (RobotMap.wristTalonID);
+  private WPI_TalonFX wristTalon = new WPI_TalonFX (RobotMap.wristTalonID, "arm");
   //private TalonFX wristTalon = new TalonFX (RobotMap.wristTalonID);
 
   private double wristTargetPosition;

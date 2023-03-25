@@ -22,7 +22,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 public class VerticalMotionArm extends SubsystemBase {
   /** Creates a new VerticalMotionArm. */
 
-  private WPI_TalonFX verticalArmTalon = new WPI_TalonFX (RobotMap.armVerticalTalonID);
+  private WPI_TalonFX verticalArmTalon = new WPI_TalonFX (RobotMap.armVerticalTalonID, "arm");
   private double verticalArmTargetPosition;
 
   public VerticalMotionArm() {

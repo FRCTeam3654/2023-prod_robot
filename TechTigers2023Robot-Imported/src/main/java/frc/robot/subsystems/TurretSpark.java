@@ -44,7 +44,7 @@ public class TurretSpark extends SubsystemBase {
     kTurretMinOutput = -0.3;
     kTurretMaxOutput = 0.3; 
 */
-    kTurretP = 6e-5; 
+    kTurretP = 0.1;  //6e-5 //make larger if it doesn't hold
     kTurretI = 0;
     kTurretD = 0; 
     kTurretIz = 0; 
@@ -89,6 +89,10 @@ public class TurretSpark extends SubsystemBase {
   public void stayStill(double rotations){
     //CANSparkMax.ControlType.kSmartMotion
     m_pidTurretController.setReference(rotations, CANSparkMax.ControlType.kPosition);
+  }
+
+  public void goHome(){
+    m_pidTurretController.setReference(0, CANSparkMax.ControlType.kPosition);
   }
 
 
