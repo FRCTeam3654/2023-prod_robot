@@ -24,38 +24,49 @@ import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ArmJoustCommand;
 import frc.robot.commands.NewRunMotionProfile.CirclePath;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-
+import edu.wpi.first.wpilibj.DriverStation;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoPlaceLowAndPushCubeLeft extends SequentialCommandGroup {
+public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
 
+  DriverStation.Alliance color = DriverStation.getAlliance();
+  
   NewRunMotionProfile mp;
   NewRunMotionProfile mp1;
 
   /** Creates a new AutoPlaceLowAndPushCubeLeft. */
   // facing drive station, the left side of charge station
-  public AutoPlaceLowAndPushCubeLeft(RobotOdometry odometry, Drive driveTrain) {
-    
+  public AutoPlaceLowAndPushCubeNearWall(RobotOdometry odometry, Drive driveTrain) {
+    int multiplier = 1;
+    if(color == DriverStation.Alliance.Blue){
+        multiplier = 1;
+    }
+    else {
+        multiplier = -1; // red alliance's path is the mirror image of blue, need flip the sign
+    }
+
+    // NEED experiment:  when is positive angle ? and postive Y ? when moving backward
+
     mp = new NewRunMotionProfile(driveTrain, odometry, 0.0,
       List.of(new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d()),
           new Pose2d(Units.inchesToMeters(-150.0), Units.inchesToMeters(0.0), new Rotation2d()), 
-          new CirclePath(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(0)), Units.inchesToMeters(24), new Rotation2d(), Rotation2d.fromDegrees(-180), true),
-          new CirclePath(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(48)), Units.inchesToMeters(24), new Rotation2d(-90), Rotation2d.fromDegrees(-45), false),
-          new Pose2d(Units.inchesToMeters(-216.0), Units.inchesToMeters(31.0), new Rotation2d(-140)) 
+          new CirclePath(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(0)), Units.inchesToMeters(24), new Rotation2d( multiplier * (-45)), Rotation2d.fromDegrees( multiplier * (-90)), true),
+          new CirclePath(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(48)), Units.inchesToMeters(24), new Rotation2d(multiplier * 90), Rotation2d.fromDegrees(multiplier * 145), false),
+          new Pose2d(Units.inchesToMeters(-216.0), Units.inchesToMeters(multiplier *(-31.0)), new Rotation2d(multiplier * 50)) 
           ),
       0.0, true, false);
 
  
 
-    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-216), Units.inchesToMeters(31), new Rotation2d(-140)), 0,
+    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-216), Units.inchesToMeters(multiplier *(-31)), new Rotation2d(multiplier * 50)), 0,
         List.of(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(0)),
-                new Translation2d(Units.inchesToMeters(-177), Units.inchesToMeters(-16)),
-                new Translation2d(Units.inchesToMeters(-150), Units.inchesToMeters(-16))
+                new Translation2d(Units.inchesToMeters(-177), Units.inchesToMeters(multiplier * 16)),
+                new Translation2d(Units.inchesToMeters(-150), Units.inchesToMeters(multiplier * 16))
         
         ),
-        new Pose2d(Units.inchesToMeters(-65), Units.inchesToMeters(-16), Rotation2d.fromDegrees(0)), 1.3, false, false);
+        new Pose2d(Units.inchesToMeters(-65), Units.inchesToMeters(multiplier * 16), Rotation2d.fromDegrees(0)), 1.3, false, false);
 
 
 
