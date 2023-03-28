@@ -27,6 +27,7 @@ import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ArmJoustCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.RobotMap;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -56,16 +57,18 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
     
         addCommands(
             new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))) ,
-        
+            new ArmSetPositionsCommand(3, 2000, 1.0),
+            new AutoArmJoustCommand(1),  // NEW: 2 seconds for telescoping arm to extend
             new ParallelCommandGroup(
               new ArmSetPositionsCommand(1, 2.5), // raise arm to full distance, 2.5 seconds
               new  SequentialCommandGroup (
-                new WaitCommand(0.3),   
+                //new WaitCommand(0.2),  
+                //new AutoArmJoustCommand(1),  // NEW: 2 seconds for telescoping arm to extend 
                 new ParallelCommandGroup(
-                  new ArmJoustCommand(1),  // NEW: 2 seconds for telescoping arm to extend
+                  //new ArmJoustCommand(1),  // NEW: 2 seconds for telescoping arm to extend
                   new  SequentialCommandGroup (
                     new WaitCommand(0.8), 
-                    new  AutoWrist(1)// lowers wrist , 1.5 seconds
+                    new  AutoWrist(1,RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds
                   )
                 )
               )
@@ -73,7 +76,7 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
             new AutoPneumatics(1),
             new ParallelCommandGroup(
               new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
-              new ArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
+              new AutoArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
               new  SequentialCommandGroup (
                 new WaitCommand(1),   // wait for 1 second for wrist to raise above group
                 new ParallelCommandGroup(

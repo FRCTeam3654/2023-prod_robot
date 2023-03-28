@@ -36,14 +36,14 @@ public class ArmJoustCommand extends CommandBase {
   @Override
   public void execute() {
     
-    if ((RobotContainer.oi.armFullOutButton.getAsBoolean() && !isButtonPressed) || mode == 1){ //extends it
+    if (((RobotContainer.oi.armFullOutButton.getAsBoolean() || mode == 1) && !isButtonPressed) ){ //extends it
       isButtonPressed = true;
       RobotContainer.telescopingArm.setMotionMagic(RobotMap.joustExtendDistance, 8000, 8000); //maximum speed is 22000
       //RobotContainer.telescopingArm.manualJoust(0.3);
       SmartDashboard.putString("verticalUpButtonClicked", "yes");
       //joustTimer = Timer.getFPGATimestamp();
     }
-    else if ((RobotContainer.oi.armFullBackButton.getAsBoolean() && !isButtonPressed) || mode == 2){//pulls it back
+    else if (((RobotContainer.oi.armFullBackButton.getAsBoolean() || mode == 2) && !isButtonPressed) ){//pulls it back
       isButtonPressed = true;
       //RobotContainer.telescopingArm.manualJoust(-0.3);
       RobotContainer.telescopingArm.setMotionMagic(0, 8000, 8000); //8000 8000

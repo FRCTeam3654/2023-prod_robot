@@ -21,6 +21,7 @@ public class AutoWrist extends CommandBase {
   private boolean isMotionMagicButtonPressed = false;
   private double currentPos;
   private int mode = 1;
+  private double wristDistance = 0.6 * RobotMap.wristFullUpDistance;
 
   public AutoWrist() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -31,6 +32,13 @@ public class AutoWrist extends CommandBase {
     addRequirements(RobotContainer.wrist);
     this.mode = mode;
   }
+
+  public AutoWrist(int mode, double distance){
+    addRequirements(RobotContainer.wrist);
+    this.mode = mode;
+    wristDistance = distance;
+  }
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -46,7 +54,7 @@ public class AutoWrist extends CommandBase {
 
     if(mode == 1){ //moves down
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 4000, 3000);
+      RobotContainer.wrist.setMotionMagic((-1)*wristDistance, 4000, 3000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;

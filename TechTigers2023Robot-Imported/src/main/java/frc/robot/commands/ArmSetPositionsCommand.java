@@ -54,14 +54,16 @@ public class ArmSetPositionsCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if(RobotContainer.oi.armPivotButton.getAsBoolean() || mode == 1 || mode == 2){
+    if(RobotContainer.oi.armPivotButton.getAsBoolean() || mode == 1 || mode == 2 || mode == 3){
       isFullPivotPressed = true;
     }
 
     if(isFullPivotPressed == true ){
-      armMoveNumber = armMoveNumber + 1;
+      if( mode != 3) {
+        armMoveNumber = armMoveNumber + 1;
+      }
 
-      if(armMoveNumber %2 == 1 || mode == 1){ //moves up
+      if(armMoveNumber %2 == 1 || mode == 1 || mode == 3){ //moves up
         armTimer = Timer.getFPGATimestamp();
         RobotContainer.verticalMotionArm.setMotionMagic(armDistance, 3000, 3000, 0.05);
         //RobotContainer.arm.setMotionMagic(0, 2000, 2000);
