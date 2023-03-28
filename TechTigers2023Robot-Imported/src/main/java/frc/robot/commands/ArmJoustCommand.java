@@ -29,6 +29,7 @@ public class ArmJoustCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    joustTimer = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,7 +41,7 @@ public class ArmJoustCommand extends CommandBase {
       RobotContainer.telescopingArm.setMotionMagic(RobotMap.joustExtendDistance, 8000, 8000); //maximum speed is 22000
       //RobotContainer.telescopingArm.manualJoust(0.3);
       SmartDashboard.putString("verticalUpButtonClicked", "yes");
-      joustTimer = Timer.getFPGATimestamp();
+      //joustTimer = Timer.getFPGATimestamp();
     }
     else if ((RobotContainer.oi.armFullBackButton.getAsBoolean() && !isButtonPressed) || mode == 2){//pulls it back
       isButtonPressed = true;
@@ -50,7 +51,7 @@ public class ArmJoustCommand extends CommandBase {
     
     
       SmartDashboard.putString("JoustButtonClicked", "yes");
-      joustTimer = Timer.getFPGATimestamp();
+      //joustTimer = Timer.getFPGATimestamp();
     }
     
   }

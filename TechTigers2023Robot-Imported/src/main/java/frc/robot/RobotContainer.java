@@ -96,7 +96,7 @@ public class RobotContainer {
     autoChooser.addOption("back up", new AutoBackUp(odometry, drive));
     autoChooser.addOption("Place + balance don't exit", new AutoBalanceDontExit(odometry, drive));
     autoChooser.addOption("place and do nothing", new AutoPlaceLowAndNothing(odometry, drive));
-
+    autoChooser.addOption("place mid and balance - test", new AutoPlaceMidAndBalance(odometry, drive));
     
     driveChooser.addOption("Left Joystick Drive", new ManualDriveCommand());
     driveChooser.setDefaultOption("Both Joystick Drive", new BothJoystickDriveCommand());
