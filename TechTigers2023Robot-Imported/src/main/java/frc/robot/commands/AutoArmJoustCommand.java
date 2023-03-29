@@ -70,7 +70,7 @@ public class AutoArmJoustCommand extends CommandBase {
           double percentError = 100 * (RobotMap.joustExtendDistance - sensorDistance)/RobotMap.joustExtendDistance;
         
           SmartDashboard.putNumber("percentErrorjoustLeft", percentError);
-          if ((percentError < 0.5 || percentError < 0 )){
+          if ((percentError < 1 || percentError < 0 )){
             return true;
           }
         } 
