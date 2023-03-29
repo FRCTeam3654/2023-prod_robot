@@ -163,8 +163,8 @@ public class OI {
 
   //pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
 
-  turretLeftPOV.onTrue(new ManualTurretTurningCommand());
-  turretRightPOV.onTrue(new ManualTurretTurningCommand());
+  turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
+  turretRightPOV.whileTrue(new ManualTurretTurningCommand());
   turretHomeButton.onTrue(new ManualTurretTurningCommand());
 
   //armFullBackButton.onTrue(new ArmJoustCommand());

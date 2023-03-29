@@ -64,20 +64,18 @@ public class ManualTurretTurningCommand extends CommandBase {
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
     if(RobotContainer.oi.turretRightPOV.getAsBoolean() == true){
-      isRightPressed = true;
+      RobotContainer.turretSpark.manualTurretControl(-2);
     }
 
-    if(isRightPressed == true){
-      RobotContainer.turretSpark.manualTurretControl(-0.25 * RobotContainer.turretSpark.maxRPM);
-    }
+    //if(isRightPressed == true){
+    //}
 
     else if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == true){
-      isLeftPressed = true;
+      RobotContainer.turretSpark.manualTurretControl(2); //maxRPM
     }
 
-    if(isLeftPressed == true){
-      RobotContainer.turretSpark.manualTurretControl(0.25 * RobotContainer.turretSpark.maxRPM);
-    }
+    //if(isLeftPressed == true){
+    //}
 
     //else if (RobotContainer.oi.turretLeftPOV.getAsBoolean() == false){
      // isLeftPressed = false;
@@ -87,10 +85,10 @@ public class ManualTurretTurningCommand extends CommandBase {
       //isRightPressed = false;
     //}
 
-    //else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true){
-      //RobotContainer.turretSpark.goHome();
-     // turretTimer = Timer.getFPGATimestamp();
-    //}
+    else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true){
+      RobotContainer.turretSpark.goHome();
+      turretTimer = Timer.getFPGATimestamp();
+    }
     
     
 /*
@@ -182,7 +180,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
       else {
         RobotContainer.turretSpark.manualTurretControl(0);
-        RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
+        //RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
       }
   }
   
@@ -193,7 +191,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   public void end(boolean interrupted) {
     RobotContainer.turretSpark.manualTurretControl(0);
     //RobotContainer.verticalMotionArm.setMotionMagic(0, 8000, 8000);
-    //RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
+    RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
     isLeftPressed = false;
     isRightPressed = false;
   }
@@ -205,11 +203,11 @@ public class ManualTurretTurningCommand extends CommandBase {
       //RobotContainer.turret.zeroSensor();
       //return true;
     //}
-    if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == false && RobotContainer.oi.turretRightPOV.getAsBoolean() == false){
-      isLeftPressed = false;
-      isRightPressed = false;
-      return true;
-    }
+   // if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == false && RobotContainer.oi.turretRightPOV.getAsBoolean() == false){
+    //  isLeftPressed = false;
+     // isRightPressed = false;
+      //return true;
+   // }
 
     if((turretTimer + 2) < Timer.getFPGATimestamp()){
       return true;
