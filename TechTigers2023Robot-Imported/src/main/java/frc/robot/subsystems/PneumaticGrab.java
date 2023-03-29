@@ -45,20 +45,20 @@ public class PneumaticGrab extends SubsystemBase {
   }
   public void practiceSolenoid(boolean onOff){
     if(m_doubleSolenoid == null){
-      System.out.println("emmas solenoid is null");
+      //System.out.println("emmas solenoid is null");
       return;
     }
     else{
-      System.out.println("not null");
+      //System.out.println("not null");
   }
     if (onOff == true){
       m_doubleSolenoid.set(DoubleSolenoid.Value.kForward);
-      System.out.println("am i supposed to be expanding");
+      //System.out.println("am i supposed to be expanding");
     }
 
     else if (onOff == false){
       m_doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-      System.out.println("am i supposed to be contracting");
+      //System.out.println("am i supposed to be contracting");
     }
   }
 

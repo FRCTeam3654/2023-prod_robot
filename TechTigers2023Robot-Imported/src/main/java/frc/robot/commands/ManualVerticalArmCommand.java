@@ -72,7 +72,7 @@ public class ManualVerticalArmCommand extends CommandBase {
         RobotContainer.wrist.manualwrist(0);
       }
       //RobotContainer.wrist.
-      System.out.println("Should i be staying still");
+      //System.out.println("Should i be staying still");
    }
   }
 

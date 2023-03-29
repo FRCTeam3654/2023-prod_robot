@@ -74,7 +74,7 @@ public class BothJoystickDriveCommand extends CommandBase {
 
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
     if(RobotContainer.oi.driverStick.getLeftTriggerAxis() > 0.4){
-      System.out.println("TURBO");
+      //System.out.println("TURBO");
     }
 
     else {

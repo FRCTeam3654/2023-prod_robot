@@ -80,7 +80,7 @@ public class ManualDriveCommand extends CommandBase {
         }
         else {
 
-          System.out.println("has target " );
+         // System.out.println("has target " );
          // System.out.println("hasTargest =  " + hasTargets);
           //List<PhotonTrackedTarget> targets = result.getTargets();
           hasTargetEver = true;
@@ -112,7 +112,7 @@ public class ManualDriveCommand extends CommandBase {
     
     //RobotContainer.oi.driverStick.getLeftTriggerAxis();
     if(RobotContainer.oi.driverStick.getLeftTriggerAxis() > 0.4){
-      System.out.println("TURBO");
+      //System.out.println("TURBO");
     }
 
     else {
@@ -141,7 +141,7 @@ public class ManualDriveCommand extends CommandBase {
         if ( hasTargets == true) {
           joystickX = (-1) * yawFromAprilTag * RobotMap.driveToAprilTagProportion;
           driveStraightFlag = false;
-          System.out.println("AprilTag Button is clicked ... joystickX  ="+joystickX +", yawFromAprilTag = "+yawFromAprilTag);
+          //System.out.println("AprilTag Button is clicked ... joystickX  ="+joystickX +", yawFromAprilTag = "+yawFromAprilTag);
         }
         else {
           if (hasTargetEver == true) {

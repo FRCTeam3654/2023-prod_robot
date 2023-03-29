@@ -164,7 +164,7 @@ public void karenaArcadeDrive(double joystickX, double joystickY){
       }
 */
 
-      System.out.println("Angle = " + initAngleDegree);
+      //System.out.println("Angle = " + initAngleDegree);
       SmartDashboard.putNumber("VerticalClimbAngleDegree", initAngleDegree);
 
 if(  isAboutAngle (initAngleDegree,0) ) {

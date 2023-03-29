@@ -77,7 +77,7 @@ public class BalanceCommand extends CommandBase {
     
     reverseTippySpeed = (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
     forwardTippySpeed = (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
-    System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
+    //System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
     if(reverseTippySpeed < -0.16){
       reverseTippySpeed = -0.16;
     }

@@ -96,7 +96,7 @@ public class VerticalMotionArm extends SubsystemBase {
     }
     verticalArmTargetPosition = targetPos;
     verticalArmTalon.set(ControlMode.MotionMagic, targetPos);
-    System.out.println(verticalArmTalon.getSelectedSensorVelocity(0) + ",  " + verticalArmTalon.getClosedLoopError(0) + ",  " + verticalArmTalon.getSelectedSensorPosition(0));
+    //System.out.println(verticalArmTalon.getSelectedSensorVelocity(0) + ",  " + verticalArmTalon.getClosedLoopError(0) + ",  " + verticalArmTalon.getSelectedSensorPosition(0));
   }
 
   public int verticalArmTickCount(){

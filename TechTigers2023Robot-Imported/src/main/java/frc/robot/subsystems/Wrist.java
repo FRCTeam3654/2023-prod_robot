@@ -133,7 +133,7 @@ public class Wrist extends SubsystemBase {
     }
     wristTargetPosition = targetPos;
     wristTalon.set(ControlMode.MotionMagic, targetPos);
-    System.out.println(wristTalon.getSelectedSensorVelocity(0) + ",  " + wristTalon.getClosedLoopError(0) + ",  " + wristTalon.getSelectedSensorPosition(0));
+    //System.out.println(wristTalon.getSelectedSensorVelocity(0) + ",  " + wristTalon.getClosedLoopError(0) + ",  " + wristTalon.getSelectedSensorPosition(0));
   }
 
   public int wristTickCount(){
