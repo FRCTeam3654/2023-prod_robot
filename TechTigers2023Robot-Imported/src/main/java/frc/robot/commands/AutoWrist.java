@@ -54,7 +54,7 @@ public class AutoWrist extends CommandBase {
 
     if(mode == 1){ //moves down
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic((-1)*wristDistance, 4000, 3000);
+      RobotContainer.wrist.setMotionMagic((-1)*wristDistance, 5000, 7500);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
@@ -63,20 +63,20 @@ public class AutoWrist extends CommandBase {
     else if(mode == 2){ //moves up
       wristTimer = Timer.getFPGATimestamp();
       //RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 2000, 2000);
-      RobotContainer.wrist.setMotionMagic(0, 8000, 6000);
+      RobotContainer.wrist.setMotionMagic(0, 8000, 8000);
       System.out.println("should i be motion magicking up");
       isMotionMagicInProgress = true;
     }
     else if(mode == 3){ //moves down at 80% full distance
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 4000, 3000);
+      RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 5000, 7500);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
     else if (mode == 4){
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 4000, 3000);
+      RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 8000, 8000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
@@ -146,7 +146,9 @@ public class AutoWrist extends CommandBase {
     }
     else {
         double sensorDistance = Math.abs(RobotContainer.wrist.getWristTalonPosition());
-        double percentError = 100 * (RobotMap.wristFullUpDistance - sensorDistance)/RobotMap.wristFullUpDistance;
+        //double percentError = 100 * (RobotMap.wristFullUpDistance - sensorDistance)/RobotMap.wristFullUpDistance;
+        double percentError = 100 * (wristDistance - sensorDistance)/wristDistance;
+
 
         if (Math.abs(percentError) < 1){
         //if (percentLeftError < 0.9 || percentLeftError < 0 )

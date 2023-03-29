@@ -12,6 +12,9 @@ public class AutoPneumatics extends CommandBase {
   /** Creates a new AutoPneumatics. */
   private int mode = 2; //0 is regular, 1 is auto open, 2 is auto close
   private double pneumaticTimer;
+  private double autoPneumaticTimerTimeout = 1;
+
+
   public AutoPneumatics() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.pneumaticGrab);
@@ -19,7 +22,11 @@ public class AutoPneumatics extends CommandBase {
   public AutoPneumatics(int new_mode){
     addRequirements(RobotContainer.pneumaticGrab);
     mode = new_mode;
-    
+  }
+  public AutoPneumatics(int new_mode, double new_timeout){
+    addRequirements(RobotContainer.pneumaticGrab);
+    mode = new_mode;
+    autoPneumaticTimerTimeout = new_timeout;
   }
 
   // Called when the command is initially scheduled.
@@ -33,14 +40,13 @@ public class AutoPneumatics extends CommandBase {
   @Override
   public void execute() {
 
-     if(mode == 2){ // opens
+    if(mode == 2){ // opens
       RobotContainer.pneumaticGrab.practiceSolenoid(false);
     }
-
     else if(mode == 1){ //closes
       RobotContainer.pneumaticGrab.practiceSolenoid(true);
     }
-else {}
+    else {}
     
   }
 
@@ -51,8 +57,8 @@ else {}
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      if( (pneumaticTimer + 1.0) < Timer.getFPGATimestamp()) {
-        // after 3 second, stop command
+      if( (pneumaticTimer + autoPneumaticTimerTimeout) < Timer.getFPGATimestamp()) {
+        // after 1 second, stop command
         return true;
       }
 
