@@ -73,8 +73,13 @@ public class TurretSpark extends SubsystemBase {
 
     //setPoint = .2 * maxRPM;
     //setPoint = -0.2 * maxRPM;
+<<<<<<< HEAD
     System.out.println("set point" + setPoint);
     m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
+=======
+    //System.out.println("set point" + setPoint);
+    m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
+>>>>>>> 9f0ea99d9b8dd015145a1bf91b4e19e88c22ecd2
   }
 
 

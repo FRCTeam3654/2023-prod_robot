@@ -27,6 +27,7 @@ import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.ArmJoustCommand;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.RobotMap;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -56,37 +57,44 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
     
         addCommands(
             new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))) ,
-        
             new ParallelCommandGroup(
-              new ArmSetPositionsCommand(1, 2.5), // raise arm to full distance, 2.5 seconds
-              new  SequentialCommandGroup (
-                new WaitCommand(0.3),   
-                new ParallelCommandGroup(
-                  new ArmJoustCommand(1),  // NEW: 2 seconds for telescoping arm to extend
-                  new  SequentialCommandGroup (
-                    new WaitCommand(0.8), 
-                    new  AutoWrist(1)// lowers wrist , 1.5 seconds
-                  )
+                new ArmSetPositionsCommand(3, 2200, 1.0),
+                new  SequentialCommandGroup (
+                    new WaitCommand(0.3),
+                    new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
                 )
-              )
             ),
-            new AutoPneumatics(1),
             new ParallelCommandGroup(
-              new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
-              new ArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
-              new  SequentialCommandGroup (
-                new WaitCommand(1),   // wait for 1 second for wrist to raise above group
-                new ParallelCommandGroup(
+              new ArmSetPositionsCommand(1, 2), // raise arm to full distance, 2 seconds
+              //new  SequentialCommandGroup (
+                //new ParallelCommandGroup(
+                  new  SequentialCommandGroup (
+                    new WaitCommand(0.5), // vs 0.8
+                    new  AutoWrist(1, 1.1 * RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds
+                  )
+                //)
+              //)
+            ),
+            new AutoPneumatics(1, 0.5),
+            new ParallelCommandGroup(
+              new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
+              new AutoArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
+              //new  SequentialCommandGroup (
+                //new WaitCommand(0.1),   // wait for 0.1 second for wrist to raise above group
+                //new ParallelCommandGroup(
                   new AutoPneumatics(2),  // 1 second  
-                  new ArmSetPositionsCommand(2, 2.0), // lower arm to near bottom, 2.5 seconds 
+                  new  SequentialCommandGroup (
+                    new WaitCommand(0.5),
+                    new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
+                  ),
                   new  SequentialCommandGroup(      
                         mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
-                        new WaitCommand(1),   // wait for 1 second for the balance swing back to nornal
+                        new WaitCommand(0.7),   // wait for 1 second for the balance swing back to nornal
                         mp1,                          // drive towards the platform via mp instead of percent output in autobalance
                         new AutoBalance2Command()       // about 5 to 6 seconds left to auto balance
                   )
-                )
-              )
+                //)
+              //)
             )
         );
 

@@ -18,7 +18,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 public class TelescopingArm extends SubsystemBase {
   /** Creates a new TelescopingArm. */
-  private WPI_TalonFX armTalon = new WPI_TalonFX(RobotMap.armTalonID, "Arm");
+  private WPI_TalonFX armTalon = new WPI_TalonFX(RobotMap.armTalonID, "arm");
 
   public double leftSpeed; 
 
@@ -164,7 +164,7 @@ public void karenaArcadeDrive(double joystickX, double joystickY){
       }
 */
 
-      System.out.println("Angle = " + initAngleDegree);
+      //System.out.println("Angle = " + initAngleDegree);
       SmartDashboard.putNumber("VerticalClimbAngleDegree", initAngleDegree);
 
 if(  isAboutAngle (initAngleDegree,0) ) {

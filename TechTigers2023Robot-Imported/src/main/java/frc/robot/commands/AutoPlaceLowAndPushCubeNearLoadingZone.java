@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoPlaceLowAndPushCubeFarFromWall extends SequentialCommandGroup {
+public class AutoPlaceLowAndPushCubeNearLoadingZone extends SequentialCommandGroup {
 
   DriverStation.Alliance color = DriverStation.getAlliance();
 
@@ -39,7 +39,7 @@ public class AutoPlaceLowAndPushCubeFarFromWall extends SequentialCommandGroup {
 
   /** Creates a new AutoPlaceLowAndPushCubeRight. */
    // facing drive station, the right side of charge station
-  public AutoPlaceLowAndPushCubeFarFromWall(RobotOdometry odometry, Drive driveTrain) {
+  public AutoPlaceLowAndPushCubeNearLoadingZone(RobotOdometry odometry, Drive driveTrain) {
 
     int multiplier = 1;
     if(color == DriverStation.Alliance.Blue){

@@ -523,7 +523,7 @@ public void tankDriveVolts(double leftVolts, double rightVolts) {
 
         _state.set(3);
         ret = true;
-        System.out.println("finished mp");
+        //System.out.println("finished mp");
         SmartDashboard.putNumber("mp_status",12); 
       }
 

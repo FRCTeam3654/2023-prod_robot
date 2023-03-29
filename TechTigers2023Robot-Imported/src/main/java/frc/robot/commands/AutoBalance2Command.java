@@ -56,7 +56,7 @@ public class AutoBalance2Command extends CommandBase {
     
     reverseTippySpeed = (RobotMap.balanceAngleM * angleDifference - RobotMap.balanceAngleB);
     forwardTippySpeed = (RobotMap.balanceAngleM * angleDifference + RobotMap.balanceAngleB);
-    System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
+    //System.out.println(reverseTippySpeed + " , " + forwardTippySpeed +", angle = "+angleDifference);
     if(reverseTippySpeed < -0.25){
       reverseTippySpeed = -0.25;  // tune down a little from 0.2
     }
@@ -78,7 +78,7 @@ public class AutoBalance2Command extends CommandBase {
     //else if (((angleDifference > RobotMap.balanceAngleTolerance && isAngleReached == true))) {
     else if (((angleDifference > RobotMap.balanceAngleTolerance ))) {
       RobotContainer.drive.setPercentOutput(forwardTippySpeed);
-      System.out.println("am i reversing");
+      //System.out.println("am i reversing");
     }
   
   }
