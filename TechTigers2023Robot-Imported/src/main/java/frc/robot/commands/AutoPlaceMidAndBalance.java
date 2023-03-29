@@ -83,7 +83,10 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
                 //new WaitCommand(0.1),   // wait for 0.1 second for wrist to raise above group
                 //new ParallelCommandGroup(
                   new AutoPneumatics(2),  // 1 second  
-                  new ArmSetPositionsCommand(2, 2.0), // lower arm to near bottom, 2.5 seconds 
+                  new  SequentialCommandGroup (
+                    new WaitCommand(0.5),
+                    new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
+                  ),
                   new  SequentialCommandGroup(      
                         mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
                         new WaitCommand(0.7),   // wait for 1 second for the balance swing back to nornal
