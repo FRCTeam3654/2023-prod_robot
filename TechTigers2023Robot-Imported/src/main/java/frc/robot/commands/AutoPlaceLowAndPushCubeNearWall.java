@@ -59,7 +59,8 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
 
     mp = new NewRunMotionProfile(driveTrain, odometry, 0.0,
       List.of(new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d()),
-          new Pose2d(Units.inchesToMeters(-150.0), Units.inchesToMeters(0.0), new Rotation2d()), 
+          new Pose2d(Units.inchesToMeters(-80.0), Units.inchesToMeters(multiplier * 20.0), new Rotation2d()), 
+          new Pose2d(Units.inchesToMeters(-160.0), Units.inchesToMeters(0.0), new Rotation2d()), 
           new CirclePath(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(0)), Units.inchesToMeters(24), new Rotation2d( multiplier * (-45)), Rotation2d.fromDegrees( multiplier * (-90)), true),
           new CirclePath(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(multiplier * (-48))), Units.inchesToMeters(24), new Rotation2d(multiplier * (90)), Rotation2d.fromDegrees(multiplier * 145), false),
           new Pose2d(Units.inchesToMeters(-216.0), Units.inchesToMeters(multiplier *(-31.0)), new Rotation2d(multiplier * 50)) 
