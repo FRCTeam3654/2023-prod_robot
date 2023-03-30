@@ -83,6 +83,7 @@ public class RobotContainer {
     //wrist.setDefaultCommand(new ManualWristCommand());
     //verticalMotionArm.setDefaultCommand(new ManualVerticalArmCommand());
     telescopingArm.setDefaultCommand(new ManualArmCommand());
+    
     turretSpark.setDefaultCommand(new TurretStayStillCommand());
 
     CameraServer.startAutomaticCapture(0);

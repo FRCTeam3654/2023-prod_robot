@@ -44,7 +44,7 @@ public class TurretSpark extends SubsystemBase {
     kTurretMinOutput = -0.3;
     kTurretMaxOutput = 0.3; 
 */
-    kTurretP = 0.1;  //6e-5 //make larger if it doesn't hold //0.1
+    kTurretP = 0.3;  //6e-5 //make larger if it doesn't hold //0.1
     kTurretI = 0;
     kTurretD = 0; 
     kTurretIz = 0; 
@@ -73,13 +73,12 @@ public class TurretSpark extends SubsystemBase {
 
     //setPoint = .2 * maxRPM;
     //setPoint = -0.2 * maxRPM;
-<<<<<<< HEAD
-    System.out.println("set point" + setPoint);
-    m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
-=======
-    //System.out.println("set point" + setPoint);
-    m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVelocity);
->>>>>>> 9f0ea99d9b8dd015145a1bf91b4e19e88c22ecd2
+    //System.out.println("sensor reading = " + getSensorReading());
+    double currrentReading = getSensorReading();
+    if( Math.abs( currrentReading ) < 2.88 )  {
+      // 2.88 is around turing 90 degree by measuring the number at the robot
+      m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
+    }
   }
 
 

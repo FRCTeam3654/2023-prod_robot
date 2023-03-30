@@ -30,8 +30,9 @@ public class ManualTurretTurningCommand extends CommandBase {
   private double turretTimer;
   private boolean isLeftPressed = false;
   private boolean isRightPressed = false;
-
-
+  private boolean timeStarted = false;
+  private int mode = 0; // 1 : turretRightPOV, 2:  turretLeftPOV ,  3: turretHomeButton
+  private double turretTurnTimeout = 0.2;
 
 
   public ManualTurretTurningCommand() {
@@ -64,14 +65,25 @@ public class ManualTurretTurningCommand extends CommandBase {
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
 
     if(RobotContainer.oi.turretRightPOV.getAsBoolean() == true){
-      RobotContainer.turretSpark.manualTurretControl(-2);
+      if( timeStarted == false) {
+        turretTimer = Timer.getFPGATimestamp();
+        timeStarted = true;
+        mode = 1;
+      }
+      RobotContainer.turretSpark.manualTurretControl(-1);
     }
 
     //if(isRightPressed == true){
     //}
 
     else if(RobotContainer.oi.turretLeftPOV.getAsBoolean() == true){
-      RobotContainer.turretSpark.manualTurretControl(2); //maxRPM
+      if( timeStarted == false) {
+        turretTimer = Timer.getFPGATimestamp();
+        timeStarted = true;
+        mode = 2;
+      }
+      RobotContainer.turretSpark.manualTurretControl(1); //maxRPM
+      
     }
 
     //if(isLeftPressed == true){
@@ -86,6 +98,7 @@ public class ManualTurretTurningCommand extends CommandBase {
     //}
 
     else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true){
+      mode = 3;
       RobotContainer.turretSpark.goHome();
       turretTimer = Timer.getFPGATimestamp();
     }
@@ -116,7 +129,7 @@ public class ManualTurretTurningCommand extends CommandBase {
       }
     
       */
-      
+      /* 
       else if(RobotContainer.oi.photonvisionButton.getAsBoolean() )  {
         //PhotonVision stuff
         var result = camera.getLatestResult();
@@ -177,7 +190,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
 
       }
-
+      */
       else {
         RobotContainer.turretSpark.manualTurretControl(0);
         //RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
@@ -194,6 +207,7 @@ public class ManualTurretTurningCommand extends CommandBase {
     RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
     isLeftPressed = false;
     isRightPressed = false;
+    timeStarted = false;
   }
 
   // Returns true when the command should end.
@@ -209,7 +223,12 @@ public class ManualTurretTurningCommand extends CommandBase {
       //return true;
    // }
 
-    if((turretTimer + 2) < Timer.getFPGATimestamp()){
+    double timeoutvalue = turretTurnTimeout;
+    if (mode == 3) {
+      timeoutvalue = 1; // not sure if gohome need a little more time for returning to home (0)
+    }
+
+    if((turretTimer + timeoutvalue) < Timer.getFPGATimestamp()){
       return true;
     }
     return false;
