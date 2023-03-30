@@ -97,9 +97,10 @@ public class RobotContainer {
     autoChooser.addOption("back up", new AutoBackUp(odometry, drive));
     autoChooser.addOption("Place + balance don't exit", new AutoBalanceDontExit(odometry, drive));
     autoChooser.addOption("place and do nothing", new AutoPlaceLowAndNothing(odometry, drive));
-    autoChooser.addOption("place mid and balance - test", new AutoPlaceMidAndBalance(odometry, drive));
+    autoChooser.addOption("place mid and balance ", new AutoPlaceMidAndBalance(odometry, drive));
     // test code
     autoChooser.addOption("test path - test", new TestMPCommand(odometry, drive));
+    autoChooser.addOption("test - place low and push cube NEAR WALL ", new AutoPlaceLowAndPushCubeNearWall(odometry, drive));
     
 
 
