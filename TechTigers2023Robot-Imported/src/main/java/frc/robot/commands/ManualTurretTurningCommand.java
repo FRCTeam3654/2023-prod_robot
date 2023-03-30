@@ -229,6 +229,11 @@ public class ManualTurretTurningCommand extends CommandBase {
     double timeoutvalue = turretTurnTimeout;
     if (mode == 3) {
       timeoutvalue = 1.5; // not sure if gohome need a little more time for returning to home (0)
+      if( Math.abs(RobotContainer.turretSpark.getSensorReading()) < 0.1 ) {
+          // noted: reading 2.8 at robot is about 90 degree, so 0.1 is about 3 degree 
+          return true;
+      } 
+   
     }
 
     if((turretTimer + timeoutvalue) < Timer.getFPGATimestamp()){
