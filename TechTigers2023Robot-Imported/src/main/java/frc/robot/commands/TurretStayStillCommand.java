@@ -21,7 +21,10 @@ public class TurretStayStillCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.turretSpark.stayStill(RobotContainer.turretSpark.holdRotations);
+    if( ManualTurretTurningCommand.mode == 0) {
+      // avoid fighting with manual command
+      RobotContainer.turretSpark.stayStill(RobotContainer.turretSpark.holdRotations);
+    }
   }
 
   // Called once the command ends or is interrupted.

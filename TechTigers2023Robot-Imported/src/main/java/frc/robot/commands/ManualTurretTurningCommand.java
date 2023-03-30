@@ -31,7 +31,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   private boolean isLeftPressed = false;
   private boolean isRightPressed = false;
   private boolean timeStarted = false;
-  private int mode = 0; // 1 : turretRightPOV, 2:  turretLeftPOV ,  3: turretHomeButton
+  public static int mode = 0; // 1 : turretRightPOV, 2:  turretLeftPOV ,  3: turretHomeButton
   private double turretTurnTimeout = 0.2;
 
 
@@ -202,9 +202,12 @@ public class ManualTurretTurningCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    
     RobotContainer.turretSpark.manualTurretControl(0);
+
     //RobotContainer.verticalMotionArm.setMotionMagic(0, 8000, 8000);
     RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
+    mode = 0;
     isLeftPressed = false;
     isRightPressed = false;
     timeStarted = false;
@@ -225,7 +228,7 @@ public class ManualTurretTurningCommand extends CommandBase {
 
     double timeoutvalue = turretTurnTimeout;
     if (mode == 3) {
-      timeoutvalue = 1; // not sure if gohome need a little more time for returning to home (0)
+      timeoutvalue = 1.5; // not sure if gohome need a little more time for returning to home (0)
     }
 
     if((turretTimer + timeoutvalue) < Timer.getFPGATimestamp()){
