@@ -75,11 +75,29 @@ public class TurretSpark extends SubsystemBase {
     //setPoint = -0.2 * maxRPM;
     //System.out.println("sensor reading = " + getSensorReading());
     double currrentReading = getSensorReading();
-    if( Math.abs( currrentReading ) < 2.88 )  {
+    if( currrentReading > 0 && currrentReading  > 2.88  )  {
       // 2.88 is around turing 90 degree by measuring the number at the robot
+
+      // positive voltage move towards left, if at left 90 degree, cannot  move more, only can move toward right
+      if( setPoint < 0) {
+        
+        m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
+      }
+    }
+    else if( currrentReading < 0 && currrentReading  < -2.88  )  {
+        // only allow to move to left if at the right most position (90 degree)
+        if( setPoint > 0) { 
+          m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
+        }
+    }
+    else if( Math.abs(currrentReading) < 2.88) {
       m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
     }
-  }
+
+
+
+
+  } 
 
 
   public void resetEncoders(){

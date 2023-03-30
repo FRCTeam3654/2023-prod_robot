@@ -32,7 +32,7 @@ public class ManualTurretTurningCommand extends CommandBase {
   private boolean isRightPressed = false;
   private boolean timeStarted = false;
   public static int mode = 0; // 1 : turretRightPOV, 2:  turretLeftPOV ,  3: turretHomeButton
-  private double turretTurnTimeout = 0.2;
+  private double turretTurnTimeout = 0.9;
 
 
   public ManualTurretTurningCommand() {
