@@ -71,6 +71,8 @@ public class BothJoystickDriveCommand extends CommandBase {
     joystickRightX = handleDeadband(joystickRightX, RobotMap.joystickDeadBand);
     joystickRightY = handleDeadband(joystickRightY, RobotMap.joystickDeadBand);
 
+    double nonTurboSpeed = RobotMap.nonTurboMultiplierForward;
+
 
     // This is to activate turbo mode. If the button is pressed, turbo mode is on
     if(RobotContainer.oi.driverStick.getLeftTriggerAxis() > 0.4){
@@ -79,9 +81,9 @@ public class BothJoystickDriveCommand extends CommandBase {
 
     else {
       joystickLeftX = joystickLeftX * RobotMap.nonTurboMultiplierTurn;
-      joystickRightY = joystickRightY * RobotMap.nonTurboMultiplierForward;
+      joystickRightY = joystickRightY * nonTurboSpeed;
       joystickRightX = joystickRightX * RobotMap.nonTurboMultiplierTurn;
-      joystickLeftY = joystickLeftY * RobotMap.nonTurboMultiplierForward;
+      joystickLeftY = joystickLeftY * nonTurboSpeed;
    }
 
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
@@ -124,12 +126,13 @@ public class BothJoystickDriveCommand extends CommandBase {
     //Drive Straight Function
     if (RobotContainer.oi.driverStick.getRightTriggerAxis() > 0.4) { //drive straight button
       // joystickX = 0;
-      if (!driveStraightFlag) {
-        driveStraightAngle = yawPitchRollArray[0];
-        driveStraightFlag = true;
-      }
-      double vinniesError = driveStraightAngle - yawPitchRollArray[0];
-      joystickRightX = vinniesError * RobotMap.driveStraightProportion;
+      //if (!driveStraightFlag) {
+       // driveStraightAngle = yawPitchRollArray[0];
+       // driveStraightFlag = true;
+     // }
+      //double vinniesError = driveStraightAngle - yawPitchRollArray[0];
+      //joystickRightX = vinniesError * RobotMap.driveStraightProportion;
+     nonTurboSpeed = 0.4;
     }
     //X is the left-right axis
     //Limelight/Apriltag Button
@@ -156,6 +159,7 @@ public class BothJoystickDriveCommand extends CommandBase {
       else {
         driveStraightFlag = false;
       }
+      nonTurboSpeed = RobotMap.nonTurboMultiplierForward;
     }
 
       //System.out.println("X=" + joystickLeftX + "Y=" + joystickLeftY);

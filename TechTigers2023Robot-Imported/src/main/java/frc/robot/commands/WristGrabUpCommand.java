@@ -82,6 +82,7 @@ public class WristGrabUpCommand extends SequentialCommandGroup {
             addCommands(
               new ParallelCommandGroup(
                 new AutoPneumatics(2),  // 1 second
+                //new IntakeWheelsCommand(0),
                   new  SequentialCommandGroup (
                     new WaitCommand(0.5),   // wait for 1 second for wrist to raise above group
                     //new ParallelCommandGroup(
