@@ -41,7 +41,7 @@ public class AutoPlaceLowAndMove extends SequentialCommandGroup {
     addCommands(
       new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), 
       //new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(1), new AutoPneumatics(1), 
-      new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(2), new AutoPneumatics(2),
+      new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), /*new IntakeWheelsCommand(2),*/ new AutoWrist(2), new AutoPneumatics(2),/*new IntakeWheelsCommand(0),*/
       mp
     );
 

@@ -85,9 +85,10 @@ public static int wristGrabUpButtonNumber = 2;
 //public static int wristDeployButtonNumber = 3;
 //public static int armLockButtonNumber = 6;
 //public static int wristLockButtonNumber = 5;
-public static int armShortPivotDownButtonNumber = 6;
-public static int armShortPivotUpButtonNumber = 5;
+public static int armShortPivotDownButtonNumber = 19; //not used
+public static int armShortPivotUpButtonNumber = 20; //not used
 public static int armPivotButtonNumber = 3;
+public static int intakeOverrideButtonNumber = 6;
 
 
 //TALONS/TALON ID NUMBERS!
@@ -103,8 +104,8 @@ public static int vinnieTalonNumber = 6;
 //public static int climbExtendTalonID = 10;
 //public static int climbHookTalonLeftID = 11;
 //public static int climbHookTalonRightID = 12;
-//public static int IntakeTalonLeftID = 7;
-//public static int IntakeTalonRightID = 5;
+public static int IntakeTalonLeftID = 7;
+public static int IntakeTalonRightID = 5;
 //public static int BeltcroTalonID = 6;
 //public static int verticalClimbRightTalonID = 9;
 public static int armTalonID = 10;
@@ -294,6 +295,8 @@ public static double armTurretUpDistance = 6000;
 //arm gear box ratio is 12.5 : 1
 public static double joustExtendDistance = -150000;
 public static double joustTimerTimeout = 2;// from 3
+
+public static double intakeSpeed = 0.3;
 
 public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }

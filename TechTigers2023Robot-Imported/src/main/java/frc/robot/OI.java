@@ -20,6 +20,7 @@ import frc.robot.commands.PneumaticsGrabbingCommand;
 import frc.robot.commands.ApriltagTurnCommand;
 import frc.robot.commands.ArmSetPositionsCommand;
 import frc.robot.commands.ManualWristCommand;
+import frc.robot.commands.PlaceMidCommand;
 import frc.robot.commands.WristSetPositionsCommand;
 import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.Turn90DegreesCommand;
@@ -73,6 +74,7 @@ public class OI {
   public JoystickButton turretHomeButton;
   public JoystickButton wristGrabDownButton;
   public JoystickButton wristGrabUpButton;
+  public JoystickButton intakeOverrideButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -131,6 +133,7 @@ public class OI {
   armShortPivotDownButton = new JoystickButton(operatorStick, RobotMap.armShortPivotDownButtonNumber);
   wristGrabDownButton = new JoystickButton(operatorStick, RobotMap.wristGrabDownButtonNumber);
   wristGrabUpButton = new JoystickButton(operatorStick, RobotMap.wristGrabUpButtonNumber);
+  intakeOverrideButton = new JoystickButton(operatorStick, RobotMap.intakeOverrideButtonNumber);
 
   //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
   //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
@@ -181,7 +184,7 @@ public class OI {
 
   dropLowButton.onTrue(new DropLowCommand());
 
-  armPivotButton.onTrue(new ArmSetPositionsCommand());
+  armPivotButton.onTrue(new PlaceMidCommand());
   //armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
   //armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   

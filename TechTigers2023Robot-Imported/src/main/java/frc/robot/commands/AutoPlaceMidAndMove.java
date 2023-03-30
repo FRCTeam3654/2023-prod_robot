@@ -64,10 +64,12 @@ public class AutoPlaceMidAndMove extends SequentialCommandGroup {
             //)
           ),
           new AutoPneumatics(1, 0.5),
+          //new IntakeWheelsCommand(2),  
           new ParallelCommandGroup(
             new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
             new AutoArmJoustCommand(2),    // NEW: 2 seconds for telescoping arm to retract
-            new AutoPneumatics(2),  // 1 second  
+            new AutoPneumatics(2),  // 1 second 
+            //new IntakeWheelsCommand(0),  
             new  SequentialCommandGroup (
               new WaitCommand(0.5),
               new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 

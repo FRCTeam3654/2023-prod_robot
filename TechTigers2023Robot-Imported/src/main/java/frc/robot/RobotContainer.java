@@ -35,6 +35,7 @@ public class RobotContainer {
   public static TelescopingArm telescopingArm;
   public static VerticalMotionArm verticalMotionArm;
   public static Wrist wrist;
+  public static WheelIntake wheelIntake;
   public static OI oi;
   public static double initialPitch;
   double[] yawPitchRollArray;
@@ -67,6 +68,7 @@ public class RobotContainer {
     verticalMotionArm = new VerticalMotionArm();
     wrist = new Wrist();
     pneumaticGrab = new PneumaticGrab();
+    wheelIntake = new WheelIntake();
     oi = new OI();
       // need be after drive object
     //always keep OI last
@@ -83,6 +85,7 @@ public class RobotContainer {
     //wrist.setDefaultCommand(new ManualWristCommand());
     //verticalMotionArm.setDefaultCommand(new ManualVerticalArmCommand());
     telescopingArm.setDefaultCommand(new ManualArmCommand());
+    wheelIntake.setDefaultCommand(new IntakeWheelsCommand());
     
     turretSpark.setDefaultCommand(new TurretStayStillCommand());
 
