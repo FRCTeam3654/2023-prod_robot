@@ -41,6 +41,7 @@ public class ArmSetPositionsCommand extends CommandBase {
     // currently new_mode only = 1 for moving up, 2 for moving down the full distance
     mode = new_mode;
     armTimerTimeout = new_armTimerTimeout;
+    System.out.println("ready to lower arm in mode = "+mode);
   }
 
   public ArmSetPositionsCommand(int new_mode, double new_distance, double new_armTimerTimeout){
@@ -49,6 +50,7 @@ public class ArmSetPositionsCommand extends CommandBase {
     mode = new_mode;
     armDistance = new_distance;
     armTimerTimeout = new_armTimerTimeout;
+    System.out.println("ready to lower arm 2 in mode = "+mode);
   }
 
   // Called when the command is initially scheduled.
@@ -74,7 +76,7 @@ public class ArmSetPositionsCommand extends CommandBase {
       else if(armMoveNumber %2 != 1 || mode == 2 ){ //moves down
         armTimer = Timer.getFPGATimestamp();
         //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
-        RobotContainer.verticalMotionArm.setMotionMagic(2000, 3000, 3000);     
+        RobotContainer.verticalMotionArm.setMotionMagic(2200, 3000, 3000);     
         
         System.out.println("should i be motion magicking down");
         isMotionMagicInProgress = true;

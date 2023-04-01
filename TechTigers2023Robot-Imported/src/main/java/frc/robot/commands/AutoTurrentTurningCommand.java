@@ -27,6 +27,8 @@ public class AutoTurrentTurningCommand extends CommandBase {
   public static int mode = 0; // 4: go to certain position,  1 : turretRightPOV, 2:  turretLeftPOV ,  3: turretHomeButton
   private double turretTurnTimeout = 0.9;
   private double targetPosition = 0 ;// positive 2.88 is about 90 degree to the left (facing robot front)
+  private double maxVoltage = 1.5; // drive the turret to position
+
 
   /** Creates a new AutoTurrentTurningCommand. */
   public AutoTurrentTurningCommand() {
@@ -62,9 +64,32 @@ public class AutoTurrentTurningCommand extends CommandBase {
       if( timeStarted == false) {
         turretTimer = Timer.getFPGATimestamp();
         timeStarted = true;
-        RobotContainer.turretSpark.goToPosition(targetPosition);
+        //RobotContainer.turretSpark.goToPosition(targetPosition);
         //RobotContainer.turretSpark.goToPositionBySmartMotion((targetPosition);
       }
+        // positive voltage move towards left,  2.88 is at left 90 degree
+        double setPoint = maxVoltage; // in voltages
+        
+
+        double currentReading = RobotContainer.turretSpark.getSensorReading();
+        double error = currentReading - targetPosition;
+
+        // implement P (=-1) part of PID: proportional x error 
+        setPoint =  (-0.8) * error;
+        if( setPoint > maxVoltage) {
+          setPoint = maxVoltage;
+        }
+        else if ( setPoint < ((-1) * maxVoltage)) {
+          setPoint = (-1) * maxVoltage;
+        }
+        else if (Math.abs(error) < 0.2) {
+          setPoint = 0;
+        }
+        
+        RobotContainer.turretSpark.manualTurretControl(setPoint);
+
+
+      
     }
   }
 
@@ -81,8 +106,15 @@ public class AutoTurrentTurningCommand extends CommandBase {
           // noted: reading 2.8 at robot is about 90 degree, so 0.1 is about 3 degree 
           return true;
       } 
-   
     }
+    
+    // force to not turn more than 180 degree
+      double currrentReading = RobotContainer.turretSpark.getSensorReading();
+    if( Math.abs(currrentReading) > 5.6 ) { 
+          return true;  
+    }
+
+    
 
     if((turretTimer + timeoutvalue) < Timer.getFPGATimestamp()){
       return true;

@@ -40,9 +40,9 @@ public class PlaceMidCommand extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
           new ParallelCommandGroup(
-              new ArmSetPositionsCommand(3, 2200, 1.0),
+              new ArmSetPositionsCommand(3, 2200, 0.3),
               new  SequentialCommandGroup (
-                  new WaitCommand(0.3),
+                  new WaitCommand(0.1),
                   new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
               )
           ),
@@ -66,7 +66,8 @@ public class PlaceMidCommand extends SequentialCommandGroup {
             //new IntakeWheelsCommand(0),
             new  SequentialCommandGroup (
               new WaitCommand(0.5),
-              new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
+              
+              new ArmSetPositionsCommand(2, 2200, 2.0) // lower arm to near bottom, 2 seconds 
             ),
             new  SequentialCommandGroup (
                 new WaitCommand(0.1)

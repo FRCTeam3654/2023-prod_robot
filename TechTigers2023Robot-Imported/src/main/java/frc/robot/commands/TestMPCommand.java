@@ -23,6 +23,7 @@ import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.PneumaticsGrabbingCommand;
 import frc.robot.commands.ArmSetPositionsCommand;
+import frc.robot.commands.AutoTurrentTurningCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -53,7 +54,8 @@ public class TestMPCommand extends SequentialCommandGroup {
         addCommands(
           new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))), 
           new ArmSetPositionsCommand(2000), // raise arm a little bit, 1.5 seconds
-          mp
+          mp,
+          new AutoTurrentTurningCommand(4,2.0, 2.8)
           
           );
           
