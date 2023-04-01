@@ -67,7 +67,7 @@ public class TurretSpark extends SubsystemBase {
 
 
     //smart motion setting, similar to Falcon motion magic
-    m_pidTurretController.setSmartMotionMaxVelocity(1800, 0);
+    m_pidTurretController.setSmartMotionMaxVelocity(1500, 0);
     m_pidTurretController.setSmartMotionMaxAccel(1500,0);
     m_pidTurretController.setSmartMotionMinOutputVelocity(0, 0);
     m_pidTurretController.setSmartMotionAllowedClosedLoopError(0.1, 0);  
@@ -121,13 +121,15 @@ public class TurretSpark extends SubsystemBase {
   }
 
   public void goHome(){
-    m_pidTurretController.setReference(0, CANSparkMax.ControlType.kPosition);
+    //m_pidTurretController.setReference(0, CANSparkMax.ControlType.kPosition);
+    m_pidTurretController.setReference(0, CANSparkMax.ControlType.kSmartMotion);
+
   }
 
   public void goToPosition(double postition){
     m_pidTurretController.setReference(postition, CANSparkMax.ControlType.kPosition);
   }
-
+ 
   public void goToPositionBySmartMotion(double postition){
     m_pidTurretController.setReference(postition, CANSparkMax.ControlType.kSmartMotion);
   }

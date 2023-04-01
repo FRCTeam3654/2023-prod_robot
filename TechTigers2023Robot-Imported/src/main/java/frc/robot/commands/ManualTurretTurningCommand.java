@@ -30,9 +30,11 @@ public class ManualTurretTurningCommand extends CommandBase {
   private double turretTimer;
   private boolean isLeftPressed = false;
   private boolean isRightPressed = false;
+  private boolean isHomeButtonPressed = false;
   private boolean timeStarted = false;
   public static int mode = 0; // 1 : turretRightPOV, 2:  turretLeftPOV ,  3: turretHomeButton
   private double turretTurnTimeout = 0.9;
+  private double maxVoltage = 1.5; // drive the turrent to home
 
 
   public ManualTurretTurningCommand() {
@@ -97,10 +99,39 @@ public class ManualTurretTurningCommand extends CommandBase {
       //isRightPressed = false;
     //}
 
-    else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true){
+    else if (RobotContainer.oi.turretHomeButton.getAsBoolean() == true || isHomeButtonPressed == true){
       mode = 3;
-      RobotContainer.turretSpark.goHome();
-      turretTimer = Timer.getFPGATimestamp();
+      //RobotContainer.turretSpark.goHome();
+      //turretTimer = Timer.getFPGATimestamp();
+
+       
+      if( timeStarted == false) {
+        turretTimer = Timer.getFPGATimestamp();
+        timeStarted = true; 
+        isHomeButtonPressed = true;
+      }
+
+      // positive voltage move towards left,  2.88 is at left 90 degree
+      double setPoint = maxVoltage; // in voltages
+      
+
+      double currrentReading = RobotContainer.turretSpark.getSensorReading();
+
+      // implement P (=-1) part of PID: proportional x error 
+      setPoint =  (-0.8) * currrentReading;
+      if( setPoint > maxVoltage) {
+        setPoint = maxVoltage;
+      }
+      else if ( setPoint < ((-1) * maxVoltage)) {
+        setPoint = (-1) * maxVoltage;
+      }
+      else if (Math.abs(currrentReading) < 0.2) {
+        setPoint = 0;
+      }
+      
+      RobotContainer.turretSpark.manualTurretControl(setPoint);
+
+
     }
     
     
@@ -206,10 +237,16 @@ public class ManualTurretTurningCommand extends CommandBase {
     RobotContainer.turretSpark.manualTurretControl(0);
 
     //RobotContainer.verticalMotionArm.setMotionMagic(0, 8000, 8000);
-    RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
+    if( mode == 3){
+      RobotContainer.turretSpark.holdRotations = 0; // gohome is always 0, even if the reading is not zero after timeout
+    }
+    else {
+      RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
+    }
     mode = 0;
     isLeftPressed = false;
     isRightPressed = false;
+    isHomeButtonPressed = false;
     timeStarted = false;
   }
 
@@ -231,9 +268,23 @@ public class ManualTurretTurningCommand extends CommandBase {
       timeoutvalue = 1.5; // not sure if gohome need a little more time for returning to home (0)
       if( Math.abs(RobotContainer.turretSpark.getSensorReading()) < 0.1 ) {
           // noted: reading 2.8 at robot is about 90 degree, so 0.1 is about 3 degree 
+          //RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
           return true;
       } 
-   
+    }
+    else {
+      double currrentReading = RobotContainer.turretSpark.getSensorReading();
+      if( Math.abs(currrentReading) > 2.8 ) {
+        // force it to not move beyond +/- 90 degree
+        if( currrentReading  > 2.8  && mode == 2)  {
+          return true;
+        }
+        else if(currrentReading  < -2.8  && mode == 1 ) {
+          return true;
+        }
+          
+      }
+
     }
 
     if((turretTimer + timeoutvalue) < Timer.getFPGATimestamp()){

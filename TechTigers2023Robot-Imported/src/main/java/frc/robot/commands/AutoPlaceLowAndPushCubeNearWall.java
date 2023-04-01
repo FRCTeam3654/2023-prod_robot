@@ -129,7 +129,8 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
               new AutoPneumatics(1)
               //new IntakeWheelsCommand(2)
             )
-          ),
+          )
+          /* 
           new ParallelCommandGroup(
             new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 1.5 seoonds to do next command
             new  SequentialCommandGroup (
@@ -158,6 +159,7 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
               )
             )
           )
+          */
      );
 
 
