@@ -46,9 +46,9 @@ public class TurretSpark extends SubsystemBase {
 */
     kTurretP = 0.3;  //6e-5 //make larger if it doesn't hold //0.1
     kTurretI = 0;
-    kTurretD = 0; 
+    kTurretD = 1;//0; 
     kTurretIz = 0; 
-    kTurretFF = 0.000015; 
+    kTurretFF = 0.000156;//  0.000015; 
     kTurretMinOutput = -1;
     kTurretMaxOutput = 1; 
     maxRPM = 5700;
@@ -59,11 +59,18 @@ public class TurretSpark extends SubsystemBase {
     m_pidTurretController.setD(kTurretD);
     m_pidTurretController.setIZone(kTurretIz);
     m_pidTurretController.setFF(kTurretFF);
-    m_pidTurretController.setOutputRange(kTurretMinOutput, kTurretMaxOutput);
+    //m_pidTurretController.setOutputRange(kTurretMinOutput, kTurretMaxOutput);
 
     kTurretMinOutput = -0.3;
     kTurretMaxOutput = 0.3; 
     m_pidTurretController.setOutputRange(kTurretMinOutput, kTurretMaxOutput); 
+
+
+    //smart motion setting, similar to Falcon motion magic
+    m_pidTurretController.setSmartMotionMaxVelocity(1800, 0);
+    m_pidTurretController.setSmartMotionMaxAccel(1500,0);
+    m_pidTurretController.setSmartMotionMinOutputVelocity(0, 0);
+    m_pidTurretController.setSmartMotionAllowedClosedLoopError(0.1, 0);  
 
     holdRotations = getSensorReading();
 
