@@ -56,15 +56,18 @@ public class AutoArmJoustCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-    if(joustTimer + RobotMap.joustTimerTimeout < Timer.getFPGATimestamp()) {
+    double onetimeout = RobotMap.joustTimerTimeout;
+    //if( mode == 1) {
+    //  onetimeout = 3; // give extra second for extending arm
+    //}
+    if(joustTimer + onetimeout < Timer.getFPGATimestamp()) {
       joustTimer = 0;   
       //RobotContainer.telescopingArm.setMotionMagic(RobotContainer.telescopingArm.getArmTalonPosition(), 8000, 8000, 0);
       return true;
     } 
     
     else{
-      if( mode ==1) {
+        if( mode ==1) {
           double sensorDistance = RobotContainer.telescopingArm.getArmTalonPosition();
 
           double percentError = 100 * (RobotMap.joustExtendDistance - sensorDistance)/RobotMap.joustExtendDistance;
@@ -74,6 +77,15 @@ public class AutoArmJoustCommand extends CommandBase {
             return true;
           }
         } 
+        else if ( mode == 2) {
+          double sensorDistance = RobotContainer.telescopingArm.getArmTalonPosition();
+          double error =  (0 - sensorDistance);
+        
+          //SmartDashboard.putNumber("percentErrorjoustLeft", percentError);
+          if ((error < 10  || error < 0 )){
+           //return true;
+          }
+        }
     }
 
     return false;

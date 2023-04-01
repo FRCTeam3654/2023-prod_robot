@@ -54,7 +54,7 @@ public class AutoTurrentTurningCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    mode = 0;
+    //mode = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -95,21 +95,34 @@ public class AutoTurrentTurningCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.turretSpark.manualTurretControl(0);
+    if( mode == 4){
+      RobotContainer.turretSpark.holdRotations = targetPosition; // gohome is always 0, even if the reading is not zero after timeout
+    }
+    else {
+      RobotContainer.turretSpark.holdRotations = RobotContainer.turretSpark.getSensorReading();
+    }
+    mode = 0;
+    timeStarted = false;
+
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     double timeoutvalue = turretTurnTimeout;
     if (mode == 4) {
-      if( Math.abs(RobotContainer.turretSpark.getSensorReading() - targetPosition) < 0.1 ) {
-          // noted: reading 2.8 at robot is about 90 degree, so 0.1 is about 3 degree 
-          return true;
-      } 
+      
+        if( Math.abs(RobotContainer.turretSpark.getSensorReading() - targetPosition) < 0.1 ) {
+            // noted: reading 2.8 at robot is about 90 degree, so 0.1 is about 3 degree 
+            return true;
+        } 
+      
     }
     
     // force to not turn more than 180 degree
-      double currrentReading = RobotContainer.turretSpark.getSensorReading();
+    double currrentReading = RobotContainer.turretSpark.getSensorReading();
     if( Math.abs(currrentReading) > 5.6 ) { 
           return true;  
     }

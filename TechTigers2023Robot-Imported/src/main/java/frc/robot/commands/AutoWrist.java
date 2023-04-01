@@ -56,7 +56,7 @@ public class AutoWrist extends CommandBase {
       wristTimer = Timer.getFPGATimestamp();
       RobotContainer.wrist.setMotionMagic((-1)*wristDistance, 5000, 7500);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
-      System.out.println("should i be motion magicking down");
+      //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
 
@@ -64,21 +64,21 @@ public class AutoWrist extends CommandBase {
       wristTimer = Timer.getFPGATimestamp();
       //RobotContainer.wrist.setMotionMagic(RobotMap.wristFullUpDistance, 2000, 2000);
       RobotContainer.wrist.setMotionMagic(0, 8000, 8000);
-      System.out.println("should i be motion magicking up");
+      //System.out.println("should i be motion magicking up");
       isMotionMagicInProgress = true;
     }
     else if(mode == 3){ //moves down at 80% full distance
       wristTimer = Timer.getFPGATimestamp();
       RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 5000, 7500);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
-      System.out.println("should i be motion magicking down");
+      //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
     else if (mode == 4){
       wristTimer = Timer.getFPGATimestamp();
       RobotContainer.wrist.setMotionMagic(-1 * RobotMap.wristFullUpDistance, 8000, 8000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
-      System.out.println("should i be motion magicking down");
+      //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
 

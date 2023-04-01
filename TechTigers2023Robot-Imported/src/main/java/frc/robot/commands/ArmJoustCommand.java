@@ -69,7 +69,7 @@ public class ArmJoustCommand extends CommandBase {
     if(joustTimer + RobotMap.joustTimerTimeout < Timer.getFPGATimestamp()) {
       isButtonPressed = false;
       joustTimer = 0;
-      //RobotContainer.telescopingArm.setMotionMagic(RobotContainer.telescopingArm.getjoustLeftTalonPosition(), 8000, 8000, 0.1);
+      
       RobotContainer.telescopingArm.setMotionMagic(RobotContainer.telescopingArm.getArmTalonPosition(), 8000, 8000, 0);
       return true;
     } 
