@@ -63,6 +63,7 @@ public class AutoTurrentTurningCommand extends CommandBase {
         turretTimer = Timer.getFPGATimestamp();
         timeStarted = true;
         RobotContainer.turretSpark.goToPosition(targetPosition);
+        //RobotContainer.turretSpark.goToPositionBySmartMotion((targetPosition);
       }
     }
   }
