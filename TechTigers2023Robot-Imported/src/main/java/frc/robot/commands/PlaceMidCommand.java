@@ -67,9 +67,6 @@ public class PlaceMidCommand extends SequentialCommandGroup {
             new  SequentialCommandGroup (
               new WaitCommand(0.5),
               new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
-            ),
-            new  SequentialCommandGroup (
-                new WaitCommand(0.1)
             )
           )
 
