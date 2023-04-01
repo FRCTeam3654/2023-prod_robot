@@ -86,7 +86,7 @@ public class AutoTurrentTurningCommand extends CommandBase {
           setPoint = 0;
         }
         
-        RobotContainer.turretSpark.manualTurretControl(setPoint);
+        RobotContainer.turretSpark.manualTurretControl(setPoint, 5.7);
 
 
       
@@ -123,7 +123,7 @@ public class AutoTurrentTurningCommand extends CommandBase {
     
     // force to not turn more than 180 degree
     double currrentReading = RobotContainer.turretSpark.getSensorReading();
-    if( Math.abs(currrentReading) > 5.6 ) { 
+    if( Math.abs(currrentReading) > 5.7 ) { 
           return true;  
     }
 

@@ -77,12 +77,22 @@ public class TurretSpark extends SubsystemBase {
   }
 
   public void manualTurretControl(double setPoint){
+    manualTurretControl( setPoint, 2.88);
+  }
+
+  public void manualTurretControl(double setPoint, double limit){
 
     //setPoint = .2 * maxRPM;
     //setPoint = -0.2 * maxRPM;
     //System.out.println("sensor reading = " + getSensorReading());
+
+    limit = Math.abs(limit);
+    if(limit > 5.8){
+      limit =5.8;
+    }
+    
     double currrentReading = getSensorReading();
-    if( currrentReading > 0 && currrentReading  > 2.88  )  {
+    if( currrentReading > 0 && currrentReading  > limit  )  {
       // 2.88 is around turing 90 degree by measuring the number at the robot
 
       // positive voltage move towards left, if at left 90 degree, cannot  move more, only can move toward right
@@ -91,13 +101,13 @@ public class TurretSpark extends SubsystemBase {
         m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
       }
     }
-    else if( currrentReading < 0 && currrentReading  < -2.88  )  {
+    else if( currrentReading < 0 && currrentReading  < ((-1) * limit)   )   {
         // only allow to move to left if at the right most position (90 degree)
         if( setPoint > 0) { 
           m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
         }
     }
-    else if( Math.abs(currrentReading) < 2.88) {
+    else if( Math.abs(currrentReading) < limit) {
       m_pidTurretController.setReference(setPoint, CANSparkMax.ControlType.kVoltage);
     }
 
