@@ -59,8 +59,8 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
    * 
    */
 
-   /* 
-    mp = new NewRunMotionProfile(driveTrain, odometry, 0.0,
+    /* 
+     mp = new NewRunMotionProfile(driveTrain, odometry, 0.0,
       List.of(new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d()),
           new Pose2d(Units.inchesToMeters(-80.0), Units.inchesToMeters(multiplier * 20.0), new Rotation2d()), 
           new Pose2d(Units.inchesToMeters(-160.0), Units.inchesToMeters(0.0), new Rotation2d()), 
@@ -70,8 +70,8 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
           ),
       0.0, true, false);
 
- */
-
+    */
+    /* 
       mp = new NewRunMotionProfile(driveTrain, odometry, 0.0,
       List.of(new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d()),
           new Pose2d(Units.inchesToMeters(-80.0), Units.inchesToMeters(multiplier * 20.0), new Rotation2d()), 
@@ -80,8 +80,25 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
           new Pose2d(Units.inchesToMeters(-216.0), Units.inchesToMeters(-32.0), new Rotation2d(45))
           ),
       0.0, true, false);
+    */
+
+     // 
+      
+     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d(0)), 0,
+     List.of(new Translation2d(Units.inchesToMeters(-64), Units.inchesToMeters(multiplier * 9.6)),
+             new Translation2d(Units.inchesToMeters(-128), Units.inchesToMeters(multiplier * 20.8))
+     ),
+     new Pose2d(Units.inchesToMeters(-167.2), Units.inchesToMeters(multiplier * 20.8), Rotation2d.fromDegrees(0)), 0, true, false);
 
 
+     mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-167.2), Units.inchesToMeters(multiplier * 20.8), new Rotation2d(0)), 0,
+     List.of(new Translation2d(Units.inchesToMeters(-128), Units.inchesToMeters(multiplier * 16)),
+             new Translation2d(Units.inchesToMeters(-64), Units.inchesToMeters(multiplier * 16))
+     ),
+     new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(multiplier * 16), Rotation2d.fromDegrees(0)), 0, false, false);
+
+
+    /* 
       mp1 = new NewRunMotionProfile(driveTrain, odometry, 0.0,
       List.of(new Pose2d(Units.inchesToMeters(-216.0), Units.inchesToMeters(-32.0), new Rotation2d(45)),
           new Pose2d(Units.inchesToMeters(-200.0), Units.inchesToMeters(0), new Rotation2d(40)), 
@@ -90,7 +107,7 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
           new Pose2d(Units.inchesToMeters(-65.0), Units.inchesToMeters(16.0), new Rotation2d(0))
           ),
       0.0, false, false);
-
+    */
       /* 
     mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-216), Units.inchesToMeters(multiplier *(-32)), new Rotation2d(multiplier * 45)), 0,
         List.of(new Translation2d(Units.inchesToMeters(-209), Units.inchesToMeters(0)),
@@ -105,7 +122,7 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
         addCommands(
           new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))),
           new ParallelCommandGroup(
-            new ArmSetPositionsCommand(2000), // raise arm a little bit, 1.5 seconds
+            new ArmSetPositionsCommand(2200), // raise arm a little bit, 1.5 seconds
             new  AutoWrist(1), // lowers wrist , 1.5 seconds
             new  SequentialCommandGroup (
               new WaitCommand(0.4),
@@ -121,11 +138,23 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
                 new AutoPneumatics(2),  // 1 second
                 //new IntakeWheelsCommand(0),
                 new  SequentialCommandGroup(
-                    mp   ,                        // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
-                    new WaitCommand(0.2),   // wait for 0.2 second for robot to stablize
-                    mp1                        // drive towards the cube and push it to the low, about 4 seconds
+                  new ParallelCommandGroup(
+                    mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
+                    new  SequentialCommandGroup(
+                        new WaitCommand(1.8) ,  // wait for 1.8 second 
+                        new AutoTurrentTurningCommand(4, 2.0, multiplier *  (-2.88))
+                    )
+                  ),
+                  new  AutoWrist(1), // lowers wrist , 
+                  //Need spin the wheels or close the grabber
+                  new ParallelCommandGroup(
+                    new AutoWrist(2), // raise wrist,
+                    mp1                          // drive towards the cube and push it to the low, about 4 seconds
                     //new AutoDriveWithTimeout()       // drive straight at constant percent power for 2 seconds 
+                  )
                 )
+
+
               )
             )
           )

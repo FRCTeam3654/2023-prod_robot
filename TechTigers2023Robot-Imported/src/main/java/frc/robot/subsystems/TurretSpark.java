@@ -117,6 +117,10 @@ public class TurretSpark extends SubsystemBase {
     m_pidTurretController.setReference(0, CANSparkMax.ControlType.kPosition);
   }
 
+  public void goToPosition(double postition){
+    m_pidTurretController.setReference(postition, CANSparkMax.ControlType.kPosition);
+  }
+
 
   @Override
   public void periodic() {
