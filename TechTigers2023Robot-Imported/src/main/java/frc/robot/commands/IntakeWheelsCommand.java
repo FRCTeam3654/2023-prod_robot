@@ -22,6 +22,8 @@ public class IntakeWheelsCommand extends CommandBase {
   public double intakeTimer = 0;
   public boolean isHolding = false;
   public int mode = 0; //0 is default slow move, 1 is full in, 2 is full out
+  private double wheelIntakePower = RobotMap.intakeSpeed;
+
 
   public IntakeWheelsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,19 +36,28 @@ public class IntakeWheelsCommand extends CommandBase {
     this.mode = mode;
   }
 
+  public IntakeWheelsCommand(int mode, double new_intakepower) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.wheelIntake);
+    this.mode = mode;
+    this.wheelIntakePower = new_intakepower;
+  }
+
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    intakeTimer = Timer.getFPGATimestamp();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (mode == 1){
-      RobotContainer.wheelIntake.intakeWheels(RobotMap.intakeSpeed);
+      RobotContainer.wheelIntake.intakeWheels(wheelIntakePower);
     }
 
     else if(mode ==2){
-      RobotContainer.wheelIntake.intakeWheels(-1 * RobotMap.intakeSpeed);
+      RobotContainer.wheelIntake.intakeWheels(-1 * wheelIntakePower);
       intakeTimer = Timer.getFPGATimestamp();
     }
 
@@ -58,7 +69,7 @@ public class IntakeWheelsCommand extends CommandBase {
       RobotContainer.wheelIntake.intakeWheels(0);
     }
 
-    RobotContainer.wheelIntake.intakeWheels(0.35 * RobotMap.intakeSpeed);
+    //RobotContainer.wheelIntake.intakeWheels(0.35 * RobotMap.intakeSpeed);
   }
 
   // Called once the command ends or is interrupted.
