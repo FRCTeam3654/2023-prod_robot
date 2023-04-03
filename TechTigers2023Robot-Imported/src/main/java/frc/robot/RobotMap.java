@@ -88,7 +88,7 @@ public static int wristGrabUpButtonNumber = 2;
 public static int armShortPivotDownButtonNumber = 19; //not used
 public static int armShortPivotUpButtonNumber = 20; //not used
 public static int armPivotButtonNumber = 3;
-public static int intakeOverrideButtonNumber = 6;
+public static int humanPlayerButtonNumber = 6;
 
 
 //TALONS/TALON ID NUMBERS!

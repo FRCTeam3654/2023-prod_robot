@@ -65,7 +65,7 @@ public class IntakeWheelsCommand extends CommandBase {
       RobotContainer.wheelIntake.intakeWheels(0.35 * RobotMap.intakeSpeed);
     }
 
-    if(RobotContainer.oi.intakeOverrideButton.getAsBoolean() == true){
+    if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 0.4){
       RobotContainer.wheelIntake.intakeWheels(0);
     }
 

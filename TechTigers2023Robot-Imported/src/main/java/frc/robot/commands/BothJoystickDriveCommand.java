@@ -79,11 +79,18 @@ public class BothJoystickDriveCommand extends CommandBase {
       //System.out.println("TURBO");
     }
 
+    else if(RobotContainer.oi.driverStick.getRightTriggerAxis() > 0.4){
+      joystickLeftX = joystickLeftX * RobotMap.nonTurboMultiplierTurn;
+      joystickRightY = joystickRightY * 0.4;
+      joystickRightX = joystickRightX * RobotMap.nonTurboMultiplierTurn;
+      joystickLeftY = joystickLeftY * 0.4;
+    }
+
     else {
       joystickLeftX = joystickLeftX * RobotMap.nonTurboMultiplierTurn;
-      joystickRightY = joystickRightY * nonTurboSpeed;
+      joystickRightY = joystickRightY * RobotMap.nonTurboMultiplierForward;
       joystickRightX = joystickRightX * RobotMap.nonTurboMultiplierTurn;
-      joystickLeftY = joystickLeftY * nonTurboSpeed;
+      joystickLeftY = joystickLeftY * RobotMap.nonTurboMultiplierForward;
    }
 
     RobotContainer.drive.pigeonVinnie.getYawPitchRoll(yawPitchRollArray);
@@ -124,7 +131,7 @@ public class BothJoystickDriveCommand extends CommandBase {
     //System.out.println("Joystick Y ="+ joystickY);
 
     //Drive Straight Function
-    if (RobotContainer.oi.driverStick.getRightTriggerAxis() > 0.4) { //drive straight button
+    //if (RobotContainer.oi.driverStick.getRightTriggerAxis() > 0.4) { //drive straight button
       // joystickX = 0;
       //if (!driveStraightFlag) {
        // driveStraightAngle = yawPitchRollArray[0];
@@ -132,11 +139,11 @@ public class BothJoystickDriveCommand extends CommandBase {
      // }
       //double vinniesError = driveStraightAngle - yawPitchRollArray[0];
       //joystickRightX = vinniesError * RobotMap.driveStraightProportion;
-     nonTurboSpeed = 0.4;
-    }
+     //nonTurboSpeed = 0.4;
+    //}
     //X is the left-right axis
     //Limelight/Apriltag Button
-    else {
+
       if  (RobotContainer.oi.limelightButton.getAsBoolean() )  {
         
         // drive towards the april tag 
@@ -159,8 +166,7 @@ public class BothJoystickDriveCommand extends CommandBase {
       else {
         driveStraightFlag = false;
       }
-      nonTurboSpeed = RobotMap.nonTurboMultiplierForward;
-    }
+    
 
       //System.out.println("X=" + joystickLeftX + "Y=" + joystickLeftY);
       RobotContainer.drive.setArcade(joystickRightX, joystickLeftY);

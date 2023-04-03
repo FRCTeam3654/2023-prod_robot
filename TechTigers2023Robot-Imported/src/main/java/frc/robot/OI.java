@@ -30,6 +30,7 @@ import frc.robot.commands.DropLowCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
+import frc.robot.commands.GetFromHumanPlayer;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -74,7 +75,7 @@ public class OI {
   public JoystickButton turretHomeButton;
   public JoystickButton wristGrabDownButton;
   public JoystickButton wristGrabUpButton;
-  public JoystickButton intakeOverrideButton;
+  public JoystickButton humanPlayerButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -133,7 +134,7 @@ public class OI {
   armShortPivotDownButton = new JoystickButton(operatorStick, RobotMap.armShortPivotDownButtonNumber);
   wristGrabDownButton = new JoystickButton(operatorStick, RobotMap.wristGrabDownButtonNumber);
   wristGrabUpButton = new JoystickButton(operatorStick, RobotMap.wristGrabUpButtonNumber);
-  intakeOverrideButton = new JoystickButton(operatorStick, RobotMap.intakeOverrideButtonNumber);
+  humanPlayerButton = new JoystickButton(operatorStick, RobotMap.humanPlayerButtonNumber);
 
   //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
   //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
@@ -185,6 +186,8 @@ public class OI {
   dropLowButton.onTrue(new DropLowCommand());
 
   armPivotButton.onTrue(new PlaceMidCommand());
+
+  humanPlayerButton.onTrue(new GetFromHumanPlayer());
   //armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
   //armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   

@@ -81,6 +81,13 @@ public class AutoWrist extends CommandBase {
       //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
+    else if (mode == 5){
+      wristTimer = Timer.getFPGATimestamp();
+      RobotContainer.wrist.setMotionMagic(-0.3 * RobotMap.wristFullUpDistance, 8000, 8000);
+      //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
+      //System.out.println("should i be motion magicking down");
+      isMotionMagicInProgress = true;
+    }
 
     else{
       RobotContainer.wrist.setMotionMagic(0, 0, 0);
