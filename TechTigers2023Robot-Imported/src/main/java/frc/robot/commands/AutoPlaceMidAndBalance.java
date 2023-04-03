@@ -58,7 +58,7 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
         addCommands(
             new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))) ,
             new ParallelCommandGroup(
-                new ArmSetPositionsCommand(3, 2200, 1.0),
+                new AutoArmSetPositionsCommand(3, 2200, 1.0),
                 new  SequentialCommandGroup (
                     new WaitCommand(0.3),
                     new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
@@ -87,7 +87,7 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
                   //new IntakeWheelsCommand(0),  
                   new  SequentialCommandGroup (
                     new WaitCommand(0.5),
-                    new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
+                    new AutoArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
                   ),
                   new  SequentialCommandGroup(      
                         mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
