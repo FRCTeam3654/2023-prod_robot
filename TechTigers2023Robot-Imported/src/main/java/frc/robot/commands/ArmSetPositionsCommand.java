@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ArmSetPositionsCommand extends CommandBase {
   /** Creates a new TurretSetPositionsCommand. */
-  public static int armMoveNumber = 0;
+  public static AtomicInteger armMoveNumber = new AtomicInteger(0); // initial value is 0,  be careful with multi-thread update
   double armTimer;
   public static boolean isMotionMagicInProgress = false;
   private double armDistance = RobotMap.armFullUpDistance;
@@ -62,12 +63,12 @@ public class ArmSetPositionsCommand extends CommandBase {
 
     if(isFullPivotPressed == true ){
       if( mode != 3) {
-        armMoveNumber = armMoveNumber + 1;
+        armMoveNumber.incrementAndGet();
       }
 
       System.out.println("armMoveNumber = "+armMoveNumber);
 
-      if(armMoveNumber %2 == 1 || mode == 1 || mode == 3){ //moves up
+      if(armMoveNumber.intValue() %2 == 1 || mode == 1 || mode == 3){ //moves up
         armTimer = Timer.getFPGATimestamp();
         RobotContainer.verticalMotionArm.setMotionMagic(armDistance, 3500, 5000, 0.05);
         //RobotContainer.arm.setMotionMagic(0, 2000, 2000);
@@ -75,7 +76,7 @@ public class ArmSetPositionsCommand extends CommandBase {
         isMotionMagicInProgress = true;
       }
 
-      else if(armMoveNumber %2 != 1 || mode == 2 ){ //moves down
+      else if(armMoveNumber.intValue() %2 != 1 || mode == 2 ){ //moves down
         armTimer = Timer.getFPGATimestamp();
         //RobotContainer.arm.setMotionMagic(RobotMap.armFullUpDistance, 2000, 2000);
         RobotContainer.verticalMotionArm.setMotionMagic(2200, 3000, 3000);     

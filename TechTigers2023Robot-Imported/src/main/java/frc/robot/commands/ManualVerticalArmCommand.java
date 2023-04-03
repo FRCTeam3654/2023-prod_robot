@@ -62,13 +62,13 @@ public class ManualVerticalArmCommand extends CommandBase {
 
     else{
       //RobotContainer.verticalMotionArm.manualVerticalArm(joystickY);
-      if(ArmSetPositionsCommand.armMoveNumber %2 == 1 && ArmSetPositionsCommand.isMotionMagicInProgress == false){
+      if(ArmSetPositionsCommand.armMoveNumber.intValue() %2 == 1 && ArmSetPositionsCommand.isMotionMagicInProgress == false){
         //need to figure out the angles times the cosine angles
         double currentSensorReading = RobotContainer.verticalMotionArm.getArmTalonPosition();
         double theta = (((Math.abs(currentSensorReading))/Math.abs(RobotMap.armFullUpDistance)) * maxAngle) + initialAngle;
         RobotContainer.wrist.manualwrist(armHoldingPower * Math.cos(Math.toRadians(theta)));
       }
-      else if(ArmSetPositionsCommand.armMoveNumber %2 == 0 && ArmSetPositionsCommand.isMotionMagicInProgress == false){
+      else if(ArmSetPositionsCommand.armMoveNumber.intValue() %2 == 0 && ArmSetPositionsCommand.isMotionMagicInProgress == false){
         RobotContainer.wrist.manualwrist(0);
       }
       //RobotContainer.wrist.
