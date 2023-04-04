@@ -86,52 +86,58 @@ multiplier = 1;
                 )
             ),
             new ParallelCommandGroup(
-              new AutoArmSetPositionsCommand(1, 2), // raise arm to full distance, 2 seconds
+              new AutoArmSetPositionsCommand(1, 2), // raise arm to full distance, 2 seconds, for high goal, need 1.2 * full distance
               new  SequentialCommandGroup (
                     new WaitCommand(0.5), // vs 0.8
-                    new  AutoWrist(1, 1.1 * RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds
+                    new  AutoWrist(1, 1.1 * RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds, may need reduce the value to have correct angle
               )
-
             ),
-			//new IntakeWheelsCommand(2), // spit out
-            new ParallelCommandGroup(
-                new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
-                new AutoArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
+			
+			new ParallelCommandGroup(
+				new IntakeWheelsCommand(2), // spit out
+				new  SequentialCommandGroup (
+                    new WaitCommand(0.5), // allow the game piece to be spitted out
+                    new ParallelCommandGroup(
+						new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
+						new AutoArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
 
-                //new AutoPneumatics(2),  // 1 second
-                //new IntakeWheelsCommand(0), 
-				  
-                new  SequentialCommandGroup (
-                    new WaitCommand(0.5),
-                    new AutoArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
-                ),
-	
-                new  SequentialCommandGroup(  
-						new ParallelCommandGroup(
-							mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous    
-							new  SequentialCommandGroup (
-								new WaitCommand(0.5),
-								new AutoTurrentTurningCommand(4,2.0, -5.6) ,      // turn turret 180 toward right (-5.6), ~ 2 seconds
-								new ParallelCommandGroup(			
-										new IntakeWheelsCommand(1)  ,  // intake
-										new  SequentialCommandGroup (
-											new WaitCommand(1), // experiment wait time to make sure to lower the wrist at the end 
-											new AutWrist(1)                        // low wrist , 1.5 second
+						//new AutoPneumatics(2),  // 1 second
+						//new IntakeWheelsCommand(0), 
+						  
+						new  SequentialCommandGroup (
+							new WaitCommand(0.5),
+							new AutoArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
+						),
+			
+						new  SequentialCommandGroup(  
+								new ParallelCommandGroup(
+									mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous    
+									new  SequentialCommandGroup (
+										new WaitCommand(0.5),
+										new AutoTurrentTurningCommand(4,2.0, -5.6) ,      // turn turret 180 toward right (-5.6), ~ 2 seconds
+										new ParallelCommandGroup(			
+												new IntakeWheelsCommand(1)  ,  // intake
+												new  SequentialCommandGroup (
+													new WaitCommand(1), // experiment wait time to make sure to lower the wrist at the end 
+													new AutWrist(1)                        // low wrist , 1.5 second
+												)
 										)
-								)
-							)
+									)
+								
+								},
+								
+								new ParallelCommandGroup(	
+									mp1,                          // drive towards the goal to drop the game piece
+									new AutWrist(2)                        // raise wrist , 1.5 second
+									new AutoTurrentTurningCommand(4,2.0, 0) // turret go home    
+								}
+								new IntakeWheelsCommand(2)    // spit out
+						)
 						
-						},
-						
-						new ParallelCommandGroup(	
-							mp1,                          // drive towards the goal to drop the game piece
-							new AutWrist(2)                        // raise wrist , 1.5 second
-							new AutoTurrentTurningCommand(4,2.0, 0) // turret go home    
-						}
-                        new IntakeWheelsCommand(2)    // spit out
+					)
                 )
-				
-            )
+			}
+            
      );
 
 
