@@ -43,7 +43,7 @@ public class PlaceMidCommand extends SequentialCommandGroup {
               //new ArmSetPositionsCommand(3, 2200, 0.3),
               //new  SequentialCommandGroup (
                   
-                  new AutoArmJoustCommand(1) , // NEW: 2 seconds for telescoping arm to extend
+                  //new AutoArmJoustCommand(1) , // NEW: 2 seconds for telescoping arm to extend
                   new WaitCommand(0.3),
              // )
           //),
@@ -58,13 +58,13 @@ public class PlaceMidCommand extends SequentialCommandGroup {
               //)
             //)
           ),
-          new AutoPneumatics(1, 0.5),
-          //new IntakeWheelsCommand(2),
+          //new AutoPneumatics(1, 0.5),
+          new IntakeWheelsCommand(2),
           new ParallelCommandGroup(
             new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
-            new AutoArmJoustCommand(2),    // NEW: 2 seconds for telescoping arm to retract
-            new AutoPneumatics(2),  // 1 second
-            //new IntakeWheelsCommand(0),
+            //new AutoArmJoustCommand(2),    // NEW: 2 seconds for telescoping arm to retract
+            //new AutoPneumatics(2),  // 1 second
+            new IntakeWheelsCommand(0),
             new  SequentialCommandGroup (
               new WaitCommand(0.5),
               

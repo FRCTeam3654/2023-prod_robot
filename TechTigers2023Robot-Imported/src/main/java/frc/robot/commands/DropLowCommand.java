@@ -69,8 +69,8 @@ public class DropLowCommand extends SequentialCommandGroup {
               new AutoWrist(3),
               new  SequentialCommandGroup (
                 new WaitCommand(0.5),
-                new AutoPneumatics(1)
-                //new IntakeWheelsCommand(2)
+                //new AutoPneumatics(1)
+                new IntakeWheelsCommand(2)
               )
             ), 
               new ParallelCommandGroup(
@@ -78,8 +78,8 @@ public class DropLowCommand extends SequentialCommandGroup {
                   new  SequentialCommandGroup (
                     new WaitCommand(1),   // wait for 1 second for wrist to raise above group
                     //new ParallelCommandGroup(
-                      new AutoPneumatics(2)  // 1 second
-                      //new IntakeWheelsCommand(0)
+                      //new AutoPneumatics(2)  // 1 second
+                      new IntakeWheelsCommand(0)
                     //)
                   )
                 )

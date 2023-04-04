@@ -60,8 +60,8 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
             new ParallelCommandGroup(
                 new AutoArmSetPositionsCommand(3, 2200, 1.0),
                 new  SequentialCommandGroup (
-                    new WaitCommand(0.3),
-                    new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
+                    new WaitCommand(0.3) //,
+                    //new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
                 )
             ),
             new ParallelCommandGroup(
@@ -75,16 +75,16 @@ public class AutoPlaceMidAndBalance extends SequentialCommandGroup {
                 //)
               //)
             ),
-            new AutoPneumatics(1, 0.5),
-            //new IntakeWheelsCommand(2),
+            //new AutoPneumatics(1, 0.5),
+            new IntakeWheelsCommand(2),
             new ParallelCommandGroup(
               new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
-              new AutoArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
+              //new AutoArmJoustCommand(2),  // NEW: 2 seconds for telescoping arm to retract
               //new  SequentialCommandGroup (
                 //new WaitCommand(0.1),   // wait for 0.1 second for wrist to raise above group
                 //new ParallelCommandGroup(
-                  new AutoPneumatics(2),  // 1 second
-                  //new IntakeWheelsCommand(0),  
+                  //new AutoPneumatics(2),  // 1 second
+                  new IntakeWheelsCommand(0),  
                   new  SequentialCommandGroup (
                     new WaitCommand(0.5),
                     new AutoArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 

@@ -68,8 +68,8 @@ public class GetFromHumanPlayer extends SequentialCommandGroup {
  //if(RobotContainer.oi.wristGrabDownButton.getAsBoolean()){
           addCommands(   
             new ParallelCommandGroup(
-              new AutoPneumatics(1),
-              //new IntakeWheelsCommand(1),
+              //new AutoPneumatics(1),
+              new IntakeWheelsCommand(1),
               //new  SequentialCommandGroup (
                 //new WaitCommand(0.5),
                 new AutoWrist(5)
