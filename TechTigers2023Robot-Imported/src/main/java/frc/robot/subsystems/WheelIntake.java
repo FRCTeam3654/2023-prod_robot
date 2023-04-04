@@ -54,6 +54,7 @@ public class WheelIntake extends SubsystemBase {
   /* 
   public boolean hasGamePiece() { 
     double cmDistanceSensor1 = analogDistanceSensor1.getAverageValue();
+    SmartDashboard.putNumber("Analog Distance Sensor 1 raw", cmDistanceSensor1);
     boolean hasGamePiece = false;
     // need experiment the sensor reading 600 or other values
     if( cmDistanceSensor1  > 600 ) {
