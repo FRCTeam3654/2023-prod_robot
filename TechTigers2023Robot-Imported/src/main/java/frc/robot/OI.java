@@ -32,6 +32,10 @@ import frc.robot.commands.DropLowCommand;
 //import frc.robot.commands.BallFlushCommand;
 import frc.robot.commands.GetFromHumanPlayer;
 
+import frc.robot.commands.AutoWrist;
+import frc.robot.RobotContainer;
+
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -100,6 +104,11 @@ public class OI {
   //public JoystickButton ballShooterButton;
   //public JoystickButton highGoalShooterButton;
   //public JoystickButton turretButton;
+
+
+  //public Trigger sensorTrigger;
+
+
 
   public OI(){
 
@@ -191,6 +200,12 @@ public class OI {
   //armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
   //armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   
+
+  //sensorTrigger = new Trigger(() -> RobotContainer.wheelIntake.hasGamePiece());
+  //sensorTrigger.onTrue( new AutoWrist(2));
+
+
+
   }
   
 }
