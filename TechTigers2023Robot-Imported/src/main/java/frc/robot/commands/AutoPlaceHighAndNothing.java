@@ -34,19 +34,24 @@ import frc.robot.RobotMap;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutoPlaceHighCubeAndMove extends SequentialCommandGroup {
+public class AutoPlaceHighAndNothing extends SequentialCommandGroup {
 
   NewRunMotionProfile mp;
+  NewRunMotionProfile mp1;
 
   /** Creates a new AutoPlaceHighCubeAndMove. */
 
   // the only difference from place mid is that place high need roller (instead of Pneumatics) to shoot the cube to the platform
 
-  public AutoPlaceHighCubeAndMove(RobotOdometry odometry, Drive driveTrain) {
+  public AutoPlaceHighAndNothing(RobotOdometry odometry, Drive driveTrain) {
 
     mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
       List.of(),
       new Pose2d(Units.inchesToMeters(-160), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, true, false);
+
+    mp1 = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(-150), Units.inchesToMeters(0), new Rotation2d()), 0,
+      List.of(),
+      new Pose2d(Units.inchesToMeters(-65), Units.inchesToMeters(0), Rotation2d.fromDegrees(0)), 0, false, false);
 
       addCommands(
           new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))) ,
@@ -77,12 +82,16 @@ public class AutoPlaceHighCubeAndMove extends SequentialCommandGroup {
             new  SequentialCommandGroup (
               new WaitCommand(0.5),
               new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 
-            ),
-            new  SequentialCommandGroup (
-                new WaitCommand(0.1),
-                mp      // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
+            ) //,
+            /*new  SequentialCommandGroup(
+                mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
+                new WaitCommand(0.8),   // wait for 0.8 second for the balance swing back to nornal
+                mp1,                          // drive towards the platform via mp instead of percent output in autobalance
+                new AutoBalance2Command()       // about 5 to 6 seconds left to auto balance
             )
+            */
           )
+
 
       );
 

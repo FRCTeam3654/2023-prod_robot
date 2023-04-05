@@ -55,7 +55,7 @@ public class AutoBalanceDontExit extends SequentialCommandGroup {
    //SlidingClimbHooksCommand.climbNumber = 1;
        addCommands(
               new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))),
-              new ArmSetPositionsCommand(2000), new AutoWrist(1), new AutoPneumatics(1), new AutoWrist(2), new AutoPneumatics(2),
+              new ArmSetPositionsCommand(2000), new AutoWrist(1), /*new AutoPneumatics(1)*/ new AutoIntakeWheelsCommand(2), new AutoWrist(2), /*new AutoPneumatics(2)*/ new AutoIntakeWheelsCommand(0),
               mp, new WaitCommand(0.5), new AutoBalanceCommand());
   }
 

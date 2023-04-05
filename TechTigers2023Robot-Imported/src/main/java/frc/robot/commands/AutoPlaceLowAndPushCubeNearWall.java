@@ -127,7 +127,7 @@ public class AutoPlaceLowAndPushCubeNearWall extends SequentialCommandGroup {
             new  SequentialCommandGroup (
               new WaitCommand(0.4),
               //new AutoPneumatics(1)
-              new IntakeWheelsCommand(2)
+              new AutoIntakeWheelsCommand(2)
             )
           )
           /* 

@@ -63,13 +63,13 @@ public class AutoPlaceMidCubeAndMoveNearLoadingZone extends SequentialCommandGro
    
         addCommands(
             new InstantCommand(() -> odometry.setPosition(new Pose2d( Units.inchesToMeters(0),  Units.inchesToMeters(0), new Rotation2d()))) ,
-            new ParallelCommandGroup(
-                new ArmSetPositionsCommand(3, 2200, 1.0),
-                new  SequentialCommandGroup (
-                    new WaitCommand(0.3),
-                    new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
-                )
-            ),  // 2.3 seconds so far
+            //new ParallelCommandGroup(
+                //new ArmSetPositionsCommand(3, 2200, 1.0),
+                //new  SequentialCommandGroup (
+                    //new WaitCommand(0.3),
+                    //new AutoArmJoustCommand(1)  // NEW: 2 seconds for telescoping arm to extend
+                //)
+            //),  // 2.3 seconds so far
             new ParallelCommandGroup(
               new ArmSetPositionsCommand(1, 2), // raise arm to full distance, 2 seconds
               new  SequentialCommandGroup (
@@ -78,13 +78,13 @@ public class AutoPlaceMidCubeAndMoveNearLoadingZone extends SequentialCommandGro
               )
             ), // 4.3 seconds so far 
             //new AutoPneumatics(1, 0.5),  // 4.8 seconds
-           new IntakeWheelsCommand(2),  
+           new AutoIntakeWheelsCommand(2),  
 
             new ParallelCommandGroup(
               new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
-              new AutoArmJoustCommand(2),    // NEW: 2 seconds for telescoping arm to retract
+              //new AutoArmJoustCommand(2),    // NEW: 2 seconds for telescoping arm to retract
               //new AutoPneumatics(2),  // 1 second
-              new IntakeWheelsCommand(0),  
+              new AutoIntakeWheelsCommand(0),  
               new  SequentialCommandGroup (
                 new WaitCommand(0.5),
                 new ArmSetPositionsCommand(2, 2.0) // lower arm to near bottom, 2 seconds 

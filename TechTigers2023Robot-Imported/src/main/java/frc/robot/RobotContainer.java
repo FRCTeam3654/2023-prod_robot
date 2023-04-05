@@ -92,18 +92,32 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture(0);
 
 
-    autoChooser.addOption("back up and balance", new AutoBackUpAndBalance(odometry, drive));
-    autoChooser.setDefaultOption("place low and back up", new AutoPlaceLowAndMove(odometry, drive));
     //autoChooser.addOption("place mid and balance", new AutoPlaceMidAndBalance(odometry, drive));
     //autoChooser.addOption("place mid and move", new AutoPlaceMidAndMove(odometry, drive));
-    autoChooser.addOption("place low and balance", new AutoPlaceLowAndBalance(odometry, drive));
+    //no place
+    autoChooser.addOption("back up and balance", new AutoBackUpAndBalance(odometry, drive));
     autoChooser.addOption("back up", new AutoBackUp(odometry, drive));
-    autoChooser.addOption("Place + balance don't exit", new AutoBalanceDontExit(odometry, drive));
-    autoChooser.addOption("place and do nothing", new AutoPlaceLowAndNothing(odometry, drive));
+
+    //place low
+    autoChooser.addOption("place low and do nothing", new AutoPlaceLowAndNothing(odometry, drive));
+    autoChooser.addOption("Place low + balance don't exit", new AutoBalanceDontExit(odometry, drive));
+    autoChooser.setDefaultOption("place low and back up", new AutoPlaceLowAndMove(odometry, drive));
+    autoChooser.addOption("place low and balance", new AutoPlaceLowAndBalance(odometry, drive));
+
+    //place mid
     autoChooser.addOption("place mid and balance ", new AutoPlaceMidAndBalance(odometry, drive));
+    autoChooser.addOption("place mid and move", new AutoPlaceMidAndMove(odometry, drive));
+    autoChooser.addOption("place mid and nothing", new AutoPlaceMidAndNothing(odometry, drive));
+
+    //place high
+    autoChooser.addOption("place high and balance", new AutoPlaceHighAndBalance(odometry, drive));
+    autoChooser.addOption("place high and move", new AutoPlaceHighCubeAndMove(odometry, drive));
+    autoChooser.addOption("place high and nothing", new AutoPlaceHighAndNothing(odometry, drive));
+
+
     // test code
-    autoChooser.addOption("test path - test", new TestMPCommand(odometry, drive));
-    autoChooser.addOption("test - place low and push cube NEAR WALL ", new AutoPlaceLowAndPushCubeNearWall(odometry, drive));
+    //autoChooser.addOption("test path - test", new TestMPCommand(odometry, drive));
+    //autoChooser.addOption("test - place low and push cube NEAR WALL ", new AutoPlaceLowAndPushCubeNearWall(odometry, drive));
     
 
 
