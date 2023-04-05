@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.Turn90DegreesCommand;
+import frc.robot.commands.WristGrabCubeCommand;
 import frc.robot.commands.WristGrabDownCommand;
 import frc.robot.commands.WristGrabUpCommand;
 import edu.wpi.first.wpilibj.XboxController;
@@ -27,6 +28,7 @@ import frc.robot.commands.Turn90DegreesCommand;
 import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.ArmJoustCommand;
 import frc.robot.commands.DropLowCommand;
+import frc.robot.commands.PlaceHighCommand;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -80,6 +82,8 @@ public class OI {
   public JoystickButton wristGrabDownButton;
   public JoystickButton wristGrabUpButton;
   public JoystickButton humanPlayerButton;
+  public JoystickButton highGoalButton;
+  public JoystickButton grabCubeButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -144,6 +148,8 @@ public class OI {
   wristGrabDownButton = new JoystickButton(operatorStick, RobotMap.wristGrabDownButtonNumber);
   wristGrabUpButton = new JoystickButton(operatorStick, RobotMap.wristGrabUpButtonNumber);
   humanPlayerButton = new JoystickButton(operatorStick, RobotMap.humanPlayerButtonNumber);
+  highGoalButton = new JoystickButton(operatorStick, RobotMap.highGoalButtonNumber);
+  grabCubeButton = new JoystickButton(operatorStick, RobotMap.grabCubeButtonNumber);
 
   //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
   //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
@@ -197,6 +203,10 @@ public class OI {
   armPivotButton.onTrue(new PlaceMidCommand());
 
   humanPlayerButton.onTrue(new GetFromHumanPlayer());
+
+  highGoalButton.onTrue(new PlaceHighCommand());
+
+  grabCubeButton.onTrue(new WristGrabCubeCommand());
   //armShortPivotDownButton.onTrue(new ArmSetPositionsCommand());
   //armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   

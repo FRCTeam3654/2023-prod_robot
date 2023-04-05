@@ -89,7 +89,7 @@ public class AutoArmSetPositionsCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     isMotionMagicInProgress = false;
-    armDistance = RobotMap.armFullUpDistance;
+    //armDistance = RobotMap.armFullUpDistance;
     armTimerTimeout = 2;
     //mode = 0;
 
@@ -117,6 +117,7 @@ public class AutoArmSetPositionsCommand extends CommandBase {
               //return true;
             }
       }
+      
       else if( mode == 2) {
         double sensorDistance = Math.abs(RobotContainer.verticalMotionArm.getArmTalonPosition());
         if ((sensorDistance - 2200) < 10) {

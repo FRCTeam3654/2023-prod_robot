@@ -89,6 +89,8 @@ public static int armShortPivotDownButtonNumber = 19; //not used
 public static int armShortPivotUpButtonNumber = 20; //not used
 public static int armPivotButtonNumber = 3;
 public static int humanPlayerButtonNumber = 6;
+public static int highGoalButtonNumber = 8;
+public static int grabCubeButtonNumber = 5;
 
 
 //TALONS/TALON ID NUMBERS!
@@ -273,7 +275,7 @@ public static final Gains kGains = new Gains(0.2, 0.0, 0.0, 0.2, 0, 1.0);
 public static double turretTurn90Distance = 20000; //PLACEHOLDER THIS IS BY NO MEANS THE CORRECT AMOUNT
 
 //for the wrist
-public static double wristFullUpDistance = 18000; //PLACEHOLDER MUST TEST
+public static double wristFullUpDistance = 12000; //PLACEHOLDER MUST TEST
 public static double wristDeployDistance = -5000; //PLACEHOLDER MUST TEST
 
 
@@ -296,7 +298,7 @@ public static double armTurretUpDistance = 6000;
 public static double joustExtendDistance = -150000;
 public static double joustTimerTimeout = 2;// from 3
 
-public static double intakeSpeed = 0.3;
+public static double intakeSpeed = 0.55;
 
 public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }

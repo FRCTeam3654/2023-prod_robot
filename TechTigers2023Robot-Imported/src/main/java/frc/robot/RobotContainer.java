@@ -85,7 +85,7 @@ public class RobotContainer {
     pneumaticGrab.setDefaultCommand(new PneumaticsGrabbingCommand());
     
     telescopingArm.setDefaultCommand(new ManualArmCommand());
-    wheelIntake.setDefaultCommand(new IntakeWheelsCommand());
+    wheelIntake.setDefaultCommand(new IntakeHoldCommand());
     
     turretSpark.setDefaultCommand(new TurretStayStillCommand());
 

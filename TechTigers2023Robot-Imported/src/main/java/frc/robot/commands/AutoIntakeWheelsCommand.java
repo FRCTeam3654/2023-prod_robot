@@ -16,27 +16,27 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.AnalogInput;
 
-public class IntakeWheelsCommand extends CommandBase {
+public class AutoIntakeWheelsCommand extends CommandBase {
   /** Creates a new IntakeWheelsCommand. */
 
   public double intakeTimer = 0;
   public boolean isHolding = false;
-  public int mode; //0 is default slow move, 1 is full in, 2 is full out
+  public int mode = 0; //0 is default slow move, 1 is full in, 2 is full out
   private double wheelIntakePower = RobotMap.intakeSpeed;
 
 
-  public IntakeWheelsCommand() {
+  public AutoIntakeWheelsCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.wheelIntake);
   }
 
-  public IntakeWheelsCommand(int mode) {
+  public AutoIntakeWheelsCommand(int mode) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.wheelIntake);
     this.mode = mode;
   }
 
-  public IntakeWheelsCommand(int mode, double new_intakepower) {
+  public AutoIntakeWheelsCommand(int mode, double new_intakepower) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.wheelIntake);
     this.mode = mode;
@@ -46,7 +46,7 @@ public class IntakeWheelsCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //intakeTimer = Timer.getFPGATimestamp();
+    intakeTimer = Timer.getFPGATimestamp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -90,9 +90,9 @@ public class IntakeWheelsCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //if((intakeTimer + 2 < Timer.getFPGATimestamp())){
-      //return true;
-    //}
+    if((intakeTimer + 2 < Timer.getFPGATimestamp())){
+      return true;
+    }
     return false;
   }
 }

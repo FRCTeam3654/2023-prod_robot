@@ -33,9 +33,9 @@ import frc.robot.RobotMap;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class PlaceMidCommand extends SequentialCommandGroup {
+public class PlaceHighCommand extends SequentialCommandGroup {
   /** Creates a new PlaceMidCommand. */
-  public PlaceMidCommand() {
+  public PlaceHighCommand() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
@@ -48,18 +48,18 @@ public class PlaceMidCommand extends SequentialCommandGroup {
              // )
           //),
           new ParallelCommandGroup(
-            new AutoArmSetPositionsCommand(1, RobotMap.armFullUpDistance, 2), // raise arm to full distance, 2 seconds
+            new AutoArmSetPositionsCommand(1, 1.2 * RobotMap.armFullUpDistance, 2), // raise arm to full distance, 2 seconds
             //new  SequentialCommandGroup (
               //new ParallelCommandGroup(
                 new  SequentialCommandGroup (
                   new WaitCommand(0.5), // vs 0.8
-                  new  AutoWrist(1, 1.3 * RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds
+                  new  AutoWrist(1, 1.5 * RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds
                 )
               //)
             //)
           ),
           //new AutoPneumatics(1, 0.5),
-          new AutoIntakeWheelsCommand(2),
+          new AutoIntakeWheelsCommand(3),
           new ParallelCommandGroup(
             new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
             //new AutoArmJoustCommand(2),    // NEW: 2 seconds for telescoping arm to retract

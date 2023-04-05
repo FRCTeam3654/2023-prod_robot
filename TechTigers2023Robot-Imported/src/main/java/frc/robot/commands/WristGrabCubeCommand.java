@@ -29,13 +29,13 @@ import frc.robot.commands.AutoWrist;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 
-public class DropLowCommand extends SequentialCommandGroup {
+public class WristGrabCubeCommand extends SequentialCommandGroup {
 
  // NewRunMotionProfile mp;
   //NewRunMotionProfile mp1;
 
   /** Creates a new AutonBalanceCommand. */
-  public DropLowCommand() {
+  public WristGrabCubeCommand() {
    // addRequirements(RobotContainer.wrist);
   //  addRequirements(RobotContainer.pneumaticGrab);
     //mp = new NewRunMotionProfile(driveTrain, odometry, new Pose2d(Units.inchesToMeters(0), Units.inchesToMeters(0), new Rotation2d()), 0,
@@ -64,27 +64,35 @@ public class DropLowCommand extends SequentialCommandGroup {
 
           //addCommands(new WaitCommand(1));
 
-           addCommands(   
+          
+ //if(RobotContainer.oi.wristGrabDownButton.getAsBoolean()){
+          addCommands(   
             new ParallelCommandGroup(
-              new AutoWrist(3),
-              new  SequentialCommandGroup (
-                new WaitCommand(0.5),
-                //new AutoPneumatics(1)
-                new AutoIntakeWheelsCommand(2)
-              )
-            ), 
+              //new AutoPneumatics(1),
+              new IntakeWheelsCommand(1),
+              //new  SequentialCommandGroup (
+                //new WaitCommand(0.5),
+                new AutoWrist(6)
+              //)
+            )
+            );
+            //}
+
+            /* 
+else if(RobotContainer.oi.wristGrabUpButton.getAsBoolean()){
+            addCommands(
               new ParallelCommandGroup(
                   new AutoWrist(2), // raise wrist, 2 seconds, don't wait for full 2 seoonds to do next command
                   new  SequentialCommandGroup (
                     new WaitCommand(1),   // wait for 1 second for wrist to raise above group
                     //new ParallelCommandGroup(
-                      //new AutoPneumatics(2)  // 1 second
-                      new AutoIntakeWheelsCommand(0)
+                      new AutoPneumatics(2)  // 1 second
                     //)
                   )
                 )
               );
-      
+      }
+      */
           //addCommands(new AutoPneumatics(1 )); // opens pnematic to drop, 1 second
       
            /*addCommands(
