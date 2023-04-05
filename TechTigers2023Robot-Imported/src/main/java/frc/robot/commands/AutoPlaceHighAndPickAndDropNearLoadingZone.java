@@ -121,7 +121,10 @@ multiplier = 1;
                                   new WaitCommand(0.5),
                                   new AutoIntakeWheelsCommand(2)
                                 )
-                              )
+                              ),
+
+                              new IntakeWheelsCommand(0)  
+
                             )
                         )
                   )
