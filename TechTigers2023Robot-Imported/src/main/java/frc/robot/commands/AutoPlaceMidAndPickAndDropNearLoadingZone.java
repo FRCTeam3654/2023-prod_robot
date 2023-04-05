@@ -122,6 +122,7 @@ multiplier = 1;
 
                               new ParallelCommandGroup(	
                                 mp1,                // drive towards the goal to drop the game piece
+                                new IntakeWheelsCommand(0)  ,  
                                 new AutoWrist(2)    ,           // raise wrist , 1.5 second
                                 new AutoTurrentTurningCommand(4,2.0, 0) // turret go home    
                               ),
