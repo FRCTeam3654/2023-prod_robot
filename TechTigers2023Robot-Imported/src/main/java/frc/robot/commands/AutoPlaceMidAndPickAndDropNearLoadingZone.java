@@ -105,7 +105,7 @@ multiplier = 1;
                         ),
                         new  SequentialCommandGroup(   
 
-                            new ParallelCommandGroup(
+                              new ParallelCommandGroup(
                                 mp,                   // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous    
                                 new  SequentialCommandGroup (
                                   new WaitCommand(0.5),
@@ -114,11 +114,11 @@ multiplier = 1;
                                       new IntakeWheelsCommand(1)  ,  // intake
                                       new  SequentialCommandGroup (
                                         new WaitCommand(1), // experiment wait time to make sure to lower the wrist at the end 
-                                        new AutoWrist(1)                        // low wrist , 1.5 second
+                                        new AutoWrist(4)                        // low wrist , 1.5 second
                                       )
                                   )
-                                ),
-                              
+                                )
+                              ),
 
                               new ParallelCommandGroup(	
                                 mp1,                // drive towards the goal to drop the game piece
@@ -136,8 +136,8 @@ multiplier = 1;
                               ),
 
                               new IntakeWheelsCommand(0)  
-                            )
                         )
+                        
                   )
              
                 )
