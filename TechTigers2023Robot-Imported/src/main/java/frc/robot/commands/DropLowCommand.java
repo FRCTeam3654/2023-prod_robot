@@ -67,10 +67,12 @@ public class DropLowCommand extends SequentialCommandGroup {
            addCommands(   
             new ParallelCommandGroup(
               new AutoWrist(3),
+              //new AutoIntakeWheelsCommand(0),
               new  SequentialCommandGroup (
-                new WaitCommand(0.5),
+                //new WaitCommand(1),
+                new AutoIntakeWheelsCommand(4),
                 //new AutoPneumatics(1)
-                new AutoIntakeWheelsCommand(2)
+                new AutoIntakeWheelsCommand(5)
               )
             ), 
               new ParallelCommandGroup(

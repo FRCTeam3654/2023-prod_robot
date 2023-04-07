@@ -68,7 +68,7 @@ public class IntakeWheelsCommand extends CommandBase {
     }
 
     else if(mode == 0){
-      RobotContainer.wheelIntake.intakeWheels(0.25 * RobotMap.intakeSpeed);
+      RobotContainer.wheelIntake.intakeWheels(0.29 * RobotMap.intakeSpeed);
       //intakeTimer = Timer.getFPGATimestamp();
     }
 

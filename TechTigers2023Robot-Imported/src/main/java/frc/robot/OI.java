@@ -29,6 +29,7 @@ import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.ArmJoustCommand;
 import frc.robot.commands.DropLowCommand;
 import frc.robot.commands.PlaceHighCommand;
+import frc.robot.commands.SetWristZero;
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -84,6 +85,7 @@ public class OI {
   public JoystickButton humanPlayerButton;
   public JoystickButton highGoalButton;
   public JoystickButton grabCubeButton;
+  public JoystickButton setWristZeroButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -150,6 +152,7 @@ public class OI {
   humanPlayerButton = new JoystickButton(operatorStick, RobotMap.humanPlayerButtonNumber);
   highGoalButton = new JoystickButton(operatorStick, RobotMap.highGoalButtonNumber);
   grabCubeButton = new JoystickButton(operatorStick, RobotMap.grabCubeButtonNumber);
+  setWristZeroButton = new JoystickButton(operatorStick, RobotMap.setWristZeroButtonNumber);
 
   //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
   //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
@@ -182,15 +185,17 @@ public class OI {
 
   //pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
 
-  turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
-  turretRightPOV.whileTrue(new ManualTurretTurningCommand());
+  //turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
+  //turretRightPOV.whileTrue(new ManualTurretTurningCommand());
   turretHomeButton.onTrue(new ManualTurretTurningCommand());
 
   //armFullBackButton.onTrue(new ArmJoustCommand());
   //armFullOutButton.onTrue(new ArmJoustCommand());
 
-  //wristUpPOV.whileTrue(new ManualWristCommand());
-  //wristDownPOV.whileTrue(new ManualWristCommand());
+  wristUpPOV.whileTrue(new ManualWristCommand());
+  wristDownPOV.whileTrue(new ManualWristCommand());
+
+  setWristZeroButton.onTrue(new SetWristZero());
 
   //wristDeployButton.onTrue(new WristMotionMagic());
   //wristDownUpButton.onTrue(new WristMotionMagic());

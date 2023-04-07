@@ -48,17 +48,18 @@ public class PlaceHighCommand extends SequentialCommandGroup {
              // )
           //),
           new ParallelCommandGroup(
-            new AutoArmSetPositionsCommand(1, 1.2 * RobotMap.armFullUpDistance, 2), // raise arm to full distance, 2 seconds
+            new AutoArmSetPositionsCommand(1, 1.3 * RobotMap.armFullUpDistance, 2), // raise arm to full distance, 2 seconds
             //new  SequentialCommandGroup (
               //new ParallelCommandGroup(
                 new  SequentialCommandGroup (
-                  new WaitCommand(0.5), // vs 0.8
+                  new WaitCommand(0.2), // vs 0.8
                   new  AutoWrist(1, 1.5 * RobotMap.wristFullUpDistance)// lowers wrist , 1.5 seconds
                 )
               //)
             //)
           ),
           //new AutoPneumatics(1, 0.5),
+          new AutoIntakeWheelsCommand(4),
           new AutoIntakeWheelsCommand(3),
           new ParallelCommandGroup(
             new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command

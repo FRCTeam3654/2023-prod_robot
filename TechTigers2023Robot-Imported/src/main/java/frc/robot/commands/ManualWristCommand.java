@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class ManualWristCommand extends CommandBase {
   /** Creates a new WristCommand. */
   private double wristHoldingPower = 0.12;
+  private double wristPos;
 
   public ManualWristCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -30,13 +31,16 @@ public class ManualWristCommand extends CommandBase {
   public void execute() {
 
     if(RobotContainer.oi.wristUpPOV.getAsBoolean() == true){
-      //RobotContainer.wrist.manualwrist(0.15);
+      RobotContainer.wrist.manualwrist(0.15);
+      wristPos = RobotContainer.wrist.getWristTalonPosition();
     }
     else if(RobotContainer.oi.wristDownPOV.getAsBoolean() == true){
-      //RobotContainer.wrist.manualwrist(-0.15);
+      RobotContainer.wrist.manualwrist(-0.15);
+      wristPos = RobotContainer.wrist.getWristTalonPosition();
     }
+
     else{
-      if(WristMotionMagic.wristMoveNumber %2 == 1 && WristMotionMagic.isMotionMagicInProgress == false){
+      /*if(WristMotionMagic.wristMoveNumber %2 == 1 && WristMotionMagic.isMotionMagicInProgress == false){
         //need to figure out the angles times the cosine angles
         double currentSensorReading = RobotContainer.wrist.getWristTalonPosition();
         double theta = ((Math.abs(RobotMap.wristFullUpDistance) - Math.abs(currentSensorReading))/Math.abs(RobotMap.wristFullUpDistance)) * 90;
@@ -47,6 +51,8 @@ public class ManualWristCommand extends CommandBase {
       }
       //RobotContainer.wrist.
       //System.out.println("Should i be staying still");
+      */
+      RobotContainer.wrist.setMotionMagic(0, 0, 0);
     }
 
   //need to add an if statement for if it rotates x amount of revolutions it stops
@@ -61,6 +67,7 @@ public class ManualWristCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    RobotContainer.wrist.setMotionMagic(wristPos, 5000, 5000);
     return false;
   }
 }

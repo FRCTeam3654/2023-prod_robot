@@ -91,6 +91,7 @@ public static int armPivotButtonNumber = 3;
 public static int humanPlayerButtonNumber = 6;
 public static int highGoalButtonNumber = 8;
 public static int grabCubeButtonNumber = 5;
+public static int setWristZeroButtonNumber = 9;
 
 
 //TALONS/TALON ID NUMBERS!
@@ -298,7 +299,7 @@ public static double armTurretUpDistance = 6000;
 public static double joustExtendDistance = -150000;
 public static double joustTimerTimeout = 2;// from 3
 
-public static double intakeSpeed = 0.55;
+public static double intakeSpeed = 0.58;
 
 public static double sparkRotations = 5; //PLACEHOLDER NUMBER
 }

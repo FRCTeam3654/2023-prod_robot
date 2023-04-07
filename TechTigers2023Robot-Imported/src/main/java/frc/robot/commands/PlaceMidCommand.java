@@ -59,6 +59,7 @@ public class PlaceMidCommand extends SequentialCommandGroup {
             //)
           ),
           //new AutoPneumatics(1, 0.5),
+          new AutoIntakeWheelsCommand(4),
           new AutoIntakeWheelsCommand(2),
           new ParallelCommandGroup(
             new AutoWrist(2), // raise wrist, 1.5 seconds, don't wait for full 2 seoonds to do next command
@@ -69,10 +70,10 @@ public class PlaceMidCommand extends SequentialCommandGroup {
               new WaitCommand(0.5),
               
               new AutoArmSetPositionsCommand(2, 2200, 2.0) // lower arm to near bottom, 2 seconds 
-            ),
-            new  SequentialCommandGroup (
-                new WaitCommand(0.1)
-            )
+            ) //,
+            //new  SequentialCommandGroup (
+                //new WaitCommand(0.1)
+            //)
           )
 
       );
