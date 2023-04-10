@@ -48,6 +48,8 @@ multiplier = 1;
 
      //   TWO WAYS TO DO:  1) by MotionProfile  2) by Drive Straight with fixed angle -1.774 degree,then +5.594 degree 
 	   //   watch out : wheel slipping,  so the sensor reading is off
+
+
 	
       // NEED experiment:  when is positive angle ? and postive Y ? when moving backward
       
@@ -62,7 +64,8 @@ multiplier = 1;
       ,
       new Pose2d(Units.inchesToMeters(-8), Units.inchesToMeters(multiplier * (20)), Rotation2d.fromDegrees(0)), 0, false, false);
 
-      
+      //new AutoDriveWithTimeout(0.4, 5, 155,  -1.774)
+      //new AutoDriveWithTimeout(0.4, 5, 155.7,  5.594)
       
     
     
