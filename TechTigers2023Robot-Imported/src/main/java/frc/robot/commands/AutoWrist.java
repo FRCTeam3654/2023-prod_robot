@@ -69,21 +69,21 @@ public class AutoWrist extends CommandBase {
     }
     else if(mode == 3){ //moves down at 80% full distance
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 5000, 7500);
+      RobotContainer.wrist.setMotionMagic(-0.6 * RobotMap.wristFullUpDistance, 5000, 5000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
     else if (mode == 4){
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-1.2 * RobotMap.wristFullUpDistance, 5000, 7500);
+      RobotContainer.wrist.setMotionMagic(-1.35 * RobotMap.wristFullUpDistance, 5000, 5000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
     }
     else if (mode == 5){
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-0.3 * RobotMap.wristFullUpDistance, 5000, 7500);
+      RobotContainer.wrist.setMotionMagic(-0.15 * RobotMap.wristFullUpDistance, 5000, 5000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;
@@ -91,7 +91,15 @@ public class AutoWrist extends CommandBase {
 
     else if (mode == 6){
       wristTimer = Timer.getFPGATimestamp();
-      RobotContainer.wrist.setMotionMagic(-1.08 * RobotMap.wristFullUpDistance, 5000, 7500);
+      RobotContainer.wrist.setMotionMagic(-1.08 * RobotMap.wristFullUpDistance, 5000, 5000);
+      //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
+      //System.out.println("should i be motion magicking down");
+      isMotionMagicInProgress = true;
+    }
+
+    else if (mode == 7){
+      wristTimer = Timer.getFPGATimestamp();
+      RobotContainer.wrist.setMotionMagic(-1.15 * RobotMap.wristFullUpDistance, 5000, 5000);
       //RobotContainer.wrist.setMotionMagic(0, 2000, 2000);
       //System.out.println("should i be motion magicking down");
       isMotionMagicInProgress = true;

@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   public static long m_auto_starttime = 0l;
+  public static boolean isAuto = false;
 
 
   /**
@@ -62,6 +63,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    isAuto = true;
     m_auto_starttime = System.currentTimeMillis();
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
@@ -88,6 +90,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    isAuto = false;
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }

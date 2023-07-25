@@ -77,7 +77,7 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
                   new  SequentialCommandGroup (
                     new WaitCommand(0.8),
                     //new AutoPneumatics(1)
-                    new AutoIntakeWheelsCommand(2)
+                    new AutoIntakeWheelsCommand(5)
                   )
                 ),
                 new ParallelCommandGroup(
@@ -86,7 +86,7 @@ public class AutoPlaceLowAndBalance extends SequentialCommandGroup {
                     new WaitCommand(0.5),   // wait for 0.5 second for wrist to raise above group
                     new ParallelCommandGroup(
                       //new AutoPneumatics(2),  // 1 second
-                      new AutoIntakeWheelsCommand(0),
+                      new AutoIntakeWheelsCommand(2),
                       new  SequentialCommandGroup(
                           mp,                           // estimate about 4 seconds: 1.3 meter/second x 4 = 5.2 meter (~157 inches), after ~ 4 seconds in autonomous
                           new WaitCommand(0.8),   // wait for 0.8 second for the balance swing back to nornal

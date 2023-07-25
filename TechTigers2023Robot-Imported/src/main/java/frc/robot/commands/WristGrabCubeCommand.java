@@ -72,7 +72,7 @@ public class WristGrabCubeCommand extends SequentialCommandGroup {
               new IntakeWheelsCommand(1),
               //new  SequentialCommandGroup (
                 //new WaitCommand(0.5),
-                new AutoWrist(6)
+                new AutoWrist(7)
               //)
             )
             );

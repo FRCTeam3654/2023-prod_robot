@@ -20,6 +20,7 @@ public class AutoIntakeWheelsCommand extends CommandBase {
   /** Creates a new IntakeWheelsCommand. */
 
   public double intakeTimer = 0;
+  private double intakeTimeout = 2;
   public boolean isHolding = false;
   public int mode = 0; //0 is default slow move, 1 is full in, 2 is full out
   private double wheelIntakePower = RobotMap.intakeSpeed;
@@ -72,6 +73,29 @@ public class AutoIntakeWheelsCommand extends CommandBase {
       //intakeTimer = Timer.getFPGATimestamp();
     }
 
+    else if(mode == 4){
+      RobotContainer.wheelIntake.intakeWheels(0.25 * RobotMap.intakeSpeed);
+      //intakeTimer = Timer.getFPGATimestamp();
+      intakeTimeout = 0.5;
+    }
+
+    else if(mode == 5){
+      RobotContainer.wheelIntake.intakeWheels(-0.8 * RobotMap.intakeSpeed);
+      //intakeTimer = Timer.getFPGATimestamp();
+      intakeTimeout = 0.8;
+    }
+
+    else if(mode == 6){
+      RobotContainer.wheelIntake.intakeWheels(-1 * RobotMap.intakeSpeed);
+      //intakeTimer = Timer.getFPGATimestamp();
+    }
+
+    else if(mode == 7){
+      RobotContainer.wheelIntake.intakeWheels(RobotMap.intakeSpeed);
+      //intakeTimer = Timer.getFPGATimestamp();
+      intakeTimeout = 0.5;
+    }
+
     if(RobotContainer.oi.operatorStick.getRightTriggerAxis() > 0.4){
       RobotContainer.wheelIntake.intakeWheels(0);
     }
@@ -84,13 +108,14 @@ public class AutoIntakeWheelsCommand extends CommandBase {
   public void end(boolean interrupted) {
   //mode = 0;
   RobotContainer.wheelIntake.intakeWheels(0);
+  intakeTimeout = 2;
   //intakeTimer = 0;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((intakeTimer + 2 < Timer.getFPGATimestamp())){
+    if((intakeTimer + intakeTimeout < Timer.getFPGATimestamp())){
       return true;
     }
     return false;

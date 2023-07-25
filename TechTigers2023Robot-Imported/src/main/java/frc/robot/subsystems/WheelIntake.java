@@ -19,8 +19,8 @@ public class WheelIntake extends SubsystemBase {
   private TalonSRX intakeTalonLeft = new TalonSRX (RobotMap.IntakeTalonLeftID);
   private TalonSRX intakeTalonRight = new TalonSRX (RobotMap.IntakeTalonRightID);
 
-  //private AnalogInput analogDistanceSensor1;
-  //private int analogDistanceSensorPort1 = 1;  // need confirm this 
+  private AnalogInput analogDistanceSensor1;
+  private int analogDistanceSensorPort1 = 1;  // need confirm this 
 
 
   public WheelIntake() {
@@ -40,8 +40,8 @@ public class WheelIntake extends SubsystemBase {
     //possible to set ramp rate
 
 
-    //analogDistanceSensor1 = new AnalogInput(analogDistanceSensorPort1);
-    //analogDistanceSensor1.setAverageBits(12);
+    analogDistanceSensor1 = new AnalogInput(analogDistanceSensorPort1);
+    analogDistanceSensor1.setAverageBits(12);
 
 
   }
@@ -51,18 +51,18 @@ public class WheelIntake extends SubsystemBase {
   }
   
 
-  /* 
+  
   public boolean hasGamePiece() { 
     double cmDistanceSensor1 = analogDistanceSensor1.getAverageValue();
     SmartDashboard.putNumber("Analog Distance Sensor 1 raw", cmDistanceSensor1);
     boolean hasGamePiece = false;
     // need experiment the sensor reading 600 or other values
-    if( cmDistanceSensor1  > 600 ) {
+    if( cmDistanceSensor1  > 450 ) {
       hasGamePiece = true;
     }
     return hasGamePiece;
   }
- */
+ 
 
   @Override
   public void periodic() {

@@ -114,6 +114,9 @@ public class RobotContainer {
     autoChooser.addOption("place high and move", new AutoPlaceHighCubeAndMove(odometry, drive));
     autoChooser.addOption("place high and nothing", new AutoPlaceHighAndNothing(odometry, drive));
 
+    //two piece
+    //autoChooser.addOption("place mid and place second low LOADING ZONE", new PlaceMidAndPlaceLowByLoadingZone(odometry, drive));
+    //autoChooser.addOption("place mid and place second low BUMP SIDE", new BumpSideMidAndLowDoubleAuto(odometry, drive));
 
     // test code
     //autoChooser.addOption("test path - test", new TestMPCommand(odometry, drive));

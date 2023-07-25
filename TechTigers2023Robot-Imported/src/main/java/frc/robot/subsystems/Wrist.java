@@ -145,6 +145,13 @@ public class Wrist extends SubsystemBase {
     wristTalon.configVoltageCompSaturation(11, 0);
     wristTalon.set(ControlMode.PercentOutput, percentOutput);
   }
+
+  public void manualwristPercent(double percentOutput){
+    //wristTalon.enableVoltageCompensation(true);
+    //wristTalon.configVoltageCompSaturation(11, 0);
+    wristTalon.set(ControlMode.PercentOutput, percentOutput);
+  }
+
   public void setMotionMagic(double distance, int cruiseVelocity, int accelerationVelocity ) {
     setMotionMagic( distance, cruiseVelocity,  accelerationVelocity, 0) ;
    }

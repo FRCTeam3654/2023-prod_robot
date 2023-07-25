@@ -15,6 +15,7 @@ import frc.robot.commands.WristGrabCubeCommand;
 import frc.robot.commands.WristGrabDownCommand;
 import frc.robot.commands.WristGrabUpCommand;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.ManualTurretTurningCommand;
 import frc.robot.commands.PneumaticsGrabbingCommand;
@@ -27,8 +28,14 @@ import frc.robot.commands.ManualArmCommand;
 import frc.robot.commands.Turn90DegreesCommand;
 import frc.robot.commands.WristMotionMagic;
 import frc.robot.commands.ArmJoustCommand;
+import frc.robot.commands.AutoIntakeWheelsCommand;
 import frc.robot.commands.DropLowCommand;
 import frc.robot.commands.PlaceHighCommand;
+import frc.robot.commands.SetWristZero;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+
 //import frc.robot.commands.AutonomousDriveCommand;
 //import frc.robot.commands.DriveTargetCommand;
 //import frc.robot.commands.BallFlushCommand;
@@ -84,6 +91,7 @@ public class OI {
   public JoystickButton humanPlayerButton;
   public JoystickButton highGoalButton;
   public JoystickButton grabCubeButton;
+  public JoystickButton setWristZeroButton;
   //public JoystickButton intakeStopButton;
   //public JoystickButton slidingClimbButton;
   //public JoystickButton verticalClimbDownButton;
@@ -110,7 +118,7 @@ public class OI {
   //public JoystickButton turretButton;
 
 
-  //public Trigger sensorTrigger;
+  public Trigger sensorTrigger;
 
 
 
@@ -150,6 +158,7 @@ public class OI {
   humanPlayerButton = new JoystickButton(operatorStick, RobotMap.humanPlayerButtonNumber);
   highGoalButton = new JoystickButton(operatorStick, RobotMap.highGoalButtonNumber);
   grabCubeButton = new JoystickButton(operatorStick, RobotMap.grabCubeButtonNumber);
+  setWristZeroButton = new JoystickButton(operatorStick, RobotMap.setWristZeroButtonNumber);
 
   //wristLockButton = new JoystickButton(operatorStick, RobotMap.wristLockButtonNumber);
   //armLockButton = new JoystickButton(operatorStick, RobotMap.armLockButtonNumber);
@@ -182,15 +191,17 @@ public class OI {
 
   //pneumaticGrabButton.onTrue(new PneumaticsGrabbingCommand());
 
-  turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
-  turretRightPOV.whileTrue(new ManualTurretTurningCommand());
+  //turretLeftPOV.whileTrue(new ManualTurretTurningCommand());
+  //turretRightPOV.whileTrue(new ManualTurretTurningCommand());
   turretHomeButton.onTrue(new ManualTurretTurningCommand());
 
   //armFullBackButton.onTrue(new ArmJoustCommand());
   //armFullOutButton.onTrue(new ArmJoustCommand());
 
-  //wristUpPOV.whileTrue(new ManualWristCommand());
-  //wristDownPOV.whileTrue(new ManualWristCommand());
+  wristUpPOV.whileTrue(new ManualWristCommand());
+  wristDownPOV.whileTrue(new ManualWristCommand());
+
+  setWristZeroButton.onTrue(new SetWristZero());
 
   //wristDeployButton.onTrue(new WristMotionMagic());
   //wristDownUpButton.onTrue(new WristMotionMagic());
@@ -211,8 +222,13 @@ public class OI {
   //armShortPivotUpButton.onTrue(new ArmSetPositionsCommand());
   
 
-  //sensorTrigger = new Trigger(() -> RobotContainer.wheelIntake.hasGamePiece());
-  //sensorTrigger.onTrue( new AutoWrist(2));
+  sensorTrigger = new Trigger(() -> RobotContainer.wheelIntake.hasGamePiece());
+  
+if (Robot.isAuto == false){
+  sensorTrigger.onTrue(new SequentialCommandGroup(new AutoIntakeWheelsCommand(7), new ParallelCommandGroup(new AutoIntakeWheelsCommand(4), new AutoWrist(2))));
+}
+
+else{}
 
 
 
